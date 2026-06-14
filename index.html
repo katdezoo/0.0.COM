@@ -172,12 +172,15 @@
     @media screen and (max-width: 600px) {
       .intro-page {
         font-size: 22px;
+        overflow: hidden;
       }
 
       .intro-gif {
         width: 100vw;
-        height: 100vh;
-        object-fit: contain;
+        height: 120vh;
+        max-width: none;
+        max-height: none;
+        object-fit: fill;
       }
 
       .gif-bg {
