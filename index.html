@@ -44,17 +44,20 @@
       text-align: center;
     }
 
-    nav a {
+    nav button {
       color: red;
+      background: transparent;
+      border: none;
       text-decoration: none;
       margin: 0 15px;
       font-weight: bold;
       cursor: pointer;
       text-shadow: 2px 2px 5px white;
       font-size: 18px;
+      font-family: Arial, sans-serif;
     }
 
-    nav a:hover {
+    nav button:hover {
       color: purple;
     }
 
@@ -150,7 +153,7 @@
         padding: 18px 10px;
       }
 
-      nav a {
+      nav button {
         margin: 0;
         font-size: 20px;
       }
@@ -209,9 +212,9 @@
   <div class="overlay">
 
     <nav>
-      <a onclick="afficherSection('accueil')">starthere</a>
-      <a onclick="afficherSection('apropos')">RULES</a>
-      <a onclick="afficherSection('contact')">SEND A WAV / MP3</a>
+      <button onclick="afficherSection('accueil')">starthere</button>
+      <button onclick="afficherSection('apropos')">RULES</button>
+      <button onclick="afficherSection('contact')">SEND A WAV / MP3</button>
     </nav>
 
     <section id="accueil" class="page-section active">
@@ -220,12 +223,10 @@
     <section id="apropos" class="page-section">
       <div class="card">
         <h1>
-          <RULES>
-          <br>
-          /RULES><br>
-          N1 / USE A 2000s MUSIC/<br>
-          N2 / DO A REMIX/<br>
-          N3 / LESS THAN 1MIN30/&lt;3
+          RULES/<br>
+          N1 USE A 2000s MUSIC/<br>
+          N2 DO A REMIX/<br>
+          N3 LESS THAN 1MIN30/&lt;3
         </h1>
       </div>
     </section>
