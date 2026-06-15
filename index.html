@@ -122,6 +122,18 @@
       color: purple;
     }
 
+    .paris-timer {
+      color: purple;
+      font-family: Arial, sans-serif;
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 3px 3px 8px white;
+      margin-top: 5px;
+      position: relative;
+      z-index: 25;
+    }
+
     .page-section {
       display: none;
       min-height: 70vh;
@@ -230,6 +242,11 @@
         font-size: 20px;
       }
 
+      .paris-timer {
+        font-size: 22px;
+        margin-top: 5px;
+      }
+
       .page-section {
         min-height: auto;
         padding: 10px 12px 140px 12px;
@@ -307,6 +324,8 @@
       <button onclick="afficherSection('contact')">SEND A WAV / MP3</button>
     </nav>
 
+    <div id="parisTimer" class="paris-timer">00:00</div>
+
     <section id="accueil" class="page-section active">
     </section>
 
@@ -373,6 +392,22 @@
       const lecteur = document.getElementById("lecteurAudio");
       lecteur.play();
     }
+
+    function afficherHeureParis() {
+      const maintenant = new Date();
+
+      const heureParis = new Intl.DateTimeFormat("fr-FR", {
+        timeZone: "Europe/Paris",
+        hour: "2-digit",
+        minute: "2-digit",
+        hourCycle: "h23"
+      }).format(maintenant);
+
+      document.getElementById("parisTimer").textContent = heureParis;
+    }
+
+    afficherHeureParis();
+    setInterval(afficherHeureParis, 1000);
   </script>
 
 </body>
