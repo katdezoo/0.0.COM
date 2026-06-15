@@ -125,13 +125,17 @@
     .paris-timer {
       color: purple;
       font-family: Arial, sans-serif;
-      font-size: 40px;
+      font-size: 80px;
       font-weight: bold;
       text-align: center;
       text-shadow: 3px 3px 8px white;
-      margin-top: 5px;
-      position: relative;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       z-index: 25;
+      pointer-events: none;
+      white-space: nowrap;
     }
 
     .page-section {
@@ -243,8 +247,7 @@
       }
 
       .paris-timer {
-        font-size: 35px;
-        margin-top: 5px;
+        font-size: 60px;
       }
 
       .page-section {
