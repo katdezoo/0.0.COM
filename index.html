@@ -354,8 +354,6 @@
     }
 
     .audio-word-display {
-      --sous-titre-contour: 0.7px;
-
       min-height: clamp(40px, 6vw, 68px);
       width: max-content;
       max-width: min(96vw, 820px);
@@ -371,9 +369,18 @@
       font-weight: 700;
       line-height: 1;
       color: #ff0000;
-      -webkit-text-stroke: var(--sous-titre-contour) #000000;
+      -webkit-text-stroke: 0.7px #000000;
       paint-order: stroke fill;
-      text-shadow: 0 0 1px #000000;
+      text-shadow:
+        -2px -2px 0 #000000,
+        0 -2px 0 #000000,
+        2px -2px 0 #000000,
+        -2px 0 0 #000000,
+        2px 0 0 #000000,
+        -2px 2px 0 #000000,
+        0 2px 0 #000000,
+        2px 2px 0 #000000,
+        0 0 4px #000000;
       opacity: 0;
       pointer-events: none;
       user-select: none;
@@ -630,6 +637,18 @@
         font-family: Arial, Helvetica, sans-serif;
         font-size: clamp(20px, 5.6vw, 34px);
         font-weight: 700;
+        -webkit-text-stroke: 0.7px #000000;
+        paint-order: stroke fill;
+        text-shadow:
+          -2px -2px 0 #000000,
+          0 -2px 0 #000000,
+          2px -2px 0 #000000,
+          -2px 0 0 #000000,
+          2px 0 0 #000000,
+          -2px 2px 0 #000000,
+          0 2px 0 #000000,
+          2px 2px 0 #000000,
+          0 0 4px #000000;
       }
 
       audio {
@@ -746,6 +765,18 @@
         font-family: Arial, Helvetica, sans-serif;
         font-size: clamp(20px, 5vw, 38px);
         font-weight: 700;
+        -webkit-text-stroke: 0.7px #000000;
+        paint-order: stroke fill;
+        text-shadow:
+          -2px -2px 0 #000000,
+          0 -2px 0 #000000,
+          2px -2px 0 #000000,
+          -2px 0 0 #000000,
+          2px 0 0 #000000,
+          -2px 2px 0 #000000,
+          0 2px 0 #000000,
+          2px 2px 0 #000000,
+          0 0 4px #000000;
       }
 
       audio {
