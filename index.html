@@ -671,6 +671,7 @@
       <source src="./musique432.mp3?v=50" type="audio/mpeg">
     </audio>
 
+```
 <div class="volume-boost-box">
   <label for="volumeBoost">volume <span id="volumeValue">100%</span></label>
   <input id="volumeBoost" type="range" min="0" max="200" value="100" step="1">
@@ -680,6 +681,7 @@
 <div class="audio-footer">
   <p>© 2026 catdezoo&lt;3. all rights reserved.</p>
 </div>
+```
 
   </div>
 
@@ -743,7 +745,12 @@
       const volumeWarning = document.getElementById("volumeWarning");
 
       function mettreAJourVolume() {
-        const valeur = Number(volumeBoost.value);
+        let valeur = Number(volumeBoost.value);
+
+        if (valeur >= 95 && valeur <= 105) {
+          valeur = 100;
+          volumeBoost.value = 100;
+        }
 
         volumeValue.textContent = valeur + "%";
 
