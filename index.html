@@ -279,28 +279,6 @@
       z-index: 45;
     }
 
-    .rules-footer {
-      position: static;
-      width: 100%;
-      padding: 8px 0 0 0;
-      margin: 0;
-      text-align: center;
-      background: transparent;
-      color: black;
-      text-shadow: 2px 2px 6px black;
-      box-sizing: border-box;
-      pointer-events: none;
-    }
-
-    .rules-footer p {
-      margin: 0;
-      font-size: 11px;
-      color: black;
-      text-shadow:
-        0 0 4px #00ff00,
-        1px 1px 3px black;
-    }
-
     @media screen and (min-width: 601px) {
       #apropos {
         top: calc(38vh + 20px);
@@ -372,6 +350,28 @@
       text-shadow:
         0 0 5px #ff0000,
         0 0 10px #ff0000;
+    }
+
+    .audio-footer {
+      position: static;
+      width: 100%;
+      padding: 6px 0 0 0;
+      margin: 0;
+      text-align: center;
+      background: transparent;
+      color: black;
+      text-shadow: 2px 2px 6px black;
+      box-sizing: border-box;
+      pointer-events: none;
+    }
+
+    .audio-footer p {
+      margin: 0;
+      font-size: 10px;
+      color: black;
+      text-shadow:
+        0 0 4px #00ff00,
+        1px 1px 3px black;
     }
 
     @media screen and (max-width: 600px) {
@@ -489,6 +489,14 @@
         font-size: 12px;
       }
 
+      .audio-footer {
+        padding: 4px 0 0 0;
+      }
+
+      .audio-footer p {
+        font-size: 6px;
+      }
+
       .intro-footer {
         bottom: 80px;
         padding: 10px;
@@ -566,6 +574,10 @@
         font-size: 10px;
       }
 
+      .audio-footer p {
+        font-size: 7px;
+      }
+
       #volumeBoost {
         height: 10px;
       }
@@ -612,13 +624,6 @@
       N4-NO ai AT ALL/<br>
       N5-ELECTRONIC ART ONLY/
     </h1>
-
-```
-<footer class="rules-footer">
-  <p>© 2026 catdezoo&lt;3. all rights reserved.</p>
-</footer>
-```
-
   </div>
 </section>
 
@@ -641,6 +646,10 @@
   <label for="volumeBoost">volume <span id="volumeValue">100%</span></label>
   <input id="volumeBoost" type="range" min="0" max="200" value="100" step="1">
   <div id="volumeWarning" class="volume-warning">⚠ au-dessus de 100%, le son peut être très fort.</div>
+</div>
+
+<div class="audio-footer">
+  <p>© 2026 catdezoo&lt;3. all rights reserved.</p>
 </div>
 ```
 
