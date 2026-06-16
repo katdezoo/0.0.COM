@@ -369,6 +369,9 @@
       font-weight: 700;
       line-height: 1;
       color: #ff0000;
+      -webkit-text-stroke: 0.6px #000000;
+      paint-order: stroke fill;
+      text-shadow: 0 0 1px #000000;
       opacity: 0;
       pointer-events: none;
       user-select: none;
@@ -625,6 +628,9 @@
         font-family: Arial, Helvetica, sans-serif;
         font-size: clamp(20px, 5.6vw, 34px);
         font-weight: 700;
+        -webkit-text-stroke: 0.6px #000000;
+        paint-order: stroke fill;
+        text-shadow: 0 0 1px #000000;
       }
 
       audio {
@@ -741,6 +747,9 @@
         font-family: Arial, Helvetica, sans-serif;
         font-size: clamp(20px, 5vw, 38px);
         font-weight: 700;
+        -webkit-text-stroke: 0.6px #000000;
+        paint-order: stroke fill;
+        text-shadow: 0 0 1px #000000;
       }
 
       audio {
@@ -836,6 +845,7 @@
   <div class="audio-box">
     <div id="audioWordDisplay" class="audio-word-display"></div>
 
+```
 <audio id="lecteurAudio" controls preload="metadata">
   <source src="./musique432.wav?v=50" type="audio/wav">
   <source src="./musique432.mp3?v=50" type="audio/mpeg">
@@ -863,6 +873,7 @@
 <div class="audio-footer">
   <p>© 2026 catdezoo&lt;3. all rights reserved.</p>
 </div>
+```
 
   </div>
 
