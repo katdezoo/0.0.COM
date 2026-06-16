@@ -294,11 +294,16 @@
 
     .rules-footer p {
       margin: 0;
+      font-size: 11px;
+      color: black;
+      text-shadow:
+        0 0 4px #00ff00,
+        1px 1px 3px black;
     }
 
     @media screen and (min-width: 601px) {
       #apropos {
-        top: calc(48vh + 40px);
+        top: calc(38vh + 20px);
       }
 
       #apropos h1 {
@@ -608,10 +613,11 @@
       N5-ELECTRONIC ART ONLY/
     </h1>
 
+```
 <footer class="rules-footer">
   <p>© 2026 catdezoo&lt;3. all rights reserved.</p>
 </footer>
-
+```
 
   </div>
 </section>
@@ -630,11 +636,14 @@
       <source src="./musique432.mp3?v=50" type="audio/mpeg">
     </audio>
 
+```
 <div class="volume-boost-box">
   <label for="volumeBoost">volume <span id="volumeValue">100%</span></label>
   <input id="volumeBoost" type="range" min="0" max="200" value="100" step="1">
   <div id="volumeWarning" class="volume-warning">⚠ au-dessus de 100%, le son peut être très fort.</div>
 </div>
+```
+
   </div>
 
   <script>
