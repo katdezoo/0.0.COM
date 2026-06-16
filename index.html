@@ -788,10 +788,6 @@
       let animationVolume = null;
       let dernierRelachementVolume = 0;
 
-      function smartphoneOuTactile() {
-        return window.matchMedia("(max-width: 600px), (pointer: coarse)").matches;
-      }
-
       function appliquerAimant(valeur) {
         const centreAimant = 100;
         const margeAimant = 53;
@@ -870,11 +866,6 @@
       }
 
       function relacherVolume() {
-        if (!smartphoneOuTactile()) {
-          mettreAJourVolume(true, false);
-          return;
-        }
-
         const maintenant = Date.now();
 
         if (maintenant - dernierRelachementVolume < 120) {
@@ -893,11 +884,7 @@
           animationVolume = null;
         }
 
-        if (smartphoneOuTactile()) {
-          mettreAJourVolume(false, false);
-        } else {
-          mettreAJourVolume(true, false);
-        }
+        mettreAJourVolume(false, false);
       });
 
       volumeBoost.addEventListener("change", relacherVolume);
