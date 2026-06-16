@@ -783,10 +783,10 @@
       }
 
       function appliquerAimant(valeur) {
-        const limiteBasseAimant = 98 - 25;
-        const limiteHauteAimant = 102 + 25;
+        const centreAimant = 100;
+        const margeAimant = 37;
 
-        if (valeur >= limiteBasseAimant && valeur <= limiteHauteAimant) {
+        if (valeur >= centreAimant - margeAimant && valeur <= centreAimant + margeAimant) {
           return 100;
         }
 
