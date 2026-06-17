@@ -1669,6 +1669,36 @@
       }
     }
 
+  
+    /* Position responsive de la mention volume 100% */
+    .volume-boost-box label {
+      transform: translateY(-4px);
+    }
+
+    @media screen and (min-width: 1025px) {
+      .volume-boost-box label {
+        transform: translateY(-6px);
+      }
+    }
+
+    @media screen and (min-width: 601px) and (max-width: 1024px) {
+      .volume-boost-box label {
+        transform: translateY(-5px);
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      .volume-boost-box label {
+        transform: translateY(-4px);
+      }
+    }
+
+    @media screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+      .volume-boost-box label {
+        transform: translateY(-3px);
+      }
+    }
+
   </style>
 
 </head>
