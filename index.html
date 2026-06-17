@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>PRODUCERSWORLDCUP</title>
+  <title>-ok un site quoi/</title>
 
   <style>
     @font-face {
@@ -2080,6 +2080,45 @@
       .overlay {
         max-width: 100vw;
         overflow-x: hidden;
+      }
+    }
+
+  
+    /* Correctif universel smartphone : GIF déformé comme avant, compatible anciens/nouveaux téléphones */
+    @media screen and (max-width: 768px) {
+      .intro-gif,
+      .gif-bg {
+        width: 100vw !important;
+        height: 100vh !important;
+        min-height: 100vh !important;
+        max-width: 100vw !important;
+        max-height: none !important;
+        overflow: hidden !important;
+        background-size: 100% 120% !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        background-color: #ff00ff !important;
+      }
+    }
+
+    @supports (height: 100dvh) {
+      @media screen and (max-width: 768px) {
+        .intro-gif,
+        .gif-bg {
+          height: 100dvh !important;
+          min-height: 100dvh !important;
+        }
+      }
+    }
+
+    @supports (-webkit-touch-callout: none) {
+      @media screen and (max-width: 768px) {
+        .intro-gif,
+        .gif-bg {
+          height: -webkit-fill-available !important;
+          min-height: 100vh !important;
+          background-size: 100% 120% !important;
+        }
       }
     }
 
