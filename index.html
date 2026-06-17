@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>-ok un site quoi/</title>
+  <title>PRODUCERSWORLDCUP</title>
 
   <style>
     @font-face {
@@ -2118,6 +2118,152 @@
           height: -webkit-fill-available !important;
           min-height: 100vh !important;
           background-size: 100% 120% !important;
+        }
+      }
+    }
+
+  
+    /* Correctif CMF Phone et smartphones : onglets plus bas + scroll naturel */
+    @media screen and (max-width: 768px) {
+      html,
+      body {
+        min-height: 100vh;
+        height: auto;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .gif-bg,
+      .intro-gif {
+        width: 100vw !important;
+        height: 100vh !important;
+        min-height: 100vh !important;
+        background-size: 100% 120% !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        background-color: #ff00ff !important;
+      }
+
+      @supports (height: 100dvh) {
+        .gif-bg,
+        .intro-gif {
+          height: 100dvh !important;
+          min-height: 100dvh !important;
+        }
+      }
+
+      .overlay {
+        position: relative !important;
+        display: block !important;
+        min-height: 175vh !important;
+        padding-top: calc(118px + env(safe-area-inset-top)) !important;
+        padding-bottom: calc(330px + env(safe-area-inset-bottom)) !important;
+        overflow: visible !important;
+      }
+
+      @supports (height: 100dvh) {
+        .overlay {
+          min-height: 175dvh !important;
+        }
+      }
+
+      nav {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        z-index: 30000 !important;
+      }
+
+      .page-section {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        pointer-events: auto !important;
+      }
+
+      #accueil.page-section.active {
+        min-height: 68vh !important;
+      }
+
+      @supports (height: 100dvh) {
+        #accueil.page-section.active {
+          min-height: 68dvh !important;
+        }
+      }
+
+      #apropos {
+        margin-top: 58vh !important;
+      }
+
+      #contact {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin-top: 60vh !important;
+      }
+
+      @supports (height: 100dvh) {
+        #apropos {
+          margin-top: 58dvh !important;
+        }
+
+        #contact {
+          margin-top: 60dvh !important;
+        }
+      }
+
+      #apropos h1 {
+        font-size: clamp(16px, 5vw, 22px) !important;
+        line-height: 1.25 !important;
+        margin: 0 !important;
+      }
+
+      #contact h1 {
+        font-size: clamp(25px, 9vw, 38px) !important;
+        margin: 0 !important;
+      }
+
+      .audio-box {
+        bottom: calc(34px + env(safe-area-inset-bottom)) !important;
+      }
+    }
+
+    @media screen and (max-width: 430px) and (min-height: 760px) {
+      .overlay {
+        min-height: 190vh !important;
+      }
+
+      @supports (height: 100dvh) {
+        .overlay {
+          min-height: 190dvh !important;
+        }
+      }
+
+      #apropos {
+        margin-top: 62vh !important;
+      }
+
+      #contact {
+        margin-top: 64vh !important;
+      }
+
+      @supports (height: 100dvh) {
+        #apropos {
+          margin-top: 62dvh !important;
+        }
+
+        #contact {
+          margin-top: 64dvh !important;
         }
       }
     }
