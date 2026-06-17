@@ -755,7 +755,10 @@
       }
 
       #contact {
-        top: 54vh;
+        top: min(61vh, calc(100vh - 255px));
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
       }
 
       #contact h1 {
@@ -858,10 +861,7 @@
       }
 
       #volumeBoost::-webkit-slider-runnable-track,
-      #audioProgress::-webkit-slider-runnable-track {
-        height: 5px;
-      }
-
+      #audioProgress::-webkit-slider-runnable-track,
       #volumeBoost::-moz-range-track,
       #audioProgress::-moz-range-track {
         height: 5px;
@@ -1038,10 +1038,7 @@
       }
 
       #volumeBoost::-webkit-slider-runnable-track,
-      #audioProgress::-webkit-slider-runnable-track {
-        height: 4px;
-      }
-
+      #audioProgress::-webkit-slider-runnable-track,
       #volumeBoost::-moz-range-track,
       #audioProgress::-moz-range-track {
         height: 4px;
