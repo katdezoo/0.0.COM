@@ -1296,6 +1296,108 @@
           0 0 18px rgba(255, 0, 0, 0.66);
       }
     }
+  
+    .volume-boost-box::before,
+    .volume-boost-box label::before {
+      display: none !important;
+    }
+
+    .volume-white-glow-layer {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 120ms ease;
+      mix-blend-mode: normal;
+    }
+
+    .volume-white-glow-layer.visible {
+      opacity: 1;
+    }
+
+    #volumeTextWhiteGlow {
+      width: clamp(128px, 13vw, 190px);
+      height: clamp(24px, 3vw, 42px);
+      filter: blur(12px);
+      box-shadow:
+        0 0 20px 10px rgba(255, 255, 255, 0.72),
+        0 0 44px 20px rgba(255, 255, 255, 0.42);
+    }
+
+    #volumeThumbWhiteGlow {
+      width: clamp(92px, 10vw, 156px);
+      height: clamp(58px, 6vw, 92px);
+      filter: blur(16px);
+      box-shadow:
+        0 0 22px 10px rgba(255, 255, 255, 0.72),
+        0 0 48px 22px rgba(255, 255, 255, 0.42);
+    }
+
+    @media screen and (min-width: 601px) and (max-width: 1024px) {
+      #volumeTextWhiteGlow {
+        width: clamp(120px, 16vw, 178px);
+        height: clamp(22px, 3vw, 38px);
+        filter: blur(11px);
+        box-shadow:
+          0 0 18px 9px rgba(255, 255, 255, 0.72),
+          0 0 40px 18px rgba(255, 255, 255, 0.42);
+      }
+
+      #volumeThumbWhiteGlow {
+        width: clamp(88px, 12vw, 148px);
+        height: clamp(54px, 7vw, 86px);
+        filter: blur(15px);
+        box-shadow:
+          0 0 20px 9px rgba(255, 255, 255, 0.72),
+          0 0 44px 20px rgba(255, 255, 255, 0.42);
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      #volumeTextWhiteGlow {
+        width: clamp(98px, 38vw, 140px);
+        height: clamp(19px, 6.2vw, 28px);
+        filter: blur(9px);
+        box-shadow:
+          0 0 15px 7px rgba(255, 255, 255, 0.72),
+          0 0 30px 14px rgba(255, 255, 255, 0.40);
+      }
+
+      #volumeThumbWhiteGlow {
+        width: clamp(72px, 30vw, 118px);
+        height: clamp(44px, 14vw, 66px);
+        filter: blur(12px);
+        box-shadow:
+          0 0 17px 8px rgba(255, 255, 255, 0.72),
+          0 0 34px 16px rgba(255, 255, 255, 0.40);
+      }
+    }
+
+    @media screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+      #volumeTextWhiteGlow {
+        width: clamp(92px, 24vw, 132px);
+        height: clamp(17px, 4vw, 25px);
+        filter: blur(8px);
+        box-shadow:
+          0 0 13px 6px rgba(255, 255, 255, 0.72),
+          0 0 26px 12px rgba(255, 255, 255, 0.38);
+      }
+
+      #volumeThumbWhiteGlow {
+        width: clamp(66px, 20vw, 106px);
+        height: clamp(38px, 10vw, 58px);
+        filter: blur(10px);
+        box-shadow:
+          0 0 15px 7px rgba(255, 255, 255, 0.72),
+          0 0 30px 13px rgba(255, 255, 255, 0.38);
+      }
+    }
+
   </style>
 
 </head>
@@ -1309,6 +1411,10 @@
   </div>
 
   <div class="gif-bg"></div>
+
+  <div id="volumeTextWhiteGlow" class="volume-white-glow-layer"></div>
+  <div id="volumeThumbWhiteGlow" class="volume-white-glow-layer"></div>
+
 
   <div class="overlay">
 
@@ -1393,6 +1499,9 @@
 
       const lecteur = document.getElementById("lecteurAudio");
       lecteur.load();
+      setTimeout(function() {
+        mettreAJourEffetsBlancsVolumeGlobal();
+      }, 80);
     }, 5500);
 
     setTimeout(function() {
@@ -1420,6 +1529,45 @@
       document.getElementById("introPage").style.display = "none";
       document.getElementById("menuPrincipal").style.display = "";
     }, 9750);
+
+
+    function mettreAJourEffetsBlancsVolumeGlobal(valeurForcee) {
+      const volumeBoost = document.getElementById("volumeBoost");
+      const volumeLabel = document.querySelector(".volume-boost-box label");
+      const volumeTextWhiteGlow = document.getElementById("volumeTextWhiteGlow");
+      const volumeThumbWhiteGlow = document.getElementById("volumeThumbWhiteGlow");
+
+      if (!volumeBoost || !volumeLabel || !volumeTextWhiteGlow || !volumeThumbWhiteGlow) {
+        return;
+      }
+
+      const sliderRect = volumeBoost.getBoundingClientRect();
+      const labelRect = volumeLabel.getBoundingClientRect();
+
+      if (sliderRect.width <= 0 || sliderRect.height <= 0 || labelRect.width <= 0 || labelRect.height <= 0) {
+        volumeTextWhiteGlow.classList.remove("visible");
+        volumeThumbWhiteGlow.classList.remove("visible");
+        return;
+      }
+
+      const valeur = Number.isFinite(Number(valeurForcee)) ? Number(valeurForcee) : Number(volumeBoost.value);
+      const volumeMin = Number(volumeBoost.min);
+      const volumeMax = Number(volumeBoost.max);
+      const ratio = Math.min(1, Math.max(0, (valeur - volumeMin) / (volumeMax - volumeMin)));
+
+      const thumbX = sliderRect.left + sliderRect.width * ratio;
+      const thumbY = sliderRect.top + sliderRect.height / 2;
+      const labelX = labelRect.left + labelRect.width / 2;
+      const labelY = labelRect.top + labelRect.height / 2;
+
+      volumeThumbWhiteGlow.style.left = thumbX + "px";
+      volumeThumbWhiteGlow.style.top = thumbY + "px";
+      volumeTextWhiteGlow.style.left = labelX + "px";
+      volumeTextWhiteGlow.style.top = labelY + "px";
+
+      volumeTextWhiteGlow.classList.add("visible");
+      volumeThumbWhiteGlow.classList.add("visible");
+    }
 
     function afficherSection(id) {
       const sections = document.querySelectorAll(".page-section");
@@ -1458,6 +1606,7 @@
 
       function appliquerVolume(valeur) {
         volumeValue.textContent = Math.round(valeur) + "%";
+        mettreAJourEffetsBlancsVolumeGlobal(valeur);
         const volumeMin = Number(volumeBoost.min);
         const volumeMax = Number(volumeBoost.max);
         const positionVolume = Math.min(100, Math.max(0, ((valeur - volumeMin) / (volumeMax - volumeMin)) * 100));
@@ -1773,6 +1922,21 @@
       document.getElementById("timerTime").textContent = heure + ":" + minute + ":" + seconde;
       document.getElementById("timerPeriod").textContent = periode;
     }
+
+
+    window.addEventListener("resize", function() {
+      mettreAJourEffetsBlancsVolumeGlobal();
+    });
+
+    window.addEventListener("orientationchange", function() {
+      setTimeout(function() {
+        mettreAJourEffetsBlancsVolumeGlobal();
+      }, 150);
+    });
+
+    setTimeout(function() {
+      mettreAJourEffetsBlancsVolumeGlobal();
+    }, 9800);
 
     initialiserVolumeBoost();
     initialiserAudioProgression();
