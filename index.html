@@ -1514,6 +1514,32 @@
       }
     }
 
+  
+    /* Patch fluidité mobile : les effets blancs bougent via transform GPU, pas avec left/top */
+    .volume-white-glow-layer {
+      left: 0 !important;
+      top: 0 !important;
+      transform: translate3d(var(--glow-x, -9999px), var(--glow-y, -9999px), 0) translate(-50%, -50%) !important;
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      contain: layout paint style;
+    }
+
+    @media screen and (max-width: 600px) {
+      .volume-white-glow-layer {
+        transition: opacity 60ms linear;
+      }
+
+      #volumeTextWhiteGlow {
+        filter: blur(8px);
+      }
+
+      #volumeThumbWhiteGlow {
+        filter: blur(10px);
+      }
+    }
+
   </style>
 
 </head>
@@ -1690,10 +1716,10 @@
       const labelX = labelRect.left + labelRect.width / 2;
       const labelY = labelRect.top + labelRect.height / 2;
 
-      volumeThumbWhiteGlow.style.left = thumbX + "px";
-      volumeThumbWhiteGlow.style.top = thumbY + "px";
-      volumeTextWhiteGlow.style.left = labelX + "px";
-      volumeTextWhiteGlow.style.top = labelY + "px";
+      volumeThumbWhiteGlow.style.setProperty("--glow-x", thumbX + "px");
+      volumeThumbWhiteGlow.style.setProperty("--glow-y", thumbY + "px");
+      volumeTextWhiteGlow.style.setProperty("--glow-x", labelX + "px");
+      volumeTextWhiteGlow.style.setProperty("--glow-y", labelY + "px");
 
       volumeTextWhiteGlow.classList.add("visible");
       volumeThumbWhiteGlow.classList.add("visible");
@@ -2071,6 +2097,48 @@
     setTimeout(function() {
       mettreAJourEffetsBlancsVolumeGlobal();
     }, 9800);
+
+
+    let boucleEffetsBlancsMobile = null;
+
+    function lancerBoucleEffetsBlancsMobile() {
+      if (boucleEffetsBlancsMobile) {
+        return;
+      }
+
+      const suivre = function() {
+        mettreAJourEffetsBlancsVolumeGlobal();
+
+        if (boucleEffetsBlancsMobile) {
+          boucleEffetsBlancsMobile = requestAnimationFrame(suivre);
+        }
+      };
+
+      boucleEffetsBlancsMobile = requestAnimationFrame(suivre);
+    }
+
+    function arreterBoucleEffetsBlancsMobile() {
+      if (boucleEffetsBlancsMobile) {
+        cancelAnimationFrame(boucleEffetsBlancsMobile);
+        boucleEffetsBlancsMobile = null;
+      }
+
+      demanderMajEffetsBlancsVolume();
+    }
+
+    window.addEventListener("touchstart", lancerBoucleEffetsBlancsMobile, { passive: true });
+    window.addEventListener("touchmove", lancerBoucleEffetsBlancsMobile, { passive: true });
+    window.addEventListener("touchend", arreterBoucleEffetsBlancsMobile, { passive: true });
+    window.addEventListener("touchcancel", arreterBoucleEffetsBlancsMobile, { passive: true });
+
+    let timerScrollEffetsBlancsMobile = null;
+
+    window.addEventListener("scroll", function() {
+      lancerBoucleEffetsBlancsMobile();
+
+      clearTimeout(timerScrollEffetsBlancsMobile);
+      timerScrollEffetsBlancsMobile = setTimeout(arreterBoucleEffetsBlancsMobile, 180);
+    }, { passive: true });
 
     initialiserVolumeBoost();
     initialiserAudioProgression();
