@@ -3945,18 +3945,30 @@
     }
 
   
-    /* Smartphone : fluidité optimisée de l'exemple box */
+    /* Smartphone : exemple box ultra fluide pendant le scroll */
     @media screen and (max-width: 768px) {
       #apropos {
+        top: var(--exemple-box-smooth-top, 60dvh) !important;
+        bottom: calc(var(--exemple-box-smooth-bottom, 205px) + env(safe-area-inset-bottom)) !important;
         contain: layout paint style !important;
         transform: translate3d(-50%, 0, 0) !important;
         backface-visibility: hidden !important;
         will-change: top, bottom !important;
-        transition: box-shadow 0.28s ease, background 0.28s ease !important;
+        transition:
+          box-shadow 0.32s ease,
+          background 0.32s ease !important;
       }
 
       #apropos .card {
         contain: paint !important;
+        transform: translateZ(0) !important;
+      }
+    }
+
+    @media screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+      #apropos {
+        top: var(--exemple-box-smooth-top, 50vh) !important;
+        bottom: calc(var(--exemple-box-smooth-bottom, 120px) + env(safe-area-inset-bottom)) !important;
       }
     }
 
@@ -4638,8 +4650,8 @@
     let topActuel = null;
     let topCible = null;
     let bottomCible = 205;
-    let raf = null;
-    let dernierCalcul = 0;
+    let animation = null;
+    let majDemandee = false;
 
     function estSmartphone() {
       return window.innerWidth <= 768;
@@ -4651,21 +4663,15 @@
         : window.innerHeight;
     }
 
-    function calculerCible() {
+    function definirCible() {
       if (!estSmartphone()) {
         racine.style.removeProperty("--exemple-box-smooth-top");
         racine.style.removeProperty("--exemple-box-smooth-bottom");
-        raf = null;
+        animation = null;
+        topActuel = null;
+        topCible = null;
         return;
       }
-
-      const maintenant = performance.now();
-
-      if (maintenant - dernierCalcul < 34) {
-        return;
-      }
-
-      dernierCalcul = maintenant;
 
       const h = hauteurViewport();
       const paysage = window.innerWidth <= 900 && window.innerHeight <= 500 && window.matchMedia("(orientation: landscape)").matches;
@@ -4682,50 +4688,58 @@
         racine.style.setProperty("--exemple-box-smooth-bottom", bottomCible + "px");
       }
 
-      if (!raf) {
-        raf = requestAnimationFrame(animer);
+      if (!animation) {
+        animation = requestAnimationFrame(animer);
       }
     }
 
     function animer() {
-      raf = null;
-
       if (!estSmartphone() || topCible === null || topActuel === null) {
+        animation = null;
         return;
       }
 
       const distance = topCible - topActuel;
 
-      if (Math.abs(distance) < 0.35) {
+      if (Math.abs(distance) < 0.12) {
         topActuel = topCible;
       } else {
-        topActuel += distance * 0.18;
+        topActuel += distance * 0.085;
       }
 
       racine.style.setProperty("--exemple-box-smooth-top", topActuel.toFixed(2) + "px");
       racine.style.setProperty("--exemple-box-smooth-bottom", bottomCible + "px");
       racine.style.removeProperty("--contact-smooth-top");
 
-      if (topActuel !== topCible) {
-        raf = requestAnimationFrame(animer);
+      if (topActuel !== topCible || majDemandee) {
+        majDemandee = false;
+        animation = requestAnimationFrame(animer);
+      } else {
+        animation = null;
       }
     }
 
-    function demanderCalcul() {
-      requestAnimationFrame(calculerCible);
+    function demanderMaj() {
+      majDemandee = true;
+
+      if (!animation) {
+        requestAnimationFrame(definirCible);
+      } else {
+        definirCible();
+      }
     }
 
-    calculerCible();
+    definirCible();
 
-    window.addEventListener("DOMContentLoaded", demanderCalcul, { passive: true });
-    window.addEventListener("resize", demanderCalcul, { passive: true });
+    window.addEventListener("DOMContentLoaded", demanderMaj, { passive: true });
+    window.addEventListener("resize", demanderMaj, { passive: true });
     window.addEventListener("orientationchange", function() {
-      setTimeout(demanderCalcul, 250);
+      setTimeout(demanderMaj, 250);
     }, { passive: true });
 
     if (window.visualViewport) {
-      window.visualViewport.addEventListener("resize", demanderCalcul, { passive: true });
-      window.visualViewport.addEventListener("scroll", demanderCalcul, { passive: true });
+      window.visualViewport.addEventListener("resize", demanderMaj, { passive: true });
+      window.visualViewport.addEventListener("scroll", demanderMaj, { passive: true });
     }
   })();
 </script>
