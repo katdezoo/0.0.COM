@@ -415,11 +415,35 @@
     }
 
     .volume-boost-box label {
-      display: block;
-      margin-bottom: 3px;
+      display: inline-block;
+      position: relative;
+      z-index: 3;
+      isolation: isolate;
+      overflow: visible;
+      margin: 0 auto 3px auto;
+      padding: 0 10px;
+      line-height: 1.25;
       cursor: default;
       user-select: none;
       -webkit-user-select: none;
+    }
+
+    .volume-boost-box label::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: clamp(82px, 9vw, 132px);
+      height: clamp(20px, 2.5vw, 34px);
+      transform: translate(-50%, -50%);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      filter: blur(10px);
+      box-shadow:
+        0 0 18px 8px rgba(255, 255, 255, 0.68),
+        0 0 36px 16px rgba(255, 255, 255, 0.38);
+      pointer-events: none;
+      z-index: -1;
     }
 
     #volumeValue {
@@ -717,6 +741,16 @@
 
       .volume-boost-box label {
         font-size: clamp(13px, 1.6vw, 17px);
+        padding: 0 9px;
+      }
+
+      .volume-boost-box label::before {
+        width: clamp(78px, 12vw, 124px);
+        height: clamp(19px, 3vw, 31px);
+        filter: blur(9px);
+        box-shadow:
+          0 0 16px 7px rgba(255, 255, 255, 0.68),
+          0 0 32px 14px rgba(255, 255, 255, 0.38);
       }
 
       #volumeBoost::-webkit-slider-thumb,
@@ -889,7 +923,17 @@
 
       .volume-boost-box label {
         margin-bottom: 2px;
+        padding: 0 8px;
         font-size: clamp(11px, 3.2vw, 14px);
+      }
+
+      .volume-boost-box label::before {
+        width: clamp(68px, 24vw, 104px);
+        height: clamp(17px, 6vw, 26px);
+        filter: blur(8px);
+        box-shadow:
+          0 0 14px 6px rgba(255, 255, 255, 0.68),
+          0 0 26px 11px rgba(255, 255, 255, 0.38);
       }
 
       #volumeValue {
@@ -1075,7 +1119,17 @@
       }
 
       .volume-boost-box label {
+        padding: 0 7px;
         font-size: clamp(10px, 2.2vw, 13px);
+      }
+
+      .volume-boost-box label::before {
+        width: clamp(62px, 18vw, 96px);
+        height: clamp(16px, 4.5vw, 24px);
+        filter: blur(7px);
+        box-shadow:
+          0 0 12px 5px rgba(255, 255, 255, 0.68),
+          0 0 24px 10px rgba(255, 255, 255, 0.38);
       }
 
       .volume-warning {
