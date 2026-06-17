@@ -2268,6 +2268,157 @@
       }
     }
 
+  
+    /* CMF/smartphones : texte des onglets statique pendant le scroll */
+    @media screen and (max-width: 768px) {
+      .page-section {
+        position: fixed !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        pointer-events: none !important;
+      }
+
+      #accueil.page-section.active {
+        min-height: auto !important;
+      }
+
+      #apropos {
+        top: 62dvh !important;
+        margin-top: 0 !important;
+      }
+
+      #contact {
+        top: 64dvh !important;
+        margin-top: 0 !important;
+      }
+
+      @supports not (height: 100dvh) {
+        #apropos {
+          top: 62vh !important;
+        }
+
+        #contact {
+          top: 64vh !important;
+        }
+      }
+
+      #apropos h1,
+      #contact h1 {
+        pointer-events: none !important;
+      }
+    }
+
+    @media screen and (max-width: 430px) and (min-height: 760px) {
+      #apropos {
+        top: 64dvh !important;
+      }
+
+      #contact {
+        top: 66dvh !important;
+      }
+
+      @supports not (height: 100dvh) {
+        #apropos {
+          top: 64vh !important;
+        }
+
+        #contact {
+          top: 66vh !important;
+        }
+      }
+    }
+
+  
+    /* Android/iOS smartphones : onglets fixes entre les lettres du GIF et le lecteur */
+    @media screen and (max-width: 768px) {
+      .page-section {
+        position: fixed !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 0 12px !important;
+        box-sizing: border-box !important;
+        pointer-events: none !important;
+        z-index: 16000 !important;
+      }
+
+      #apropos,
+      #contact {
+        top: clamp(54vh, 59vh, calc(100vh - 275px)) !important;
+        margin-top: 0 !important;
+      }
+
+      @supports (height: 100dvh) {
+        #apropos,
+        #contact {
+          top: clamp(54dvh, 59dvh, calc(100dvh - 275px)) !important;
+        }
+      }
+
+      #apropos h1 {
+        font-size: clamp(15px, 4.7vw, 21px) !important;
+        line-height: 1.22 !important;
+        margin: 0 !important;
+      }
+
+      #contact h1 {
+        font-size: clamp(25px, 8.4vw, 36px) !important;
+        line-height: 1.05 !important;
+        margin: 0 !important;
+      }
+
+      #apropos .card,
+      #contact .card {
+        margin: 0 !important;
+        padding: 8px 8px !important;
+      }
+
+      .audio-box {
+        z-index: 20000 !important;
+      }
+
+      nav {
+        z-index: 30000 !important;
+      }
+    }
+
+    @media screen and (max-width: 430px) and (min-height: 760px) {
+      #apropos,
+      #contact {
+        top: clamp(55vh, 60vh, calc(100vh - 285px)) !important;
+      }
+
+      @supports (height: 100dvh) {
+        #apropos,
+        #contact {
+          top: clamp(55dvh, 60dvh, calc(100dvh - 285px)) !important;
+        }
+      }
+    }
+
+    @media screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+      #apropos,
+      #contact {
+        top: 48vh !important;
+      }
+
+      #apropos h1 {
+        font-size: clamp(12px, 2.6vw, 16px) !important;
+        line-height: 1.15 !important;
+      }
+
+      #contact h1 {
+        font-size: clamp(18px, 5vw, 28px) !important;
+      }
+    }
+
   </style>
 
 </head>
