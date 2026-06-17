@@ -584,12 +584,24 @@
 
     #volumeBoost::-webkit-slider-thumb {
       transform: scale(1.08);
-      background: radial-gradient(circle, #00ff00 0%, #ff0000 62%, #000000 100%);
+      border-color: #000000;
+      background: radial-gradient(circle, #ff4a4a 0%, #ff0000 70%, #8b0000 100%);
+      box-shadow:
+        0 0 0 1px #ff0000,
+        0 0 0 2px #000000,
+        0 0 7px #000000,
+        0 0 14px #ff0000;
     }
 
     #volumeBoost::-moz-range-thumb {
       transform: scale(1.08);
-      background: radial-gradient(circle, #00ff00 0%, #ff0000 62%, #000000 100%);
+      border-color: #000000;
+      background: radial-gradient(circle, #ff4a4a 0%, #ff0000 70%, #8b0000 100%);
+      box-shadow:
+        0 0 0 1px #ff0000,
+        0 0 0 2px #000000,
+        0 0 7px #000000,
+        0 0 14px #ff0000;
     }
 
     #audioProgress::-webkit-slider-thumb {
