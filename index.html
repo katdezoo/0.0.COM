@@ -6460,28 +6460,73 @@ body {
     let topCible = null;
     let hauteurCible = null;
     let raf = null;
+    let syncScroll = false;
 
     function estSmartphone() {
       return window.innerWidth <= 768;
+    }
+
+    function boxRules() {
+      return document.getElementById("apropos");
+    }
+
+    function rulesActive() {
+      const box = boxRules();
+      return !!(box && box.classList.contains("active"));
     }
 
     function hauteurViewportStable() {
       return window.innerHeight || document.documentElement.clientHeight || 760;
     }
 
+    function largeurViewportStable() {
+      return window.innerWidth || document.documentElement.clientWidth || 390;
+    }
+
+    function clamp(valeur, min, max) {
+      return Math.max(min, Math.min(max, valeur));
+    }
+
+    function maxPageScroll() {
+      return Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    }
+
+    function progressionPage() {
+      if (!rulesActive()) return 0;
+      return clamp((window.scrollY || document.documentElement.scrollTop || 0) / maxPageScroll(), 0, 1);
+    }
+
+    function maxBoxScroll(box) {
+      return Math.max(1, box.scrollHeight - box.clientHeight);
+    }
+
+    function topLecteur() {
+      const h = hauteurViewportStable();
+      const lecteur = document.querySelector(".audio-box");
+      if (lecteur) {
+        const rect = lecteur.getBoundingClientRect();
+        if (rect && rect.top > 0 && rect.top < h) {
+          return rect.top;
+        }
+      }
+      return h - 178;
+    }
+
     function appliquerStylesFixes(box, paysage) {
       box.style.setProperty("width", "calc(100vw - 24px)", "important");
       box.style.setProperty("max-width", "calc(100vw - 24px)", "important");
-      box.style.setProperty("padding", paysage ? "24px 10px" : "30px 12px", "important");
-      box.style.setProperty("overflow-y", "scroll", "important");
+      box.style.setProperty("padding", paysage ? "22px 10px" : "28px 14px", "important");
+      box.style.setProperty("overflow-y", "auto", "important");
+      box.style.setProperty("overflow-x", "hidden", "important");
       box.style.setProperty("-webkit-overflow-scrolling", "touch", "important");
       box.style.setProperty("touch-action", "pan-y pinch-zoom", "important");
       box.style.setProperty("pointer-events", "auto", "important");
       box.style.setProperty("transform", "translate3d(-50%, 0, 0)", "important");
+      box.style.setProperty("scrollbar-width", "thin", "important");
     }
 
     function calculerCiblesMagicboxFluide() {
-      const box = document.getElementById("apropos");
+      const box = boxRules();
       if (!box) return;
 
       if (!estSmartphone()) {
@@ -6497,23 +6542,35 @@ body {
         return;
       }
 
-      const largeur = window.innerWidth || document.documentElement.clientWidth || 390;
+      const largeur = largeurViewportStable();
       const hauteur = hauteurViewportStable();
       const paysage = largeur <= 900 && hauteur <= 500 && window.matchMedia("(orientation: landscape)").matches;
-      const grandSmartphone = largeur <= 430 && hauteur >= 760 && !paysage;
+      const p = progressionPage();
 
-      const ratioTop = paysage ? 0.50 : grandSmartphone ? 0.62 : 0.60;
-      const margeBas = paysage ? 120 : 205;
-      const hauteurMin = paysage ? 78 : grandSmartphone ? 100 : 96;
+      /* Bas protégé : la box ne vient pas toucher le lecteur. */
+      const margeLecteur = paysage ? 8 : 14;
+      const basMax = Math.round(topLecteur() - margeLecteur);
 
-      /* Point d'ancrage à la position actuelle la plus basse, sans changer la taille de la box. */
-      const descente = paysage ? 18 : 62;
+      /* Haut minimal : la box peut grandir vers le haut, mais elle reste sous le bandeau vidéo. */
+      const hautMin = Math.round(hauteur * (paysage ? 0.40 : 0.47));
 
-      const topBase = Math.round(hauteur * ratioTop);
-      topCible = topBase + descente;
-      hauteurCible = Math.max(hauteurMin, Math.round(hauteur - topBase - margeBas));
+      /* Au départ : plus petite. En bas de scroll : plus grande.
+         Le bas reste verrouillé juste au-dessus du lecteur, donc elle grandit vers le haut. */
+      const hauteurDepart = Math.round(clamp(hauteur * (paysage ? 0.20 : 0.155), paysage ? 70 : 108, paysage ? 118 : 146));
+      const hauteurFinIdeale = Math.round(clamp(hauteur * (paysage ? 0.36 : 0.315), paysage ? 118 : 206, paysage ? 190 : 292));
+      const hauteurMaxPossible = Math.max(hauteurDepart, basMax - hautMin);
+      const hauteurFin = Math.max(hauteurDepart, Math.min(hauteurFinIdeale, hauteurMaxPossible));
+
+      hauteurCible = Math.round(hauteurDepart + (hauteurFin - hauteurDepart) * p);
+      topCible = Math.round(basMax - hauteurCible);
 
       appliquerStylesFixes(box, paysage);
+
+      if (!syncScroll && rulesActive()) {
+        syncScroll = true;
+        box.scrollTop = p * maxBoxScroll(box);
+        syncScroll = false;
+      }
 
       if (topActuel === null) {
         topActuel = topCible;
@@ -6529,14 +6586,14 @@ body {
     }
 
     function animerMagicboxFluide() {
-      const box = document.getElementById("apropos");
+      const box = boxRules();
 
       if (!box || !estSmartphone() || topCible === null || hauteurCible === null) {
         raf = null;
         return;
       }
 
-      /* Lent mais fluide : l'ancienne magie, avec un peu plus de velours. */
+      /* Même effet smooth : la taille ET la position glissent ensemble. */
       const douceur = 0.045;
       const stop = 0.12;
 
@@ -6565,12 +6622,22 @@ body {
       }
     }
 
-    function brancherRulesSansBloquerGestes() {
-      const box = document.getElementById("apropos");
-      if (!box || box.dataset.rulesScrollRestoreOk) return;
-      box.dataset.rulesScrollRestoreOk = "1";
+    function synchroniserPageDepuisBox() {
+      const box = boxRules();
+      if (!estSmartphone() || !rulesActive() || !box || syncScroll) return;
 
-      /* Aucun preventDefault / stopPropagation : scroll de la box + gestes navigateur restent possibles. */
+      syncScroll = true;
+      const progress = clamp(box.scrollTop / maxBoxScroll(box), 0, 1);
+      window.scrollTo({ top: progress * maxPageScroll(), left: 0, behavior: "auto" });
+      syncScroll = false;
+      calculerCiblesMagicboxFluide();
+    }
+
+    function brancherRulesSansBloquerGestes() {
+      const box = boxRules();
+      if (!box || box.dataset.rulesGrowSmoothOk) return;
+      box.dataset.rulesGrowSmoothOk = "1";
+      box.addEventListener("scroll", synchroniserPageDepuisBox, { passive: true });
       box.addEventListener("touchstart", function() {}, { passive: true });
       box.addEventListener("touchmove", function() {}, { passive: true });
       box.addEventListener("wheel", function() {}, { passive: true });
@@ -6587,15 +6654,22 @@ body {
     window.addEventListener("load", demanderMagicboxFluide);
     window.addEventListener("pageshow", demanderMagicboxFluide);
     window.addEventListener("resize", demanderMagicboxFluide, { passive: true });
+    window.addEventListener("scroll", demanderMagicboxFluide, { passive: true });
     window.addEventListener("orientationchange", function() {
       setTimeout(demanderMagicboxFluide, 250);
     }, { passive: true });
 
     document.addEventListener("click", function(event) {
       if (event.target && event.target.textContent && event.target.textContent.trim() === "RULES") {
-        setTimeout(demanderMagicboxFluide, 60);
+        setTimeout(function() {
+          window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+          demanderMagicboxFluide();
+        }, 50);
+        setTimeout(demanderMagicboxFluide, 220);
       }
     }, { passive: true });
+
+    setTimeout(demanderMagicboxFluide, 800);
   })();
 </script>
 
@@ -7300,15 +7374,22 @@ body {
 </script>
 
 <style id="rules-page-free-scroll-final">
-  /* RULES : scroll libre avec barre fine, ancrage bas conservé */
+  /* RULES : scroll libre, barre fine, grande amplitude, vidéo étirée sous la page */
   @media screen and (max-width: 768px) {
     html.rules-page-scroll-mode,
     html.rules-page-scroll-mode body {
-      min-height: calc(100vh + var(--rules-page-scroll-extra, 220px)) !important;
+      min-height: calc(100vh + var(--rules-page-scroll-extra, 620px)) !important;
       overflow-y: auto !important;
       overflow-x: hidden !important;
       scrollbar-width: thin !important;
       scrollbar-color: rgba(255, 255, 255, 0.58) transparent !important;
+      background: #000000 !important;
+    }
+
+    html.rules-page-scroll-mode #fondVideo.video-bg {
+      height: calc(var(--gpc-fixed-h, 100vh) + var(--rules-video-scroll-extra, 620px)) !important;
+      min-height: calc(var(--gpc-fixed-h, 100vh) + var(--rules-video-scroll-extra, 620px)) !important;
+      object-fit: fill !important;
     }
 
     html.rules-page-scroll-mode::-webkit-scrollbar,
@@ -7330,12 +7411,8 @@ body {
     }
 
     #apropos {
-      overflow-y: auto !important;
-      overflow-x: hidden !important;
       scrollbar-width: thin !important;
       scrollbar-color: rgba(255, 255, 255, 0.52) transparent !important;
-      overscroll-behavior-y: auto !important;
-      touch-action: pan-y pinch-zoom !important;
       padding-right: 14px !important;
     }
 
@@ -7353,17 +7430,12 @@ body {
       border-radius: 999px !important;
       box-shadow: 0 0 6px rgba(255, 255, 255, 0.42) !important;
     }
-
-    #apropos::-webkit-scrollbar-corner {
-      background: transparent !important;
-    }
   }
 </style>
 
 <script id="rules-page-free-scroll-script">
   (function() {
     const racine = document.documentElement;
-    let syncEnCours = false;
     let raf = null;
     let dernierEtatActif = false;
 
@@ -7380,14 +7452,6 @@ body {
       return !!(box && box.classList.contains("active"));
     }
 
-    function maxPageScroll() {
-      return Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-    }
-
-    function maxBoxScroll(box) {
-      return Math.max(1, box.scrollHeight - box.clientHeight);
-    }
-
     function appliquerModeScrollLibre() {
       const box = boxRules();
       const actif = mobile() && rulesActive() && box;
@@ -7396,42 +7460,22 @@ body {
 
       if (!actif) {
         racine.style.removeProperty("--rules-page-scroll-extra");
+        racine.style.removeProperty("--rules-video-scroll-extra");
         dernierEtatActif = false;
         return;
       }
 
-      const extra = Math.max(180, Math.min(420, maxBoxScroll(box) + 96));
+      /* Amplitude volontairement plus grande : la box a le temps de grandir doucement. */
+      const extra = Math.max(560, Math.min(880, (box.scrollHeight || 260) + 470));
       racine.style.setProperty("--rules-page-scroll-extra", extra + "px");
+      racine.style.setProperty("--rules-video-scroll-extra", extra + "px");
 
       if (!dernierEtatActif) {
-        /* Ouverture de RULES : on repart proprement en haut, puis on peut descendre avec la barre fine. */
-        syncEnCours = true;
         window.scrollTo({ top: 0, left: 0, behavior: "auto" });
         box.scrollTop = 0;
-        syncEnCours = false;
       }
 
       dernierEtatActif = true;
-    }
-
-    function synchroniserBoxDepuisPage() {
-      const box = boxRules();
-      if (!mobile() || !rulesActive() || !box || syncEnCours) return;
-
-      syncEnCours = true;
-      const progress = Math.max(0, Math.min(1, (window.scrollY || 0) / maxPageScroll()));
-      box.scrollTop = progress * maxBoxScroll(box);
-      syncEnCours = false;
-    }
-
-    function synchroniserPageDepuisBox() {
-      const box = boxRules();
-      if (!mobile() || !rulesActive() || !box || syncEnCours) return;
-
-      syncEnCours = true;
-      const progress = Math.max(0, Math.min(1, box.scrollTop / maxBoxScroll(box)));
-      window.scrollTo({ top: progress * maxPageScroll(), left: 0, behavior: "auto" });
-      syncEnCours = false;
     }
 
     function demanderMaj() {
@@ -7439,7 +7483,6 @@ body {
       raf = requestAnimationFrame(function() {
         raf = null;
         appliquerModeScrollLibre();
-        synchroniserBoxDepuisPage();
       });
     }
 
@@ -7447,12 +7490,9 @@ body {
     window.addEventListener("load", demanderMaj);
     window.addEventListener("pageshow", demanderMaj);
     window.addEventListener("resize", demanderMaj, { passive: true });
+    window.addEventListener("scroll", demanderMaj, { passive: true });
     window.addEventListener("orientationchange", function() {
       setTimeout(demanderMaj, 260);
-    }, { passive: true });
-
-    window.addEventListener("scroll", function() {
-      demanderMaj();
     }, { passive: true });
 
     document.addEventListener("click", function(event) {
@@ -7462,18 +7502,165 @@ body {
         setTimeout(demanderMaj, 180);
       }
     }, { passive: true });
+  })();
+</script>
 
-    function brancherBox() {
-      const box = boxRules();
-      if (!box || box.dataset.rulesPageFreeScrollOk) return;
-      box.dataset.rulesPageFreeScrollOk = "1";
-      box.addEventListener("scroll", function() {
-        if (rulesActive()) synchroniserPageDepuisBox();
-      }, { passive: true });
+<script id="video-anti-freeze-pro-final">
+  (function() {
+    const SRC = "./regardepasmalnon.mp4";
+    let dernierTemps = -1;
+    let compteurBloque = 0;
+    let rechargeEnCours = false;
+    let dernierCorrectif = 0;
+
+    function video() {
+      return document.getElementById("fondVideo");
     }
 
-    brancherBox();
-    setTimeout(brancherBox, 600);
+    function configurer(v) {
+      if (!v) return;
+      v.muted = true;
+      v.defaultMuted = true;
+      v.loop = true;
+      v.autoplay = true;
+      v.playsInline = true;
+      v.preload = "auto";
+      v.setAttribute("muted", "");
+      v.setAttribute("loop", "");
+      v.setAttribute("autoplay", "");
+      v.setAttribute("playsinline", "");
+      v.setAttribute("webkit-playsinline", "");
+      v.setAttribute("preload", "auto");
+
+      const source = v.querySelector("source");
+      if (source && !source.getAttribute("src").includes(SRC.replace("./", ""))) {
+        source.setAttribute("src", SRC);
+        v.load();
+      }
+    }
+
+    function play(v) {
+      if (!v) return;
+      try {
+        const promesse = v.play();
+        if (promesse && typeof promesse.catch === "function") {
+          promesse.catch(function() {});
+        }
+      } catch (e) {}
+    }
+
+    function reveilDoux(v) {
+      const maintenant = Date.now();
+      if (!v || maintenant - dernierCorrectif < 900) return;
+      dernierCorrectif = maintenant;
+
+      try {
+        if (Number.isFinite(v.duration) && v.duration > 0) {
+          const prochain = Math.min(v.duration - 0.08, Math.max(0.02, v.currentTime + 0.045));
+          v.currentTime = prochain;
+        } else {
+          v.currentTime = Math.max(0.02, v.currentTime + 0.045);
+        }
+      } catch (e) {}
+
+      play(v);
+    }
+
+    function rechargeDouce(v) {
+      if (!v || rechargeEnCours) return;
+      rechargeEnCours = true;
+
+      const position = Number.isFinite(v.currentTime) ? v.currentTime : 0;
+
+      try {
+        v.load();
+      } catch (e) {}
+
+      const reprendre = function() {
+        try {
+          if (Number.isFinite(v.duration) && v.duration > 0) {
+            v.currentTime = Math.min(Math.max(0.02, position), Math.max(0.02, v.duration - 0.12));
+          }
+        } catch (e) {}
+        play(v);
+        setTimeout(function() {
+          rechargeEnCours = false;
+        }, 450);
+      };
+
+      v.addEventListener("loadedmetadata", reprendre, { once: true });
+      setTimeout(reprendre, 650);
+    }
+
+    function relancer(force) {
+      const v = video();
+      if (!v) return;
+
+      configurer(v);
+
+      if (force || v.paused || v.ended || v.readyState < 2) {
+        play(v);
+      }
+
+      if (force) {
+        setTimeout(function() { play(v); }, 120);
+        setTimeout(function() { play(v); }, 420);
+        setTimeout(function() { play(v); }, 950);
+      }
+    }
+
+    function surveiller() {
+      const v = video();
+      if (!v || document.hidden) return;
+
+      configurer(v);
+
+      if (v.paused || v.ended || v.readyState < 2) {
+        compteurBloque += 1;
+        relancer(true);
+      } else {
+        const t = v.currentTime || 0;
+        if (dernierTemps >= 0 && Math.abs(t - dernierTemps) < 0.012) {
+          compteurBloque += 1;
+        } else {
+          compteurBloque = 0;
+        }
+        dernierTemps = t;
+      }
+
+      if (compteurBloque >= 2) {
+        reveilDoux(v);
+      }
+
+      if (compteurBloque >= 5) {
+        compteurBloque = 0;
+        rechargeDouce(v);
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", function() { relancer(true); });
+    window.addEventListener("load", function() { relancer(true); });
+    window.addEventListener("pageshow", function() { relancer(true); });
+    window.addEventListener("focus", function() { relancer(true); });
+    window.addEventListener("orientationchange", function() {
+      setTimeout(function() { relancer(true); }, 280);
+    }, { passive: true });
+
+    document.addEventListener("visibilitychange", function() {
+      if (!document.hidden) {
+        relancer(true);
+      }
+    });
+
+    ["touchstart", "pointerdown", "click"].forEach(function(type) {
+      document.addEventListener(type, function() {
+        relancer(false);
+      }, { passive: true });
+    });
+
+    setInterval(surveiller, 750);
+    setTimeout(function() { relancer(true); }, 700);
+    setTimeout(function() { relancer(true); }, 1600);
   })();
 </script>
 </body>
