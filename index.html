@@ -5989,6 +5989,215 @@ body {
     }
   }
 </style>
+<style id="website-ordi-magicbox-copy-final">
+  /*
+    WEBSITE ORDI MAGICBOX COPY
+    Sur ordinateur, la box RULES reprend l'esthétique mobile :
+    contour noir, glow blanc, fond transparent/magenta, flèches intégrées,
+    scroll interne fluide et contenu centré.
+    La version smartphone reste intacte.
+  */
+
+  @media screen and (min-width: 769px) {
+    #apropos {
+      position: fixed !important;
+      left: 50% !important;
+      top: var(--ordi-rules-top, 54dvh) !important;
+      height: var(--ordi-rules-height, clamp(128px, 20dvh, 260px)) !important;
+      min-height: clamp(112px, 15dvh, 150px) !important;
+      max-height: min(42dvh, 340px) !important;
+      width: min(calc(100vw - 32px), 760px) !important;
+      max-width: min(calc(100vw - 32px), 760px) !important;
+      margin: 0 !important;
+
+      /* Copie mobile : padding généreux pour les flèches + texte dans la box */
+      padding: clamp(26px, 2.2vw, 34px) clamp(13px, 1.45vw, 20px) clamp(26px, 2.2vw, 34px) clamp(13px, 1.45vw, 20px) !important;
+      box-sizing: border-box !important;
+
+      border: clamp(1.5px, 0.16vw, 2.2px) solid #000000 !important;
+      border-radius: clamp(9px, 0.9vw, 14px) !important;
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.76),
+        0 0 8px rgba(255, 255, 255, 0.62),
+        0 0 16px rgba(255, 255, 255, 0.38),
+        0 0 30px rgba(255, 255, 255, 0.20) !important;
+      background: rgba(255, 0, 255, 0.05) !important;
+
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior: contain !important;
+      touch-action: pan-y pinch-zoom !important;
+      pointer-events: auto !important;
+
+      transform: translate3d(-50%, var(--ordi-rules-float, 0px), 0) !important;
+      will-change: transform, height !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+      contain: layout paint style !important;
+      z-index: 16000 !important;
+
+      scrollbar-width: thin !important;
+      scrollbar-color: rgba(255, 255, 255, 0.50) transparent !important;
+    }
+
+    #apropos.active {
+      display: block !important;
+      pointer-events: auto !important;
+    }
+
+    #apropos::-webkit-scrollbar {
+      width: 4px !important;
+      display: block !important;
+    }
+
+    #apropos::-webkit-scrollbar-track {
+      background: transparent !important;
+    }
+
+    #apropos::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.50) !important;
+      border-radius: 999px !important;
+      box-shadow: 0 0 7px rgba(255, 255, 255, 0.38) !important;
+    }
+
+    #apropos .card {
+      width: 100% !important;
+      min-height: 100% !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+      padding: 0 !important;
+      box-sizing: border-box !important;
+
+      /* La box peut contenir les flèches + le texte exactement comme en mobile */
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: stretch !important;
+      gap: 0 !important;
+
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      transform: translateZ(0) !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+      contain: paint !important;
+    }
+
+    /* On coupe les anciennes flèches pseudo-éléments pour éviter les doublons */
+    #apropos::before,
+    #apropos::after,
+    #apropos .card::before,
+    #apropos .card::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    /* Flèches intégrées, copiées de la magicbox smartphone, adaptées desktop */
+    #apropos .magicbox-arrow {
+      display: block !important;
+      position: relative !important;
+      width: clamp(9px, 0.8vw, 13px) !important;
+      height: clamp(9px, 0.8vw, 13px) !important;
+      border-right: clamp(1.5px, 0.15vw, 2.2px) solid #000000 !important;
+      border-bottom: clamp(1.5px, 0.15vw, 2.2px) solid #000000 !important;
+      filter:
+        drop-shadow(0 0 3px rgba(255, 255, 255, 1))
+        drop-shadow(0 0 7px rgba(255, 255, 255, 0.78))
+        drop-shadow(0 0 12px rgba(255, 255, 255, 0.46)) !important;
+      pointer-events: none !important;
+      z-index: 80 !important;
+      opacity: 1 !important;
+      flex: 0 0 auto !important;
+      transform-origin: center center !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+    }
+
+    #apropos .magicbox-arrow-down {
+      margin: 0 clamp(10px, 1.1vw, 16px) clamp(10px, 1vw, 15px) auto !important;
+      transform: rotate(45deg) translate3d(0, 0, 0) !important;
+    }
+
+    #apropos .magicbox-arrow-up {
+      margin: clamp(10px, 1vw, 15px) auto 0 auto !important;
+      transform: rotate(-135deg) translate3d(0, 0, 0) !important;
+    }
+
+    #apropos h1 {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+      padding: 0 !important;
+      box-sizing: border-box !important;
+      font-size: clamp(18px, 1.92vw, 30px) !important;
+      line-height: 1.19 !important;
+      text-align: center !important;
+      word-break: normal !important;
+      overflow-wrap: anywhere !important;
+      transform: translateZ(0) !important;
+      will-change: transform !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+    }
+  }
+
+  /* Laptop bas / fenêtres plus plates : même esthétique, moins de hauteur */
+  @media screen and (min-width: 769px) and (max-height: 760px) {
+    #apropos {
+      width: min(calc(100vw - 42px), 740px) !important;
+      max-width: min(calc(100vw - 42px), 740px) !important;
+      min-height: 96px !important;
+      max-height: min(40dvh, 250px) !important;
+      padding: clamp(21px, 2.3vh, 28px) 12px clamp(21px, 2.3vh, 28px) 12px !important;
+    }
+
+    #apropos h1 {
+      font-size: clamp(15px, 1.55vw, 24px) !important;
+      line-height: 1.14 !important;
+    }
+
+    #apropos .magicbox-arrow {
+      width: clamp(8px, 0.7vw, 11px) !important;
+      height: clamp(8px, 0.7vw, 11px) !important;
+    }
+
+    #apropos .magicbox-arrow-down {
+      margin-right: clamp(8px, 0.9vw, 13px) !important;
+      margin-bottom: clamp(7px, 1vh, 11px) !important;
+    }
+
+    #apropos .magicbox-arrow-up {
+      margin-top: clamp(7px, 1vh, 11px) !important;
+    }
+  }
+
+  /* Grands écrans : on garde une box lisible, pas un panneau géant */
+  @media screen and (min-width: 1200px) and (min-height: 820px) {
+    #apropos {
+      width: min(70vw, 790px) !important;
+      max-width: min(70vw, 790px) !important;
+      height: var(--ordi-rules-height, clamp(150px, 22dvh, 285px)) !important;
+    }
+
+    #apropos h1 {
+      font-size: clamp(20px, 1.75vw, 32px) !important;
+    }
+  }
+
+  /* Très grands écrans : esthétique mobile agrandie mais contrôlée */
+  @media screen and (min-width: 1700px) {
+    #apropos {
+      width: min(58vw, 820px) !important;
+      max-width: min(58vw, 820px) !important;
+    }
+
+    #apropos h1 {
+      font-size: clamp(22px, 1.45vw, 34px) !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -8931,6 +9140,33 @@ body {
     }, 900);
 
     demander(true);
+  })();
+</script>
+<script id="website-ordi-magicbox-copy-guard-final">
+  (function() {
+    function assurerFlechesMagicbox() {
+      const card = document.querySelector("#apropos .card");
+      if (!card) return;
+
+      if (!card.querySelector(".magicbox-arrow-down")) {
+        const bas = document.createElement("span");
+        bas.className = "magicbox-arrow magicbox-arrow-down";
+        bas.setAttribute("aria-hidden", "true");
+        card.insertBefore(bas, card.firstChild);
+      }
+
+      if (!card.querySelector(".magicbox-arrow-up")) {
+        const haut = document.createElement("span");
+        haut.className = "magicbox-arrow magicbox-arrow-up";
+        haut.setAttribute("aria-hidden", "true");
+        card.appendChild(haut);
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", assurerFlechesMagicbox, { passive: true });
+    window.addEventListener("load", assurerFlechesMagicbox, { passive: true });
+    window.addEventListener("pageshow", assurerFlechesMagicbox, { passive: true });
+    assurerFlechesMagicbox();
   })();
 </script>
 </body>
