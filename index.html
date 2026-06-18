@@ -6383,7 +6383,7 @@ body {
 </script>
 
 <style id="rules-scroll-restore-final">
-  /* RESTAURATION FINALE : magicbox smartphone scrollable, petite, effets conservés */
+  /* RESTAURATION FINALE : magicbox smartphone scrollable, plus basse, mouvement lent et fluide */
   @media screen and (max-width: 768px) {
     html,
     body {
@@ -6439,7 +6439,7 @@ body {
       scrollbar-width: none !important;
       z-index: 16000 !important;
       transform: translate3d(-50%, 0, 0) !important;
-      will-change: auto !important;
+      will-change: top, height !important;
       contain: none !important;
       backface-visibility: hidden !important;
     }
@@ -6475,34 +6475,21 @@ body {
 </style>
 <script id="rules-scroll-restore-script">
   (function() {
-    function reglerRulesBoxCommeAvant() {
-      const box = document.getElementById("apropos");
-      if (!box) return;
+    let topActuel = null;
+    let hauteurActuelle = null;
+    let topCible = null;
+    let hauteurCible = null;
+    let raf = null;
 
-      const largeur = window.innerWidth || document.documentElement.clientWidth || 390;
-      const hauteur = window.innerHeight || document.documentElement.clientHeight || 760;
+    function estSmartphone() {
+      return window.innerWidth <= 768;
+    }
 
-      if (largeur > 768) {
-        box.style.removeProperty("top");
-        box.style.removeProperty("height");
-        box.style.removeProperty("overflow-y");
-        box.style.removeProperty("touch-action");
-        return;
-      }
+    function hauteurViewportStable() {
+      return window.innerHeight || document.documentElement.clientHeight || 760;
+    }
 
-      const paysage = largeur <= 900 && hauteur <= 500 && window.matchMedia("(orientation: landscape)").matches;
-      const grandSmartphone = largeur <= 430 && hauteur >= 760 && !paysage;
-
-      const ratioTop = paysage ? 0.50 : grandSmartphone ? 0.62 : 0.60;
-      const margeBas = paysage ? 120 : 205;
-      const hauteurMin = paysage ? 78 : grandSmartphone ? 100 : 96;
-
-      const petiteDescente = Math.max(8, Math.min(Math.round(hauteur * 0.018), 18));
-      const top = Math.round(hauteur * ratioTop) + petiteDescente;
-      const hauteurBox = Math.max(hauteurMin, Math.round(hauteur - Math.round(hauteur * ratioTop) - margeBas));
-
-      box.style.setProperty("top", top + "px", "important");
-      box.style.setProperty("height", hauteurBox + "px", "important");
+    function appliquerStylesFixes(box, paysage) {
       box.style.setProperty("width", "calc(100vw - 24px)", "important");
       box.style.setProperty("max-width", "calc(100vw - 24px)", "important");
       box.style.setProperty("padding", paysage ? "24px 10px" : "30px 12px", "important");
@@ -6513,34 +6500,120 @@ body {
       box.style.setProperty("transform", "translate3d(-50%, 0, 0)", "important");
     }
 
+    function calculerCiblesMagicboxFluide() {
+      const box = document.getElementById("apropos");
+      if (!box) return;
+
+      if (!estSmartphone()) {
+        box.style.removeProperty("top");
+        box.style.removeProperty("height");
+        box.style.removeProperty("overflow-y");
+        box.style.removeProperty("touch-action");
+        topActuel = null;
+        hauteurActuelle = null;
+        topCible = null;
+        hauteurCible = null;
+        raf = null;
+        return;
+      }
+
+      const largeur = window.innerWidth || document.documentElement.clientWidth || 390;
+      const hauteur = hauteurViewportStable();
+      const paysage = largeur <= 900 && hauteur <= 500 && window.matchMedia("(orientation: landscape)").matches;
+      const grandSmartphone = largeur <= 430 && hauteur >= 760 && !paysage;
+
+      const ratioTop = paysage ? 0.50 : grandSmartphone ? 0.62 : 0.60;
+      const margeBas = paysage ? 120 : 205;
+      const hauteurMin = paysage ? 78 : grandSmartphone ? 100 : 96;
+
+      /* Un peu plus bas qu'avant, mais sans changer la taille de la box. */
+      const descente = paysage ? 12 : Math.max(16, Math.min(Math.round(hauteur * 0.028), 32));
+
+      const topBase = Math.round(hauteur * ratioTop);
+      topCible = topBase + descente;
+      hauteurCible = Math.max(hauteurMin, Math.round(hauteur - topBase - margeBas));
+
+      appliquerStylesFixes(box, paysage);
+
+      if (topActuel === null) {
+        topActuel = topCible;
+        hauteurActuelle = hauteurCible;
+        box.style.setProperty("top", topActuel + "px", "important");
+        box.style.setProperty("height", hauteurActuelle + "px", "important");
+        return;
+      }
+
+      if (!raf) {
+        raf = requestAnimationFrame(animerMagicboxFluide);
+      }
+    }
+
+    function animerMagicboxFluide() {
+      const box = document.getElementById("apropos");
+
+      if (!box || !estSmartphone() || topCible === null || hauteurCible === null) {
+        raf = null;
+        return;
+      }
+
+      /* Lent mais fluide : l'ancienne magie, avec un peu plus de velours. */
+      const douceur = 0.045;
+      const stop = 0.12;
+
+      const deltaTop = topCible - topActuel;
+      const deltaHauteur = hauteurCible - hauteurActuelle;
+
+      if (Math.abs(deltaTop) < stop) {
+        topActuel = topCible;
+      } else {
+        topActuel += deltaTop * douceur;
+      }
+
+      if (Math.abs(deltaHauteur) < stop) {
+        hauteurActuelle = hauteurCible;
+      } else {
+        hauteurActuelle += deltaHauteur * douceur;
+      }
+
+      box.style.setProperty("top", topActuel.toFixed(2) + "px", "important");
+      box.style.setProperty("height", hauteurActuelle.toFixed(2) + "px", "important");
+
+      if (topActuel !== topCible || hauteurActuelle !== hauteurCible) {
+        raf = requestAnimationFrame(animerMagicboxFluide);
+      } else {
+        raf = null;
+      }
+    }
+
     function brancherRulesSansBloquerGestes() {
       const box = document.getElementById("apropos");
       if (!box || box.dataset.rulesScrollRestoreOk) return;
       box.dataset.rulesScrollRestoreOk = "1";
 
-      /* Important : aucun preventDefault / stopPropagation ici.
-         Comme ça, le scroll interne fonctionne ET le navigateur peut encore rafraîchir/quitter normalement. */
+      /* Aucun preventDefault / stopPropagation : scroll de la box + gestes navigateur restent possibles. */
       box.addEventListener("touchstart", function() {}, { passive: true });
       box.addEventListener("touchmove", function() {}, { passive: true });
       box.addEventListener("wheel", function() {}, { passive: true });
     }
 
-    function appliquer() {
-      reglerRulesBoxCommeAvant();
-      brancherRulesSansBloquerGestes();
+    function demanderMagicboxFluide() {
+      requestAnimationFrame(function() {
+        calculerCiblesMagicboxFluide();
+        brancherRulesSansBloquerGestes();
+      });
     }
 
-    window.addEventListener("DOMContentLoaded", appliquer);
-    window.addEventListener("load", appliquer);
-    window.addEventListener("pageshow", appliquer);
-    window.addEventListener("resize", appliquer, { passive: true });
+    window.addEventListener("DOMContentLoaded", demanderMagicboxFluide);
+    window.addEventListener("load", demanderMagicboxFluide);
+    window.addEventListener("pageshow", demanderMagicboxFluide);
+    window.addEventListener("resize", demanderMagicboxFluide, { passive: true });
     window.addEventListener("orientationchange", function() {
-      setTimeout(appliquer, 250);
+      setTimeout(demanderMagicboxFluide, 250);
     }, { passive: true });
 
     document.addEventListener("click", function(event) {
       if (event.target && event.target.textContent && event.target.textContent.trim() === "RULES") {
-        setTimeout(appliquer, 60);
+        setTimeout(demanderMagicboxFluide, 60);
       }
     }, { passive: true });
   })();
