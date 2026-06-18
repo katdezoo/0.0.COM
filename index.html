@@ -51,7 +51,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-image: url("./fond.gif");
+      background-image: none;
       background-position: center center;
       background-size: contain;
       background-repeat: no-repeat;
@@ -64,7 +64,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-image: url("./fond.gif");
+      background-image: none;
       background-position: center center;
       background-size: contain;
       background-repeat: no-repeat;
@@ -5407,8 +5407,8 @@ body {
     <div id="audioWordDisplay" class="audio-word-display"></div>
 
 <audio id="lecteurAudio" controls preload="metadata">
-  <source src="./musique432.wav?v=50" type="audio/wav">
   <source src="./musique432.mp3?v=50" type="audio/mpeg">
+  <source src="./musique432.wav?v=50" type="audio/wav">
 </audio>
 
 <div class="volume-boost-box">
@@ -6618,5 +6618,163 @@ body {
     }, { passive: true });
   })();
 </script>
+
+<style id="gpc-final-device-safety">
+  /* Vérification finale appareils : garde la vidéo lisible et la box scrollable sans bloquer le navigateur */
+  html,
+  body {
+    min-width: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  #fondVideo.video-bg {
+    object-fit: fill !important;
+    object-position: center center !important;
+    pointer-events: none !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    #apropos {
+      overflow-y: scroll !important;
+      -webkit-overflow-scrolling: touch !important;
+      touch-action: pan-y pinch-zoom !important;
+      pointer-events: auto !important;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    #apropos h1 {
+      font-size: clamp(10px, 3.35vw, 13px) !important;
+      line-height: 1.12 !important;
+    }
+  }
+
+  @media screen and (min-width: 1920px) {
+    #apropos h1 {
+      max-width: 900px !important;
+    }
+  }
+</style>
+
+
+<style id="timer-rules-effect-final">
+  /* TIMER : mêmes effets visuels que RULES, adaptés à tous les écrans */
+  :root {
+    --timer-rules-fill: #ff4fd8;
+    --timer-rules-stroke: #00ff00;
+    --timer-rules-black: #000000;
+    --timer-rules-white-glow: rgba(255, 255, 255, 0.92);
+  }
+
+  .paris-timer,
+  #timerTime,
+  #timerPeriod,
+  .timer-period {
+    color: var(--timer-rules-fill) !important;
+    -webkit-text-stroke: clamp(0.45px, 0.07vw, 0.9px) var(--timer-rules-stroke) !important;
+    paint-order: stroke fill !important;
+    text-shadow:
+      -2px -2px 0 var(--timer-rules-black),
+      0 -2px 0 var(--timer-rules-black),
+      2px -2px 0 var(--timer-rules-black),
+      -2px 0 0 var(--timer-rules-black),
+      2px 0 0 var(--timer-rules-black),
+      -2px 2px 0 var(--timer-rules-black),
+      0 2px 0 var(--timer-rules-black),
+      2px 2px 0 var(--timer-rules-black),
+      0 0 4px var(--timer-rules-black),
+      0 0 clamp(8px, 1.1vw, 16px) var(--timer-rules-white-glow),
+      0 0 clamp(18px, 2vw, 34px) rgba(255, 255, 255, 0.68),
+      0 0 clamp(38px, 4vw, 72px) rgba(255, 255, 255, 0.38) !important;
+  }
+
+  .paris-timer {
+    font-size: clamp(46px, 6.4vw, 80px) !important;
+    letter-spacing: clamp(1px, 0.18vw, 2.2px) !important;
+    line-height: 1 !important;
+    align-items: center !important;
+  }
+
+  #timerTime {
+    color: var(--timer-rules-fill) !important;
+  }
+
+  #timerPeriod,
+  .timer-period {
+    color: var(--timer-rules-fill) !important;
+    -webkit-text-stroke: clamp(0.35px, 0.055vw, 0.65px) var(--timer-rules-stroke) !important;
+    font-weight: 700 !important;
+    font-size: 0.35em !important;
+    letter-spacing: 0.02em !important;
+    transform: translateY(0.03em) !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    .paris-timer {
+      font-size: clamp(38px, 12.4vw, 58px) !important;
+      letter-spacing: clamp(0.5px, 0.3vw, 1.4px) !important;
+      gap: 0.12em !important;
+    }
+
+    .paris-timer,
+    #timerTime,
+    #timerPeriod,
+    .timer-period {
+      -webkit-text-stroke: clamp(0.42px, 0.16vw, 0.72px) var(--timer-rules-stroke) !important;
+      text-shadow:
+        -1.5px -1.5px 0 var(--timer-rules-black),
+        0 -1.5px 0 var(--timer-rules-black),
+        1.5px -1.5px 0 var(--timer-rules-black),
+        -1.5px 0 0 var(--timer-rules-black),
+        1.5px 0 0 var(--timer-rules-black),
+        -1.5px 1.5px 0 var(--timer-rules-black),
+        0 1.5px 0 var(--timer-rules-black),
+        1.5px 1.5px 0 var(--timer-rules-black),
+        0 0 4px var(--timer-rules-black),
+        0 0 10px rgba(255, 255, 255, 0.88),
+        0 0 22px rgba(255, 255, 255, 0.56),
+        0 0 42px rgba(255, 255, 255, 0.34) !important;
+    }
+
+    #timerPeriod,
+    .timer-period {
+      font-size: 0.34em !important;
+      -webkit-text-stroke: clamp(0.28px, 0.12vw, 0.5px) var(--timer-rules-stroke) !important;
+    }
+  }
+
+  @media screen and (max-width: 390px) {
+    .paris-timer {
+      font-size: clamp(34px, 11.4vw, 48px) !important;
+      gap: 0.09em !important;
+    }
+
+    #timerPeriod,
+    .timer-period {
+      font-size: 0.32em !important;
+      width: 2em !important;
+      flex-basis: 2em !important;
+    }
+  }
+
+  @media screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+    .paris-timer {
+      font-size: clamp(32px, 7vh, 46px) !important;
+      letter-spacing: 0.5px !important;
+    }
+
+    #timerPeriod,
+    .timer-period {
+      font-size: 0.31em !important;
+    }
+  }
+
+  @media screen and (min-width: 1600px) {
+    .paris-timer {
+      font-size: clamp(64px, 4.6vw, 92px) !important;
+    }
+  }
+</style>
+
 </body>
 </html>
