@@ -6658,7 +6658,7 @@ body {
 
 
 <style id="timer-rules-effect-final">
-  /* TIMER : style RULES avec glow blanc/rouge, responsive tous écrans */
+  /* TIMER : effets RULES blanc/rouge, police originale du timer conservée */
   :root {
     --timer-rules-fill: #ff4fd8;
     --timer-rules-stroke: #00ff00;
@@ -6668,11 +6668,9 @@ body {
   }
 
   .paris-timer,
-  #timerTime,
-  #timerPeriod,
-  .timer-period {
-    font-family: Arial, Helvetica, sans-serif !important;
-    font-weight: 700 !important;
+  #timerTime {
+    font-family: "DSEG7 Classic", "Courier New", monospace !important;
+    font-weight: 400 !important;
     color: var(--timer-rules-fill) !important;
     -webkit-text-stroke: clamp(0.55px, 0.075vw, 0.95px) var(--timer-rules-stroke) !important;
     paint-order: stroke fill !important;
@@ -6686,11 +6684,11 @@ body {
       0 2px 0 var(--timer-rules-black),
       2px 2px 0 var(--timer-rules-black),
       0 0 4px var(--timer-rules-black),
-      0 0 clamp(8px, 1vw, 14px) var(--timer-rules-white),
-      0 0 clamp(16px, 1.8vw, 28px) rgba(255, 255, 255, 0.62),
-      0 0 clamp(24px, 2.8vw, 48px) var(--timer-rules-red),
-      0 0 clamp(46px, 5.2vw, 90px) rgba(255, 0, 0, 0.52),
-      0 0 clamp(80px, 8vw, 145px) rgba(255, 0, 0, 0.32) !important;
+      0 0 clamp(12px, 1.35vw, 20px) var(--timer-rules-white),
+      0 0 clamp(24px, 2.4vw, 40px) rgba(255, 255, 255, 0.62),
+      0 0 clamp(34px, 3.6vw, 64px) var(--timer-rules-red),
+      0 0 clamp(64px, 6.4vw, 118px) rgba(255, 0, 0, 0.50),
+      0 0 clamp(112px, 10vw, 190px) rgba(255, 0, 0, 0.28) !important;
   }
 
   .paris-timer {
@@ -6703,12 +6701,16 @@ body {
 
   #timerTime {
     width: 8ch !important;
-    color: var(--timer-rules-fill) !important;
+    font-size: 1em !important;
+    line-height: 1 !important;
+    text-align: center !important;
     font-variant-numeric: tabular-nums !important;
   }
 
   #timerPeriod,
   .timer-period {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-weight: 700 !important;
     color: var(--timer-rules-fill) !important;
     width: 2.2em !important;
     flex: 0 0 2.2em !important;
@@ -6718,6 +6720,22 @@ body {
     text-align: left !important;
     transform: translateY(0.03em) !important;
     -webkit-text-stroke: clamp(0.36px, 0.052vw, 0.68px) var(--timer-rules-stroke) !important;
+    paint-order: stroke fill !important;
+    text-shadow:
+      -2px -2px 0 var(--timer-rules-black),
+      0 -2px 0 var(--timer-rules-black),
+      2px -2px 0 var(--timer-rules-black),
+      -2px 0 0 var(--timer-rules-black),
+      2px 0 0 var(--timer-rules-black),
+      -2px 2px 0 var(--timer-rules-black),
+      0 2px 0 var(--timer-rules-black),
+      2px 2px 0 var(--timer-rules-black),
+      0 0 4px var(--timer-rules-black),
+      0 0 clamp(12px, 1.35vw, 20px) var(--timer-rules-white),
+      0 0 clamp(24px, 2.4vw, 40px) rgba(255, 255, 255, 0.62),
+      0 0 clamp(34px, 3.6vw, 64px) var(--timer-rules-red),
+      0 0 clamp(64px, 6.4vw, 118px) rgba(255, 0, 0, 0.50),
+      0 0 clamp(112px, 10vw, 190px) rgba(255, 0, 0, 0.28) !important;
   }
 
   @media screen and (max-width: 768px) {
@@ -6731,7 +6749,6 @@ body {
     #timerTime,
     #timerPeriod,
     .timer-period {
-      -webkit-text-stroke: clamp(0.42px, 0.15vw, 0.75px) var(--timer-rules-stroke) !important;
       text-shadow:
         -1.5px -1.5px 0 var(--timer-rules-black),
         0 -1.5px 0 var(--timer-rules-black),
@@ -6742,11 +6759,16 @@ body {
         0 1.5px 0 var(--timer-rules-black),
         1.5px 1.5px 0 var(--timer-rules-black),
         0 0 4px var(--timer-rules-black),
-        0 0 9px rgba(255, 255, 255, 0.9),
-        0 0 18px rgba(255, 255, 255, 0.56),
-        0 0 30px rgba(255, 0, 0, 0.72),
-        0 0 54px rgba(255, 0, 0, 0.48),
-        0 0 84px rgba(255, 0, 0, 0.28) !important;
+        0 0 12px rgba(255, 255, 255, 0.9),
+        0 0 26px rgba(255, 255, 255, 0.56),
+        0 0 42px rgba(255, 0, 0, 0.70),
+        0 0 72px rgba(255, 0, 0, 0.44),
+        0 0 112px rgba(255, 0, 0, 0.24) !important;
+    }
+
+    .paris-timer,
+    #timerTime {
+      -webkit-text-stroke: clamp(0.42px, 0.15vw, 0.75px) var(--timer-rules-stroke) !important;
     }
 
     #timerPeriod,
