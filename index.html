@@ -6795,204 +6795,8 @@ body {
   })();
 </script>
 
-<style id="timer-rules-effect-final">
-  /* TIMER : flashy comme RULES, même un peu plus, police originale conservée */
-  :root {
-    --timer-rules-fill: #ff4fd8;
-    --timer-rules-stroke: #00ff00;
-    --timer-rules-black: #000000;
-    --timer-rules-red-core: rgba(255, 0, 0, 1);
-    --timer-rules-red-hot: rgba(255, 0, 0, 0.98);
-    --timer-rules-red-mid: rgba(255, 0, 0, 0.76);
-    --timer-rules-red-soft: rgba(255, 0, 0, 0.52);
-    --timer-rules-red-far: rgba(255, 0, 0, 0.34);
-    --timer-rules-red-ultra: rgba(255, 0, 0, 0.22);
-  }
-
-  .paris-timer,
-  #timerTime {
-    font-family: "DSEG7 Classic", "Courier New", monospace !important;
-    font-weight: 400 !important;
-    color: var(--timer-rules-fill) !important;
-    -webkit-text-stroke: clamp(0.65px, 0.085vw, 1.15px) var(--timer-rules-stroke) !important;
-    paint-order: stroke fill !important;
-    text-shadow:
-      -2.4px -2.4px 0 var(--timer-rules-black),
-      0 -2.4px 0 var(--timer-rules-black),
-      2.4px -2.4px 0 var(--timer-rules-black),
-      -2.4px 0 0 var(--timer-rules-black),
-      2.4px 0 0 var(--timer-rules-black),
-      -2.4px 2.4px 0 var(--timer-rules-black),
-      0 2.4px 0 var(--timer-rules-black),
-      2.4px 2.4px 0 var(--timer-rules-black),
-      0 0 5px var(--timer-rules-black),
-      0 0 clamp(14px, 1.55vw, 28px) var(--timer-rules-red-core),
-      0 0 clamp(32px, 3.2vw, 64px) var(--timer-rules-red-hot),
-      0 0 clamp(70px, 6.8vw, 138px) var(--timer-rules-red-mid),
-      0 0 clamp(130px, 12vw, 260px) var(--timer-rules-red-soft),
-      0 0 clamp(230px, 20vw, 430px) var(--timer-rules-red-far),
-      0 0 clamp(360px, 31vw, 720px) var(--timer-rules-red-ultra) !important;
-    filter:
-      drop-shadow(0 0 clamp(10px, 1.3vw, 22px) rgba(255, 0, 0, 0.96))
-      drop-shadow(0 0 clamp(34px, 3vw, 70px) rgba(255, 0, 0, 0.56)) !important;
-  }
-
-  .paris-timer {
-    font-size: clamp(46px, 6.1vw, 80px) !important;
-    letter-spacing: clamp(0.5px, 0.14vw, 1.6px) !important;
-    line-height: 1 !important;
-    align-items: center !important;
-    gap: 0.14em !important;
-  }
-
-  #timerTime {
-    width: 8ch !important;
-    font-size: 1em !important;
-    line-height: 1 !important;
-    text-align: center !important;
-    font-variant-numeric: tabular-nums !important;
-  }
-
-  #timerPeriod,
-  .timer-period {
-    font-family: Arial, Helvetica, sans-serif !important;
-    font-weight: 800 !important;
-    color: var(--timer-rules-fill) !important;
-    width: 2.2em !important;
-    flex: 0 0 2.2em !important;
-    font-size: 0.35em !important;
-    line-height: 1 !important;
-    letter-spacing: 0.01em !important;
-    text-align: left !important;
-    transform: translateY(0.03em) !important;
-    -webkit-text-stroke: clamp(0.42px, 0.06vw, 0.82px) var(--timer-rules-stroke) !important;
-    paint-order: stroke fill !important;
-    text-shadow:
-      -2.1px -2.1px 0 var(--timer-rules-black),
-      0 -2.1px 0 var(--timer-rules-black),
-      2.1px -2.1px 0 var(--timer-rules-black),
-      -2.1px 0 0 var(--timer-rules-black),
-      2.1px 0 0 var(--timer-rules-black),
-      -2.1px 2.1px 0 var(--timer-rules-black),
-      0 2.1px 0 var(--timer-rules-black),
-      2.1px 2.1px 0 var(--timer-rules-black),
-      0 0 5px var(--timer-rules-black),
-      0 0 clamp(14px, 1.55vw, 28px) var(--timer-rules-red-core),
-      0 0 clamp(32px, 3.2vw, 64px) var(--timer-rules-red-hot),
-      0 0 clamp(70px, 6.8vw, 138px) var(--timer-rules-red-mid),
-      0 0 clamp(130px, 12vw, 260px) var(--timer-rules-red-soft),
-      0 0 clamp(230px, 20vw, 430px) var(--timer-rules-red-far),
-      0 0 clamp(360px, 31vw, 720px) var(--timer-rules-red-ultra) !important;
-    filter:
-      drop-shadow(0 0 clamp(8px, 1vw, 18px) rgba(255, 0, 0, 0.95))
-      drop-shadow(0 0 clamp(24px, 2.4vw, 52px) rgba(255, 0, 0, 0.55)) !important;
-  }
-
-  @media screen and (max-width: 768px) {
-    .paris-timer {
-      font-size: clamp(37px, 12vw, 58px) !important;
-      letter-spacing: clamp(0px, 0.22vw, 1px) !important;
-      gap: 0.1em !important;
-    }
-
-    .paris-timer,
-    #timerTime,
-    #timerPeriod,
-    .timer-period {
-      text-shadow:
-        -1.8px -1.8px 0 var(--timer-rules-black),
-        0 -1.8px 0 var(--timer-rules-black),
-        1.8px -1.8px 0 var(--timer-rules-black),
-        -1.8px 0 0 var(--timer-rules-black),
-        1.8px 0 0 var(--timer-rules-black),
-        -1.8px 1.8px 0 var(--timer-rules-black),
-        0 1.8px 0 var(--timer-rules-black),
-        1.8px 1.8px 0 var(--timer-rules-black),
-        0 0 4px var(--timer-rules-black),
-        0 0 46px rgba(255, 0, 0, 1),
-        0 0 98px rgba(255, 0, 0, 0.84),
-        0 0 190px rgba(255, 0, 0, 0.56),
-        0 0 300px rgba(255, 0, 0, 0.34),
-        0 0 460px rgba(255, 0, 0, 0.22) !important;
-      filter:
-        drop-shadow(0 0 16px rgba(255, 0, 0, 0.96))
-        drop-shadow(0 0 44px rgba(255, 0, 0, 0.56)) !important;
-    }
-
-    .paris-timer,
-    #timerTime {
-      -webkit-text-stroke: clamp(0.48px, 0.17vw, 0.86px) var(--timer-rules-stroke) !important;
-    }
-
-    #timerPeriod,
-    .timer-period {
-      font-size: 0.34em !important;
-      -webkit-text-stroke: clamp(0.34px, 0.13vw, 0.6px) var(--timer-rules-stroke) !important;
-    }
-  }
-
-  @media screen and (max-width: 390px) {
-    .paris-timer {
-      font-size: clamp(32px, 10.8vw, 46px) !important;
-      gap: 0.08em !important;
-      letter-spacing: 0 !important;
-    }
-
-    #timerPeriod,
-    .timer-period {
-      font-size: 0.31em !important;
-      width: 1.95em !important;
-      flex-basis: 1.95em !important;
-    }
-  }
-
-  @media screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
-    .paris-timer {
-      font-size: clamp(30px, 7vh, 45px) !important;
-      letter-spacing: 0 !important;
-      gap: 0.09em !important;
-    }
-
-    .paris-timer,
-    #timerTime,
-    #timerPeriod,
-    .timer-period {
-      text-shadow:
-        -1.6px -1.6px 0 var(--timer-rules-black),
-        0 -1.6px 0 var(--timer-rules-black),
-        1.6px -1.6px 0 var(--timer-rules-black),
-        -1.6px 0 0 var(--timer-rules-black),
-        1.6px 0 0 var(--timer-rules-black),
-        -1.6px 1.6px 0 var(--timer-rules-black),
-        0 1.6px 0 var(--timer-rules-black),
-        1.6px 1.6px 0 var(--timer-rules-black),
-        0 0 4px var(--timer-rules-black),
-        0 0 42px rgba(255, 0, 0, 1),
-        0 0 92px rgba(255, 0, 0, 0.80),
-        0 0 170px rgba(255, 0, 0, 0.52),
-        0 0 260px rgba(255, 0, 0, 0.30) !important;
-    }
-
-    #timerPeriod,
-    .timer-period {
-      font-size: 0.31em !important;
-    }
-  }
-
-  @media screen and (min-width: 1600px) {
-    .paris-timer {
-      font-size: clamp(64px, 4.5vw, 94px) !important;
-    }
-
-    #timerPeriod,
-    .timer-period {
-      font-size: 0.34em !important;
-    }
-  }
-</style>
-
 <style id="gpc-scroll-video-gmail-ultra-final">
-  /* Patch performance scroll : vidéo stable + @gmail.com ultra fluide sur smartphone */
+  /* Patch final : vidéo stable, @gmail.com revient à sa position d'origine, timer fixé */
   :root {
     --gpc-fixed-w: 100vw;
     --gpc-fixed-h: 100vh;
@@ -7015,6 +6819,19 @@ body {
     contain: paint !important;
   }
 
+  .paris-timer {
+    position: fixed !important;
+    left: 50% !important;
+    top: 18vh !important;
+    bottom: auto !important;
+    transform: translate3d(-50%, 0, 0) !important;
+    z-index: 25000 !important;
+    pointer-events: none !important;
+    will-change: auto !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+  }
+
   @media screen and (max-width: 768px) {
     html,
     body {
@@ -7023,12 +6840,24 @@ body {
       touch-action: auto !important;
     }
 
+    .paris-timer {
+      position: fixed !important;
+      top: min(30svh, 285px) !important;
+      left: 50% !important;
+      transform: translate3d(-50%, 0, 0) !important;
+      z-index: 25000 !important;
+    }
+
     #contact {
       position: fixed !important;
       left: 50% !important;
       top: 0 !important;
       bottom: auto !important;
-      transform: translate3d(-50%, calc(var(--gmail-super-y, 76vh) - 50% + var(--gmail-super-glide, 0px)), 0) !important;
+
+      /* La position fixe est --gmail-origin-y.
+         Le glissement ne fait qu'ajouter un petit écart temporaire qui revient à zéro. */
+      transform: translate3d(-50%, calc(var(--gmail-origin-y, 76vh) - 50% + var(--gmail-scroll-glide, 0px)), 0) !important;
+
       width: 100% !important;
       max-width: 100% !important;
       margin: 0 auto !important;
@@ -7059,8 +6888,12 @@ body {
   }
 
   @media screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+    .paris-timer {
+      top: 14vh !important;
+    }
+
     #contact {
-      transform: translate3d(-50%, calc(var(--gmail-super-y, 70vh) - 50% + var(--gmail-super-glide, 0px)), 0) !important;
+      transform: translate3d(-50%, calc(var(--gmail-origin-y, 70vh) - 50% + var(--gmail-scroll-glide, 0px)), 0) !important;
     }
   }
 </style>
@@ -7073,10 +6906,9 @@ body {
     let hauteurStable = 0;
     let orientationStable = "";
 
-    let gmailY = null;
-    let gmailYTarget = null;
-    let gmailGlide = 0;
-    let gmailGlideTarget = 0;
+    let gmailOriginY = null;
+    let glideActuel = 0;
+    let glideCible = 0;
     let raf = null;
     let dernierScrollY = window.scrollY || 0;
     let contactEtaitActif = false;
@@ -7113,8 +6945,7 @@ body {
       const largeurChange = Math.abs(w - largeurStable) > 24;
       const orientationChange = orientation !== orientationStable;
 
-      /* On ne suit pas les micro-variations de hauteur de la barre navigateur pendant le scroll.
-         C'est ce qui faisait accrocher la vidéo sur smartphone. */
+      /* La vidéo ne suit pas les micro-changements de hauteur causés par la barre mobile. */
       if (!force && mobile() && largeurStable && !largeurChange && !orientationChange) return;
 
       largeurStable = w;
@@ -7125,11 +6956,13 @@ body {
       racine.style.setProperty("--gpc-fixed-h", h + "px");
     }
 
-    function positionGmailCible() {
+    function calculerPositionOrigineGmail() {
       const h = hauteurStable || window.innerHeight || 760;
       const w = largeurStable || window.innerWidth || 390;
       const paysage = w <= 900 && h <= 500 && window.matchMedia("(orientation: landscape)").matches;
 
+      /* Position d'origine : celle du site juste avant le patch,
+         avec priorité aux variables déjà posées par les anciens scripts. */
       const verrouille = lireVariablePx("--gmail-page-locked-top");
       if (verrouille !== null) return verrouille;
 
@@ -7147,66 +6980,72 @@ body {
       return !!(contact && contact.classList.contains("active"));
     }
 
-    function recalculerGmail(force, impulsionScroll) {
+    function poserOrigineGmail(force) {
       if (!mobile()) {
-        racine.style.removeProperty("--gmail-super-y");
-        racine.style.removeProperty("--gmail-super-glide");
-        gmailY = null;
-        gmailYTarget = null;
-        gmailGlide = 0;
-        gmailGlideTarget = 0;
+        racine.style.removeProperty("--gmail-origin-y");
+        racine.style.removeProperty("--gmail-scroll-glide");
+        gmailOriginY = null;
+        glideActuel = 0;
+        glideCible = 0;
         raf = null;
         return;
       }
 
-      const actif = contactActif();
-      gmailYTarget = positionGmailCible();
-
-      if (gmailY === null) {
-        gmailY = actif ? gmailYTarget + Math.max(34, Math.min(58, (hauteurStable || window.innerHeight || 760) * 0.06)) : gmailYTarget;
-        gmailGlide = actif ? 16 : 0;
+      /* On fige la position d'origine : elle ne bouge pas pendant le scroll.
+         Elle se recalcule seulement au chargement/orientation/vrai resize. */
+      if (force || gmailOriginY === null) {
+        gmailOriginY = calculerPositionOrigineGmail();
+        racine.style.setProperty("--gmail-origin-y", gmailOriginY.toFixed(2) + "px");
       }
+    }
+
+    function recalculerGmail(force, impulsionScroll) {
+      poserOrigineGmail(!!force);
+
+      if (!mobile() || gmailOriginY === null) return;
+
+      const actif = contactActif();
 
       if (actif && !contactEtaitActif) {
-        gmailY = gmailYTarget + Math.max(34, Math.min(58, (hauteurStable || window.innerHeight || 760) * 0.06));
-        gmailGlide = 18;
+        /* Petite arrivée douce depuis le bas, puis retour exact à sa place. */
+        glideActuel = Math.max(18, Math.min(34, (hauteurStable || window.innerHeight || 760) * 0.035));
+        glideCible = 0;
       }
 
       contactEtaitActif = actif;
 
       if (impulsionScroll && actif) {
         const scrollY = window.scrollY || 0;
-        const vitesse = Math.max(-26, Math.min(26, (scrollY - dernierScrollY) * 0.35));
-        gmailGlideTarget = vitesse;
+        const vitesse = Math.max(-22, Math.min(22, (scrollY - dernierScrollY) * 0.28));
+        glideCible = vitesse;
         dernierScrollY = scrollY;
       } else {
-        gmailGlideTarget = 0;
+        glideCible = 0;
       }
 
       if (!raf) raf = requestAnimationFrame(animer);
     }
 
     function animer() {
-      if (!mobile() || gmailY === null || gmailYTarget === null) {
+      if (!mobile()) {
         raf = null;
         return;
       }
 
-      /* Ultra doux : transform-only, donc pas de relayout brutal pendant le scroll. */
-      const douceurY = 0.035;
-      const douceurGlide = 0.075;
-      const stop = 0.06;
+      /* Ultra fluide : seul l'écart temporaire bouge, la vraie position reste fixe. */
+      const douceurGlide = 0.07;
+      const stop = 0.05;
+      const delta = glideCible - glideActuel;
 
-      const dy = gmailYTarget - gmailY;
-      const dg = gmailGlideTarget - gmailGlide;
+      if (Math.abs(delta) < stop) {
+        glideActuel = glideCible;
+      } else {
+        glideActuel += delta * douceurGlide;
+      }
 
-      gmailY = Math.abs(dy) < stop ? gmailYTarget : gmailY + dy * douceurY;
-      gmailGlide = Math.abs(dg) < stop ? gmailGlideTarget : gmailGlide + dg * douceurGlide;
+      racine.style.setProperty("--gmail-scroll-glide", glideActuel.toFixed(2) + "px");
 
-      racine.style.setProperty("--gmail-super-y", gmailY.toFixed(2) + "px");
-      racine.style.setProperty("--gmail-super-glide", gmailGlide.toFixed(2) + "px");
-
-      if (gmailY !== gmailYTarget || gmailGlide !== gmailGlideTarget) {
+      if (glideActuel !== glideCible) {
         raf = requestAnimationFrame(animer);
       } else {
         raf = null;
@@ -7236,10 +7075,206 @@ body {
       if (event.target && event.target.textContent && event.target.textContent.trim() === "SEND A WAV / MP3") {
         contactEtaitActif = false;
         setTimeout(function() { demander(true, false); }, 35);
-        setTimeout(function() { demander(true, false); }, 180);
+        setTimeout(function() { demander(false, false); }, 180);
       }
     }, { passive: true });
   })();
 </script>
+
+<style id="timer-rules-effect-final">
+  /* TIMER : style RULES, moins flashy, police originale conservée */
+  :root {
+    --timer-rules-fill: #ff4fd8;
+    --timer-rules-stroke: #00ff00;
+    --timer-rules-black: #000000;
+    --timer-rules-red-core: rgba(255, 0, 0, 0.86);
+    --timer-rules-red-hot: rgba(255, 0, 0, 0.72);
+    --timer-rules-red-mid: rgba(255, 0, 0, 0.48);
+    --timer-rules-red-soft: rgba(255, 0, 0, 0.30);
+    --timer-rules-red-far: rgba(255, 0, 0, 0.16);
+  }
+
+  .paris-timer,
+  #timerTime {
+    font-family: "DSEG7 Classic", "Courier New", monospace !important;
+    font-weight: 400 !important;
+    color: var(--timer-rules-fill) !important;
+    -webkit-text-stroke: clamp(0.55px, 0.075vw, 0.95px) var(--timer-rules-stroke) !important;
+    paint-order: stroke fill !important;
+    text-shadow:
+      -2px -2px 0 var(--timer-rules-black),
+      0 -2px 0 var(--timer-rules-black),
+      2px -2px 0 var(--timer-rules-black),
+      -2px 0 0 var(--timer-rules-black),
+      2px 0 0 var(--timer-rules-black),
+      -2px 2px 0 var(--timer-rules-black),
+      0 2px 0 var(--timer-rules-black),
+      2px 2px 0 var(--timer-rules-black),
+      0 0 4px var(--timer-rules-black),
+      0 0 clamp(10px, 1.1vw, 22px) var(--timer-rules-red-core),
+      0 0 clamp(24px, 2.5vw, 50px) var(--timer-rules-red-hot),
+      0 0 clamp(52px, 5vw, 105px) var(--timer-rules-red-mid),
+      0 0 clamp(100px, 9vw, 190px) var(--timer-rules-red-soft),
+      0 0 clamp(170px, 15vw, 320px) var(--timer-rules-red-far) !important;
+    filter:
+      drop-shadow(0 0 clamp(6px, 0.8vw, 14px) rgba(255, 0, 0, 0.70))
+      drop-shadow(0 0 clamp(18px, 1.9vw, 42px) rgba(255, 0, 0, 0.34)) !important;
+  }
+
+  .paris-timer {
+    font-size: clamp(46px, 6.1vw, 80px) !important;
+    letter-spacing: clamp(0.5px, 0.14vw, 1.6px) !important;
+    line-height: 1 !important;
+    align-items: center !important;
+    gap: 0.14em !important;
+  }
+
+  #timerTime {
+    width: 8ch !important;
+    font-size: 1em !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    font-variant-numeric: tabular-nums !important;
+  }
+
+  #timerPeriod,
+  .timer-period {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-weight: 700 !important;
+    color: var(--timer-rules-fill) !important;
+    width: 2.2em !important;
+    flex: 0 0 2.2em !important;
+    font-size: 0.35em !important;
+    line-height: 1 !important;
+    letter-spacing: 0.01em !important;
+    text-align: left !important;
+    transform: translateY(0.03em) !important;
+    -webkit-text-stroke: clamp(0.34px, 0.052vw, 0.66px) var(--timer-rules-stroke) !important;
+    paint-order: stroke fill !important;
+    text-shadow:
+      -1.8px -1.8px 0 var(--timer-rules-black),
+      0 -1.8px 0 var(--timer-rules-black),
+      1.8px -1.8px 0 var(--timer-rules-black),
+      -1.8px 0 0 var(--timer-rules-black),
+      1.8px 0 0 var(--timer-rules-black),
+      -1.8px 1.8px 0 var(--timer-rules-black),
+      0 1.8px 0 var(--timer-rules-black),
+      1.8px 1.8px 0 var(--timer-rules-black),
+      0 0 4px var(--timer-rules-black),
+      0 0 clamp(10px, 1.1vw, 22px) var(--timer-rules-red-core),
+      0 0 clamp(24px, 2.5vw, 50px) var(--timer-rules-red-hot),
+      0 0 clamp(52px, 5vw, 105px) var(--timer-rules-red-mid),
+      0 0 clamp(100px, 9vw, 190px) var(--timer-rules-red-soft),
+      0 0 clamp(170px, 15vw, 320px) var(--timer-rules-red-far) !important;
+    filter:
+      drop-shadow(0 0 clamp(5px, 0.7vw, 12px) rgba(255, 0, 0, 0.65))
+      drop-shadow(0 0 clamp(15px, 1.7vw, 34px) rgba(255, 0, 0, 0.30)) !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    .paris-timer {
+      font-size: clamp(37px, 12vw, 58px) !important;
+      letter-spacing: clamp(0px, 0.22vw, 1px) !important;
+      gap: 0.1em !important;
+    }
+
+    .paris-timer,
+    #timerTime,
+    #timerPeriod,
+    .timer-period {
+      text-shadow:
+        -1.5px -1.5px 0 var(--timer-rules-black),
+        0 -1.5px 0 var(--timer-rules-black),
+        1.5px -1.5px 0 var(--timer-rules-black),
+        -1.5px 0 0 var(--timer-rules-black),
+        1.5px 0 0 var(--timer-rules-black),
+        -1.5px 1.5px 0 var(--timer-rules-black),
+        0 1.5px 0 var(--timer-rules-black),
+        1.5px 1.5px 0 var(--timer-rules-black),
+        0 0 4px var(--timer-rules-black),
+        0 0 26px rgba(255, 0, 0, 0.78),
+        0 0 56px rgba(255, 0, 0, 0.52),
+        0 0 106px rgba(255, 0, 0, 0.30),
+        0 0 170px rgba(255, 0, 0, 0.16) !important;
+      filter:
+        drop-shadow(0 0 9px rgba(255, 0, 0, 0.66))
+        drop-shadow(0 0 25px rgba(255, 0, 0, 0.30)) !important;
+    }
+
+    .paris-timer,
+    #timerTime {
+      -webkit-text-stroke: clamp(0.42px, 0.15vw, 0.74px) var(--timer-rules-stroke) !important;
+    }
+
+    #timerPeriod,
+    .timer-period {
+      font-size: 0.34em !important;
+      -webkit-text-stroke: clamp(0.28px, 0.12vw, 0.5px) var(--timer-rules-stroke) !important;
+    }
+  }
+
+  @media screen and (max-width: 390px) {
+    .paris-timer {
+      font-size: clamp(32px, 10.8vw, 46px) !important;
+      gap: 0.08em !important;
+      letter-spacing: 0 !important;
+    }
+
+    #timerPeriod,
+    .timer-period {
+      font-size: 0.31em !important;
+      width: 1.95em !important;
+      flex-basis: 1.95em !important;
+    }
+  }
+
+  @media screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+    .paris-timer {
+      font-size: clamp(30px, 7vh, 45px) !important;
+      letter-spacing: 0 !important;
+      gap: 0.09em !important;
+    }
+
+    .paris-timer,
+    #timerTime,
+    #timerPeriod,
+    .timer-period {
+      text-shadow:
+        -1.4px -1.4px 0 var(--timer-rules-black),
+        0 -1.4px 0 var(--timer-rules-black),
+        1.4px -1.4px 0 var(--timer-rules-black),
+        -1.4px 0 0 var(--timer-rules-black),
+        1.4px 0 0 var(--timer-rules-black),
+        -1.4px 1.4px 0 var(--timer-rules-black),
+        0 1.4px 0 var(--timer-rules-black),
+        1.4px 1.4px 0 var(--timer-rules-black),
+        0 0 4px var(--timer-rules-black),
+        0 0 24px rgba(255, 0, 0, 0.76),
+        0 0 52px rgba(255, 0, 0, 0.50),
+        0 0 96px rgba(255, 0, 0, 0.28),
+        0 0 150px rgba(255, 0, 0, 0.14) !important;
+      filter:
+        drop-shadow(0 0 7px rgba(255, 0, 0, 0.62))
+        drop-shadow(0 0 21px rgba(255, 0, 0, 0.28)) !important;
+    }
+
+    #timerPeriod,
+    .timer-period {
+      font-size: 0.31em !important;
+    }
+  }
+
+  @media screen and (min-width: 1600px) {
+    .paris-timer {
+      font-size: clamp(64px, 4.5vw, 94px) !important;
+    }
+
+    #timerPeriod,
+    .timer-period {
+      font-size: 0.34em !important;
+    }
+  }
+</style>
+
 </body>
 </html>
