@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- WEBSITE ORDI START: desktop PC/Mac uses scaled mobile layout -->
 <!-- BEGIN COPYRIGHT NOTICE: © 2026 catdezoo<3. all rights reserved. -->
 
 <html lang="fr">
@@ -5631,6 +5632,363 @@ body {
     }
   }
 </style>
+<style id="website-ordi-mobile-clone-final">
+  /*
+    WEBSITE ORDI
+    Le desktop PC/Mac est remplacé par une version mobile clonée, agrandie et centrée.
+    La version smartphone originale reste intacte sous 769px.
+  */
+
+  @media screen and (min-width: 769px) {
+    html,
+    body {
+      width: 100% !important;
+      min-height: 100dvh !important;
+      height: auto !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior-y: auto !important;
+      scroll-behavior: auto !important;
+      background: #ff00ff !important;
+    }
+
+    body {
+      position: relative !important;
+      background: #ff00ff !important;
+      text-rendering: geometricPrecision !important;
+      -webkit-font-smoothing: antialiased !important;
+    }
+
+    .intro-page,
+    .copyright-intro-page {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100dvh !important;
+      min-height: 100dvh !important;
+      padding: clamp(20px, 4vw, 58px) !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
+      text-align: center !important;
+    }
+
+    .intro-page {
+      font-size: clamp(24px, 2.5vw, 42px) !important;
+    }
+
+    .gif-bg,
+    #fondVideo.video-bg,
+    #introVideo.intro-video {
+      position: fixed !important;
+      inset: 0 !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      min-width: 100vw !important;
+      min-height: 100vh !important;
+      object-fit: fill !important;
+      object-position: center center !important;
+      background: #ff00ff !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+      pointer-events: none !important;
+      transform: translate3d(0, 0, 0) !important;
+      -webkit-transform: translate3d(0, 0, 0) !important;
+      transform-origin: center center !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+      will-change: transform, opacity !important;
+    }
+
+    .overlay {
+      position: relative !important;
+      z-index: 2 !important;
+      display: block !important;
+      min-height: 150dvh !important;
+      padding-top: calc(clamp(128px, 15dvh, 188px) + env(safe-area-inset-top)) !important;
+      padding-bottom: calc(clamp(260px, 30dvh, 390px) + env(safe-area-inset-bottom)) !important;
+      overflow: visible !important;
+      pointer-events: auto !important;
+      background: transparent !important;
+    }
+
+    nav {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      gap: clamp(9px, 1.2dvh, 16px) !important;
+      padding: calc(clamp(14px, 2dvh, 22px) + env(safe-area-inset-top)) 10px 9px 10px !important;
+      box-sizing: border-box !important;
+      background: transparent !important;
+      z-index: 30000 !important;
+      pointer-events: auto !important;
+    }
+
+    nav button {
+      margin: 0 !important;
+      padding: 0 !important;
+      min-height: clamp(28px, 3.4dvh, 44px) !important;
+      font-size: clamp(18px, 1.55vw, 28px) !important;
+      line-height: 1.06 !important;
+      pointer-events: auto !important;
+      transform: translate3d(0, 0, 0) !important;
+      will-change: transform !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+    }
+
+    .paris-timer {
+      position: fixed !important;
+      top: clamp(190px, 27dvh, 310px) !important;
+      left: 50% !important;
+      transform: translate3d(-50%, 0, 0) !important;
+      font-size: clamp(62px, 7.6vw, 112px) !important;
+      z-index: 25000 !important;
+      pointer-events: none !important;
+      white-space: nowrap !important;
+      margin: 0 !important;
+      will-change: transform !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+    }
+
+    .page-section {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      transform: none !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-height: auto !important;
+      margin: 0 auto !important;
+      padding: 8px 12px 24px 12px !important;
+      box-sizing: border-box !important;
+      pointer-events: auto !important;
+      z-index: 35 !important;
+    }
+
+    .page-section.active {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: flex-start !important;
+    }
+
+    #accueil.page-section.active {
+      min-height: 55dvh !important;
+    }
+
+    #apropos {
+      position: fixed !important;
+      left: 50% !important;
+      top: var(--ordi-rules-top, 54dvh) !important;
+      height: var(--ordi-rules-height, clamp(132px, 20dvh, 230px)) !important;
+      width: min(94vw, 720px) !important;
+      max-width: min(94vw, 720px) !important;
+      margin: 0 !important;
+      padding: clamp(20px, 2.4vw, 34px) clamp(14px, 1.6vw, 22px) !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior: contain !important;
+      touch-action: pan-y pinch-zoom !important;
+      pointer-events: auto !important;
+      transform: translate3d(-50%, var(--ordi-rules-float, 0px), 0) !important;
+      will-change: transform, height !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+      contain: layout paint style !important;
+      scrollbar-width: thin !important;
+      scrollbar-color: rgba(255, 255, 255, 0.50) transparent !important;
+      z-index: 16000 !important;
+    }
+
+    #apropos::-webkit-scrollbar {
+      width: 4px !important;
+      display: block !important;
+    }
+
+    #apropos::-webkit-scrollbar-track {
+      background: transparent !important;
+    }
+
+    #apropos::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.50) !important;
+      border-radius: 999px !important;
+      box-shadow: 0 0 7px rgba(255, 255, 255, 0.38) !important;
+    }
+
+    #apropos .card {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+      padding: 0 !important;
+      box-sizing: border-box !important;
+      transform: translateZ(0) !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+    }
+
+    #apropos h1 {
+      font-size: clamp(19px, 2.05vw, 31px) !important;
+      line-height: 1.22 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      transform: translateZ(0) !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+    }
+
+    #contact {
+      position: fixed !important;
+      left: 50% !important;
+      top: 0 !important;
+      bottom: auto !important;
+      transform: translate3d(-50%, calc(var(--ordi-gmail-y, 72dvh) - 50% + var(--ordi-gmail-float, 0px)), 0) !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 12px !important;
+      box-sizing: border-box !important;
+      overflow: visible !important;
+      pointer-events: none !important;
+      z-index: 16500 !important;
+      will-change: transform !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+      transform-style: preserve-3d !important;
+      contain: none !important;
+    }
+
+    #contact.active {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    #contact .card {
+      margin: 0 auto !important;
+      padding: 0 !important;
+      transform: translateZ(0) !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+    }
+
+    #contact h1 {
+      font-size: clamp(34px, 4.2vw, 70px) !important;
+      line-height: 1.08 !important;
+      margin: 0 !important;
+      transform: translateZ(0) !important;
+      will-change: transform !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+    }
+
+    .card {
+      margin-top: 0 !important;
+      padding: 10px 8px !important;
+    }
+
+    .audio-box {
+      position: fixed !important;
+      left: 50% !important;
+      bottom: calc(clamp(42px, 5.8dvh, 72px) + env(safe-area-inset-bottom)) !important;
+      transform: translate3d(-50%, 0, 0) !important;
+      width: min(82vw, 340px) !important;
+      max-width: 82vw !important;
+      z-index: 29990 !important;
+      will-change: transform !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+    }
+
+    .audio-word-display {
+      min-height: clamp(32px, 5vw, 64px) !important;
+      max-width: min(98vw, 760px) !important;
+      margin-bottom: 7px !important;
+      font-size: clamp(26px, 3.6vw, 52px) !important;
+      white-space: nowrap !important;
+    }
+
+    audio {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 100% !important;
+      height: clamp(28px, 3.2dvh, 36px) !important;
+    }
+
+    .volume-boost-box {
+      margin-top: 8px !important;
+      font-size: clamp(10px, 1.1vw, 15px) !important;
+    }
+
+    .volume-boost-box label {
+      margin: 0 auto 2px auto !important;
+      padding: 0 8px !important;
+      font-size: clamp(14px, 1.55vw, 22px) !important;
+      transform: translateY(-4px) !important;
+    }
+
+    .volume-slider-wrap,
+    .audio-progress-wrap,
+    .audio-time-row {
+      width: min(88vw, 430px) !important;
+    }
+
+    .audio-footer p {
+      font-size: clamp(7px, 0.85vw, 11px) !important;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-height: 760px) {
+    nav {
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      gap: clamp(18px, 2vw, 34px) !important;
+      padding-top: calc(14px + env(safe-area-inset-top)) !important;
+    }
+
+    .paris-timer {
+      top: clamp(106px, 22dvh, 185px) !important;
+      font-size: clamp(52px, 6vw, 86px) !important;
+    }
+
+    #apropos {
+      width: min(86vw, 760px) !important;
+      max-width: min(86vw, 760px) !important;
+    }
+
+    #apropos h1 {
+      font-size: clamp(17px, 1.75vw, 26px) !important;
+      line-height: 1.16 !important;
+    }
+
+    .audio-box {
+      bottom: calc(28px + env(safe-area-inset-bottom)) !important;
+    }
+  }
+
+  @media screen and (min-width: 1200px) and (min-height: 820px) {
+    #apropos {
+      width: min(76vw, 780px) !important;
+      max-width: min(76vw, 780px) !important;
+    }
+
+    .audio-box {
+      width: min(72vw, 360px) !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -8258,6 +8616,324 @@ body {
     demander(true);
   })();
 </script>
+<script id="website-ordi-mobile-clone-engine-final">
+  (function() {
+    const racine = document.documentElement;
+
+    let rulesTopActuel = null;
+    let rulesTopCible = null;
+    let rulesHeightActuel = null;
+    let rulesHeightCible = null;
+    let rulesFloatActuel = 0;
+    let rulesFloatCible = 0;
+
+    let gmailYActuel = null;
+    let gmailYCible = null;
+    let gmailFloatActuel = 0;
+    let gmailFloatCible = 0;
+
+    let dernierScrollY = window.scrollY || 0;
+    let dernierBoxScroll = 0;
+    let raf = null;
+    let retourTimer = null;
+    let contactEtaitActif = false;
+
+    function desktopOrdi() {
+      return window.innerWidth >= 769;
+    }
+
+    function clamp(v, min, max) {
+      return Math.max(min, Math.min(max, v));
+    }
+
+    function dims() {
+      const w = window.innerWidth || document.documentElement.clientWidth || 1280;
+      const h = window.innerHeight || document.documentElement.clientHeight || 800;
+      const bas = h <= 760;
+      return { w, h, bas };
+    }
+
+    function active(id) {
+      const el = document.getElementById(id);
+      return !!(el && el.classList.contains("active"));
+    }
+
+    function boxRules() {
+      return document.getElementById("apropos");
+    }
+
+    function topLecteur() {
+      const d = dims();
+      const lecteur = document.querySelector(".audio-box");
+      if (lecteur) {
+        const rect = lecteur.getBoundingClientRect();
+        if (rect && rect.top > 0 && rect.top < d.h) {
+          return rect.top;
+        }
+      }
+      return d.h - 180;
+    }
+
+    function calculerRules(force) {
+      const box = boxRules();
+
+      if (!desktopOrdi() || !box) {
+        racine.style.removeProperty("--ordi-rules-top");
+        racine.style.removeProperty("--ordi-rules-height");
+        racine.style.removeProperty("--ordi-rules-float");
+        rulesTopActuel = null;
+        rulesHeightActuel = null;
+        rulesFloatActuel = 0;
+        rulesFloatCible = 0;
+        return;
+      }
+
+      if (!active("apropos")) return;
+
+      const d = dims();
+
+      const baseTop = Math.round(d.h * (d.bas ? 0.47 : 0.545));
+      const descente = d.bas ? 4 : clamp(Math.round(d.h * 0.012), 8, 16);
+      const top = baseTop + descente;
+
+      const margeLecteur = d.bas ? 7 : 8;
+      const basFinal = Math.round(topLecteur() - margeLecteur);
+      const hMin = d.bas ? 104 : 128;
+      const hMax = d.bas ? 210 : 260;
+      const hauteur = clamp(basFinal - top, hMin, hMax);
+
+      rulesTopCible = top;
+      rulesHeightCible = hauteur;
+
+      if (rulesTopActuel === null || force) {
+        rulesTopActuel = rulesTopCible;
+        rulesHeightActuel = rulesHeightCible;
+        racine.style.setProperty("--ordi-rules-top", rulesTopActuel + "px");
+        racine.style.setProperty("--ordi-rules-height", rulesHeightActuel + "px");
+        racine.style.setProperty("--ordi-rules-float", rulesFloatActuel + "px");
+      }
+
+      lancer();
+    }
+
+    function calculerGmail(force) {
+      if (!desktopOrdi()) {
+        racine.style.removeProperty("--ordi-gmail-y");
+        racine.style.removeProperty("--ordi-gmail-float");
+        gmailYActuel = null;
+        gmailFloatActuel = 0;
+        gmailFloatCible = 0;
+        return;
+      }
+
+      const d = dims();
+      const remontee = clamp(Math.round(d.h * 0.045), d.bas ? 20 : 30, d.bas ? 38 : 58);
+      const y = Math.round(d.h * (d.bas ? 0.72 : 0.76) - remontee);
+
+      gmailYCible = y;
+
+      if (gmailYActuel === null || force) {
+        gmailYActuel = gmailYCible;
+        racine.style.setProperty("--ordi-gmail-y", gmailYActuel + "px");
+        racine.style.setProperty("--ordi-gmail-float", gmailFloatActuel + "px");
+      }
+
+      lancer();
+    }
+
+    function retourSouple() {
+      clearTimeout(retourTimer);
+      retourTimer = setTimeout(function() {
+        rulesFloatCible = 0;
+        gmailFloatCible = 0;
+        lancer();
+      }, 150);
+    }
+
+    function impulsionScroll() {
+      if (!desktopOrdi()) return;
+
+      const y = window.scrollY || 0;
+      const dy = y - dernierScrollY;
+      dernierScrollY = y;
+
+      if (Math.abs(dy) < 0.25) return;
+
+      if (active("apropos")) {
+        rulesFloatCible = clamp(rulesFloatCible + dy * 0.045, -14, 14);
+      }
+
+      if (active("contact")) {
+        gmailFloatCible = clamp(gmailFloatCible + dy * 0.060, -18, 18);
+      }
+
+      retourSouple();
+      lancer();
+    }
+
+    function impulsionBox() {
+      const b = boxRules();
+      if (!desktopOrdi() || !b || !active("apropos")) return;
+
+      const y = b.scrollTop || 0;
+      const dy = y - dernierBoxScroll;
+      dernierBoxScroll = y;
+
+      if (Math.abs(dy) > 0.25) {
+        rulesFloatCible = clamp(rulesFloatCible + dy * 0.035, -12, 12);
+        retourSouple();
+        lancer();
+      }
+    }
+
+    function ouvertureGmail() {
+      if (!desktopOrdi()) return;
+
+      calculerGmail(false);
+
+      const d = dims();
+      gmailFloatActuel = clamp(d.h * 0.045, 20, 42);
+      gmailFloatCible = 0;
+      racine.style.setProperty("--ordi-gmail-float", gmailFloatActuel.toFixed(2) + "px");
+      lancer();
+    }
+
+    function ouvertureRules() {
+      if (!desktopOrdi()) return;
+
+      calculerRules(true);
+
+      const d = dims();
+      rulesFloatActuel = clamp(d.h * 0.018, 8, 18);
+      rulesFloatCible = 0;
+      racine.style.setProperty("--ordi-rules-float", rulesFloatActuel.toFixed(2) + "px");
+      lancer();
+    }
+
+    function lancer() {
+      if (!raf) {
+        raf = requestAnimationFrame(animer);
+      }
+    }
+
+    function animer() {
+      raf = null;
+
+      if (!desktopOrdi()) return;
+
+      const douceurPos = 0.030;
+      const douceurFloat = 0.040;
+      const stop = 0.030;
+
+      if (rulesTopCible !== null && active("apropos")) {
+        const dt = rulesTopCible - rulesTopActuel;
+        const dh = rulesHeightCible - rulesHeightActuel;
+        const df = rulesFloatCible - rulesFloatActuel;
+
+        rulesTopActuel = Math.abs(dt) < stop ? rulesTopCible : rulesTopActuel + dt * douceurPos;
+        rulesHeightActuel = Math.abs(dh) < stop ? rulesHeightCible : rulesHeightActuel + dh * douceurPos;
+        rulesFloatActuel = Math.abs(df) < stop ? rulesFloatCible : rulesFloatActuel + df * douceurFloat;
+
+        if (Math.abs(rulesFloatCible) > 0.02) {
+          rulesFloatCible *= 0.90;
+        } else {
+          rulesFloatCible = 0;
+        }
+
+        racine.style.setProperty("--ordi-rules-top", rulesTopActuel.toFixed(2) + "px");
+        racine.style.setProperty("--ordi-rules-height", rulesHeightActuel.toFixed(2) + "px");
+        racine.style.setProperty("--ordi-rules-float", rulesFloatActuel.toFixed(2) + "px");
+      }
+
+      if (gmailYCible !== null && active("contact")) {
+        const dy = gmailYCible - gmailYActuel;
+        const df = gmailFloatCible - gmailFloatActuel;
+
+        gmailYActuel = Math.abs(dy) < stop ? gmailYCible : gmailYActuel + dy * douceurPos;
+        gmailFloatActuel = Math.abs(df) < stop ? gmailFloatCible : gmailFloatActuel + df * douceurFloat;
+
+        if (Math.abs(gmailFloatCible) > 0.02) {
+          gmailFloatCible *= 0.90;
+        } else {
+          gmailFloatCible = 0;
+        }
+
+        racine.style.setProperty("--ordi-gmail-y", gmailYActuel.toFixed(2) + "px");
+        racine.style.setProperty("--ordi-gmail-float", gmailFloatActuel.toFixed(2) + "px");
+      }
+
+      if (
+        Math.abs((rulesTopCible || 0) - (rulesTopActuel || 0)) > stop ||
+        Math.abs((rulesHeightCible || 0) - (rulesHeightActuel || 0)) > stop ||
+        Math.abs(rulesFloatCible - rulesFloatActuel) > stop ||
+        Math.abs(gmailFloatCible - gmailFloatActuel) > stop ||
+        Math.abs((gmailYCible || 0) - (gmailYActuel || 0)) > stop
+      ) {
+        raf = requestAnimationFrame(animer);
+      }
+    }
+
+    function demander(force) {
+      requestAnimationFrame(function() {
+        calculerRules(!!force);
+        calculerGmail(!!force);
+
+        const contactNow = active("contact");
+        if (contactNow && !contactEtaitActif) {
+          ouvertureGmail();
+        }
+        contactEtaitActif = contactNow;
+      });
+    }
+
+    function brancherRules() {
+      const b = boxRules();
+      if (!b || b.dataset.websiteOrdiRulesOk) return;
+      b.dataset.websiteOrdiRulesOk = "1";
+      b.addEventListener("scroll", impulsionBox, { passive: true });
+      b.addEventListener("touchstart", function() {
+        dernierBoxScroll = b.scrollTop || 0;
+      }, { passive: true });
+      b.addEventListener("wheel", impulsionBox, { passive: true });
+    }
+
+    window.addEventListener("DOMContentLoaded", function() { demander(true); brancherRules(); }, { passive: true });
+    window.addEventListener("load", function() { demander(true); brancherRules(); }, { passive: true });
+    window.addEventListener("pageshow", function() { demander(true); brancherRules(); }, { passive: true });
+    window.addEventListener("resize", function() { demander(true); }, { passive: true });
+    window.addEventListener("orientationchange", function() {
+      setTimeout(function() { demander(true); }, 120);
+      setTimeout(function() { demander(true); }, 420);
+    }, { passive: true });
+    window.addEventListener("scroll", function() {
+      demander(false);
+      impulsionScroll();
+    }, { passive: true });
+
+    document.addEventListener("click", function(event) {
+      const texte = event.target && event.target.textContent ? event.target.textContent.trim() : "";
+      if (texte === "RULES") {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+        setTimeout(function() { ouvertureRules(); brancherRules(); }, 45);
+        setTimeout(function() { demander(false); }, 240);
+      } else if (texte === "SEND A WAV / MP3") {
+        setTimeout(ouvertureGmail, 45);
+        setTimeout(function() { demander(false); }, 240);
+      } else if (texte === "starthere") {
+        setTimeout(function() { demander(false); }, 80);
+      }
+    }, { passive: true });
+
+    setInterval(function() {
+      if (desktopOrdi()) {
+        demander(false);
+      }
+    }, 900);
+
+    demander(true);
+  })();
+</script>
 </body>
 <!-- END COPYRIGHT NOTICE: © 2026 catdezoo<3. all rights reserved. -->
+<!-- WEBSITE ORDI END: desktop PC/Mac replaced by scaled mobile layout -->
 </html>
