@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- WEBSITE ORDI START: desktop PC/Mac uses scaled mobile layout -->
+<!-- WEBSITE -->
 <!-- BEGIN COPYRIGHT NOTICE: © 2026 catdezoo<3. all rights reserved. -->
 
 <html lang="fr">
@@ -7418,6 +7418,255 @@ body {
     }
   }
 </style>
+<style id="gpc-no-select-no-cursor-final">
+  /*
+    NO SELECT / NO TEXT CURSOR
+    Empêche la sélection, le curseur texte, le surlignage, le callout mobile
+    et le drag visuel sur tous les objets, sans désactiver les clics.
+  */
+
+  html,
+  body,
+  body *,
+  body *::before,
+  body *::after {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+
+    -webkit-touch-callout: none !important;
+    -webkit-user-drag: none !important;
+    user-drag: none !important;
+
+    caret-color: transparent !important;
+    cursor: default !important;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  /* Tout reste cliquable, mais aucun objet ne prend un curseur texte/main */
+  a,
+  button,
+  label,
+  audio,
+  video,
+  input,
+  input[type="range"],
+  input[type="button"],
+  input[type="submit"],
+  select,
+  textarea,
+  [role="button"],
+  [onclick],
+  .magicbox-arrow,
+  .volume-boost-box,
+  .audio-box,
+  .audio-progress-box,
+  .audio-progress-wrap,
+  .volume-slider-wrap {
+    cursor: default !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    caret-color: transparent !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-drag: none !important;
+    user-drag: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  /* Les sliders restent utilisables mais ne sélectionnent rien */
+  input[type="range"]::-webkit-slider-thumb,
+  input[type="range"]::-webkit-slider-runnable-track,
+  input[type="range"]::-moz-range-thumb,
+  input[type="range"]::-moz-range-track {
+    cursor: default !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+
+  /* Pas de sélection visible même en cas de double clic / appui long */
+  ::selection {
+    background: transparent !important;
+    color: inherit !important;
+  }
+
+  ::-moz-selection {
+    background: transparent !important;
+    color: inherit !important;
+  }
+
+  img,
+  video,
+  svg,
+  canvas,
+  iframe {
+    -webkit-user-drag: none !important;
+    user-drag: none !important;
+    pointer-events: none;
+  }
+
+  audio,
+  input,
+  button,
+  [onclick] {
+    pointer-events: auto !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    html,
+    body,
+    body *,
+    body *::before,
+    body *::after {
+      -webkit-user-select: none !important;
+      user-select: none !important;
+      -webkit-touch-callout: none !important;
+      -webkit-tap-highlight-color: transparent !important;
+      caret-color: transparent !important;
+      cursor: default !important;
+    }
+  }
+</style>
+<style id="gpc-timer-extra-40px-desktop-final">
+  /*
+    TIMER DESKTOP +40PX UP
+    Monte encore le timer de 40px uniquement sur ordinateur.
+  */
+
+  @media screen and (min-width: 769px) {
+    .paris-timer {
+      top: max(6px, calc(clamp(66px, 11.4dvh, 142px) - clamp(38px, 4.25vw, 70px) - 40px)) !important;
+      transform: translate3d(-50%, 0, 0) !important;
+    }
+  }
+
+  @media screen and (min-width: 1400px) and (min-height: 820px) {
+    .paris-timer {
+      top: max(6px, calc(clamp(76px, 10.8dvh, 154px) - clamp(40px, 4vw, 72px) - 40px)) !important;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1050px),
+         screen and (min-width: 769px) and (max-height: 760px) {
+    .paris-timer {
+      top: max(4px, calc(clamp(48px, 10.8dvh, 92px) - clamp(28px, 3.25vw, 46px) - 40px)) !important;
+    }
+  }
+</style>
+<style id="rules-arrows-shape-end-final">
+  /*
+    FLECHES RULES FINAL
+    - Flèche haute non déformée, même forme que la flèche basse.
+    - Flèche basse attachée au bas de la box, même écart que la haute.
+    - Flèche basse visible seulement à la fin du texte avec apparition smooth.
+    - Desktop + smartphone.
+  */
+
+  #apropos {
+    position: fixed !important;
+  }
+
+  #apropos > .magicbox-arrow {
+    position: absolute !important;
+    display: block !important;
+    pointer-events: none !important;
+    z-index: 110 !important;
+    width: var(--rules-arrow-size, clamp(8px, 0.78vw, 13px)) !important;
+    height: var(--rules-arrow-size, clamp(8px, 0.78vw, 13px)) !important;
+    border-right: var(--rules-arrow-stroke, clamp(1.5px, 0.15vw, 2.2px)) solid #000000 !important;
+    border-bottom: var(--rules-arrow-stroke, clamp(1.5px, 0.15vw, 2.2px)) solid #000000 !important;
+    filter:
+      drop-shadow(0 0 3px rgba(255, 255, 255, 1))
+      drop-shadow(0 0 7px rgba(255, 255, 255, 0.78))
+      drop-shadow(0 0 12px rgba(255, 255, 255, 0.46)) !important;
+    transform-origin: 50% 50% !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    will-change: opacity, transform, filter !important;
+    transition:
+      opacity 440ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 560ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 560ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+
+  #apropos > .magicbox-arrow-down {
+    top: var(--rules-arrow-gap, clamp(10px, 1.1vw, 16px)) !important;
+    right: var(--rules-arrow-gap-x, clamp(16px, 2.1vw, 28px)) !important;
+    bottom: auto !important;
+    left: auto !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    transform: rotate(45deg) translate3d(0, 0, 0) scale(1) !important;
+  }
+
+  #apropos > .magicbox-arrow-up {
+    top: auto !important;
+    right: var(--rules-arrow-gap-x, clamp(16px, 2.1vw, 28px)) !important;
+    bottom: var(--rules-arrow-gap, clamp(10px, 1.1vw, 16px)) !important;
+    left: auto !important;
+    margin: 0 !important;
+    opacity: 0 !important;
+    transform: rotate(-135deg) translate3d(0, 7px, 0) scale(0.86) !important;
+  }
+
+  #apropos.rules-at-end > .magicbox-arrow-up,
+  #apropos.rules-no-scroll > .magicbox-arrow-up {
+    opacity: 1 !important;
+    transform: rotate(-135deg) translate3d(0, 0, 0) scale(1) !important;
+    filter:
+      drop-shadow(0 0 4px rgba(255, 255, 255, 1))
+      drop-shadow(0 0 9px rgba(255, 255, 255, 0.86))
+      drop-shadow(0 0 15px rgba(255, 255, 255, 0.54)) !important;
+  }
+
+  #apropos .card > .magicbox-arrow,
+  #apropos::before,
+  #apropos::after,
+  #apropos .card::before,
+  #apropos .card::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    #apropos {
+      --rules-arrow-size: clamp(8px, 2.6vw, 11px);
+      --rules-arrow-stroke: clamp(1.5px, 0.55vw, 2px);
+      --rules-arrow-gap: clamp(9px, 3vw, 15px);
+      --rules-arrow-gap-x: clamp(13px, 5vw, 22px);
+    }
+
+    #apropos > .magicbox-arrow {
+      transition:
+        opacity 500ms cubic-bezier(0.16, 1, 0.3, 1),
+        transform 640ms cubic-bezier(0.16, 1, 0.3, 1),
+        filter 640ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    #apropos > .magicbox-arrow-down {
+      transform: rotate(45deg) translate3d(0, 0, 0) scale(1) !important;
+    }
+
+    #apropos > .magicbox-arrow-up {
+      transform: rotate(-135deg) translate3d(0, 7px, 0) scale(0.86) !important;
+    }
+
+    #apropos.rules-at-end > .magicbox-arrow-up,
+    #apropos.rules-no-scroll > .magicbox-arrow-up {
+      transform: rotate(-135deg) translate3d(0, 0, 0) scale(1) !important;
+    }
+  }
+
+  @media screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+    #apropos {
+      --rules-arrow-size: 8px;
+      --rules-arrow-stroke: 1.5px;
+      --rules-arrow-gap: 8px;
+      --rules-arrow-gap-x: 14px;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -10035,7 +10284,189 @@ body {
     demander();
   })();
 </script>
+<script id="gpc-no-select-no-cursor-script-final">
+  (function() {
+    function viderSelection() {
+      try {
+        const selection = window.getSelection && window.getSelection();
+        if (selection && selection.removeAllRanges) {
+          selection.removeAllRanges();
+        }
+      } catch (e) {}
+    }
+
+    function verrouillerObjet(el) {
+      if (!el || !el.setAttribute) return;
+
+      try { el.setAttribute("draggable", "false"); } catch (e) {}
+      try { el.style.setProperty("user-select", "none", "important"); } catch (e) {}
+      try { el.style.setProperty("-webkit-user-select", "none", "important"); } catch (e) {}
+      try { el.style.setProperty("-webkit-touch-callout", "none", "important"); } catch (e) {}
+      try { el.style.setProperty("caret-color", "transparent", "important"); } catch (e) {}
+      try { el.style.setProperty("cursor", "default", "important"); } catch (e) {}
+    }
+
+    function verrouillerTout() {
+      document.documentElement.setAttribute("draggable", "false");
+      if (document.body) {
+        verrouillerObjet(document.body);
+      }
+
+      document.querySelectorAll("body, body *").forEach(verrouillerObjet);
+      viderSelection();
+    }
+
+    ["DOMContentLoaded", "load", "pageshow", "resize", "orientationchange"].forEach(function(nom) {
+      window.addEventListener(nom, function() {
+        setTimeout(verrouillerTout, 20);
+        setTimeout(verrouillerTout, 220);
+      }, { passive: true });
+    });
+
+    document.addEventListener("selectionchange", viderSelection, { passive: true });
+
+    document.addEventListener("mousedown", function() {
+      setTimeout(viderSelection, 0);
+    }, { passive: true });
+
+    document.addEventListener("mouseup", viderSelection, { passive: true });
+    document.addEventListener("touchend", viderSelection, { passive: true });
+    document.addEventListener("contextmenu", viderSelection, { passive: true });
+
+    if ("MutationObserver" in window) {
+      const observer = new MutationObserver(function() {
+        verrouillerTout();
+      });
+
+      window.addEventListener("DOMContentLoaded", function() {
+        if (document.body) {
+          observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ["style", "class", "draggable"]
+          });
+        }
+      }, { passive: true });
+    }
+
+    verrouillerTout();
+  })();
+</script>
+<script id="rules-arrows-end-robust-script-final">
+  (function() {
+    let raf = null;
+    let observer = null;
+
+    function box() {
+      return document.getElementById("apropos");
+    }
+
+    function normaliserFleches() {
+      const b = box();
+      if (!b) return null;
+
+      function prendreOuCreer(classe) {
+        const toutes = Array.from(b.querySelectorAll("." + classe));
+        const premiere = toutes[0] || document.createElement("span");
+
+        premiere.className = "magicbox-arrow " + classe;
+        premiere.setAttribute("aria-hidden", "true");
+        try { premiere.setAttribute("draggable", "false"); } catch (e) {}
+
+        toutes.slice(1).forEach(function(el) {
+          if (el && el.parentNode) el.parentNode.removeChild(el);
+        });
+
+        return premiere;
+      }
+
+      const down = prendreOuCreer("magicbox-arrow-down");
+      const up = prendreOuCreer("magicbox-arrow-up");
+
+      if (down.parentNode !== b || b.firstElementChild !== down) {
+        b.insertBefore(down, b.firstChild);
+      }
+
+      if (up.parentNode !== b || b.lastElementChild !== up) {
+        b.appendChild(up);
+      }
+
+      return b;
+    }
+
+    function verifierFin() {
+      raf = null;
+
+      const b = normaliserFleches();
+      if (!b) return;
+
+      const hauteurVisible = b.clientHeight || 0;
+      const hauteurTotale = b.scrollHeight || 0;
+      const marge = Math.max(4, Math.round(hauteurVisible * 0.045));
+      const maxScroll = Math.max(0, hauteurTotale - hauteurVisible);
+      const noScroll = maxScroll <= marge;
+      const atEnd = noScroll || (b.scrollTop || 0) >= maxScroll - marge;
+
+      b.classList.toggle("rules-no-scroll", noScroll);
+      b.classList.toggle("rules-at-end", atEnd);
+      b.style.setProperty("--rules-scrollable-height", String(hauteurTotale));
+    }
+
+    function demander() {
+      if (raf) return;
+      raf = requestAnimationFrame(verifierFin);
+    }
+
+    function brancher() {
+      const b = normaliserFleches();
+      if (!b) return;
+
+      if (!b.dataset.rulesArrowEndRobustOk) {
+        b.dataset.rulesArrowEndRobustOk = "1";
+        b.addEventListener("scroll", demander, { passive: true });
+        b.addEventListener("wheel", demander, { passive: true });
+        b.addEventListener("touchmove", demander, { passive: true });
+        b.addEventListener("touchend", demander, { passive: true });
+      }
+
+      if ("MutationObserver" in window && !observer) {
+        observer = new MutationObserver(demander);
+        observer.observe(b, {
+          childList: true,
+          subtree: true,
+          characterData: true
+        });
+      }
+
+      demander();
+    }
+
+    ["DOMContentLoaded", "load", "pageshow", "resize"].forEach(function(nom) {
+      window.addEventListener(nom, function() {
+        setTimeout(brancher, 20);
+        setTimeout(demander, 180);
+      }, { passive: true });
+    });
+
+    window.addEventListener("orientationchange", function() {
+      setTimeout(brancher, 120);
+      setTimeout(demander, 420);
+    }, { passive: true });
+
+    document.addEventListener("click", function(event) {
+      const texte = event.target && event.target.textContent ? event.target.textContent.trim() : "";
+      if (texte === "RULES") {
+        setTimeout(brancher, 40);
+        setTimeout(demander, 240);
+      }
+    }, { passive: true });
+
+    setInterval(demander, 900);
+    brancher();
+  })();
+</script>
 </body>
 <!-- END COPYRIGHT NOTICE: © 2026 catdezoo<3. all rights reserved. -->
-<!-- WEBSITE ORDI END: desktop PC/Mac replaced by scaled mobile layout -->
+<!-- WEBSITE -->
 </html>
