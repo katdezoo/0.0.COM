@@ -6492,6 +6492,179 @@ body {
     }
   }
 </style>
+<style id="website-ordi-final-box-timer-intro-final">
+  /*
+    Dernier réglage doux :
+    - garde la taille actuelle de la box en grand écran normal, mais la verrouille vraiment
+    - adapte seulement quand la fenêtre est réduite
+    - timer un peu plus haut et plus petit
+    - intro texte + copyright sur fond noir partout
+  */
+
+  /* Copyright tout début : noir partout, toujours avant l'intro */
+  #copyrightIntroPage,
+  .copyright-intro-page {
+    background: #000000 !important;
+    color: #ffffff !important;
+  }
+
+  #copyrightIntroPage p,
+  .copyright-intro-page p {
+    color: #ffffff !important;
+    text-shadow:
+      0 0 4px #ffffff,
+      0 0 10px rgba(255, 255, 255, 0.72),
+      0 0 18px rgba(255, 255, 255, 0.38) !important;
+  }
+
+  /* Pendant les textes de l'intro : fond noir, aucune vidéo/pink derrière */
+  html.gpc-intro-hold.gpc-intro-stage-text #introPage,
+  html.gpc-intro-stage-text #introPage,
+  #introPage.intro-page {
+    background: #000000 !important;
+  }
+
+  html.gpc-intro-stage-text #introGif,
+  html.gpc-intro-stage-text #introVideo,
+  html.gpc-intro-stage-text #introVideo.intro-video {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  html.gpc-intro-stage-text #introText {
+    color: #ffffff !important;
+    text-shadow:
+      0 0 4px #ffffff,
+      0 0 10px rgba(255, 255, 255, 0.72),
+      0 0 18px rgba(255, 255, 255, 0.38) !important;
+  }
+
+  /* Le troisième écran seulement peut montrer la vidéo/pink */
+  html.gpc-intro-stage-video #introPage {
+    background: #ff00ff !important;
+  }
+
+  @media screen and (min-width: 769px) {
+    /* Page desktop toujours fixe */
+    html,
+    body {
+      width: 100% !important;
+      height: 100dvh !important;
+      min-height: 100dvh !important;
+      max-height: 100dvh !important;
+      overflow: hidden !important;
+      overflow-x: hidden !important;
+      overflow-y: hidden !important;
+      scrollbar-width: none !important;
+      overscroll-behavior: none !important;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      width: 0 !important;
+      height: 0 !important;
+      display: none !important;
+    }
+
+    .overlay {
+      height: 100dvh !important;
+      min-height: 100dvh !important;
+      max-height: 100dvh !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Menu inchangé dans l'esprit, juste stable et haut */
+    nav button {
+      font-size: clamp(13px, 1.03vw, 19px) !important;
+      min-height: clamp(19px, 2.24dvh, 29px) !important;
+      line-height: 1.02 !important;
+      transform: translate3d(0, -3px, 0) !important;
+    }
+
+    /*
+      Timer : un peu plus haut et un peu plus petit.
+      AM/PM suit automatiquement car il est dans .paris-timer.
+    */
+    .paris-timer {
+      top: clamp(84px, 14.3dvh, 178px) !important;
+      font-size: clamp(52px, 6.15vw, 96px) !important;
+      transform: translate3d(-50%, 0, 0) !important;
+    }
+
+    /*
+      Box : taille actuelle gardée en écran normal.
+      760x246 est la taille de la version juste avant ce prompt.
+    */
+    #apropos {
+      top: var(--ordi-rules-top, 58dvh) !important;
+      width: var(--ordi-rules-fixed-width, 760px) !important;
+      max-width: var(--ordi-rules-fixed-width, 760px) !important;
+      height: var(--ordi-rules-fixed-height, 246px) !important;
+      min-height: var(--ordi-rules-fixed-height, 246px) !important;
+      max-height: var(--ordi-rules-fixed-height, 246px) !important;
+      transform: translate3d(-50%, var(--ordi-rules-float, 0px), 0) !important;
+    }
+  }
+
+  /*
+    Fenêtre réduite : seulement là, la box redevient responsive.
+    Le comportement normal reste fixe/statique.
+  */
+  @media screen and (min-width: 769px) and (max-width: 1050px),
+         screen and (min-width: 769px) and (max-height: 760px) {
+    #apropos {
+      width: var(--ordi-rules-fixed-width, min(calc(100vw - 42px), 720px)) !important;
+      max-width: var(--ordi-rules-fixed-width, min(calc(100vw - 42px), 720px)) !important;
+      height: var(--ordi-rules-fixed-height, clamp(104px, 19dvh, 220px)) !important;
+      min-height: var(--ordi-rules-fixed-height, clamp(104px, 19dvh, 220px)) !important;
+      max-height: var(--ordi-rules-fixed-height, clamp(104px, 19dvh, 220px)) !important;
+    }
+
+    .paris-timer {
+      top: clamp(60px, 12.4dvh, 112px) !important;
+      font-size: clamp(40px, 4.75vw, 70px) !important;
+    }
+
+    nav button {
+      font-size: clamp(12px, 0.95vw, 17px) !important;
+      min-height: clamp(17px, 2dvh, 25px) !important;
+    }
+  }
+
+  @media screen and (min-width: 1400px) and (min-height: 820px) {
+    /*
+      Même grande version que juste avant : 780x252,
+      mais réellement fixe tant que la fenêtre reste normale.
+    */
+    #apropos {
+      width: var(--ordi-rules-fixed-width, 780px) !important;
+      max-width: var(--ordi-rules-fixed-width, 780px) !important;
+      height: var(--ordi-rules-fixed-height, 252px) !important;
+      min-height: var(--ordi-rules-fixed-height, 252px) !important;
+      max-height: var(--ordi-rules-fixed-height, 252px) !important;
+    }
+
+    .paris-timer {
+      top: clamp(98px, 13.8dvh, 190px) !important;
+      font-size: clamp(54px, 5.9vw, 98px) !important;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    /* Smartphone : textes d'intro sur noir aussi */
+    html.gpc-intro-hold.gpc-intro-stage-text #introPage,
+    html.gpc-intro-stage-text #introPage {
+      background: #000000 !important;
+    }
+
+    #copyrightIntroPage,
+    .copyright-intro-page {
+      background: #000000 !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -9403,6 +9576,181 @@ body {
     setInterval(verifier, 950);
     setInterval(function() { reveiller("periodic"); }, 2800);
     reveiller("init");
+  })();
+</script>
+<script id="website-ordi-final-box-timer-intro-engine-final">
+  (function() {
+    const racine = document.documentElement;
+    let raf = null;
+    let topActuel = null;
+    let hauteurActuelle = null;
+    let largeurActuelle = null;
+    let gmailActuel = null;
+
+    function desktop() {
+      return window.innerWidth >= 769;
+    }
+
+    function clamp(v, min, max) {
+      return Math.max(min, Math.min(max, v));
+    }
+
+    function dims() {
+      return {
+        w: window.innerWidth || document.documentElement.clientWidth || 1280,
+        h: window.innerHeight || document.documentElement.clientHeight || 800
+      };
+    }
+
+    function topLecteur() {
+      const d = dims();
+      const lecteur = document.querySelector(".audio-box");
+      if (lecteur) {
+        const rect = lecteur.getBoundingClientRect();
+        if (rect && rect.top > 0 && rect.top < d.h) {
+          return rect.top;
+        }
+      }
+      return d.h - 176;
+    }
+
+    function cibles() {
+      const d = dims();
+      const reduit = d.w < 1050 || d.h < 760;
+      const tresBas = d.h < 650;
+      const grand = d.w >= 1400 && d.h >= 820;
+
+      let largeur = grand ? 780 : 760;
+      let hauteur = grand ? 252 : 246;
+
+      if (reduit) {
+        largeur = clamp(d.w - 42, 540, 720);
+
+        const topApprox = d.h * (tresBas ? 0.515 : 0.535);
+        const basFinal = topLecteur() - 10;
+        hauteur = clamp(basFinal - topApprox, tresBas ? 88 : 104, tresBas ? 165 : 220);
+      }
+
+      /*
+        En grand écran normal : position fixe/statique, pas recalculée par le contenu.
+        En fenêtre réduite : adaptation douce.
+      */
+      const ratio = reduit ? (tresBas ? 0.515 : 0.535) : 0.592;
+      const top = clamp(
+        Math.round(d.h * ratio),
+        reduit ? (tresBas ? 224 : 270) : 420,
+        Math.max(reduit ? 330 : 470, d.h - hauteur - (reduit ? 168 : 184))
+      );
+
+      const gmailRemontee = clamp(Math.round(d.h * 0.045), reduit ? 20 : 30, reduit ? 38 : 58);
+      const gmailY = Math.round(d.h * (reduit ? 0.72 : 0.76) - gmailRemontee);
+
+      return { top, largeur, hauteur, gmailY };
+    }
+
+    function appliquer(force) {
+      if (!desktop()) {
+        topActuel = null;
+        hauteurActuelle = null;
+        largeurActuelle = null;
+        gmailActuel = null;
+        return;
+      }
+
+      const c = cibles();
+
+      if (force || topActuel === null) {
+        topActuel = c.top;
+        hauteurActuelle = c.hauteur;
+        largeurActuelle = c.largeur;
+        gmailActuel = c.gmailY;
+      } else {
+        const douceur = 0.12;
+        topActuel += (c.top - topActuel) * douceur;
+        hauteurActuelle += (c.hauteur - hauteurActuelle) * douceur;
+        largeurActuelle += (c.largeur - largeurActuelle) * douceur;
+        gmailActuel += (c.gmailY - gmailActuel) * douceur;
+      }
+
+      racine.style.setProperty("--ordi-rules-top", topActuel.toFixed(2) + "px");
+      racine.style.setProperty("--ordi-rules-fixed-width", largeurActuelle.toFixed(2) + "px");
+      racine.style.setProperty("--ordi-rules-fixed-height", hauteurActuelle.toFixed(2) + "px");
+      racine.style.setProperty("--ordi-rules-width", largeurActuelle.toFixed(2) + "px");
+      racine.style.setProperty("--ordi-rules-height", hauteurActuelle.toFixed(2) + "px");
+      racine.style.setProperty("--ordi-gmail-y", gmailActuel.toFixed(2) + "px");
+
+      if ((window.scrollY || document.documentElement.scrollTop || 0) !== 0) {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      }
+
+      raf = null;
+
+      if (
+        Math.abs(c.top - topActuel) > 0.08 ||
+        Math.abs(c.hauteur - hauteurActuelle) > 0.08 ||
+        Math.abs(c.largeur - largeurActuelle) > 0.08 ||
+        Math.abs(c.gmailY - gmailActuel) > 0.08
+      ) {
+        lancer(false);
+      }
+    }
+
+    function lancer(force) {
+      if (raf) return;
+      raf = requestAnimationFrame(function() {
+        appliquer(!!force);
+      });
+    }
+
+    function verrouillerPage() {
+      if (!desktop()) return;
+
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.height = "100dvh";
+      document.body.style.height = "100dvh";
+
+      if ((window.scrollY || document.documentElement.scrollTop || 0) !== 0) {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      }
+
+      lancer(false);
+    }
+
+    function fondNoirIntroTextes() {
+      const copyright = document.getElementById("copyrightIntroPage");
+      const intro = document.getElementById("introPage");
+
+      if (copyright) copyright.style.background = "#000000";
+      if (intro && racine.classList.contains("gpc-intro-stage-text")) {
+        intro.style.background = "#000000";
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", function() { lancer(true); verrouillerPage(); fondNoirIntroTextes(); }, { passive: true });
+    window.addEventListener("load", function() { lancer(true); verrouillerPage(); fondNoirIntroTextes(); }, { passive: true });
+    window.addEventListener("pageshow", function() { lancer(true); verrouillerPage(); fondNoirIntroTextes(); }, { passive: true });
+    window.addEventListener("resize", function() { lancer(false); verrouillerPage(); }, { passive: true });
+    window.addEventListener("orientationchange", function() {
+      setTimeout(function() { lancer(true); verrouillerPage(); }, 120);
+      setTimeout(function() { lancer(true); verrouillerPage(); }, 420);
+    }, { passive: true });
+    window.addEventListener("scroll", verrouillerPage, { passive: true });
+
+    document.addEventListener("click", function(event) {
+      const texte = event.target && event.target.textContent ? event.target.textContent.trim() : "";
+      if (texte === "RULES" || texte === "SEND A WAV / MP3" || texte === "starthere") {
+        setTimeout(function() { lancer(true); verrouillerPage(); }, 40);
+        setTimeout(function() { lancer(false); verrouillerPage(); }, 220);
+      }
+    }, { passive: true });
+
+    setInterval(function() {
+      verrouillerPage();
+      fondNoirIntroTextes();
+    }, 900);
+
+    lancer(true);
   })();
 </script>
 </body>
