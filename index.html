@@ -4667,7 +4667,7 @@
     }
 
   
-    /* GLOBAL PRODUCERS CUP : ./regardepasmalnon.mp4 ajusté comme l'ancien GIF */
+    /* GLOBAL PRODUCERS CUP : ./0618 (1).mp4 ajusté comme l'ancien GIF */
     :root {
       --fond-video-bg: #ff00ff;
       --fond-video-position: center center;
@@ -4750,7 +4750,7 @@
     }
 
   
-    /* GLOBAL PRODUCERS CUP FINAL : ./regardepasmalnon.mp4 rose/vert visible + loop, comme le GIF */
+    /* GLOBAL PRODUCERS CUP FINAL : ./0618 (1).mp4 rose/vert visible + loop, comme le GIF */
     :root {
       --fond-video-bg: #ff00ff;
     }
@@ -4861,7 +4861,7 @@
     }
 
   
-    /* GLOBAL PRODUCERS CUP : ./regardepasmalnon.mp4 plein écran 100%, sans crop, loop partout */
+    /* GLOBAL PRODUCERS CUP : ./0618 (1).mp4 plein écran 100%, sans crop, loop partout */
     :root {
       --fond-video-bg: #ff00ff;
     }
@@ -4958,7 +4958,7 @@
     }
 
   
-/* GLOBAL PRODUCERS CUP : audit responsive final RULES + ./regardepasmalnon.mp4 */
+/* GLOBAL PRODUCERS CUP : audit responsive final RULES + ./0618 (1).mp4 */
 :root {
   --fond-video-bg: #ff00ff;
   --rules-desktop-font: clamp(16px, 1.42vw, 21px);
@@ -5353,13 +5353,13 @@ body {
       and headphones please/</span>
     <div id="introGif" class="intro-gif"></div>
 <video id="introVideo" class="intro-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
-  <source src="./regardepasmalnon.mp4" type="video/mp4">
+  <source src="./0618 (1).mp4" type="video/mp4">
 </video>
 </div>
 
   <div class="gif-bg"></div>
 <video id="fondVideo" class="video-bg" autoplay muted loop playsinline webkit-playsinline preload="auto">
-  <source src="./regardepasmalnon.mp4" type="video/mp4">
+  <source src="./0618 (1).mp4" type="video/mp4">
 </video>
 
   <div id="volumeTextWhiteGlow" class="volume-white-glow-layer"></div>
@@ -6494,7 +6494,7 @@ body {
 
 <script id="video-smartphone-wake-lock-fix">
   (function() {
-    const VIDEO_SRC = "./regardepasmalnon.mp4";
+    const VIDEO_SRC = "./0618 (1).mp4";
     let dernierTemps = -1;
     let compteurFreeze = 0;
     let timerRelance = null;
@@ -7315,9 +7315,11 @@ body {
         basFinal - topAncre
       );
 
-      /* Hauteur de départ = exactement la moitié de la hauteur finale.
-         Le haut reste fixe, donc la box s'agrandit uniquement vers le bas. */
-      const hauteurPetite = Math.round(hauteurGrande * 0.50);
+      const hauteurPetite = Math.round(clamp(
+        hauteurGrande * 0.50,
+        paysage ? 42 : 56,
+        paysage ? 76 : 82
+      ));
 
       hauteurCible = Math.round(hauteurPetite + (hauteurGrande - hauteurPetite) * p);
 
@@ -7450,7 +7452,7 @@ body {
 </script>
 <script id="video-anti-freeze-pro-final">
   (function() {
-    const SRC = "./regardepasmalnon.mp4";
+    const SRC = "./0618 (1).mp4";
     let dernierTemps = -1;
     let compteurBloque = 0;
     let rechargeEnCours = false;
