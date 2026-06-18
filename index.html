@@ -5578,6 +5578,161 @@ body {
     }
   }
 </style>
+<style id="gmail-magicbox-smooth-final">
+  /* @gmail : même type de mouvement que la box RULES, position finale conservée */
+  @media screen and (max-width: 768px) {
+    #contact {
+      position: fixed !important;
+      left: 50% !important;
+      top: 0 !important;
+      bottom: auto !important;
+      transform: translate3d(
+        -50%,
+        calc(var(--gmail-base-y, var(--gmail-origin-y, 72vh)) - 50% + var(--gmail-magicbox-float, 0px)),
+        0
+      ) !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 12px !important;
+      box-sizing: border-box !important;
+      overflow: visible !important;
+      pointer-events: none !important;
+      z-index: 16500 !important;
+      will-change: transform !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+      transform-style: preserve-3d !important;
+      contain: none !important;
+    }
+
+    #contact.active {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    #contact .card,
+    #contact h1 {
+      transform: translateZ(0) !important;
+      will-change: transform !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+    }
+  }
+
+  @media screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+    #contact {
+      transform: translate3d(
+        -50%,
+        calc(var(--gmail-base-y, var(--gmail-origin-y, 66vh)) - 50% + var(--gmail-magicbox-float, 0px)),
+        0
+      ) !important;
+    }
+  }
+</style>
+<style id="mobile-hyper-fluid-performance-final">
+  /* Hyper-fluidité mobile : moins de recalculs, plus de GPU, aucun changement de design */
+  @media screen and (max-width: 768px) {
+    html,
+    body {
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior-y: auto !important;
+      scroll-behavior: auto !important;
+      text-rendering: geometricPrecision !important;
+      -webkit-font-smoothing: antialiased !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
+    #fondVideo.video-bg,
+    #introVideo.intro-video {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      min-width: 100vw !important;
+      min-height: 100vh !important;
+      object-fit: fill !important;
+      object-position: center center !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+      pointer-events: none !important;
+      transform: translate3d(0, 0, 0) scale(1.0001) !important;
+      -webkit-transform: translate3d(0, 0, 0) scale(1.0001) !important;
+      transform-origin: center center !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+      will-change: transform, opacity !important;
+      contain: strict !important;
+      isolation: isolate !important;
+    }
+
+    @supports (height: 100svh) {
+      #fondVideo.video-bg,
+      #introVideo.intro-video {
+        height: 100svh !important;
+        min-height: 100svh !important;
+      }
+    }
+
+    @supports (height: 100dvh) {
+      #fondVideo.video-bg,
+      #introVideo.intro-video {
+        height: 100dvh !important;
+        min-height: 100dvh !important;
+      }
+    }
+
+    #apropos,
+    #contact,
+    .paris-timer,
+    nav,
+    .audio-box,
+    .audio-word-display,
+    .volume-boost-box,
+    .audio-progress-box {
+      transform-style: preserve-3d !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+      will-change: transform !important;
+    }
+
+    #apropos {
+      contain: layout paint style !important;
+      transform: translate3d(-50%, var(--rules-liquid-float, 0px), 0) !important;
+    }
+
+    #contact {
+      contain: none !important;
+      transform: translate3d(
+        -50%,
+        calc(var(--gmail-base-y, var(--gmail-origin-y, 72vh)) - 50% + var(--gmail-magicbox-float, 0px)),
+        0
+      ) !important;
+    }
+
+    #contact .card,
+    #contact h1,
+    #apropos .card,
+    #apropos h1 {
+      transform: translateZ(0) !important;
+      will-change: transform !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+    }
+  }
+
+  @media screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+    #contact {
+      transform: translate3d(
+        -50%,
+        calc(var(--gmail-base-y, var(--gmail-origin-y, 66vh)) - 50% + var(--gmail-magicbox-float, 0px)),
+        0
+      ) !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -7433,308 +7588,6 @@ body {
     });
   })();
 </script>
-<script id="video-ultra-antifreeze-antilag-final">
-  (function() {
-    const SRC = "./téma.mp4";
-    let dernierTemps = -1;
-    let dernierFrameTime = 0;
-    let blocages = 0;
-    let dernierReload = 0;
-    let dernierKick = 0;
-    let raf = null;
-    let frameCallbackActif = false;
-
-    function mobile() {
-      return window.innerWidth <= 768;
-    }
-
-    function maintenant() {
-      return Date.now ? Date.now() : new Date().getTime();
-    }
-
-    function video() {
-      return document.getElementById("fondVideo");
-    }
-
-    function configurer(v) {
-      if (!v) return;
-
-      v.muted = true;
-      v.defaultMuted = true;
-      v.loop = true;
-      v.autoplay = true;
-      v.playsInline = true;
-      v.preload = "auto";
-
-      v.setAttribute("muted", "");
-      v.setAttribute("loop", "");
-      v.setAttribute("autoplay", "");
-      v.setAttribute("playsinline", "");
-      v.setAttribute("webkit-playsinline", "");
-      v.setAttribute("preload", "auto");
-      v.setAttribute("disablepictureinpicture", "");
-      v.setAttribute("controlslist", "nodownload noplaybackrate noremoteplayback");
-      v.setAttribute("data-ultra-antifreeze", "true");
-
-      try { v.disableRemotePlayback = true; } catch (e) {}
-
-      v.style.setProperty("display", "block", "important");
-      v.style.setProperty("visibility", "visible", "important");
-      v.style.setProperty("opacity", "1", "important");
-      v.style.setProperty("pointer-events", "none", "important");
-      v.style.setProperty("transform", "translate3d(0, 0, 0)", "important");
-      v.style.setProperty("-webkit-transform", "translate3d(0, 0, 0)", "important");
-      v.style.setProperty("backface-visibility", "hidden", "important");
-      v.style.setProperty("-webkit-backface-visibility", "hidden", "important");
-      v.style.setProperty("will-change", "transform, opacity", "important");
-
-      const source = v.querySelector("source");
-      if (source && source.getAttribute("src") !== SRC) {
-        source.setAttribute("src", SRC);
-        try { v.load(); } catch (e) {}
-      }
-
-      if (!v.getAttribute("src") && !source) {
-        v.setAttribute("src", SRC);
-      }
-    }
-
-    function play(v) {
-      if (!v) return;
-      try {
-        const p = v.play();
-        if (p && typeof p.catch === "function") {
-          p.catch(function() {});
-        }
-      } catch (e) {}
-    }
-
-    function nudge(v) {
-      if (!v || !Number.isFinite(v.duration) || v.duration <= 0) return;
-
-      try {
-        const t = v.currentTime || 0;
-        const margeFin = Math.max(0.18, Math.min(0.45, v.duration * 0.04));
-
-        if (t > v.duration - margeFin) {
-          v.currentTime = 0.05;
-        } else {
-          v.currentTime = Math.min(v.duration - 0.08, t + 0.045);
-        }
-      } catch (e) {}
-    }
-
-    function reloadDoux(v) {
-      const now = maintenant();
-      if (!v || now - dernierReload < 2600) return;
-      dernierReload = now;
-
-      let t = 0;
-      try { t = v.currentTime || 0; } catch (e) {}
-
-      try { v.load(); } catch (e) {}
-
-      setTimeout(function() {
-        try {
-          if (Number.isFinite(v.duration) && v.duration > 0) {
-            v.currentTime = Math.min(Math.max(t, 0.04), Math.max(0.05, v.duration - 0.12));
-          }
-        } catch (e) {}
-        play(v);
-      }, 70);
-    }
-
-    function kick(raison) {
-      const v = video();
-      if (!v) return;
-
-      const now = maintenant();
-      if (now - dernierKick < 120 && raison !== "fort") return;
-      dernierKick = now;
-
-      configurer(v);
-
-      if (document.hidden) return;
-
-      if (v.paused || v.ended || v.readyState < 2) {
-        play(v);
-      }
-
-      if (raison === "fort") {
-        nudge(v);
-        play(v);
-        setTimeout(function() { play(v); }, 80);
-        setTimeout(function() { play(v); }, 240);
-      }
-    }
-
-    function verifier() {
-      const v = video();
-      if (!v) return;
-
-      configurer(v);
-
-      if (document.hidden) {
-        dernierTemps = -1;
-        blocages = 0;
-        return;
-      }
-
-      const t = Number(v.currentTime || 0);
-      const avance = dernierTemps < 0 || Math.abs(t - dernierTemps) > 0.006;
-      const devraitTourner = !v.paused && !v.ended && v.readyState >= 2;
-
-      if (v.paused || v.ended) {
-        play(v);
-      }
-
-      if (devraitTourner && !avance) {
-        blocages += 1;
-
-        if (blocages >= 2) {
-          nudge(v);
-          play(v);
-        }
-
-        if (blocages >= 5) {
-          reloadDoux(v);
-          blocages = 0;
-        }
-      } else {
-        blocages = 0;
-      }
-
-      dernierTemps = t;
-    }
-
-    function boucleRaf() {
-      const v = video();
-
-      if (v && mobile() && !document.hidden) {
-        const now = maintenant();
-
-        if (!v.paused && !v.ended && now - dernierFrameTime > 1100) {
-          verifier();
-        }
-
-        if (v.paused || v.readyState < 2) {
-          play(v);
-        }
-      }
-
-      raf = requestAnimationFrame(boucleRaf);
-    }
-
-    function surveillerFrames() {
-      const v = video();
-      if (!v || frameCallbackActif || typeof v.requestVideoFrameCallback !== "function") return;
-
-      frameCallbackActif = true;
-
-      const callback = function() {
-        dernierFrameTime = maintenant();
-        if (!document.hidden && video() && typeof video().requestVideoFrameCallback === "function") {
-          try {
-            video().requestVideoFrameCallback(callback);
-          } catch (e) {
-            frameCallbackActif = false;
-          }
-        } else {
-          frameCallbackActif = false;
-        }
-      };
-
-      try {
-        v.requestVideoFrameCallback(callback);
-      } catch (e) {
-        frameCallbackActif = false;
-      }
-    }
-
-    function demarrerUltra() {
-      kick("fort");
-      surveillerFrames();
-
-      if (!raf) {
-        raf = requestAnimationFrame(boucleRaf);
-      }
-    }
-
-    const evenements = [
-      "DOMContentLoaded",
-      "load",
-      "pageshow",
-      "focus",
-      "resize",
-      "orientationchange",
-      "visibilitychange",
-      "touchstart",
-      "pointerdown",
-      "click",
-      "scroll"
-    ];
-
-    evenements.forEach(function(nom) {
-      window.addEventListener(nom, function() {
-        if (nom === "orientationchange") {
-          setTimeout(demarrerUltra, 80);
-          setTimeout(demarrerUltra, 360);
-          setTimeout(demarrerUltra, 900);
-        } else {
-          demarrerUltra();
-        }
-      }, { passive: true });
-    });
-
-    document.addEventListener("visibilitychange", function() {
-      if (!document.hidden) {
-        setTimeout(demarrerUltra, 60);
-        setTimeout(function() { kick("fort"); }, 320);
-      }
-    }, { passive: true });
-
-    function brancherVideo() {
-      const v = video();
-      if (!v || v.dataset.ultraVideoEventsOk) return;
-      v.dataset.ultraVideoEventsOk = "1";
-
-      [
-        "stalled",
-        "waiting",
-        "suspend",
-        "emptied",
-        "abort",
-        "error",
-        "pause",
-        "ended",
-        "loadedmetadata",
-        "canplay",
-        "canplaythrough"
-      ].forEach(function(nom) {
-        v.addEventListener(nom, function() {
-          if (nom === "pause" || nom === "ended" || nom === "stalled" || nom === "waiting" || nom === "error") {
-            kick("fort");
-          } else {
-            kick("normal");
-          }
-        }, { passive: true });
-      });
-    }
-
-    setInterval(function() {
-      brancherVideo();
-      verifier();
-      surveillerFrames();
-    }, mobile() ? 420 : 780);
-
-    setInterval(function() {
-      kick("normal");
-    }, mobile() ? 1700 : 2600);
-
-    brancherVideo();
-    demarrerUltra();
-  })();
-</script>
 <script id="rules-mobile-liquid-engine-final">
   (function() {
     const racine = document.documentElement;
@@ -8031,14 +7884,13 @@ body {
     setTimeout(function() { demander(true); brancher(); }, 750);
   })();
 </script>
-<script id="gmail-mobile-liquid-engine-final">
+<script id="gmail-magicbox-smooth-final">
   (function() {
     const racine = document.documentElement;
 
-    let yActuel = null;
-    let yCible = null;
-    let offsetActuel = 0;
-    let offsetCible = 0;
+    let baseY = null;
+    let floatActuel = 0;
+    let floatCible = 0;
     let raf = null;
     let dernierScrollY = window.scrollY || 0;
     let contactEtaitActif = false;
@@ -8053,70 +7905,63 @@ body {
       return !!(contact && contact.classList.contains("active"));
     }
 
-    function dimensions() {
-      return {
-        w: window.innerWidth || document.documentElement.clientWidth || 390,
-        h: window.innerHeight || document.documentElement.clientHeight || 760
-      };
+    function clamp(v, min, max) {
+      return Math.max(min, Math.min(max, v));
     }
 
-    function positionActuelleConservee() {
-      const d = dimensions();
-      const paysage = d.w <= 900 && d.h <= 500 && window.matchMedia("(orientation: landscape)").matches;
+    function calculerBase() {
+      const h = window.innerHeight || document.documentElement.clientHeight || 760;
+      const w = window.innerWidth || document.documentElement.clientWidth || 390;
+      const paysage = w <= 900 && h <= 500 && window.matchMedia("(orientation: landscape)").matches;
 
       if (paysage) {
-        return Math.round(d.h * 0.70 - 18);
+        return Math.round(h * 0.70 - 18);
       }
 
-      /* Même position que la version actuelle : on ne la remonte pas, on la rend juste liquide. */
-      const remontee = Math.max(24, Math.min(Math.round(d.h * 0.045), 42));
-      return Math.round(d.h * 0.76 - remontee);
+      /* Position finale conservée depuis la version actuelle. */
+      const remontee = Math.max(24, Math.min(Math.round(h * 0.045), 42));
+      return Math.round(h * 0.76 - remontee);
     }
 
     function poserBase(force) {
       if (!mobile()) {
-        racine.style.removeProperty("--gmail-liquid-y");
+        racine.style.removeProperty("--gmail-base-y");
         racine.style.removeProperty("--gmail-origin-y");
         racine.style.removeProperty("--gmail-page-locked-top");
-        racine.style.removeProperty("--gmail-scroll-glide");
-        yActuel = null;
-        yCible = null;
-        offsetActuel = 0;
-        offsetCible = 0;
+        racine.style.removeProperty("--gmail-magicbox-float");
+        baseY = null;
+        floatActuel = 0;
+        floatCible = 0;
         raf = null;
         return;
       }
 
-      const base = positionActuelleConservee();
+      const prochain = calculerBase();
 
-      racine.style.setProperty("--gmail-origin-y", base + "px");
-      racine.style.setProperty("--gmail-page-locked-top", base + "px");
-
-      yCible = base;
-
-      if (yActuel === null || force) {
-        yActuel = base;
-        racine.style.setProperty("--gmail-liquid-y", yActuel.toFixed(2) + "px");
+      if (force || baseY === null || Math.abs(prochain - baseY) > 2) {
+        baseY = prochain;
+        racine.style.setProperty("--gmail-base-y", baseY + "px");
+        racine.style.setProperty("--gmail-origin-y", baseY + "px");
+        racine.style.setProperty("--gmail-page-locked-top", baseY + "px");
       }
-
-      lancer();
     }
 
     function retourSouple() {
       clearTimeout(retourTimer);
       retourTimer = setTimeout(function() {
-        offsetCible = 0;
+        floatCible = 0;
         lancer();
-      }, 150);
+      }, 120);
     }
 
-    function ouvrirAvecGlide() {
-      const base = positionActuelleConservee();
-      yCible = base;
-      yActuel = base + Math.max(20, Math.min(Math.round((window.innerHeight || 760) * 0.046), 36));
-      offsetActuel = 0;
-      offsetCible = 0;
-      racine.style.setProperty("--gmail-liquid-y", yActuel.toFixed(2) + "px");
+    function ouvertureMagicbox() {
+      poserBase(false);
+
+      /* Même idée que la box : départ un peu plus bas puis retour liquide à zéro. */
+      const h = window.innerHeight || 760;
+      floatActuel = clamp(h * 0.050, 20, 40);
+      floatCible = 0;
+      racine.style.setProperty("--gmail-magicbox-float", floatActuel.toFixed(2) + "px");
       lancer();
     }
 
@@ -8128,7 +7973,8 @@ body {
       dernierScrollY = y;
 
       if (Math.abs(dy) > 0.2) {
-        offsetCible = Math.max(-16, Math.min(16, offsetCible + dy * 0.075));
+        /* Identique à l'esprit de la box : impulsion douce + retour amorti. */
+        floatCible = clamp(floatCible + dy * 0.065, -18, 18);
         retourSouple();
         lancer();
       }
@@ -8141,36 +7987,29 @@ body {
     }
 
     function animer() {
-      if (!mobile() || yCible === null || yActuel === null) {
+      if (!mobile()) {
         raf = null;
         return;
       }
 
-      const base = positionActuelleConservee();
-      yCible = base;
+      poserBase(false);
 
-      const douceurY = 0.034;
-      const douceurOffset = 0.046;
-      const stop = 0.025;
+      /* Très proche du moteur RULES : souple, inertiel, pas accroché. */
+      const douceurFloat = 0.040;
+      const stop = 0.030;
+      const delta = floatCible - floatActuel;
 
-      if (Math.abs(offsetCible) > 0.02) {
-        offsetCible *= 0.91;
+      floatActuel = Math.abs(delta) < stop ? floatCible : floatActuel + delta * douceurFloat;
+
+      if (Math.abs(floatCible) > 0.02) {
+        floatCible *= 0.90;
       } else {
-        offsetCible = 0;
+        floatCible = 0;
       }
 
-      const target = yCible + offsetCible;
-      const dy = target - yActuel;
-      const doffset = offsetCible - offsetActuel;
+      racine.style.setProperty("--gmail-magicbox-float", floatActuel.toFixed(2) + "px");
 
-      yActuel = Math.abs(dy) < stop ? target : yActuel + dy * douceurY;
-      offsetActuel = Math.abs(doffset) < stop ? offsetCible : offsetActuel + doffset * douceurOffset;
-
-      racine.style.setProperty("--gmail-origin-y", base + "px");
-      racine.style.setProperty("--gmail-page-locked-top", base + "px");
-      racine.style.setProperty("--gmail-liquid-y", yActuel.toFixed(2) + "px");
-
-      if (Math.abs(target - yActuel) > stop || Math.abs(offsetCible) > stop || Math.abs(offsetActuel) > stop) {
+      if (Math.abs(floatCible - floatActuel) > stop || Math.abs(floatCible) > stop) {
         raf = requestAnimationFrame(animer);
       } else {
         raf = null;
@@ -8180,6 +8019,10 @@ body {
     function demander(force) {
       requestAnimationFrame(function() {
         poserBase(!!force);
+        if (contactActif() && !contactEtaitActif) {
+          ouvertureMagicbox();
+        }
+        contactEtaitActif = contactActif();
       });
     }
 
@@ -8191,6 +8034,7 @@ body {
       setTimeout(function() { demander(true); }, 100);
       setTimeout(function() { demander(true); }, 380);
     }, { passive: true });
+
     window.addEventListener("scroll", function() {
       impulsionScroll();
     }, { passive: true });
@@ -8199,20 +8043,463 @@ body {
       const texte = event.target && event.target.textContent ? event.target.textContent.trim() : "";
       if (texte === "SEND A WAV / MP3") {
         contactEtaitActif = false;
-        setTimeout(ouvrirAvecGlide, 30);
+        setTimeout(ouvertureMagicbox, 30);
         setTimeout(function() { demander(false); }, 220);
       }
     }, { passive: true });
 
     setInterval(function() {
-      const actif = contactActif();
-      if (actif && !contactEtaitActif) {
-        ouvrirAvecGlide();
+      if (contactActif() && !contactEtaitActif) {
+        ouvertureMagicbox();
       }
-      contactEtaitActif = actif;
+      contactEtaitActif = contactActif();
     }, 180);
 
     demander(true);
+  })();
+</script>
+<script id="mobile-hyper-fluid-tuner-final">
+  (function() {
+    const racine = document.documentElement;
+    let raf = null;
+    let dernierY = window.scrollY || 0;
+    let rulesFloat = 0;
+    let gmailFloat = 0;
+
+    function mobile() {
+      return window.innerWidth <= 768;
+    }
+
+    function clamp(v, min, max) {
+      return Math.max(min, Math.min(max, v));
+    }
+
+    function rulesActive() {
+      const b = document.getElementById("apropos");
+      return !!(b && b.classList.contains("active"));
+    }
+
+    function contactActive() {
+      const c = document.getElementById("contact");
+      return !!(c && c.classList.contains("active"));
+    }
+
+    function tick() {
+      raf = null;
+      if (!mobile()) return;
+
+      rulesFloat *= 0.88;
+      gmailFloat *= 0.88;
+
+      if (Math.abs(rulesFloat) < 0.025) rulesFloat = 0;
+      if (Math.abs(gmailFloat) < 0.025) gmailFloat = 0;
+
+      if (rulesActive()) {
+        racine.style.setProperty("--rules-liquid-float", rulesFloat.toFixed(2) + "px");
+      }
+
+      if (contactActive()) {
+        racine.style.setProperty("--gmail-magicbox-float", gmailFloat.toFixed(2) + "px");
+      }
+
+      if (rulesFloat !== 0 || gmailFloat !== 0) {
+        raf = requestAnimationFrame(tick);
+      }
+    }
+
+    function lancer() {
+      if (!raf) raf = requestAnimationFrame(tick);
+    }
+
+    function pulseScroll() {
+      if (!mobile()) return;
+
+      const y = window.scrollY || 0;
+      const dy = y - dernierY;
+      dernierY = y;
+
+      if (Math.abs(dy) < 0.25) return;
+
+      if (rulesActive()) {
+        rulesFloat = clamp(rulesFloat + dy * 0.040, -12, 12);
+      }
+
+      if (contactActive()) {
+        gmailFloat = clamp(gmailFloat + dy * 0.052, -16, 16);
+      }
+
+      lancer();
+    }
+
+    function reposer() {
+      if (!mobile()) return;
+      rulesFloat = 0;
+      gmailFloat = 0;
+      racine.style.setProperty("--rules-liquid-float", "0px");
+      racine.style.setProperty("--gmail-magicbox-float", "0px");
+    }
+
+    window.addEventListener("scroll", pulseScroll, { passive: true });
+    window.addEventListener("touchmove", pulseScroll, { passive: true });
+    window.addEventListener("resize", reposer, { passive: true });
+    window.addEventListener("orientationchange", function() {
+      setTimeout(reposer, 120);
+      setTimeout(reposer, 420);
+    }, { passive: true });
+
+    document.addEventListener("click", function(event) {
+      const texte = event.target && event.target.textContent ? event.target.textContent.trim() : "";
+      if (texte === "RULES" || texte === "SEND A WAV / MP3") {
+        setTimeout(function() {
+          dernierY = window.scrollY || 0;
+          if (texte === "SEND A WAV / MP3") {
+            gmailFloat = Math.max(22, Math.min(Math.round((window.innerHeight || 760) * 0.045), 38));
+          }
+          if (texte === "RULES") {
+            rulesFloat = Math.max(10, Math.min(Math.round((window.innerHeight || 760) * 0.018), 18));
+          }
+          lancer();
+        }, 60);
+      }
+    }, { passive: true });
+  })();
+</script>
+<script id="video-hyper-antifreeze-mobile-final">
+  (function() {
+    const SRC = "./téma.mp4";
+    let dernierTemps = -1;
+    let dernierFrame = 0;
+    let blocages = 0;
+    let dernierReload = 0;
+    let dernierKick = 0;
+    let raf = null;
+    let frameCallbackBranche = false;
+    let wakeLock = null;
+
+    function mobile() {
+      return window.innerWidth <= 768;
+    }
+
+    function now() {
+      return Date.now ? Date.now() : new Date().getTime();
+    }
+
+    function video() {
+      return document.getElementById("fondVideo");
+    }
+
+    function configurer(v) {
+      if (!v) return;
+
+      v.muted = true;
+      v.defaultMuted = true;
+      v.loop = true;
+      v.autoplay = true;
+      v.playsInline = true;
+      v.preload = "auto";
+
+      v.setAttribute("muted", "");
+      v.setAttribute("loop", "");
+      v.setAttribute("autoplay", "");
+      v.setAttribute("playsinline", "");
+      v.setAttribute("webkit-playsinline", "");
+      v.setAttribute("preload", "auto");
+      v.setAttribute("disablepictureinpicture", "");
+      v.setAttribute("controlslist", "nodownload noplaybackrate noremoteplayback");
+      v.setAttribute("data-hyper-antifreeze", "true");
+
+      try { v.disableRemotePlayback = true; } catch (e) {}
+
+      const source = v.querySelector("source");
+      if (source && source.getAttribute("src") !== SRC) {
+        source.setAttribute("src", SRC);
+        try { v.load(); } catch (e) {}
+      }
+
+      if (!source && v.getAttribute("src") !== SRC) {
+        v.setAttribute("src", SRC);
+      }
+
+      v.style.setProperty("display", "block", "important");
+      v.style.setProperty("visibility", "visible", "important");
+      v.style.setProperty("opacity", "1", "important");
+      v.style.setProperty("pointer-events", "none", "important");
+      v.style.setProperty("transform", "translate3d(0, 0, 0) scale(1.0001)", "important");
+      v.style.setProperty("-webkit-transform", "translate3d(0, 0, 0) scale(1.0001)", "important");
+      v.style.setProperty("backface-visibility", "hidden", "important");
+      v.style.setProperty("-webkit-backface-visibility", "hidden", "important");
+      v.style.setProperty("will-change", "transform, opacity", "important");
+      v.style.setProperty("contain", "strict", "important");
+    }
+
+    function play(v) {
+      if (!v || document.hidden) return;
+      try {
+        const p = v.play();
+        if (p && typeof p.catch === "function") p.catch(function() {});
+      } catch (e) {}
+    }
+
+    function nudge(v, fort) {
+      if (!v || !Number.isFinite(v.duration) || v.duration <= 0) return;
+
+      try {
+        const t = v.currentTime || 0;
+        const pas = fort ? 0.075 : 0.032;
+        const fin = Math.max(0.22, Math.min(0.55, v.duration * 0.045));
+
+        if (t > v.duration - fin) {
+          v.currentTime = 0.045;
+        } else {
+          v.currentTime = Math.min(v.duration - 0.10, t + pas);
+        }
+      } catch (e) {}
+    }
+
+    function reloadDoux(v) {
+      const tNow = now();
+      if (!v || tNow - dernierReload < 1700) return;
+      dernierReload = tNow;
+
+      let position = 0;
+      try { position = v.currentTime || 0; } catch (e) {}
+
+      try { v.pause(); } catch (e) {}
+      try { v.load(); } catch (e) {}
+
+      setTimeout(function() {
+        try {
+          if (Number.isFinite(v.duration) && v.duration > 0) {
+            v.currentTime = Math.min(Math.max(position, 0.04), Math.max(0.08, v.duration - 0.16));
+          }
+        } catch (e) {}
+
+        play(v);
+        setTimeout(function() { play(v); }, 80);
+        setTimeout(function() { nudge(v, false); play(v); }, 220);
+      }, 70);
+    }
+
+    function kick(fort) {
+      const v = video();
+      if (!v) return;
+
+      const tNow = now();
+      if (!fort && tNow - dernierKick < 95) return;
+      dernierKick = tNow;
+
+      configurer(v);
+
+      if (document.hidden) return;
+
+      if (v.paused || v.ended || v.readyState < 2) {
+        play(v);
+      }
+
+      if (fort) {
+        nudge(v, true);
+        play(v);
+        setTimeout(function() { play(v); }, 60);
+        setTimeout(function() { play(v); }, 180);
+        setTimeout(function() { nudge(v, false); play(v); }, 420);
+      }
+    }
+
+    function verifier() {
+      const v = video();
+      if (!v) return;
+
+      configurer(v);
+
+      if (document.hidden) {
+        dernierTemps = -1;
+        blocages = 0;
+        return;
+      }
+
+      const t = Number(v.currentTime || 0);
+      const avance = dernierTemps < 0 || Math.abs(t - dernierTemps) > 0.004;
+      const doitAvancer = !v.paused && !v.ended && v.readyState >= 2;
+
+      if (v.paused || v.ended) {
+        play(v);
+      }
+
+      if (doitAvancer && !avance) {
+        blocages += 1;
+
+        if (blocages >= 1) {
+          nudge(v, false);
+          play(v);
+        }
+
+        if (blocages >= 3) {
+          nudge(v, true);
+          play(v);
+        }
+
+        if (blocages >= 6) {
+          reloadDoux(v);
+          blocages = 0;
+        }
+      } else {
+        blocages = 0;
+      }
+
+      dernierTemps = t;
+    }
+
+    function boucleRaf() {
+      const v = video();
+
+      if (v && mobile() && !document.hidden) {
+        const tNow = now();
+
+        if (v.paused || v.ended || v.readyState < 2) {
+          play(v);
+        }
+
+        if (tNow - dernierFrame > 850) {
+          verifier();
+        }
+      }
+
+      raf = requestAnimationFrame(boucleRaf);
+    }
+
+    function brancherFrames() {
+      const v = video();
+      if (!v || frameCallbackBranche || typeof v.requestVideoFrameCallback !== "function") return;
+
+      frameCallbackBranche = true;
+
+      const cb = function() {
+        dernierFrame = now();
+
+        const actuel = video();
+        if (!document.hidden && actuel && typeof actuel.requestVideoFrameCallback === "function") {
+          try {
+            actuel.requestVideoFrameCallback(cb);
+          } catch (e) {
+            frameCallbackBranche = false;
+          }
+        } else {
+          frameCallbackBranche = false;
+        }
+      };
+
+      try {
+        v.requestVideoFrameCallback(cb);
+      } catch (e) {
+        frameCallbackBranche = false;
+      }
+    }
+
+    async function tenterWakeLock() {
+      if (!mobile() || !("wakeLock" in navigator) || document.hidden || wakeLock) return;
+
+      try {
+        wakeLock = await navigator.wakeLock.request("screen");
+        wakeLock.addEventListener("release", function() {
+          wakeLock = null;
+        });
+      } catch (e) {
+        wakeLock = null;
+      }
+    }
+
+    function brancherVideoEvents() {
+      const v = video();
+      if (!v || v.dataset.hyperVideoEventsOk) return;
+      v.dataset.hyperVideoEventsOk = "1";
+
+      [
+        "stalled",
+        "waiting",
+        "suspend",
+        "emptied",
+        "abort",
+        "error",
+        "pause",
+        "ended",
+        "loadedmetadata",
+        "loadeddata",
+        "canplay",
+        "canplaythrough",
+        "playing"
+      ].forEach(function(nom) {
+        v.addEventListener(nom, function() {
+          if (nom === "playing") {
+            blocages = 0;
+            dernierFrame = now();
+            return;
+          }
+
+          if (nom === "pause" || nom === "ended" || nom === "stalled" || nom === "waiting" || nom === "error" || nom === "emptied") {
+            kick(true);
+          } else {
+            kick(false);
+          }
+        }, { passive: true });
+      });
+    }
+
+    function demarrer(fort) {
+      brancherVideoEvents();
+      brancherFrames();
+      kick(!!fort);
+
+      if (!raf) {
+        raf = requestAnimationFrame(boucleRaf);
+      }
+    }
+
+    [
+      "DOMContentLoaded",
+      "load",
+      "pageshow",
+      "focus",
+      "resize",
+      "orientationchange",
+      "visibilitychange",
+      "touchstart",
+      "pointerdown",
+      "click",
+      "scroll"
+    ].forEach(function(nom) {
+      window.addEventListener(nom, function() {
+        if (nom === "touchstart" || nom === "pointerdown" || nom === "click") {
+          tenterWakeLock();
+        }
+
+        if (nom === "orientationchange") {
+          setTimeout(function() { demarrer(true); }, 60);
+          setTimeout(function() { demarrer(true); }, 280);
+          setTimeout(function() { demarrer(true); }, 800);
+        } else {
+          demarrer(nom !== "scroll");
+        }
+      }, { passive: true });
+    });
+
+    document.addEventListener("visibilitychange", function() {
+      if (!document.hidden) {
+        setTimeout(function() { demarrer(true); }, 50);
+        setTimeout(function() { demarrer(true); }, 260);
+      }
+    }, { passive: true });
+
+    setInterval(function() {
+      demarrer(false);
+      verifier();
+      brancherFrames();
+    }, mobile() ? 260 : 620);
+
+    setInterval(function() {
+      kick(false);
+    }, mobile() ? 1050 : 2100);
+
+    demarrer(true);
   })();
 </script>
 </body>
