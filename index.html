@@ -5425,6 +5425,58 @@ body {
     }
   }
 </style>
+<style id="gmail-mobile-higher-video-ultra-final">
+  /* @gmail smartphone : même mouvement, position juste un peu plus haute */
+  @media screen and (max-width: 768px) {
+    #contact {
+      position: fixed !important;
+      left: 50% !important;
+      top: 0 !important;
+      bottom: auto !important;
+      transform: translate3d(-50%, calc(var(--gmail-origin-y, 72vh) - 50% + var(--gmail-scroll-glide, 0px)), 0) !important;
+      will-change: transform !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+      transform-style: preserve-3d !important;
+    }
+
+    #contact .card,
+    #contact h1 {
+      transform: translateZ(0) !important;
+      will-change: transform !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+    }
+
+    #fondVideo.video-bg {
+      pointer-events: none !important;
+      transform: translate3d(0, 0, 0) !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+      will-change: transform, opacity !important;
+      contain: paint !important;
+      -webkit-transform: translate3d(0, 0, 0) !important;
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    #contact {
+      transform: translate3d(-50%, calc(var(--gmail-origin-y, 71vh) - 50% + var(--gmail-scroll-glide, 0px)), 0) !important;
+    }
+  }
+
+  @media screen and (min-width: 431px) and (max-width: 768px) {
+    #contact {
+      transform: translate3d(-50%, calc(var(--gmail-origin-y, 72.5vh) - 50% + var(--gmail-scroll-glide, 0px)), 0) !important;
+    }
+  }
+
+  @media screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+    #contact {
+      transform: translate3d(-50%, calc(var(--gmail-origin-y, 66vh) - 50% + var(--gmail-scroll-glide, 0px)), 0) !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -7777,6 +7829,367 @@ body {
         setTimeout(masquerCopyrightIntro, 1700);
       }
     });
+  })();
+</script>
+<script id="gmail-mobile-higher-final">
+  (function() {
+    const racine = document.documentElement;
+
+    function mobile() {
+      return window.innerWidth <= 768;
+    }
+
+    function calculerPosition() {
+      const h = window.innerHeight || document.documentElement.clientHeight || 760;
+      const w = window.innerWidth || document.documentElement.clientWidth || 390;
+      const paysage = w <= 900 && h <= 500 && window.matchMedia("(orientation: landscape)").matches;
+
+      if (paysage) {
+        return Math.round(h * 0.70 - 18);
+      }
+
+      /* Remontée douce : un peu plus haut qu'avant, responsive selon la hauteur écran. */
+      const remontee = Math.max(24, Math.min(Math.round(h * 0.045), 42));
+      return Math.round(h * 0.76 - remontee);
+    }
+
+    function appliquerGmailPlusHaut() {
+      if (!mobile()) {
+        racine.style.removeProperty("--gmail-origin-y");
+        racine.style.removeProperty("--gmail-page-locked-top");
+        return;
+      }
+
+      const y = calculerPosition();
+      racine.style.setProperty("--gmail-page-locked-top", y + "px");
+      racine.style.setProperty("--gmail-origin-y", y + "px");
+
+      /* On ne touche pas au glide, donc le mouvement existant reste intact. */
+      if (!racine.style.getPropertyValue("--gmail-scroll-glide")) {
+        racine.style.setProperty("--gmail-scroll-glide", "0px");
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", appliquerGmailPlusHaut, { passive: true });
+    window.addEventListener("load", appliquerGmailPlusHaut, { passive: true });
+    window.addEventListener("pageshow", appliquerGmailPlusHaut, { passive: true });
+    window.addEventListener("resize", appliquerGmailPlusHaut, { passive: true });
+    window.addEventListener("orientationchange", function() {
+      setTimeout(appliquerGmailPlusHaut, 90);
+      setTimeout(appliquerGmailPlusHaut, 360);
+    }, { passive: true });
+
+    document.addEventListener("click", function(event) {
+      const texte = event.target && event.target.textContent ? event.target.textContent.trim() : "";
+      if (texte === "SEND A WAV / MP3") {
+        setTimeout(appliquerGmailPlusHaut, 40);
+        setTimeout(appliquerGmailPlusHaut, 180);
+      }
+    }, { passive: true });
+
+    appliquerGmailPlusHaut();
+  })();
+</script>
+<script id="video-ultra-antifreeze-antilag-final">
+  (function() {
+    const SRC = "./téma.mp4";
+    let dernierTemps = -1;
+    let dernierFrameTime = 0;
+    let blocages = 0;
+    let dernierReload = 0;
+    let dernierKick = 0;
+    let raf = null;
+    let frameCallbackActif = false;
+
+    function mobile() {
+      return window.innerWidth <= 768;
+    }
+
+    function maintenant() {
+      return Date.now ? Date.now() : new Date().getTime();
+    }
+
+    function video() {
+      return document.getElementById("fondVideo");
+    }
+
+    function configurer(v) {
+      if (!v) return;
+
+      v.muted = true;
+      v.defaultMuted = true;
+      v.loop = true;
+      v.autoplay = true;
+      v.playsInline = true;
+      v.preload = "auto";
+
+      v.setAttribute("muted", "");
+      v.setAttribute("loop", "");
+      v.setAttribute("autoplay", "");
+      v.setAttribute("playsinline", "");
+      v.setAttribute("webkit-playsinline", "");
+      v.setAttribute("preload", "auto");
+      v.setAttribute("disablepictureinpicture", "");
+      v.setAttribute("controlslist", "nodownload noplaybackrate noremoteplayback");
+      v.setAttribute("data-ultra-antifreeze", "true");
+
+      try { v.disableRemotePlayback = true; } catch (e) {}
+
+      v.style.setProperty("display", "block", "important");
+      v.style.setProperty("visibility", "visible", "important");
+      v.style.setProperty("opacity", "1", "important");
+      v.style.setProperty("pointer-events", "none", "important");
+      v.style.setProperty("transform", "translate3d(0, 0, 0)", "important");
+      v.style.setProperty("-webkit-transform", "translate3d(0, 0, 0)", "important");
+      v.style.setProperty("backface-visibility", "hidden", "important");
+      v.style.setProperty("-webkit-backface-visibility", "hidden", "important");
+      v.style.setProperty("will-change", "transform, opacity", "important");
+
+      const source = v.querySelector("source");
+      if (source && source.getAttribute("src") !== SRC) {
+        source.setAttribute("src", SRC);
+        try { v.load(); } catch (e) {}
+      }
+
+      if (!v.getAttribute("src") && !source) {
+        v.setAttribute("src", SRC);
+      }
+    }
+
+    function play(v) {
+      if (!v) return;
+      try {
+        const p = v.play();
+        if (p && typeof p.catch === "function") {
+          p.catch(function() {});
+        }
+      } catch (e) {}
+    }
+
+    function nudge(v) {
+      if (!v || !Number.isFinite(v.duration) || v.duration <= 0) return;
+
+      try {
+        const t = v.currentTime || 0;
+        const margeFin = Math.max(0.18, Math.min(0.45, v.duration * 0.04));
+
+        if (t > v.duration - margeFin) {
+          v.currentTime = 0.05;
+        } else {
+          v.currentTime = Math.min(v.duration - 0.08, t + 0.045);
+        }
+      } catch (e) {}
+    }
+
+    function reloadDoux(v) {
+      const now = maintenant();
+      if (!v || now - dernierReload < 2600) return;
+      dernierReload = now;
+
+      let t = 0;
+      try { t = v.currentTime || 0; } catch (e) {}
+
+      try { v.load(); } catch (e) {}
+
+      setTimeout(function() {
+        try {
+          if (Number.isFinite(v.duration) && v.duration > 0) {
+            v.currentTime = Math.min(Math.max(t, 0.04), Math.max(0.05, v.duration - 0.12));
+          }
+        } catch (e) {}
+        play(v);
+      }, 70);
+    }
+
+    function kick(raison) {
+      const v = video();
+      if (!v) return;
+
+      const now = maintenant();
+      if (now - dernierKick < 120 && raison !== "fort") return;
+      dernierKick = now;
+
+      configurer(v);
+
+      if (document.hidden) return;
+
+      if (v.paused || v.ended || v.readyState < 2) {
+        play(v);
+      }
+
+      if (raison === "fort") {
+        nudge(v);
+        play(v);
+        setTimeout(function() { play(v); }, 80);
+        setTimeout(function() { play(v); }, 240);
+      }
+    }
+
+    function verifier() {
+      const v = video();
+      if (!v) return;
+
+      configurer(v);
+
+      if (document.hidden) {
+        dernierTemps = -1;
+        blocages = 0;
+        return;
+      }
+
+      const t = Number(v.currentTime || 0);
+      const avance = dernierTemps < 0 || Math.abs(t - dernierTemps) > 0.006;
+      const devraitTourner = !v.paused && !v.ended && v.readyState >= 2;
+
+      if (v.paused || v.ended) {
+        play(v);
+      }
+
+      if (devraitTourner && !avance) {
+        blocages += 1;
+
+        if (blocages >= 2) {
+          nudge(v);
+          play(v);
+        }
+
+        if (blocages >= 5) {
+          reloadDoux(v);
+          blocages = 0;
+        }
+      } else {
+        blocages = 0;
+      }
+
+      dernierTemps = t;
+    }
+
+    function boucleRaf() {
+      const v = video();
+
+      if (v && mobile() && !document.hidden) {
+        const now = maintenant();
+
+        if (!v.paused && !v.ended && now - dernierFrameTime > 1100) {
+          verifier();
+        }
+
+        if (v.paused || v.readyState < 2) {
+          play(v);
+        }
+      }
+
+      raf = requestAnimationFrame(boucleRaf);
+    }
+
+    function surveillerFrames() {
+      const v = video();
+      if (!v || frameCallbackActif || typeof v.requestVideoFrameCallback !== "function") return;
+
+      frameCallbackActif = true;
+
+      const callback = function() {
+        dernierFrameTime = maintenant();
+        if (!document.hidden && video() && typeof video().requestVideoFrameCallback === "function") {
+          try {
+            video().requestVideoFrameCallback(callback);
+          } catch (e) {
+            frameCallbackActif = false;
+          }
+        } else {
+          frameCallbackActif = false;
+        }
+      };
+
+      try {
+        v.requestVideoFrameCallback(callback);
+      } catch (e) {
+        frameCallbackActif = false;
+      }
+    }
+
+    function demarrerUltra() {
+      kick("fort");
+      surveillerFrames();
+
+      if (!raf) {
+        raf = requestAnimationFrame(boucleRaf);
+      }
+    }
+
+    const evenements = [
+      "DOMContentLoaded",
+      "load",
+      "pageshow",
+      "focus",
+      "resize",
+      "orientationchange",
+      "visibilitychange",
+      "touchstart",
+      "pointerdown",
+      "click",
+      "scroll"
+    ];
+
+    evenements.forEach(function(nom) {
+      window.addEventListener(nom, function() {
+        if (nom === "orientationchange") {
+          setTimeout(demarrerUltra, 80);
+          setTimeout(demarrerUltra, 360);
+          setTimeout(demarrerUltra, 900);
+        } else {
+          demarrerUltra();
+        }
+      }, { passive: true });
+    });
+
+    document.addEventListener("visibilitychange", function() {
+      if (!document.hidden) {
+        setTimeout(demarrerUltra, 60);
+        setTimeout(function() { kick("fort"); }, 320);
+      }
+    }, { passive: true });
+
+    function brancherVideo() {
+      const v = video();
+      if (!v || v.dataset.ultraVideoEventsOk) return;
+      v.dataset.ultraVideoEventsOk = "1";
+
+      [
+        "stalled",
+        "waiting",
+        "suspend",
+        "emptied",
+        "abort",
+        "error",
+        "pause",
+        "ended",
+        "loadedmetadata",
+        "canplay",
+        "canplaythrough"
+      ].forEach(function(nom) {
+        v.addEventListener(nom, function() {
+          if (nom === "pause" || nom === "ended" || nom === "stalled" || nom === "waiting" || nom === "error") {
+            kick("fort");
+          } else {
+            kick("normal");
+          }
+        }, { passive: true });
+      });
+    }
+
+    setInterval(function() {
+      brancherVideo();
+      verifier();
+      surveillerFrames();
+    }, mobile() ? 420 : 780);
+
+    setInterval(function() {
+      kick("normal");
+    }, mobile() ? 1700 : 2600);
+
+    brancherVideo();
+    demarrerUltra();
   })();
 </script>
 </body>
