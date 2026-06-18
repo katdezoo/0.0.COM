@@ -7039,7 +7039,7 @@ body {
       const statique = lireVariablePx("--gmail-static-top");
       if (statique !== null) return statique;
 
-      return Math.round(h * (paysage ? 0.70 : 0.76));
+      return Math.round(h * (paysage ? 0.70 : 0.76) - (paysage ? 10 : Math.max(14, Math.min(Math.round(h * 0.026), 24))));
     }
 
     function contactActif() {
@@ -7279,6 +7279,9 @@ body {
       box.style.setProperty("touch-action", "pan-y pinch-zoom", "important");
       box.style.setProperty("pointer-events", "auto", "important");
       box.style.setProperty("transform", "translate3d(-50%, 0, 0)", "important");
+      box.style.setProperty("will-change", "top, height, transform", "important");
+      box.style.setProperty("backface-visibility", "hidden", "important");
+      box.style.setProperty("-webkit-backface-visibility", "hidden", "important");
       box.style.setProperty("scrollbar-width", "thin", "important");
     }
 
@@ -7363,8 +7366,8 @@ body {
         return;
       }
 
-      const douceur = 0.045;
-      const stop = 0.12;
+      const douceur = 0.032;
+      const stop = 0.06;
 
       const deltaTop = topCible - topActuel;
       const deltaHauteur = hauteurCible - hauteurActuelle;
@@ -7623,5 +7626,49 @@ body {
     setTimeout(function() { relancer(true); }, 1600);
   })();
 </script>
+
+<style id="gpc-smartphone-fluid-compat-final">
+  /* Compatibilité smartphones : stabilisation fluide sans changer la structure */
+  @media screen and (max-width: 768px) {
+    #apropos {
+      will-change: top, height, transform !important;
+      transform: translate3d(-50%, 0, 0) !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+      contain: layout paint style !important;
+      max-width: calc(100vw - 24px) !important;
+    }
+
+    #apropos .card,
+    #apropos h1,
+    #contact,
+    #contact .card,
+    #contact h1 {
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+      transform-style: preserve-3d !important;
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    #apropos {
+      width: calc(100vw - 18px) !important;
+      max-width: calc(100vw - 18px) !important;
+    }
+  }
+
+  @media screen and (min-width: 431px) and (max-width: 768px) {
+    #apropos {
+      width: min(94vw, 620px) !important;
+      max-width: min(94vw, 620px) !important;
+    }
+  }
+
+  @media screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+    #apropos {
+      max-width: min(92vw, 680px) !important;
+    }
+  }
+</style>
 </body>
 </html>
