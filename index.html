@@ -6198,6 +6198,109 @@ body {
     }
   }
 </style>
+<style id="website-ordi-page-fixe-ajustements-final">
+  /*
+    WEBSITE ORDI PAGE FIXE
+    Desktop PC/Mac/Linux : page sans scroll global, menu plus petit/haut,
+    timer remonté, box RULES un peu plus basse, adaptation resize conservée.
+    Smartphone intact sous 769px.
+  */
+
+  @media screen and (min-width: 769px) {
+    html,
+    body {
+      width: 100% !important;
+      height: 100dvh !important;
+      min-height: 100dvh !important;
+      max-height: 100dvh !important;
+      overflow: hidden !important;
+      overflow-x: hidden !important;
+      overflow-y: hidden !important;
+      overscroll-behavior: none !important;
+      scrollbar-width: none !important;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      width: 0 !important;
+      height: 0 !important;
+      display: none !important;
+    }
+
+    .overlay {
+      min-height: 100dvh !important;
+      height: 100dvh !important;
+      max-height: 100dvh !important;
+      padding-top: clamp(88px, 10.5dvh, 132px) !important;
+      padding-bottom: clamp(190px, 22dvh, 285px) !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
+    }
+
+    nav {
+      gap: clamp(5px, 0.74dvh, 10px) !important;
+      padding: calc(clamp(8px, 1.08dvh, 13px) + env(safe-area-inset-top)) 10px 5px 10px !important;
+    }
+
+    nav button {
+      font-size: clamp(14px, 1.10vw, 20px) !important;
+      min-height: clamp(20px, 2.45dvh, 31px) !important;
+      line-height: 1.02 !important;
+      transform: translate3d(0, -2px, 0) !important;
+    }
+
+    .paris-timer {
+      top: clamp(112px, 17.6dvh, 218px) !important;
+      font-size: clamp(58px, 6.8vw, 106px) !important;
+      transform: translate3d(-50%, 0, 0) !important;
+    }
+
+    #apropos {
+      top: var(--ordi-rules-top, 57dvh) !important;
+      height: var(--ordi-rules-height, clamp(128px, 20dvh, 260px)) !important;
+    }
+
+    #contact {
+      transform: translate3d(-50%, calc(var(--ordi-gmail-y, 72dvh) - 50% + var(--ordi-gmail-float, 0px)), 0) !important;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-height: 760px) {
+    .overlay {
+      padding-top: clamp(70px, 9dvh, 94px) !important;
+      padding-bottom: clamp(155px, 20dvh, 220px) !important;
+    }
+
+    nav {
+      gap: clamp(4px, 0.6dvh, 8px) !important;
+      padding-top: calc(7px + env(safe-area-inset-top)) !important;
+    }
+
+    nav button {
+      font-size: clamp(13px, 1vw, 17px) !important;
+      min-height: clamp(18px, 2.1dvh, 26px) !important;
+    }
+
+    .paris-timer {
+      top: clamp(74px, 15dvh, 132px) !important;
+      font-size: clamp(46px, 5.4vw, 78px) !important;
+    }
+
+    #apropos h1 {
+      font-size: clamp(15px, 1.48vw, 23px) !important;
+    }
+  }
+
+  @media screen and (min-width: 1200px) and (min-height: 820px) {
+    nav button {
+      font-size: clamp(15px, 1vw, 22px) !important;
+    }
+
+    .paris-timer {
+      top: clamp(128px, 17dvh, 230px) !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -9167,6 +9270,146 @@ body {
     window.addEventListener("load", assurerFlechesMagicbox, { passive: true });
     window.addEventListener("pageshow", assurerFlechesMagicbox, { passive: true });
     assurerFlechesMagicbox();
+  })();
+</script>
+<script id="website-ordi-page-fixe-engine-final">
+  (function() {
+    const racine = document.documentElement;
+    let raf = null;
+    let rulesTopActuel = null;
+    let rulesHeightActuel = null;
+    let gmailYActuel = null;
+
+    function desktop() {
+      return window.innerWidth >= 769;
+    }
+
+    function clamp(v, min, max) {
+      return Math.max(min, Math.min(max, v));
+    }
+
+    function dims() {
+      return {
+        w: window.innerWidth || document.documentElement.clientWidth || 1280,
+        h: window.innerHeight || document.documentElement.clientHeight || 800
+      };
+    }
+
+    function topLecteur() {
+      const d = dims();
+      const lecteur = document.querySelector(".audio-box");
+      if (lecteur) {
+        const rect = lecteur.getBoundingClientRect();
+        if (rect && rect.top > 0 && rect.top < d.h) {
+          return rect.top;
+        }
+      }
+      return d.h - 176;
+    }
+
+    function cibles() {
+      const d = dims();
+      const bas = d.h <= 760;
+      const tresBas = d.h <= 620;
+
+      /* Box un peu plus basse que la précédente, mais toujours responsive. */
+      const topRatio = tresBas ? 0.50 : (bas ? 0.505 : 0.575);
+      const topMin = tresBas ? 220 : (bas ? 238 : 350);
+      const topMax = tresBas ? Math.max(260, d.h - 285) : (bas ? Math.max(310, d.h - 310) : Math.max(440, d.h - 330));
+      const top = clamp(Math.round(d.h * topRatio), topMin, topMax);
+
+      const margeLecteur = bas ? 8 : 10;
+      const basFinal = Math.round(topLecteur() - margeLecteur);
+      const hMin = tresBas ? 82 : (bas ? 96 : 128);
+      const hMax = tresBas ? 154 : (bas ? 210 : 285);
+      const hauteur = clamp(basFinal - top, hMin, hMax);
+
+      /* Timer/Gmail suivent la fenêtre, mais la page reste fixe. */
+      const gmailRemontee = clamp(Math.round(d.h * 0.045), bas ? 20 : 30, bas ? 38 : 58);
+      const gmailY = Math.round(d.h * (bas ? 0.72 : 0.76) - gmailRemontee);
+
+      return { top, hauteur, gmailY };
+    }
+
+    function appliquer(force) {
+      if (!desktop()) {
+        rulesTopActuel = null;
+        rulesHeightActuel = null;
+        gmailYActuel = null;
+        return;
+      }
+
+      const c = cibles();
+
+      if (force || rulesTopActuel === null) {
+        rulesTopActuel = c.top;
+        rulesHeightActuel = c.hauteur;
+        gmailYActuel = c.gmailY;
+      } else {
+        rulesTopActuel += (c.top - rulesTopActuel) * 0.10;
+        rulesHeightActuel += (c.hauteur - rulesHeightActuel) * 0.10;
+        gmailYActuel += (c.gmailY - gmailYActuel) * 0.10;
+      }
+
+      racine.style.setProperty("--ordi-rules-top", rulesTopActuel.toFixed(2) + "px");
+      racine.style.setProperty("--ordi-rules-height", rulesHeightActuel.toFixed(2) + "px");
+      racine.style.setProperty("--ordi-gmail-y", gmailYActuel.toFixed(2) + "px");
+
+      raf = null;
+
+      if (
+        Math.abs(c.top - rulesTopActuel) > 0.08 ||
+        Math.abs(c.hauteur - rulesHeightActuel) > 0.08 ||
+        Math.abs(c.gmailY - gmailYActuel) > 0.08
+      ) {
+        lancer(false);
+      }
+    }
+
+    function lancer(force) {
+      if (raf) return;
+      raf = requestAnimationFrame(function() {
+        appliquer(!!force);
+      });
+    }
+
+    function verrouillerPage() {
+      if (!desktop()) return;
+
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.height = "100dvh";
+      document.body.style.height = "100dvh";
+
+      if ((window.scrollY || document.documentElement.scrollTop || 0) !== 0) {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      }
+
+      lancer(false);
+    }
+
+    window.addEventListener("DOMContentLoaded", function() { lancer(true); verrouillerPage(); }, { passive: true });
+    window.addEventListener("load", function() { lancer(true); verrouillerPage(); }, { passive: true });
+    window.addEventListener("pageshow", function() { lancer(true); verrouillerPage(); }, { passive: true });
+    window.addEventListener("resize", function() { lancer(false); verrouillerPage(); }, { passive: true });
+    window.addEventListener("orientationchange", function() {
+      setTimeout(function() { lancer(true); verrouillerPage(); }, 120);
+      setTimeout(function() { lancer(true); verrouillerPage(); }, 420);
+    }, { passive: true });
+    window.addEventListener("scroll", function() {
+      verrouillerPage();
+    }, { passive: true });
+
+    document.addEventListener("click", function(event) {
+      const texte = event.target && event.target.textContent ? event.target.textContent.trim() : "";
+      if (texte === "RULES" || texte === "SEND A WAV / MP3" || texte === "starthere") {
+        setTimeout(function() { lancer(true); verrouillerPage(); }, 40);
+        setTimeout(function() { lancer(false); verrouillerPage(); }, 220);
+      }
+    }, { passive: true });
+
+    setInterval(verrouillerPage, 700);
+    lancer(true);
   })();
 </script>
 </body>
