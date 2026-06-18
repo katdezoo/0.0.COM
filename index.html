@@ -6301,6 +6301,197 @@ body {
     }
   }
 </style>
+<style id="website-ordi-final-polish-fixed-box-final">
+  /*
+    FINISH POLISH
+    - box RULES desktop fixe en taille normale
+    - box un tout petit peu plus basse
+    - timer un peu plus haut
+    - page desktop fixe sans scrollbar globale
+    - intro trois écrans restaurée
+    - vidéo mobile stabilisée
+  */
+
+  /* Restaure l'intro en trois moments après le copyright : warning / <3 / vidéo */
+  html.gpc-intro-hold #introPage {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: 9999 !important;
+  }
+
+  html.gpc-intro-hold #menuPrincipal,
+  html.gpc-intro-hold .audio-box {
+    display: none !important;
+  }
+
+  html.gpc-intro-stage-text #introText {
+    display: inline !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 5 !important;
+  }
+
+  html.gpc-intro-stage-video #introText {
+    display: none !important;
+  }
+
+  html.gpc-intro-stage-video #introGif {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    background-color: #ff00ff !important;
+    z-index: 1 !important;
+  }
+
+  html.gpc-intro-stage-video #introVideo.intro-video {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+    object-fit: fill !important;
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    /* Vidéo smartphone stable : un seul rendu, pas de resize fou pendant la navigation */
+    #fondVideo.video-bg {
+      position: fixed !important;
+      inset: 0 !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      min-width: 100vw !important;
+      min-height: 100vh !important;
+      object-fit: fill !important;
+      object-position: center center !important;
+      background: #ff00ff !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+      pointer-events: none !important;
+      z-index: 1 !important;
+      transform: translate3d(0, 0, 0) !important;
+      -webkit-transform: translate3d(0, 0, 0) !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+      will-change: transform !important;
+      contain: paint !important;
+    }
+
+    @supports (height: 100svh) {
+      #fondVideo.video-bg {
+        height: 100svh !important;
+        min-height: 100svh !important;
+      }
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    html,
+    body {
+      width: 100% !important;
+      height: 100dvh !important;
+      min-height: 100dvh !important;
+      max-height: 100dvh !important;
+      overflow: hidden !important;
+      overflow-x: hidden !important;
+      overflow-y: hidden !important;
+      overscroll-behavior: none !important;
+      scrollbar-width: none !important;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      width: 0 !important;
+      height: 0 !important;
+      display: none !important;
+    }
+
+    .overlay {
+      height: 100dvh !important;
+      min-height: 100dvh !important;
+      max-height: 100dvh !important;
+      overflow: hidden !important;
+      padding-top: clamp(82px, 9.6dvh, 124px) !important;
+      padding-bottom: clamp(188px, 22dvh, 284px) !important;
+      box-sizing: border-box !important;
+    }
+
+    nav {
+      gap: clamp(5px, 0.68dvh, 9px) !important;
+      padding: calc(clamp(7px, 0.95dvh, 12px) + env(safe-area-inset-top)) 10px 5px 10px !important;
+    }
+
+    nav button {
+      font-size: clamp(13px, 1.03vw, 19px) !important;
+      min-height: clamp(19px, 2.24dvh, 29px) !important;
+      line-height: 1.02 !important;
+      transform: translate3d(0, -3px, 0) !important;
+    }
+
+    .paris-timer {
+      /* un peu plus haut */
+      top: clamp(96px, 15.6dvh, 196px) !important;
+      font-size: clamp(58px, 6.8vw, 106px) !important;
+      transform: translate3d(-50%, 0, 0) !important;
+    }
+
+    /*
+      Taille fixe quand la fenêtre n'est pas réduite :
+      les variables sont pilotées par le moteur final.
+    */
+    #apropos {
+      top: var(--ordi-rules-top, 58dvh) !important;
+      width: var(--ordi-rules-fixed-width, 760px) !important;
+      max-width: var(--ordi-rules-fixed-width, 760px) !important;
+      height: var(--ordi-rules-fixed-height, 246px) !important;
+      min-height: var(--ordi-rules-fixed-height, 246px) !important;
+      max-height: var(--ordi-rules-fixed-height, 246px) !important;
+      transform: translate3d(-50%, var(--ordi-rules-float, 0px), 0) !important;
+    }
+  }
+
+  /* Fenêtre réduite : la box redevient adaptive mais reste douce */
+  @media screen and (min-width: 769px) and (max-width: 1050px),
+         screen and (min-width: 769px) and (max-height: 760px) {
+    #apropos {
+      width: var(--ordi-rules-fixed-width, min(calc(100vw - 42px), 720px)) !important;
+      max-width: var(--ordi-rules-fixed-width, min(calc(100vw - 42px), 720px)) !important;
+      height: var(--ordi-rules-fixed-height, clamp(104px, 19dvh, 220px)) !important;
+      min-height: var(--ordi-rules-fixed-height, clamp(104px, 19dvh, 220px)) !important;
+      max-height: var(--ordi-rules-fixed-height, clamp(104px, 19dvh, 220px)) !important;
+    }
+
+    .paris-timer {
+      top: clamp(70px, 13.6dvh, 124px) !important;
+      font-size: clamp(44px, 5.2vw, 76px) !important;
+    }
+
+    nav button {
+      font-size: clamp(12px, 0.95vw, 17px) !important;
+      min-height: clamp(17px, 2dvh, 25px) !important;
+    }
+  }
+
+  @media screen and (min-width: 1400px) and (min-height: 820px) {
+    #apropos {
+      width: var(--ordi-rules-fixed-width, 780px) !important;
+      max-width: var(--ordi-rules-fixed-width, 780px) !important;
+      height: var(--ordi-rules-fixed-height, 252px) !important;
+      min-height: var(--ordi-rules-fixed-height, 252px) !important;
+      max-height: var(--ordi-rules-fixed-height, 252px) !important;
+    }
+
+    .paris-timer {
+      top: clamp(112px, 15dvh, 212px) !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -7452,166 +7643,6 @@ body {
     }
   }
 </style>
-
-
-<script id="video-smartphone-wake-lock-fix">
-  (function() {
-    const VIDEO_SRC = "./téma.mp4";
-    let dernierTemps = -1;
-    let compteurFreeze = 0;
-    let timerRelance = null;
-
-    function configurerVideo(video) {
-      if (!video) return;
-
-      video.muted = true;
-      video.defaultMuted = true;
-      video.loop = true;
-      video.autoplay = true;
-      video.playsInline = true;
-      video.preload = "auto";
-
-      video.setAttribute("muted", "");
-      video.setAttribute("loop", "");
-      video.setAttribute("autoplay", "");
-      video.setAttribute("playsinline", "");
-      video.setAttribute("webkit-playsinline", "");
-      video.setAttribute("preload", "auto");
-
-      video.style.opacity = "1";
-      video.style.visibility = "visible";
-      video.style.display = "block";
-      video.style.pointerEvents = "none";
-
-      const source = video.querySelector("source");
-      if (source && source.getAttribute("src") !== VIDEO_SRC) {
-        source.setAttribute("src", VIDEO_SRC);
-        video.load();
-      }
-    }
-
-    function jouerVideo(video) {
-      if (!video || document.hidden) return;
-
-      const lecture = video.play();
-      if (lecture && typeof lecture.catch === "function") {
-        lecture.catch(function() {});
-      }
-    }
-
-    function petitCoupDeReveil(video) {
-      if (!video || document.hidden) return;
-
-      try {
-        if (Number.isFinite(video.duration) && video.duration > 0) {
-          const margeFin = Math.max(0.08, Math.min(0.25, video.duration * 0.02));
-          if (video.currentTime >= video.duration - margeFin) {
-            video.currentTime = 0.001;
-          } else {
-            video.currentTime = Math.min(video.currentTime + 0.035, Math.max(0.001, video.duration - margeFin));
-          }
-        } else {
-          video.currentTime = Math.max(0.001, video.currentTime + 0.035);
-        }
-      } catch (e) {}
-
-      jouerVideo(video);
-    }
-
-    function relancerVideoFond(force) {
-      const video = document.getElementById("fondVideo");
-      if (!video || document.hidden) return;
-
-      configurerVideo(video);
-
-      if (video.readyState < 2 || video.networkState === 3) {
-        try { video.load(); } catch (e) {}
-      }
-
-      if (video.paused || video.ended || force) {
-        jouerVideo(video);
-      }
-
-      if (force) {
-        setTimeout(function() { jouerVideo(video); }, 120);
-        setTimeout(function() { petitCoupDeReveil(video); }, 420);
-        setTimeout(function() { jouerVideo(video); }, 900);
-      }
-    }
-
-    function surveillerFreezeVideo() {
-      const video = document.getElementById("fondVideo");
-      if (!video || document.hidden) return;
-
-      configurerVideo(video);
-
-      if (video.paused || video.ended || video.readyState < 2) {
-        compteurFreeze = 0;
-        relancerVideoFond(false);
-        return;
-      }
-
-      const temps = video.currentTime || 0;
-      const presqueIdentique = Math.abs(temps - dernierTemps) < 0.015;
-
-      if (presqueIdentique) {
-        compteurFreeze += 1;
-      } else {
-        compteurFreeze = 0;
-      }
-
-      dernierTemps = temps;
-
-      /* Après verrouillage/déverrouillage mobile, certains navigateurs gardent l'image figée
-         même si la vidéo n'est pas officiellement en pause. Après 2 contrôles figés,
-         on donne un petit coup de lecture sans bloquer les gestes de l'utilisateur. */
-      if (compteurFreeze >= 2) {
-        compteurFreeze = 0;
-        petitCoupDeReveil(video);
-      }
-    }
-
-    function demarrerSurveillanceVideo() {
-      relancerVideoFond(true);
-
-      if (!timerRelance) {
-        timerRelance = setInterval(surveillerFreezeVideo, 900);
-      }
-    }
-
-    window.addEventListener("DOMContentLoaded", demarrerSurveillanceVideo);
-    window.addEventListener("load", demarrerSurveillanceVideo);
-    window.addEventListener("pageshow", function() {
-      setTimeout(function() { relancerVideoFond(true); }, 80);
-    });
-    window.addEventListener("focus", function() {
-      setTimeout(function() { relancerVideoFond(true); }, 80);
-    });
-    window.addEventListener("resize", function() {
-      setTimeout(function() { relancerVideoFond(false); }, 160);
-    }, { passive: true });
-    window.addEventListener("orientationchange", function() {
-      setTimeout(function() { relancerVideoFond(true); }, 300);
-    }, { passive: true });
-
-    document.addEventListener("visibilitychange", function() {
-      if (!document.hidden) {
-        setTimeout(function() { relancerVideoFond(true); }, 120);
-        setTimeout(function() { relancerVideoFond(true); }, 700);
-      }
-    });
-
-    ["touchstart", "pointerdown", "click"].forEach(function(type) {
-      document.addEventListener(type, function() {
-        relancerVideoFond(false);
-      }, { passive: true });
-    });
-
-    setTimeout(demarrerSurveillanceVideo, 600);
-    setTimeout(function() { relancerVideoFond(true); }, 1600);
-  })();
-</script>
-
 <style id="timer-rules-effect-final">
   /* TIMER : style RULES, moins flashy, police originale conservée */
   :root {
@@ -7927,169 +7958,6 @@ body {
     }
   }
 </style>
-<script id="video-anti-freeze-pro-final">
-  (function() {
-    const SRC = "./téma.mp4";
-    let dernierTemps = -1;
-    let compteurBloque = 0;
-    let rechargeEnCours = false;
-    let dernierCorrectif = 0;
-
-    function video() {
-      return document.getElementById("fondVideo");
-    }
-
-    function configurer(v) {
-      if (!v) return;
-
-      v.muted = true;
-      v.defaultMuted = true;
-      v.loop = true;
-      v.autoplay = true;
-      v.playsInline = true;
-      v.preload = "auto";
-
-      v.setAttribute("muted", "");
-      v.setAttribute("loop", "");
-      v.setAttribute("autoplay", "");
-      v.setAttribute("playsinline", "");
-      v.setAttribute("webkit-playsinline", "");
-      v.setAttribute("preload", "auto");
-
-      const source = v.querySelector("source");
-      if (source && !source.getAttribute("src").includes(SRC.replace("./", ""))) {
-        source.setAttribute("src", SRC);
-        try { v.load(); } catch (e) {}
-      }
-    }
-
-    function play(v) {
-      if (!v) return;
-      try {
-        const promesse = v.play();
-        if (promesse && typeof promesse.catch === "function") {
-          promesse.catch(function() {});
-        }
-      } catch (e) {}
-    }
-
-    function reveilDoux(v) {
-      const maintenant = Date.now();
-      if (!v || maintenant - dernierCorrectif < 900) return;
-
-      dernierCorrectif = maintenant;
-
-      try {
-        if (Number.isFinite(v.duration) && v.duration > 0) {
-          v.currentTime = Math.min(v.duration - 0.08, Math.max(0.02, v.currentTime + 0.045));
-        } else {
-          v.currentTime = Math.max(0.02, v.currentTime + 0.045);
-        }
-      } catch (e) {}
-
-      play(v);
-    }
-
-    function rechargeDouce(v) {
-      if (!v || rechargeEnCours) return;
-
-      rechargeEnCours = true;
-      const position = Number.isFinite(v.currentTime) ? v.currentTime : 0;
-
-      try { v.load(); } catch (e) {}
-
-      const reprendre = function() {
-        try {
-          if (Number.isFinite(v.duration) && v.duration > 0) {
-            v.currentTime = Math.min(Math.max(0.02, position), Math.max(0.02, v.duration - 0.12));
-          }
-        } catch (e) {}
-
-        play(v);
-
-        setTimeout(function() {
-          rechargeEnCours = false;
-        }, 450);
-      };
-
-      v.addEventListener("loadedmetadata", reprendre, { once: true });
-      setTimeout(reprendre, 650);
-    }
-
-    function relancer(force) {
-      const v = video();
-      if (!v) return;
-
-      configurer(v);
-
-      if (force || v.paused || v.ended || v.readyState < 2) {
-        play(v);
-      }
-
-      if (force) {
-        setTimeout(function() { play(v); }, 120);
-        setTimeout(function() { play(v); }, 420);
-        setTimeout(function() { play(v); }, 950);
-      }
-    }
-
-    function surveiller() {
-      const v = video();
-      if (!v || document.hidden) return;
-
-      configurer(v);
-
-      if (v.paused || v.ended || v.readyState < 2) {
-        compteurBloque += 1;
-        relancer(true);
-      } else {
-        const t = v.currentTime || 0;
-
-        if (dernierTemps >= 0 && Math.abs(t - dernierTemps) < 0.012) {
-          compteurBloque += 1;
-        } else {
-          compteurBloque = 0;
-        }
-
-        dernierTemps = t;
-      }
-
-      if (compteurBloque >= 2) {
-        reveilDoux(v);
-      }
-
-      if (compteurBloque >= 5) {
-        compteurBloque = 0;
-        rechargeDouce(v);
-      }
-    }
-
-    window.addEventListener("DOMContentLoaded", function() { relancer(true); });
-    window.addEventListener("load", function() { relancer(true); });
-    window.addEventListener("pageshow", function() { relancer(true); });
-    window.addEventListener("focus", function() { relancer(true); });
-    window.addEventListener("orientationchange", function() {
-      setTimeout(function() { relancer(true); }, 280);
-    }, { passive: true });
-
-    document.addEventListener("visibilitychange", function() {
-      if (!document.hidden) {
-        relancer(true);
-      }
-    });
-
-    ["touchstart", "pointerdown", "click"].forEach(function(type) {
-      document.addEventListener(type, function() {
-        relancer(false);
-      }, { passive: true });
-    });
-
-    setInterval(surveiller, 750);
-    setTimeout(function() { relancer(true); }, 700);
-    setTimeout(function() { relancer(true); }, 1600);
-  })();
-</script>
-
 <style id="gpc-smartphone-fluid-compat-final">
   /* Compatibilité smartphones : stabilisation fluide sans changer la structure */
   @media screen and (max-width: 768px) {
@@ -8154,308 +8022,6 @@ body {
         setTimeout(masquerCopyrightIntro, 1700);
       }
     });
-  })();
-</script>
-<script id="video-ultra-antifreeze-antilag-final">
-  (function() {
-    const SRC = "./téma.mp4";
-    let dernierTemps = -1;
-    let dernierFrameTime = 0;
-    let blocages = 0;
-    let dernierReload = 0;
-    let dernierKick = 0;
-    let raf = null;
-    let frameCallbackActif = false;
-
-    function mobile() {
-      return window.innerWidth <= 768;
-    }
-
-    function maintenant() {
-      return Date.now ? Date.now() : new Date().getTime();
-    }
-
-    function video() {
-      return document.getElementById("fondVideo");
-    }
-
-    function configurer(v) {
-      if (!v) return;
-
-      v.muted = true;
-      v.defaultMuted = true;
-      v.loop = true;
-      v.autoplay = true;
-      v.playsInline = true;
-      v.preload = "auto";
-
-      v.setAttribute("muted", "");
-      v.setAttribute("loop", "");
-      v.setAttribute("autoplay", "");
-      v.setAttribute("playsinline", "");
-      v.setAttribute("webkit-playsinline", "");
-      v.setAttribute("preload", "auto");
-      v.setAttribute("disablepictureinpicture", "");
-      v.setAttribute("controlslist", "nodownload noplaybackrate noremoteplayback");
-      v.setAttribute("data-ultra-antifreeze", "true");
-
-      try { v.disableRemotePlayback = true; } catch (e) {}
-
-      v.style.setProperty("display", "block", "important");
-      v.style.setProperty("visibility", "visible", "important");
-      v.style.setProperty("opacity", "1", "important");
-      v.style.setProperty("pointer-events", "none", "important");
-      v.style.setProperty("transform", "translate3d(0, 0, 0)", "important");
-      v.style.setProperty("-webkit-transform", "translate3d(0, 0, 0)", "important");
-      v.style.setProperty("backface-visibility", "hidden", "important");
-      v.style.setProperty("-webkit-backface-visibility", "hidden", "important");
-      v.style.setProperty("will-change", "transform, opacity", "important");
-
-      const source = v.querySelector("source");
-      if (source && source.getAttribute("src") !== SRC) {
-        source.setAttribute("src", SRC);
-        try { v.load(); } catch (e) {}
-      }
-
-      if (!v.getAttribute("src") && !source) {
-        v.setAttribute("src", SRC);
-      }
-    }
-
-    function play(v) {
-      if (!v) return;
-      try {
-        const p = v.play();
-        if (p && typeof p.catch === "function") {
-          p.catch(function() {});
-        }
-      } catch (e) {}
-    }
-
-    function nudge(v) {
-      if (!v || !Number.isFinite(v.duration) || v.duration <= 0) return;
-
-      try {
-        const t = v.currentTime || 0;
-        const margeFin = Math.max(0.18, Math.min(0.45, v.duration * 0.04));
-
-        if (t > v.duration - margeFin) {
-          v.currentTime = 0.05;
-        } else {
-          v.currentTime = Math.min(v.duration - 0.08, t + 0.045);
-        }
-      } catch (e) {}
-    }
-
-    function reloadDoux(v) {
-      const now = maintenant();
-      if (!v || now - dernierReload < 2600) return;
-      dernierReload = now;
-
-      let t = 0;
-      try { t = v.currentTime || 0; } catch (e) {}
-
-      try { v.load(); } catch (e) {}
-
-      setTimeout(function() {
-        try {
-          if (Number.isFinite(v.duration) && v.duration > 0) {
-            v.currentTime = Math.min(Math.max(t, 0.04), Math.max(0.05, v.duration - 0.12));
-          }
-        } catch (e) {}
-        play(v);
-      }, 70);
-    }
-
-    function kick(raison) {
-      const v = video();
-      if (!v) return;
-
-      const now = maintenant();
-      if (now - dernierKick < 120 && raison !== "fort") return;
-      dernierKick = now;
-
-      configurer(v);
-
-      if (document.hidden) return;
-
-      if (v.paused || v.ended || v.readyState < 2) {
-        play(v);
-      }
-
-      if (raison === "fort") {
-        nudge(v);
-        play(v);
-        setTimeout(function() { play(v); }, 80);
-        setTimeout(function() { play(v); }, 240);
-      }
-    }
-
-    function verifier() {
-      const v = video();
-      if (!v) return;
-
-      configurer(v);
-
-      if (document.hidden) {
-        dernierTemps = -1;
-        blocages = 0;
-        return;
-      }
-
-      const t = Number(v.currentTime || 0);
-      const avance = dernierTemps < 0 || Math.abs(t - dernierTemps) > 0.006;
-      const devraitTourner = !v.paused && !v.ended && v.readyState >= 2;
-
-      if (v.paused || v.ended) {
-        play(v);
-      }
-
-      if (devraitTourner && !avance) {
-        blocages += 1;
-
-        if (blocages >= 2) {
-          nudge(v);
-          play(v);
-        }
-
-        if (blocages >= 5) {
-          reloadDoux(v);
-          blocages = 0;
-        }
-      } else {
-        blocages = 0;
-      }
-
-      dernierTemps = t;
-    }
-
-    function boucleRaf() {
-      const v = video();
-
-      if (v && mobile() && !document.hidden) {
-        const now = maintenant();
-
-        if (!v.paused && !v.ended && now - dernierFrameTime > 1100) {
-          verifier();
-        }
-
-        if (v.paused || v.readyState < 2) {
-          play(v);
-        }
-      }
-
-      raf = requestAnimationFrame(boucleRaf);
-    }
-
-    function surveillerFrames() {
-      const v = video();
-      if (!v || frameCallbackActif || typeof v.requestVideoFrameCallback !== "function") return;
-
-      frameCallbackActif = true;
-
-      const callback = function() {
-        dernierFrameTime = maintenant();
-        if (!document.hidden && video() && typeof video().requestVideoFrameCallback === "function") {
-          try {
-            video().requestVideoFrameCallback(callback);
-          } catch (e) {
-            frameCallbackActif = false;
-          }
-        } else {
-          frameCallbackActif = false;
-        }
-      };
-
-      try {
-        v.requestVideoFrameCallback(callback);
-      } catch (e) {
-        frameCallbackActif = false;
-      }
-    }
-
-    function demarrerUltra() {
-      kick("fort");
-      surveillerFrames();
-
-      if (!raf) {
-        raf = requestAnimationFrame(boucleRaf);
-      }
-    }
-
-    const evenements = [
-      "DOMContentLoaded",
-      "load",
-      "pageshow",
-      "focus",
-      "resize",
-      "orientationchange",
-      "visibilitychange",
-      "touchstart",
-      "pointerdown",
-      "click",
-      "scroll"
-    ];
-
-    evenements.forEach(function(nom) {
-      window.addEventListener(nom, function() {
-        if (nom === "orientationchange") {
-          setTimeout(demarrerUltra, 80);
-          setTimeout(demarrerUltra, 360);
-          setTimeout(demarrerUltra, 900);
-        } else {
-          demarrerUltra();
-        }
-      }, { passive: true });
-    });
-
-    document.addEventListener("visibilitychange", function() {
-      if (!document.hidden) {
-        setTimeout(demarrerUltra, 60);
-        setTimeout(function() { kick("fort"); }, 320);
-      }
-    }, { passive: true });
-
-    function brancherVideo() {
-      const v = video();
-      if (!v || v.dataset.ultraVideoEventsOk) return;
-      v.dataset.ultraVideoEventsOk = "1";
-
-      [
-        "stalled",
-        "waiting",
-        "suspend",
-        "emptied",
-        "abort",
-        "error",
-        "pause",
-        "ended",
-        "loadedmetadata",
-        "canplay",
-        "canplaythrough"
-      ].forEach(function(nom) {
-        v.addEventListener(nom, function() {
-          if (nom === "pause" || nom === "ended" || nom === "stalled" || nom === "waiting" || nom === "error") {
-            kick("fort");
-          } else {
-            kick("normal");
-          }
-        }, { passive: true });
-      });
-    }
-
-    setInterval(function() {
-      brancherVideo();
-      verifier();
-      surveillerFrames();
-    }, mobile() ? 420 : 780);
-
-    setInterval(function() {
-      kick("normal");
-    }, mobile() ? 1700 : 2600);
-
-    brancherVideo();
-    demarrerUltra();
   })();
 </script>
 <script id="rules-mobile-liquid-engine-final">
@@ -9410,6 +8976,433 @@ body {
 
     setInterval(verrouillerPage, 700);
     lancer(true);
+  })();
+</script>
+<script id="website-ordi-final-polish-engine-final">
+  (function() {
+    const racine = document.documentElement;
+    let raf = null;
+    let topActuel = null;
+    let hauteurActuelle = null;
+    let largeurActuelle = null;
+    let gmailActuel = null;
+
+    function desktop() {
+      return window.innerWidth >= 769;
+    }
+
+    function clamp(v, min, max) {
+      return Math.max(min, Math.min(max, v));
+    }
+
+    function dims() {
+      return {
+        w: window.innerWidth || document.documentElement.clientWidth || 1280,
+        h: window.innerHeight || document.documentElement.clientHeight || 800
+      };
+    }
+
+    function topLecteur() {
+      const d = dims();
+      const lecteur = document.querySelector(".audio-box");
+      if (lecteur) {
+        const rect = lecteur.getBoundingClientRect();
+        if (rect && rect.top > 0 && rect.top < d.h) {
+          return rect.top;
+        }
+      }
+      return d.h - 176;
+    }
+
+    function calculer() {
+      const d = dims();
+      const reduit = d.w < 1050 || d.h < 760;
+      const tresBas = d.h < 650;
+      const grand = d.w >= 1400 && d.h >= 820;
+
+      let largeur = grand ? 780 : 760;
+      let hauteur = grand ? 252 : 246;
+
+      if (reduit) {
+        largeur = clamp(d.w - 42, 540, 720);
+        const basFinal = topLecteur() - 10;
+        const topApprox = d.h * (tresBas ? 0.515 : 0.535);
+        hauteur = clamp(basFinal - topApprox, tresBas ? 88 : 104, tresBas ? 165 : 220);
+      }
+
+      /* Box un tout petit peu plus basse que la version précédente. */
+      const ratio = reduit ? (tresBas ? 0.515 : 0.535) : 0.592;
+      const top = clamp(
+        Math.round(d.h * ratio),
+        reduit ? (tresBas ? 224 : 270) : 420,
+        Math.max(reduit ? 330 : 470, d.h - hauteur - (reduit ? 168 : 184))
+      );
+
+      const gmailRemontee = clamp(Math.round(d.h * 0.045), reduit ? 20 : 30, reduit ? 38 : 58);
+      const gmailY = Math.round(d.h * (reduit ? 0.72 : 0.76) - gmailRemontee);
+
+      return { top, hauteur, largeur, gmailY };
+    }
+
+    function appliquer(force) {
+      if (!desktop()) {
+        topActuel = null;
+        hauteurActuelle = null;
+        largeurActuelle = null;
+        gmailActuel = null;
+        return;
+      }
+
+      const c = calculer();
+
+      if (force || topActuel === null) {
+        topActuel = c.top;
+        hauteurActuelle = c.hauteur;
+        largeurActuelle = c.largeur;
+        gmailActuel = c.gmailY;
+      } else {
+        topActuel += (c.top - topActuel) * 0.12;
+        hauteurActuelle += (c.hauteur - hauteurActuelle) * 0.12;
+        largeurActuelle += (c.largeur - largeurActuelle) * 0.12;
+        gmailActuel += (c.gmailY - gmailActuel) * 0.12;
+      }
+
+      racine.style.setProperty("--ordi-rules-top", topActuel.toFixed(2) + "px");
+      racine.style.setProperty("--ordi-rules-fixed-height", hauteurActuelle.toFixed(2) + "px");
+      racine.style.setProperty("--ordi-rules-height", hauteurActuelle.toFixed(2) + "px");
+      racine.style.setProperty("--ordi-rules-fixed-width", largeurActuelle.toFixed(2) + "px");
+      racine.style.setProperty("--ordi-gmail-y", gmailActuel.toFixed(2) + "px");
+
+      if ((window.scrollY || document.documentElement.scrollTop || 0) !== 0) {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      }
+
+      raf = null;
+
+      if (
+        Math.abs(c.top - topActuel) > 0.08 ||
+        Math.abs(c.hauteur - hauteurActuelle) > 0.08 ||
+        Math.abs(c.largeur - largeurActuelle) > 0.08 ||
+        Math.abs(c.gmailY - gmailActuel) > 0.08
+      ) {
+        lancer(false);
+      }
+    }
+
+    function lancer(force) {
+      if (raf) return;
+      raf = requestAnimationFrame(function() {
+        appliquer(!!force);
+      });
+    }
+
+    function verrouiller() {
+      if (!desktop()) return;
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.height = "100dvh";
+      document.body.style.height = "100dvh";
+      lancer(false);
+    }
+
+    window.addEventListener("DOMContentLoaded", function() { lancer(true); verrouiller(); }, { passive: true });
+    window.addEventListener("load", function() { lancer(true); verrouiller(); }, { passive: true });
+    window.addEventListener("pageshow", function() { lancer(true); verrouiller(); }, { passive: true });
+    window.addEventListener("resize", function() { lancer(false); verrouiller(); }, { passive: true });
+    window.addEventListener("orientationchange", function() {
+      setTimeout(function() { lancer(true); verrouiller(); }, 120);
+      setTimeout(function() { lancer(true); verrouiller(); }, 420);
+    }, { passive: true });
+    window.addEventListener("scroll", verrouiller, { passive: true });
+
+    document.addEventListener("click", function(event) {
+      const texte = event.target && event.target.textContent ? event.target.textContent.trim() : "";
+      if (texte === "RULES" || texte === "SEND A WAV / MP3" || texte === "starthere") {
+        setTimeout(function() { lancer(true); verrouiller(); }, 40);
+        setTimeout(function() { lancer(false); verrouiller(); }, 220);
+      }
+    }, { passive: true });
+
+    setInterval(verrouiller, 900);
+    lancer(true);
+  })();
+</script>
+<script id="gpc-intro-three-screens-restore-final">
+  (function() {
+    const racine = document.documentElement;
+
+    function el(id) {
+      return document.getElementById(id);
+    }
+
+    function menu(show) {
+      const nav = el("menuPrincipal");
+      const audioBox = document.querySelector(".audio-box");
+
+      if (nav) nav.style.display = show ? "" : "none";
+      if (audioBox) audioBox.style.display = show ? "block" : "none";
+    }
+
+    function playIntroVideo() {
+      const v = el("introVideo");
+      if (!v) return;
+
+      try {
+        v.muted = true;
+        v.defaultMuted = true;
+        v.loop = true;
+        v.playsInline = true;
+        v.setAttribute("muted", "");
+        v.setAttribute("loop", "");
+        v.setAttribute("playsinline", "");
+        v.setAttribute("webkit-playsinline", "");
+        v.currentTime = 0;
+        const p = v.play();
+        if (p && typeof p.catch === "function") p.catch(function() {});
+      } catch (e) {}
+    }
+
+    function stageText(txt) {
+      const page = el("introPage");
+      const text = el("introText");
+      const gif = el("introGif");
+      const video = el("introVideo");
+
+      racine.classList.add("gpc-intro-hold", "gpc-intro-stage-text");
+      racine.classList.remove("gpc-intro-stage-video");
+
+      if (page) page.style.display = "flex";
+      if (text) {
+        text.style.display = "inline";
+        text.textContent = txt;
+      }
+      if (gif) gif.style.display = "none";
+      if (video) video.style.display = "none";
+      menu(false);
+    }
+
+    function stageVideo() {
+      const page = el("introPage");
+      const text = el("introText");
+      const gif = el("introGif");
+      const video = el("introVideo");
+
+      racine.classList.add("gpc-intro-hold", "gpc-intro-stage-video");
+      racine.classList.remove("gpc-intro-stage-text");
+
+      if (page) page.style.display = "flex";
+      if (text) text.style.display = "none";
+      if (gif) gif.style.display = "block";
+      if (video) video.style.display = "block";
+      playIntroVideo();
+      menu(false);
+    }
+
+    function entrerSite() {
+      const page = el("introPage");
+      const text = el("introText");
+      const video = el("introVideo");
+
+      racine.classList.remove("gpc-intro-hold", "gpc-intro-stage-video", "gpc-intro-stage-text");
+
+      if (text) text.style.display = "none";
+      if (video) {
+        try { video.pause(); } catch (e) {}
+        video.style.display = "none";
+      }
+      if (page) page.style.display = "none";
+
+      menu(true);
+
+      const lecteur = el("lecteurAudio");
+      if (lecteur) {
+        try { lecteur.load(); } catch (e) {}
+      }
+    }
+
+    /* Les anciens timeouts sont encore présents : cette couche reprend la main proprement. */
+    window.addEventListener("DOMContentLoaded", function() {
+      stageText("⚠. -no epilepsy please, \nand headphones please/");
+      setTimeout(function() { stageText("<3"); }, 5200);
+      setTimeout(stageVideo, 7000);
+      setTimeout(entrerSite, 9900);
+    }, { passive: true });
+
+    window.addEventListener("pageshow", function(event) {
+      if (event && event.persisted) {
+        entrerSite();
+      }
+    }, { passive: true });
+  })();
+</script>
+<script id="video-mobile-stable-antifreeze-final">
+  (function() {
+    const SRC = "./téma.mp4";
+    let dernierTemps = -1;
+    let blocages = 0;
+    let dernierReload = 0;
+    let dernierWake = 0;
+
+    function mobile() {
+      return window.innerWidth <= 768;
+    }
+
+    function maintenant() {
+      return Date.now ? Date.now() : new Date().getTime();
+    }
+
+    function video() {
+      return document.getElementById("fondVideo");
+    }
+
+    function configurer(v) {
+      if (!v) return;
+
+      v.muted = true;
+      v.defaultMuted = true;
+      v.loop = true;
+      v.autoplay = true;
+      v.playsInline = true;
+      v.preload = "auto";
+
+      v.setAttribute("muted", "");
+      v.setAttribute("loop", "");
+      v.setAttribute("autoplay", "");
+      v.setAttribute("playsinline", "");
+      v.setAttribute("webkit-playsinline", "");
+      v.setAttribute("preload", "auto");
+
+      const source = v.querySelector("source");
+      if (source && source.getAttribute("src") !== SRC) {
+        source.setAttribute("src", SRC);
+        try { v.load(); } catch (e) {}
+      }
+    }
+
+    function play(v) {
+      if (!v || document.hidden) return;
+
+      try {
+        const p = v.play();
+        if (p && typeof p.catch === "function") p.catch(function() {});
+      } catch (e) {}
+    }
+
+    function nudge(v) {
+      if (!v || !Number.isFinite(v.duration) || v.duration <= 0) return;
+
+      try {
+        const t = v.currentTime || 0;
+        if (t > v.duration - 0.35) {
+          v.currentTime = 0.05;
+        } else {
+          v.currentTime = Math.min(v.duration - 0.08, t + 0.035);
+        }
+      } catch (e) {}
+    }
+
+    function reloadDoux(v) {
+      const now = maintenant();
+      if (!v || now - dernierReload < 4200) return;
+      dernierReload = now;
+
+      let t = 0;
+      try { t = v.currentTime || 0; } catch (e) {}
+
+      try { v.load(); } catch (e) {}
+
+      setTimeout(function() {
+        try {
+          if (Number.isFinite(v.duration) && v.duration > 0) {
+            v.currentTime = Math.min(Math.max(t, 0.05), Math.max(0.06, v.duration - 0.12));
+          }
+        } catch (e) {}
+        play(v);
+      }, 90);
+    }
+
+    function verifier() {
+      const v = video();
+      if (!v) return;
+
+      configurer(v);
+
+      if (document.hidden) {
+        dernierTemps = -1;
+        blocages = 0;
+        return;
+      }
+
+      if (v.paused || v.ended || v.readyState < 2) {
+        play(v);
+      }
+
+      const t = Number(v.currentTime || 0);
+      const avance = dernierTemps < 0 || Math.abs(t - dernierTemps) > 0.006;
+      const doitAvancer = !v.paused && !v.ended && v.readyState >= 2;
+
+      if (mobile() && doitAvancer && !avance) {
+        blocages += 1;
+
+        if (blocages >= 3) {
+          nudge(v);
+          play(v);
+        }
+
+        if (blocages >= 8) {
+          reloadDoux(v);
+          blocages = 0;
+        }
+      } else {
+        blocages = 0;
+      }
+
+      dernierTemps = t;
+    }
+
+    function reveiller(raison) {
+      const now = maintenant();
+
+      /* Correction clé : aucun réveil vidéo sur touch/click.
+         On réveille seulement au chargement, retour page/app, focus, visibilité ou orientation. */
+      if (now - dernierWake < 650 && raison !== "visibility" && raison !== "pageshow") return;
+      dernierWake = now;
+
+      const v = video();
+      if (!v) return;
+      configurer(v);
+      play(v);
+    }
+
+    [
+      "DOMContentLoaded",
+      "load",
+      "pageshow",
+      "focus",
+      "visibilitychange",
+      "orientationchange"
+    ].forEach(function(nom) {
+      window.addEventListener(nom, function() {
+        setTimeout(function() { reveiller(nom); }, 40);
+        if (nom === "orientationchange") {
+          setTimeout(function() { reveiller(nom); }, 320);
+        }
+      }, { passive: true });
+    });
+
+    const v = video();
+    if (v && !v.dataset.mobileStableAntifreezeOk) {
+      v.dataset.mobileStableAntifreezeOk = "1";
+      ["stalled", "waiting", "pause", "ended", "error", "canplay", "playing"].forEach(function(nom) {
+        v.addEventListener(nom, function() {
+          setTimeout(function() { reveiller(nom); }, 60);
+        }, { passive: true });
+      });
+    }
+
+    setInterval(verifier, 950);
+    setInterval(function() { reveiller("periodic"); }, 2800);
+    reveiller("init");
   })();
 </script>
 </body>
