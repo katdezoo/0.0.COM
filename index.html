@@ -7313,10 +7313,11 @@ body {
     }
   }
 </style>
-<style id="gpc-ultra-fast-no-select-final">
+<style id="gpc-bravo-fast-core-final">
   /*
-    ULTRA FAST NO SELECT
-    CSS only : pas de scan global, pas de boucle DOM.
+    BRAVO FAST CORE + INTRO COMPLETE
+    Copyright noir -> disclaimer noir -> <3 noir -> site.
+    Aucune vidéo d'intro, seulement la vidéo de fond après l'entrée.
   */
 
   html,
@@ -7356,7 +7357,65 @@ body {
     cursor: default !important;
   }
 
-  #introVideo.intro-video,
+  #copyrightIntroPage,
+  .copyright-intro-page,
+  #introPage,
+  #introPage.intro-page {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    background: #000000 !important;
+    color: #ffffff !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden !important;
+  }
+
+  #copyrightIntroPage,
+  .copyright-intro-page {
+    z-index: 100000 !important;
+    font-family: Arial, sans-serif !important;
+    font-size: clamp(16px, 3vw, 30px) !important;
+    font-weight: 700 !important;
+    padding: 22px !important;
+    box-sizing: border-box !important;
+  }
+
+  #introPage,
+  #introPage.intro-page {
+    z-index: 99999 !important;
+  }
+
+  #copyrightIntroPage p,
+  .copyright-intro-page p,
+  #introText {
+    color: #ffffff !important;
+    font-family: Arial, sans-serif !important;
+    font-weight: 700 !important;
+    text-shadow:
+      0 0 4px #ffffff,
+      0 0 10px rgba(255, 255, 255, 0.72),
+      0 0 18px rgba(255, 255, 255, 0.38) !important;
+  }
+
+  #introText {
+    white-space: pre-line !important;
+    font-size: clamp(20px, 4.4vw, 34px) !important;
+    line-height: 1.22 !important;
+  }
+
+  html.gpc-site-ready #copyrightIntroPage,
+  html.gpc-site-ready .copyright-intro-page,
+  html.gpc-site-ready #introPage {
+    display: none !important;
+    pointer-events: none !important;
+  }
+
+  #introVideo,
   #introPage #introVideo,
   #introPage #introGif {
     display: none !important;
@@ -7365,44 +7424,29 @@ body {
     pointer-events: none !important;
   }
 
-  #copyrightIntroPage,
-  .copyright-intro-page,
-  #introPage,
-  #introPage.intro-page {
-    background: #000000 !important;
-  }
-</style>
-<style id="gpc-timer-extra-40px-desktop-final">
-  /*
-    TIMER DESKTOP +40PX UP
-    Monte encore le timer de 40px uniquement sur ordinateur.
-  */
-
+  /* Timer ordinateur : position et taille reprises de la version validée */
   @media screen and (min-width: 769px) {
     .paris-timer {
-      top: max(6px, calc(clamp(66px, 11.4dvh, 142px) - clamp(38px, 4.25vw, 70px) - 40px)) !important;
+      top: max(6px, calc(clamp(66px, 11.4dvh, 142px) - clamp(38px, 4.25vw, 70px) - 60px)) !important;
+      font-size: clamp(46px, 5.45vw, 84px) !important;
       transform: translate3d(-50%, 0, 0) !important;
     }
   }
 
   @media screen and (min-width: 1400px) and (min-height: 820px) {
     .paris-timer {
-      top: max(6px, calc(clamp(76px, 10.8dvh, 154px) - clamp(40px, 4vw, 72px) - 40px)) !important;
+      top: max(6px, calc(clamp(76px, 10.8dvh, 154px) - clamp(40px, 4vw, 72px) - 60px)) !important;
+      font-size: clamp(48px, 5.1vw, 86px) !important;
     }
   }
 
   @media screen and (min-width: 769px) and (max-width: 1050px),
          screen and (min-width: 769px) and (max-height: 760px) {
     .paris-timer {
-      top: max(4px, calc(clamp(48px, 10.8dvh, 92px) - clamp(28px, 3.25vw, 46px) - 40px)) !important;
+      top: max(4px, calc(clamp(48px, 10.8dvh, 92px) - clamp(28px, 3.25vw, 46px) - 60px)) !important;
+      font-size: clamp(36px, 4.25vw, 61px) !important;
     }
   }
-</style>
-<style id="rules-arrows-shape-end-final">
-  /*
-    FLECHES RULES FINAL LIGHT
-    Un seul moteur, rapide.
-  */
 
   #apropos {
     position: fixed !important;
@@ -7490,6 +7534,139 @@ body {
     }
   }
 </style>
+<style id="gpc-bravo-ios-gmail-timer-final">
+  /*
+    FINAL iOS + Gmail + Timer
+    iPhone/iOS : lancement propre avec vraie hauteur viewport.
+    Desktop : timer monté de 60px, statique.
+    Mobile : @gmail mouvement lent, fluide et doux.
+  */
+
+  @media screen and (min-width: 769px) {
+    .paris-timer {
+      top: max(6px, calc(clamp(66px, 11.4dvh, 142px) - clamp(38px, 4.25vw, 70px) - 60px)) !important;
+      font-size: clamp(46px, 5.45vw, 84px) !important;
+      transform: translate3d(-50%, 0, 0) !important;
+      will-change: auto !important;
+    }
+  }
+
+  @media screen and (min-width: 1400px) and (min-height: 820px) {
+    .paris-timer {
+      top: max(6px, calc(clamp(76px, 10.8dvh, 154px) - clamp(40px, 4vw, 72px) - 60px)) !important;
+      font-size: clamp(48px, 5.1vw, 86px) !important;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1050px),
+         screen and (min-width: 769px) and (max-height: 760px) {
+    .paris-timer {
+      top: max(4px, calc(clamp(48px, 10.8dvh, 92px) - clamp(28px, 3.25vw, 46px) - 60px)) !important;
+      font-size: clamp(36px, 4.25vw, 61px) !important;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    #contact h1 {
+      transform: translate3d(0, var(--gmail-smooth-float, 0px), 0) !important;
+      transition: none !important;
+      will-change: transform, filter;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    #contact.active h1 {
+      filter:
+        drop-shadow(0 0 2px rgba(255,255,255,.55))
+        drop-shadow(0 0 8px rgba(255,255,255,.28));
+    }
+  }
+
+  @supports (-webkit-touch-callout: none) {
+    @media screen and (max-width: 768px) {
+      html,
+      body {
+        width: 100vw !important;
+        min-height: var(--gpc-ih, 100svh) !important;
+        height: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        overscroll-behavior-y: auto !important;
+      }
+
+      #copyrightIntroPage,
+      .copyright-intro-page,
+      #introPage,
+      #introPage.intro-page {
+        width: 100vw !important;
+        height: var(--gpc-ih, 100svh) !important;
+        min-height: var(--gpc-ih, 100svh) !important;
+        max-height: var(--gpc-ih, 100svh) !important;
+        background: #000000 !important;
+      }
+
+      #fondVideo.video-bg,
+      .video-bg {
+        position: fixed !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100vw !important;
+        height: var(--gpc-ih, 100svh) !important;
+        min-height: var(--gpc-ih, 100svh) !important;
+        object-fit: fill !important;
+        object-position: center center !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        backface-visibility: hidden !important;
+        -webkit-backface-visibility: hidden !important;
+        pointer-events: none !important;
+      }
+
+      .overlay {
+        min-height: var(--gpc-ih, 100svh) !important;
+        height: auto !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+        padding-bottom: calc(260px + env(safe-area-inset-bottom)) !important;
+      }
+
+      nav {
+        padding-top: calc(12px + env(safe-area-inset-top)) !important;
+        transform: translate3d(0, 0, 0) !important;
+      }
+
+      .audio-box {
+        bottom: calc(38px + env(safe-area-inset-bottom)) !important;
+        transform: translate3d(-50%, 0, 0) !important;
+      }
+
+      .paris-timer {
+        transform: translate3d(-50%, 0, 0) !important;
+      }
+
+      #apropos,
+      #contact,
+      .audio-box,
+      nav,
+      .paris-timer {
+        -webkit-transform-style: preserve-3d;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+    }
+
+    @media screen and (max-width: 430px) {
+      #contact h1 {
+        max-width: 96vw !important;
+        overflow-wrap: anywhere !important;
+      }
+
+      .audio-box {
+        width: min(84vw, 245px) !important;
+      }
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -7503,13 +7680,10 @@ body {
     <span id="introText">⚠. -no epilepsy please, <br>
       and headphones please/</span>
     <div id="introGif" class="intro-gif"></div>
-<video id="introVideo" class="intro-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
-  <source src="./téma.mp4" type="video/mp4">
-</video>
 </div>
 
   <div class="gif-bg"></div>
-<video id="fondVideo" class="video-bg" autoplay muted loop playsinline webkit-playsinline preload="auto">
+<video id="fondVideo" class="video-bg" autoplay muted loop playsinline webkit-playsinline preload="metadata">
   <source src="./téma.mp4" type="video/mp4">
 </video>
 
@@ -7587,931 +7761,11 @@ body {
 
   </div>
 
-  <script>
-    let audioContext = null;
-    let sourceNode = null;
-    let gainNode = null;
 
-    setTimeout(function() {
-      document.getElementById("introText").textContent = "<3";
-    }, 5200);
 
-    setTimeout(function() {
-      document.getElementById("introText").style.display = "none";
-      document.getElementById("introGif").style.display = "none";
-      document.getElementById("introPage").style.display = "none";
-      document.getElementById("menuPrincipal").style.display = "";
-      document.querySelector(".audio-box").style.display = "block";
 
-      const lecteur = document.getElementById("lecteurAudio");
-      lecteur.load();
-      setTimeout(function() {
-        mettreAJourEffetsBlancsVolumeGlobal();
-      }, 80);
-    }, 7200);
 
 
-
-    let animationEffetsBlancsVolume = null;
-
-    function demanderMajEffetsBlancsVolume() {
-      if (animationEffetsBlancsVolume) {
-        return;
-      }
-
-      animationEffetsBlancsVolume = requestAnimationFrame(function() {
-        animationEffetsBlancsVolume = null;
-        mettreAJourEffetsBlancsVolumeGlobal();
-      });
-    }
-
-    function mettreAJourEffetsBlancsVolumeGlobal(valeurForcee) {
-      const volumeBoost = document.getElementById("volumeBoost");
-      const volumeLabel = document.querySelector(".volume-boost-box label");
-      const volumeTextWhiteGlow = document.getElementById("volumeTextWhiteGlow");
-      const volumeThumbWhiteGlow = document.getElementById("volumeThumbWhiteGlow");
-
-      if (!volumeBoost || !volumeLabel || !volumeTextWhiteGlow || !volumeThumbWhiteGlow) {
-        return;
-      }
-
-      const sliderRect = volumeBoost.getBoundingClientRect();
-      const labelRect = volumeLabel.getBoundingClientRect();
-
-      if (sliderRect.width <= 0 || sliderRect.height <= 0 || labelRect.width <= 0 || labelRect.height <= 0) {
-        volumeTextWhiteGlow.classList.remove("visible");
-        volumeThumbWhiteGlow.classList.remove("visible");
-        return;
-      }
-
-      const valeur = Number.isFinite(Number(valeurForcee)) ? Number(valeurForcee) : Number(volumeBoost.value);
-      const volumeMin = Number(volumeBoost.min);
-      const volumeMax = Number(volumeBoost.max);
-      const ratio = Math.min(1, Math.max(0, (valeur - volumeMin) / (volumeMax - volumeMin)));
-
-      const thumbX = sliderRect.left + sliderRect.width * ratio;
-      const thumbY = sliderRect.top + sliderRect.height / 2;
-      const labelX = labelRect.left + labelRect.width / 2;
-      const labelY = labelRect.top + labelRect.height / 2;
-
-      volumeThumbWhiteGlow.style.setProperty("--glow-x", thumbX + "px");
-      volumeThumbWhiteGlow.style.setProperty("--glow-y", thumbY + "px");
-      volumeTextWhiteGlow.style.setProperty("--glow-x", labelX + "px");
-      volumeTextWhiteGlow.style.setProperty("--glow-y", labelY + "px");
-
-      volumeTextWhiteGlow.classList.add("visible");
-      volumeThumbWhiteGlow.classList.add("visible");
-    }
-
-    function afficherSection(id) {
-      const sections = document.querySelectorAll(".page-section");
-
-      sections.forEach(section => {
-        section.classList.remove("active");
-      });
-
-      document.getElementById(id).classList.add("active");
-    }
-
-    function initialiserVolumeBoost() {
-      const volumeBoost = document.getElementById("volumeBoost");
-      const volumeValue = document.getElementById("volumeValue");
-      const volumeWarning = document.getElementById("volumeWarning");
-      const volumeBoostBox = document.querySelector(".volume-boost-box");
-
-      let animationVolume = null;
-      let dernierRelachementVolume = 0;
-
-      function appliquerAimant(valeur) {
-        const centreAimant = 100;
-        const margeAimantGauche = 75;
-        const margeAimantDroite = 49;
-
-        if (valeur >= centreAimant - margeAimantGauche && valeur <= centreAimant + margeAimantDroite) {
-          return 100;
-        }
-
-        return valeur;
-      }
-
-      function courbeDouce(progression) {
-        return 1 - Math.pow(1 - progression, 3);
-      }
-
-      function appliquerVolume(valeur) {
-        volumeValue.textContent = Math.round(valeur) + "%";
-        mettreAJourEffetsBlancsVolumeGlobal(valeur);
-        setTimeout(demanderMajEffetsBlancsVolume, 0);
-        const volumeMin = Number(volumeBoost.min);
-        const volumeMax = Number(volumeBoost.max);
-        const positionVolume = Math.min(100, Math.max(0, ((valeur - volumeMin) / (volumeMax - volumeMin)) * 100));
-
-        if (volumeBoostBox) {
-          volumeBoostBox.style.setProperty("--volume-position", positionVolume + "%");
-        }
-
-
-        if (gainNode) {
-          gainNode.gain.value = valeur / 100;
-        }
-
-        if (valeur >= 150) {
-          volumeWarning.textContent = "⚠. 150% ???";
-          volumeWarning.classList.add("fort");
-          volumeWarning.style.display = "block";
-        } else if (valeur > 100) {
-          volumeWarning.textContent = "⚠. 100% is the good way.";
-          volumeWarning.classList.remove("fort");
-          volumeWarning.style.display = "block";
-        } else {
-          volumeWarning.classList.remove("fort");
-          volumeWarning.style.display = "none";
-        }
-      }
-
-      function animerVolumeVers100(valeurDepart) {
-        if (animationVolume) {
-          cancelAnimationFrame(animationVolume);
-          animationVolume = null;
-        }
-
-        const debut = performance.now();
-        const duree = 220;
-        const arrivee = 100;
-
-        function animation(temps) {
-          const progression = Math.min((temps - debut) / duree, 1);
-          const valeurAnimee = valeurDepart + (arrivee - valeurDepart) * courbeDouce(progression);
-          const valeurArrondie = Math.round(valeurAnimee);
-
-          volumeBoost.value = valeurArrondie;
-          appliquerVolume(valeurArrondie);
-
-          if (progression < 1) {
-            animationVolume = requestAnimationFrame(animation);
-          } else {
-            volumeBoost.value = 100;
-            appliquerVolume(100);
-            animationVolume = null;
-          }
-        }
-
-        animationVolume = requestAnimationFrame(animation);
-      }
-
-      function mettreAJourVolume(avecAimant, aimantFluide) {
-        let valeur = Number(volumeBoost.value);
-
-        if (avecAimant) {
-          const valeurAimantee = appliquerAimant(valeur);
-
-          if (aimantFluide && valeurAimantee === 100 && valeur !== 100) {
-            animerVolumeVers100(valeur);
-            return;
-          }
-
-          valeur = valeurAimantee;
-          volumeBoost.value = valeur;
-        }
-
-        appliquerVolume(valeur);
-      }
-
-      function relacherVolume() {
-        const maintenant = Date.now();
-
-        if (maintenant - dernierRelachementVolume < 120) {
-          return;
-        }
-
-        dernierRelachementVolume = maintenant;
-        mettreAJourVolume(true, true);
-      }
-
-      volumeBoost.addEventListener("input", function() {
-        activerAudioBoost();
-
-        if (animationVolume) {
-          cancelAnimationFrame(animationVolume);
-          animationVolume = null;
-        }
-
-        mettreAJourVolume(false, false);
-      });
-
-      volumeBoost.addEventListener("change", relacherVolume);
-      volumeBoost.addEventListener("touchend", relacherVolume);
-      volumeBoost.addEventListener("pointerup", relacherVolume);
-
-      mettreAJourVolume(true, false);
-    }
-
-    function initialiserAudioProgression() {
-      const lecteur = document.getElementById("lecteurAudio");
-      const audioProgress = document.getElementById("audioProgress");
-      const audioCurrentTime = document.getElementById("audioCurrentTime");
-      const audioDuration = document.getElementById("audioDuration");
-
-      let progressionEnDeplacement = false;
-
-      function formaterTemps(secondes) {
-        if (!Number.isFinite(secondes) || secondes < 0) {
-          return "0:00";
-        }
-
-        const minutes = Math.floor(secondes / 60);
-        const secondesRestantes = Math.floor(secondes % 60).toString().padStart(2, "0");
-
-        return minutes + ":" + secondesRestantes;
-      }
-
-      function mettreAJourTexteTemps() {
-        audioCurrentTime.textContent = formaterTemps(lecteur.currentTime);
-        audioDuration.textContent = formaterTemps(lecteur.duration);
-      }
-
-      function mettreAJourProgressionDepuisAudio() {
-        mettreAJourTexteTemps();
-
-        if (!progressionEnDeplacement && Number.isFinite(lecteur.duration) && lecteur.duration > 0) {
-          audioProgress.value = Math.round((lecteur.currentTime / lecteur.duration) * 1000);
-        }
-      }
-
-      function chercherDansAudio() {
-        if (!Number.isFinite(lecteur.duration) || lecteur.duration <= 0) {
-          audioProgress.value = 0;
-          return;
-        }
-
-        const nouvellePosition = (Number(audioProgress.value) / 1000) * lecteur.duration;
-        lecteur.currentTime = nouvellePosition;
-        mettreAJourTexteTemps();
-      }
-
-      lecteur.addEventListener("loadedmetadata", mettreAJourProgressionDepuisAudio);
-      lecteur.addEventListener("durationchange", mettreAJourProgressionDepuisAudio);
-      lecteur.addEventListener("timeupdate", mettreAJourProgressionDepuisAudio);
-      lecteur.addEventListener("ended", function() {
-        audioProgress.value = 0;
-        mettreAJourProgressionDepuisAudio();
-      });
-
-      audioProgress.addEventListener("input", function() {
-        progressionEnDeplacement = true;
-        chercherDansAudio();
-      });
-
-      audioProgress.addEventListener("change", function() {
-        chercherDansAudio();
-        progressionEnDeplacement = false;
-        mettreAJourProgressionDepuisAudio();
-      });
-
-      audioProgress.addEventListener("pointerup", function() {
-        progressionEnDeplacement = false;
-        mettreAJourProgressionDepuisAudio();
-      });
-
-      audioProgress.addEventListener("touchend", function() {
-        progressionEnDeplacement = false;
-        mettreAJourProgressionDepuisAudio();
-      });
-
-      mettreAJourProgressionDepuisAudio();
-    }
-
-    function initialiserMotsAudio() {
-      const lecteur = document.getElementById("lecteurAudio");
-      const audioWordDisplay = document.getElementById("audioWordDisplay");
-
-      const sousTitresAudio = [
-        { debut: 10, fin: 11.25, texte: "choqué" },
-        { debut: 10.75, fin: 12, texte: "turbine" },
-        { debut: 12, fin: 13.5, texte: "imabarbigxrlinabarbiwxrld" },
-        { debut: 15, fin: 16.5, texte: "lifeinplastixitsfantastix" },
-        { debut: 17, fin: 18.5, texte: "?" },
-        { debut: 21, fin: 22.5, texte: "??" },
-        { debut: 24, fin: 25.5, texte: "imabarbigxrlinabarbiwxrld" },
-        { debut: 27, fin: 28.5, texte: "lifeinplastixitsfantastix" },
-        { debut: 29, fin: 30.5, texte: "?" },
-        { debut: 31, fin: 32.5, texte: "?" },
-        { debut: 33, fin: 34.5, texte: "???" },
-        { debut: 36, fin: 37.5, texte: "imabarbigxrlinabarbiwxrld" },
-        { debut: 39, fin: 40.5, texte: "lifeinplastixitsfantastix" },
-        { debut: 46, fin: 47.5, texte: "?!?!?!?!?!?!?!?><" }
-      ];
-
-      let animationSousTitres = null;
-
-      function mettreAJourSousTitreAudio() {
-        let texteActuel = "";
-
-        if (!lecteur.paused && !lecteur.ended) {
-          const temps = lecteur.currentTime;
-
-          const sousTitreActuel = sousTitresAudio.find(function(sousTitre) {
-            return temps >= sousTitre.debut && temps < sousTitre.fin;
-          });
-
-          if (sousTitreActuel) {
-            texteActuel = sousTitreActuel.texte;
-          }
-        }
-
-        if (texteActuel) {
-          audioWordDisplay.textContent = texteActuel;
-          audioWordDisplay.classList.add("active");
-        } else {
-          audioWordDisplay.textContent = "";
-          audioWordDisplay.classList.remove("active");
-        }
-      }
-
-      function boucleSousTitres() {
-        mettreAJourSousTitreAudio();
-
-        if (!lecteur.paused && !lecteur.ended) {
-          animationSousTitres = requestAnimationFrame(boucleSousTitres);
-        } else {
-          animationSousTitres = null;
-        }
-      }
-
-      function demarrerBoucleSousTitres() {
-        if (!animationSousTitres) {
-          boucleSousTitres();
-        }
-      }
-
-      lecteur.addEventListener("play", demarrerBoucleSousTitres);
-      lecteur.addEventListener("pause", mettreAJourSousTitreAudio);
-      lecteur.addEventListener("ended", mettreAJourSousTitreAudio);
-      lecteur.addEventListener("seeked", mettreAJourSousTitreAudio);
-      lecteur.addEventListener("seeking", mettreAJourSousTitreAudio);
-      lecteur.addEventListener("timeupdate", mettreAJourSousTitreAudio);
-
-      mettreAJourSousTitreAudio();
-    }
-
-    function activerAudioBoost() {
-      const lecteur = document.getElementById("lecteurAudio");
-      const volumeBoost = document.getElementById("volumeBoost");
-
-      if (!audioContext) {
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      }
-
-      if (!sourceNode) {
-        sourceNode = audioContext.createMediaElementSource(lecteur);
-        gainNode = audioContext.createGain();
-        sourceNode.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-      }
-
-      if (audioContext.state === "suspended") {
-        audioContext.resume();
-      }
-
-      if (gainNode) {
-        gainNode.gain.value = Number(volumeBoost.value) / 100;
-      }
-    }
-
-    function lancerMusique() {
-      afficherSection('accueil');
-
-      const lecteur = document.getElementById("lecteurAudio");
-
-      activerAudioBoost();
-
-      lecteur.play().catch(function() {
-        document.querySelector(".audio-box").style.display = "block";
-        console.log("Le lecteur est visible. Appuie directement sur play dans le lecteur.");
-      });
-    }
-
-    function afficherHeureParis() {
-      const maintenant = new Date();
-
-      const formatter = new Intl.DateTimeFormat("en-US", {
-        timeZone: "Europe/Paris",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false
-      });
-
-      const parts = formatter.formatToParts(maintenant);
-
-      const heureParis24 = parseInt(parts.find(part => part.type === "hour").value, 10);
-      let heure = String(heureParis24 % 12).padStart(2, "0");
-      let minute = parts.find(part => part.type === "minute").value;
-      let seconde = parts.find(part => part.type === "second").value;
-      const periode = heureParis24 < 12 ? "AM" : "PM";
-
-      if (heure === "00" && minute === "00" && seconde === "00") {
-        seconde = "01";
-      }
-
-      document.getElementById("timerTime").textContent = heure + ":" + minute + ":" + seconde;
-      document.getElementById("timerPeriod").textContent = periode;
-    }
-
-
-    window.addEventListener("resize", demanderMajEffetsBlancsVolume, { passive: true });
-
-    window.addEventListener("orientationchange", function() {
-      setTimeout(demanderMajEffetsBlancsVolume, 150);
-    }, { passive: true });
-
-    setTimeout(function() {
-      mettreAJourEffetsBlancsVolumeGlobal();
-    }, 9800);
-
-
-    let boucleEffetsBlancsMobile = null;
-
-    function lancerBoucleEffetsBlancsMobile() {
-      if (boucleEffetsBlancsMobile) {
-        return;
-      }
-
-      const suivre = function() {
-        mettreAJourEffetsBlancsVolumeGlobal();
-
-        if (boucleEffetsBlancsMobile) {
-          boucleEffetsBlancsMobile = requestAnimationFrame(suivre);
-        }
-      };
-
-      boucleEffetsBlancsMobile = requestAnimationFrame(suivre);
-    }
-
-    function arreterBoucleEffetsBlancsMobile() {
-      if (boucleEffetsBlancsMobile) {
-        cancelAnimationFrame(boucleEffetsBlancsMobile);
-        boucleEffetsBlancsMobile = null;
-      }
-
-      demanderMajEffetsBlancsVolume();
-    }
-
-    let timerScrollEffetsBlancsMobile = null;
-
-
-    /* Patch final : les effets blancs sont attachés aux objets, donc plus besoin de recalcul au scroll mobile */
-    function demanderMajEffetsBlancsVolume() {
-      return;
-    }
-
-    function lancerBoucleEffetsBlancsMobile() {
-      return;
-    }
-
-    function arreterBoucleEffetsBlancsMobile() {
-      return;
-    }
-
-
-    /* Smartphone fluide : pas de boucle de recalcul au scroll */
-    function demanderMajEffetsBlancsVolume() {
-      return;
-    }
-
-    function lancerBoucleEffetsBlancsMobile() {
-      return;
-    }
-
-    function arreterBoucleEffetsBlancsMobile() {
-      return;
-    }
-
-    initialiserVolumeBoost();
-    initialiserAudioProgression();
-    initialiserMotsAudio();
-    afficherHeureParis();
-    setInterval(afficherHeureParis, 1000);
-  </script>
-
-
-<script>
-  /* Stoppe l'ancien verrouillage pixel : la box garde maintenant la taille d'avant et suit la zone du GIF */
-  document.documentElement.style.removeProperty("--exemple-box-top");
-  document.documentElement.style.removeProperty("--exemple-box-height");
-</script>
-
-
-<script>
-  (function() {
-    const racine = document.documentElement;
-
-    let topActuel = null;
-    let hauteurActuelle = null;
-    let topCible = null;
-    let hauteurCible = null;
-    let raf = null;
-
-    function estSmartphone() {
-      return window.innerWidth <= 768;
-    }
-
-    function hauteurViewport() {
-      return window.visualViewport && window.visualViewport.height
-        ? window.visualViewport.height
-        : window.innerHeight;
-    }
-
-    function calculerCiblesMagicbox() {
-      if (!estSmartphone()) {
-        racine.style.removeProperty("--magicbox-top");
-        racine.style.removeProperty("--magicbox-height");
-        raf = null;
-        topActuel = null;
-        hauteurActuelle = null;
-        topCible = null;
-        hauteurCible = null;
-        return;
-      }
-
-      const h = hauteurViewport();
-      const paysage = window.innerWidth <= 900 && window.innerHeight <= 500 && window.matchMedia("(orientation: landscape)").matches;
-      const grandSmartphone = window.innerWidth <= 430 && window.innerHeight >= 760 && !paysage;
-
-      const ratioTop = paysage ? 0.50 : grandSmartphone ? 0.62 : 0.60;
-      const margeBas = paysage ? 120 : 205;
-      const hauteurMin = paysage ? 78 : grandSmartphone ? 100 : 96;
-
-      topCible = Math.round(h * ratioTop);
-      hauteurCible = Math.max(hauteurMin, Math.round(h - topCible - margeBas));
-
-      if (topActuel === null) {
-        topActuel = topCible;
-        hauteurActuelle = hauteurCible;
-        racine.style.setProperty("--magicbox-top", topActuel + "px");
-        racine.style.setProperty("--magicbox-height", hauteurActuelle + "px");
-      }
-
-      if (!raf) {
-        raf = requestAnimationFrame(animerMagicbox);
-      }
-    }
-
-    function animerMagicbox() {
-      if (!estSmartphone() || topCible === null || hauteurCible === null) {
-        raf = null;
-        return;
-      }
-
-      const douceur = 0.062;
-      const stop = 0.10;
-
-      const deltaTop = topCible - topActuel;
-      const deltaHauteur = hauteurCible - hauteurActuelle;
-
-      if (Math.abs(deltaTop) < stop) {
-        topActuel = topCible;
-      } else {
-        topActuel += deltaTop * douceur;
-      }
-
-      if (Math.abs(deltaHauteur) < stop) {
-        hauteurActuelle = hauteurCible;
-      } else {
-        hauteurActuelle += deltaHauteur * douceur;
-      }
-
-      racine.style.setProperty("--magicbox-top", topActuel.toFixed(2) + "px");
-      racine.style.setProperty("--magicbox-height", hauteurActuelle.toFixed(2) + "px");
-
-      /* Sécurité : @gmail ne suit jamais la magicbox */
-      racine.style.removeProperty("--contact-smooth-top");
-      racine.style.removeProperty("--exemple-box-smooth-top");
-      racine.style.removeProperty("--exemple-box-smooth-bottom");
-
-      if (topActuel !== topCible || hauteurActuelle !== hauteurCible) {
-        raf = requestAnimationFrame(animerMagicbox);
-      } else {
-        raf = null;
-      }
-    }
-
-    function demanderMagicbox() {
-      requestAnimationFrame(calculerCiblesMagicbox);
-    }
-
-    calculerCiblesMagicbox();
-
-    window.addEventListener("DOMContentLoaded", demanderMagicbox, { passive: true });
-    window.addEventListener("resize", demanderMagicbox, { passive: true });
-    window.addEventListener("orientationchange", function() {
-      setTimeout(demanderMagicbox, 250);
-    }, { passive: true });
-
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener("resize", demanderMagicbox, { passive: true });
-    }
-  })();
-</script>
-
-
-<script>
-  (function() {
-    function fixerGmailMagicbox() {
-      if (window.innerWidth > 768) {
-        document.documentElement.style.removeProperty("--gmail-fixed-top");
-        return;
-      }
-
-      const h = window.innerHeight;
-      const paysage = window.innerWidth <= 900 && window.innerHeight <= 500 && window.matchMedia("(orientation: landscape)").matches;
-      const position = paysage ? Math.round(h * 0.62) : Math.round(h * 0.68);
-
-      document.documentElement.style.setProperty("--gmail-fixed-top", position + "px");
-      document.documentElement.style.removeProperty("--contact-smooth-top");
-    }
-
-    fixerGmailMagicbox();
-    window.addEventListener("DOMContentLoaded", fixerGmailMagicbox, { passive: true });
-    window.addEventListener("orientationchange", function() {
-      setTimeout(fixerGmailMagicbox, 250);
-    }, { passive: true });
-  })();
-</script>
-
-
-<script>
-  (function() {
-    function fixerGmailSurPage() {
-      if (window.innerWidth > 768) {
-        document.documentElement.style.removeProperty("--gmail-fixed-page-top");
-        return;
-      }
-
-      const paysage = window.innerWidth <= 900 && window.innerHeight <= 500 && window.matchMedia("(orientation: landscape)").matches;
-      const hauteur = window.innerHeight;
-      const position = paysage ? Math.round(hauteur * 0.62) : Math.round(hauteur * 0.68);
-
-      document.documentElement.style.setProperty("--gmail-fixed-page-top", position + "px");
-
-      /* Empêche les anciens effets de déplacer @gmail */
-      document.documentElement.style.removeProperty("--contact-smooth-top");
-      document.documentElement.style.removeProperty("--gmail-fixed-top");
-    }
-
-    fixerGmailSurPage();
-    window.addEventListener("DOMContentLoaded", fixerGmailSurPage, { passive: true });
-    window.addEventListener("orientationchange", function() {
-      setTimeout(fixerGmailSurPage, 250);
-    }, { passive: true });
-  })();
-</script>
-
-
-<script>
-  (function() {
-    function poserGmailStatique() {
-      if (window.innerWidth > 768) {
-        document.documentElement.style.removeProperty("--gmail-static-top");
-        return;
-      }
-
-      const paysage = window.innerWidth <= 900 && window.innerHeight <= 500 && window.matchMedia("(orientation: landscape)").matches;
-      const hauteurInitiale = window.innerHeight;
-      const position = paysage ? Math.round(hauteurInitiale * 0.62) : Math.round(hauteurInitiale * 0.68);
-
-      document.documentElement.style.setProperty("--gmail-static-top", position + "px");
-
-      /* Nettoyage des anciennes variables mobiles qui pouvaient déplacer @gmail */
-      document.documentElement.style.removeProperty("--contact-smooth-top");
-      document.documentElement.style.removeProperty("--gmail-fixed-top");
-      document.documentElement.style.removeProperty("--gmail-fixed-page-top");
-    }
-
-    poserGmailStatique();
-    window.addEventListener("DOMContentLoaded", poserGmailStatique, { passive: true });
-    window.addEventListener("orientationchange", function() {
-      setTimeout(poserGmailStatique, 250);
-    }, { passive: true });
-  })();
-</script>
-
-
-<script>
-  (function() {
-    function verrouillerGmailPlusBas() {
-      if (window.innerWidth > 768) {
-        document.documentElement.style.removeProperty("--gmail-page-locked-top");
-        return;
-      }
-
-      const paysage = window.innerWidth <= 900 && window.innerHeight <= 500 && window.matchMedia("(orientation: landscape)").matches;
-      const hauteurDepart = window.innerHeight;
-
-      /* Plus bas que la version précédente : 76% de la hauteur en portrait */
-      const position = paysage
-        ? Math.round(hauteurDepart * 0.70)
-        : Math.round(hauteurDepart * 0.76);
-
-      document.documentElement.style.setProperty("--gmail-page-locked-top", position + "px");
-
-      /* Nettoyage des anciennes variables qui pouvaient encore influencer @gmail */
-      document.documentElement.style.removeProperty("--contact-smooth-top");
-      document.documentElement.style.removeProperty("--gmail-fixed-top");
-      document.documentElement.style.removeProperty("--gmail-fixed-page-top");
-      document.documentElement.style.removeProperty("--gmail-static-top");
-    }
-
-    verrouillerGmailPlusBas();
-
-    window.addEventListener("DOMContentLoaded", verrouillerGmailPlusBas, { passive: true });
-    window.addEventListener("orientationchange", function() {
-      setTimeout(verrouillerGmailPlusBas, 250);
-    }, { passive: true });
-  })();
-</script>
-
-<script>
-  (function() {
-    let dernierLargeur = 0;
-    let dernierOrientation = "";
-
-    function estMobileLargeur() {
-      return window.innerWidth <= 768;
-    }
-
-    function dimensionsStables(force) {
-      const racine = document.documentElement;
-      const largeur = Math.max(1, Math.round(window.innerWidth || document.documentElement.clientWidth || 1));
-      const hauteur = Math.max(1, Math.round(window.innerHeight || document.documentElement.clientHeight || 1));
-      const orientation = largeur > hauteur ? "landscape" : "portrait";
-
-      /* Sur smartphone, la hauteur change souvent pendant le scroll à cause de la barre du navigateur.
-         On ignore ces micro-changements pour que la vidéo reste collée comme une plaque de verre. */
-      if (!force && estMobileLargeur()) {
-        const largeurChange = Math.abs(largeur - dernierLargeur) > 24;
-        const orientationChange = orientation !== dernierOrientation;
-
-        if (dernierLargeur && !largeurChange && !orientationChange) {
-          return;
-        }
-      }
-
-      dernierLargeur = largeur;
-      dernierOrientation = orientation;
-
-      racine.style.setProperty("--site-fixed-vw", largeur + "px");
-      racine.style.setProperty("--site-fixed-vh", hauteur + "px");
-    }
-
-    function lancerBlobalMp4EnBoucle() {
-      const video = document.getElementById("fondVideo");
-      if (!video) return;
-
-      video.muted = true;
-      video.defaultMuted = true;
-      video.loop = true;
-      video.autoplay = true;
-      video.playsInline = true;
-      video.preload = "auto";
-
-      video.setAttribute("muted", "");
-      video.setAttribute("loop", "");
-      video.setAttribute("autoplay", "");
-      video.setAttribute("playsinline", "");
-      video.setAttribute("webkit-playsinline", "");
-      video.setAttribute("preload", "auto");
-
-      video.style.opacity = "1";
-      video.style.visibility = "visible";
-      video.style.display = "block";
-
-      const lecture = video.play();
-      if (lecture && typeof lecture.catch === "function") {
-        lecture.catch(function() {});
-      }
-    }
-
-    function reglerMagicboxSansTremblement(force) {
-      const racine = document.documentElement;
-      const largeur = Math.max(1, Math.round(window.innerWidth || 1));
-      const hauteur = Math.max(1, Math.round(parseFloat(getComputedStyle(racine).getPropertyValue("--site-fixed-vh")) || window.innerHeight || 1));
-      const paysage = largeur > hauteur;
-      const mobile = largeur <= 768;
-
-      if (!mobile) {
-        racine.style.removeProperty("--rules-mobile-top");
-        racine.style.removeProperty("--rules-mobile-height");
-        racine.style.removeProperty("--rules-mobile-bottom");
-        return;
-      }
-
-      const clamp = function(min, val, max) {
-        return Math.max(min, Math.min(val, max));
-      };
-
-      let bottom;
-      let hauteurBox;
-
-      if (paysage || hauteur <= 520) {
-        bottom = clamp(28, hauteur * 0.08, 62);
-        hauteurBox = clamp(74, hauteur * 0.30, 142);
-      } else if (hauteur <= 700) {
-        bottom = clamp(62, hauteur * 0.115, 92);
-        hauteurBox = clamp(118, hauteur * 0.245, 172);
-      } else if (hauteur <= 860) {
-        bottom = clamp(82, hauteur * 0.125, 122);
-        hauteurBox = clamp(142, hauteur * 0.255, 218);
-      } else {
-        bottom = clamp(106, hauteur * 0.135, 158);
-        hauteurBox = clamp(172, hauteur * 0.265, 260);
-      }
-
-      const top = Math.max(104, hauteur - bottom - hauteurBox);
-
-      racine.style.setProperty("--rules-mobile-bottom", Math.round(bottom) + "px");
-      racine.style.setProperty("--rules-mobile-height", Math.round(hauteurBox) + "px");
-      racine.style.setProperty("--rules-mobile-top", Math.round(top) + "px");
-    }
-
-    function installerBlobalLoopInfini() {
-      const video = document.getElementById("fondVideo");
-      if (!video) return;
-
-      lancerBlobalMp4EnBoucle();
-
-      if (!video.dataset.blobalLoopInstalle) {
-        video.dataset.blobalLoopInstalle = "1";
-
-        video.addEventListener("timeupdate", function() {
-          if (video.duration && video.currentTime > video.duration - 0.06) {
-            try {
-              video.currentTime = 0;
-              video.play();
-            } catch (e) {}
-          }
-        });
-
-        video.addEventListener("ended", function() {
-          try {
-            video.currentTime = 0;
-            video.play();
-          } catch (e) {}
-        });
-
-        video.addEventListener("pause", function() {
-          if (!document.hidden) {
-            lancerBlobalMp4EnBoucle();
-          }
-        });
-
-        setInterval(function() {
-          if (!document.hidden && (video.paused || video.ended || video.readyState < 2)) {
-            lancerBlobalMp4EnBoucle();
-          }
-        }, 700);
-      }
-    }
-
-    function demarrerTout(force) {
-      dimensionsStables(force);
-      reglerMagicboxSansTremblement(force);
-      installerBlobalLoopInfini();
-    }
-
-    window.addEventListener("DOMContentLoaded", function() {
-      demarrerTout(true);
-    });
-
-    window.addEventListener("load", function() {
-      demarrerTout(true);
-    });
-
-    window.addEventListener("resize", function() {
-      dimensionsStables(false);
-      reglerMagicboxSansTremblement(false);
-    }, { passive: true });
-
-    window.addEventListener("orientationchange", function() {
-      setTimeout(function() {
-        demarrerTout(true);
-      }, 260);
-    }, { passive: true });
-
-    window.addEventListener("pageshow", function() {
-      demarrerTout(false);
-    });
-
-    document.addEventListener("visibilitychange", function() {
-      if (!document.hidden) {
-        demarrerTout(false);
-      }
-    });
-
-    document.addEventListener("click", lancerBlobalMp4EnBoucle, { once: true });
-    document.addEventListener("touchstart", lancerBlobalMp4EnBoucle, { once: true });
-  })();
-</script>
 
 <style id="rules-scroll-restore-final">
   /* RESTAURATION FINALE : magicbox smartphone scrollable, plus basse, mouvement lent et fluide */
@@ -8999,1132 +8253,62 @@ body {
     }
   }
 </style>
-<script id="copyright-intro-footer-script">
+<script id="gpc-bravo-fast-core-script-final">
   (function() {
-    function masquerCopyrightIntro() {
-      const introCopyright = document.getElementById("copyrightIntroPage");
-      if (!introCopyright) return;
-      introCopyright.classList.add("hide");
-      setTimeout(function() {
-        introCopyright.style.display = "none";
-      }, 520);
-    }
-
-    window.addEventListener("DOMContentLoaded", function() {
-      setTimeout(masquerCopyrightIntro, 1700);
-    });
-
-    window.addEventListener("pageshow", function() {
-      const introCopyright = document.getElementById("copyrightIntroPage");
-      if (introCopyright && introCopyright.style.display !== "none") {
-        setTimeout(masquerCopyrightIntro, 1700);
-      }
-    });
-  })();
-</script>
-<script id="rules-mobile-liquid-engine-final">
-  (function() {
-    const racine = document.documentElement;
-
-    let largeurStable = 0;
-    let hauteurStable = 0;
-    let orientationStable = "";
-
-    let topActuel = null;
-    let topCible = null;
-    let hauteurActuelle = null;
-    let hauteurCible = null;
-
-    let floatActuel = 0;
-    let floatCible = 0;
-    let dernierScrollY = window.scrollY || 0;
-    let dernierBoxScroll = 0;
-    let raf = null;
-    let retourTimer = null;
-    let syncInterne = false;
-
-    function mobile() {
-      return window.innerWidth <= 768;
-    }
-
-    function box() {
-      return document.getElementById("apropos");
-    }
-
-    function active() {
-      const b = box();
-      return !!(b && b.classList.contains("active"));
-    }
-
-    function clamp(v, min, max) {
-      return Math.max(min, Math.min(max, v));
-    }
-
-    function dimensions(force) {
-      const w = Math.round(window.innerWidth || document.documentElement.clientWidth || 390);
-      const h = Math.round(window.innerHeight || document.documentElement.clientHeight || 760);
-      const orientation = w > h ? "landscape" : "portrait";
-      const largeurChange = Math.abs(w - largeurStable) > 24;
-      const orientationChange = orientation !== orientationStable;
-
-      if (force || !largeurStable || largeurChange || orientationChange) {
-        largeurStable = w;
-        hauteurStable = h;
-        orientationStable = orientation;
-      }
-
-      return {
-        w: largeurStable || w,
-        h: hauteurStable || h,
-        paysage: (largeurStable || w) <= 900 && (hauteurStable || h) <= 500 && window.matchMedia("(orientation: landscape)").matches
-      };
-    }
-
-    function maxPageScroll() {
-      return Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-    }
-
-    function progressionPage() {
-      if (!active()) return 0;
-      return clamp((window.scrollY || document.documentElement.scrollTop || 0) / maxPageScroll(), 0, 1);
-    }
-
-    function maxBoxScroll(b) {
-      return Math.max(1, b.scrollHeight - b.clientHeight);
-    }
-
-    function topLecteurMedia() {
-      const d = dimensions(false);
-      const lecteur = document.querySelector(".audio-box");
-
-      if (lecteur) {
-        const rect = lecteur.getBoundingClientRect();
-        if (rect && rect.top > 0 && rect.top < d.h) {
-          return rect.top;
-        }
-      }
-
-      return d.h - 170;
-    }
-
-    function stylesFixes(b, paysage) {
-      b.style.setProperty("width", paysage ? "min(92vw, 680px)" : "calc(100vw - 24px)", "important");
-      b.style.setProperty("max-width", paysage ? "min(92vw, 680px)" : "calc(100vw - 24px)", "important");
-      b.style.setProperty("padding", paysage ? "18px 10px" : "22px 13px", "important");
-      b.style.setProperty("overflow-y", "auto", "important");
-      b.style.setProperty("overflow-x", "hidden", "important");
-      b.style.setProperty("-webkit-overflow-scrolling", "touch", "important");
-      b.style.setProperty("touch-action", "pan-y pinch-zoom", "important");
-      b.style.setProperty("pointer-events", "auto", "important");
-      b.style.setProperty("will-change", "transform, height", "important");
-      b.style.setProperty("backface-visibility", "hidden", "important");
-      b.style.setProperty("-webkit-backface-visibility", "hidden", "important");
-      b.style.setProperty("contain", "layout paint style", "important");
-    }
-
-    function calculer(force) {
-      const b = box();
-
-      if (!mobile() || !b) {
-        racine.classList.remove("gpc-rules-liquid-active");
-        racine.classList.remove("rules-page-scroll-mode");
-        racine.style.removeProperty("--rules-page-scroll-extra");
-        racine.style.removeProperty("--rules-liquid-float");
-
-        if (b) {
-          b.style.removeProperty("top");
-          b.style.removeProperty("height");
-          b.style.removeProperty("transform");
-        }
-
-        topActuel = null;
-        topCible = null;
-        hauteurActuelle = null;
-        hauteurCible = null;
-        floatActuel = 0;
-        floatCible = 0;
-        raf = null;
-        return;
-      }
-
-      const actif = active();
-      racine.classList.toggle("gpc-rules-liquid-active", actif);
-      racine.classList.toggle("rules-page-scroll-mode", actif);
-
-      if (!actif) {
-        racine.style.removeProperty("--rules-page-scroll-extra");
-        racine.style.removeProperty("--rules-liquid-float");
-        return;
-      }
-
-      const d = dimensions(!!force);
-      const extra = d.paysage ? 320 : 520;
-      racine.style.setProperty("--rules-page-scroll-extra", extra + "px");
-
-      const descenteLegere = d.paysage ? 8 : clamp(Math.round(d.h * 0.018), 10, 18);
-      const topAncre = Math.round(d.h * (d.paysage ? 0.42 : 0.545) + descenteLegere);
-      const margeLecteur = d.paysage ? 5 : 6;
-      const basFinal = Math.round(topLecteurMedia() - margeLecteur);
-      const hauteurGrande = Math.max(d.paysage ? 82 : 112, basFinal - topAncre);
-
-      topCible = topAncre;
-      hauteurCible = hauteurGrande;
-
-      stylesFixes(b, d.paysage);
-
-      if (topActuel === null) {
-        topActuel = topCible;
-        hauteurActuelle = hauteurCible;
-        b.style.setProperty("top", topActuel + "px", "important");
-        b.style.setProperty("height", hauteurActuelle + "px", "important");
-        b.style.setProperty("transform", "translate3d(-50%, var(--rules-liquid-float, 0px), 0)", "important");
-      }
-
-      lancer();
-    }
-
-    function impulsionDepuisScroll(source) {
-      if (!mobile() || !active()) return;
-
-      const y = window.scrollY || 0;
-      const dy = y - dernierScrollY;
-      dernierScrollY = y;
-
-      if (Math.abs(dy) > 0.2) {
-        floatCible = clamp(floatCible + dy * 0.065, -18, 18);
-        retourSouple();
-      }
-
-      lancer();
-    }
-
-    function impulsionDepuisBox() {
-      const b = box();
-      if (!b || !active() || syncInterne) return;
-
-      const y = b.scrollTop || 0;
-      const dy = y - dernierBoxScroll;
-      dernierBoxScroll = y;
-
-      if (Math.abs(dy) > 0.25) {
-        floatCible = clamp(floatCible + dy * 0.035, -14, 14);
-        retourSouple();
-        lancer();
-      }
-    }
-
-    function retourSouple() {
-      clearTimeout(retourTimer);
-      retourTimer = setTimeout(function() {
-        floatCible = 0;
-        lancer();
-      }, 140);
-    }
-
-    function lancer() {
-      if (!raf) {
-        raf = requestAnimationFrame(animer);
-      }
-    }
-
-    function animer() {
-      const b = box();
-      if (!mobile() || !b || !active() || topCible === null || hauteurCible === null) {
-        raf = null;
-        return;
-      }
-
-      const douceurPosition = 0.024;
-      const douceurFloat = 0.040;
-      const stop = 0.035;
-
-      const dt = topCible - topActuel;
-      const dh = hauteurCible - hauteurActuelle;
-      const df = floatCible - floatActuel;
-
-      topActuel = Math.abs(dt) < stop ? topCible : topActuel + dt * douceurPosition;
-      hauteurActuelle = Math.abs(dh) < stop ? hauteurCible : hauteurActuelle + dh * douceurPosition;
-      floatActuel = Math.abs(df) < stop ? floatCible : floatActuel + df * douceurFloat;
-
-      /* Retour élastique lent : la box respire, elle ne colle plus aux bords haut/bas. */
-      if (Math.abs(floatCible) > 0.02) {
-        floatCible *= 0.90;
-      } else {
-        floatCible = 0;
-      }
-
-      b.style.setProperty("top", topActuel.toFixed(2) + "px", "important");
-      b.style.setProperty("height", hauteurActuelle.toFixed(2) + "px", "important");
-      b.style.setProperty("transform", "translate3d(-50%, var(--rules-liquid-float, 0px), 0)", "important");
-      racine.style.setProperty("--rules-liquid-float", floatActuel.toFixed(2) + "px");
-
-      if (
-        Math.abs(topCible - topActuel) > stop ||
-        Math.abs(hauteurCible - hauteurActuelle) > stop ||
-        Math.abs(floatCible - floatActuel) > stop ||
-        Math.abs(floatCible) > stop
-      ) {
-        raf = requestAnimationFrame(animer);
-      } else {
-        raf = null;
-      }
-    }
-
-    function demander(force) {
-      requestAnimationFrame(function() {
-        calculer(!!force);
-      });
-    }
-
-    function brancher() {
-      const b = box();
-      if (!b || b.dataset.rulesLiquidEngineOk) return;
-      b.dataset.rulesLiquidEngineOk = "1";
-      b.addEventListener("scroll", impulsionDepuisBox, { passive: true });
-      b.addEventListener("touchstart", function() {
-        dernierBoxScroll = b.scrollTop || 0;
-      }, { passive: true });
-    }
-
-    window.addEventListener("DOMContentLoaded", function() { demander(true); brancher(); }, { passive: true });
-    window.addEventListener("load", function() { demander(true); brancher(); }, { passive: true });
-    window.addEventListener("pageshow", function() { demander(true); brancher(); }, { passive: true });
-    window.addEventListener("resize", function() { demander(false); }, { passive: true });
-    window.addEventListener("scroll", function() {
-      demander(false);
-      impulsionDepuisScroll("page");
-    }, { passive: true });
-    window.addEventListener("orientationchange", function() {
-      setTimeout(function() { demander(true); }, 120);
-      setTimeout(function() { demander(true); }, 420);
-    }, { passive: true });
-
-    document.addEventListener("click", function(event) {
-      const texte = event.target && event.target.textContent ? event.target.textContent.trim() : "";
-      if (texte === "RULES") {
-        topActuel = null;
-        hauteurActuelle = null;
-        floatActuel = 0;
-        floatCible = 0;
-        dernierScrollY = 0;
-        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-        setTimeout(function() { demander(true); brancher(); }, 45);
-        setTimeout(function() { demander(false); }, 220);
-      } else if (texte === "starthere" || texte === "SEND A WAV / MP3") {
-        setTimeout(function() { demander(false); }, 60);
-      }
-    }, { passive: true });
-
-    setTimeout(function() { demander(true); brancher(); }, 750);
-  })();
-</script>
-<script id="gmail-magicbox-smooth-final">
-  (function() {
-    const racine = document.documentElement;
-
-    let baseY = null;
-    let floatActuel = 0;
-    let floatCible = 0;
-    let raf = null;
-    let dernierScrollY = window.scrollY || 0;
-    let contactEtaitActif = false;
-    let retourTimer = null;
-
-    function mobile() {
-      return window.innerWidth <= 768;
-    }
-
-    function contactActif() {
-      const contact = document.getElementById("contact");
-      return !!(contact && contact.classList.contains("active"));
-    }
-
-    function clamp(v, min, max) {
-      return Math.max(min, Math.min(max, v));
-    }
-
-    function calculerBase() {
-      const h = window.innerHeight || document.documentElement.clientHeight || 760;
-      const w = window.innerWidth || document.documentElement.clientWidth || 390;
-      const paysage = w <= 900 && h <= 500 && window.matchMedia("(orientation: landscape)").matches;
-
-      if (paysage) {
-        return Math.round(h * 0.70 - 18);
-      }
-
-      /* Position finale conservée depuis la version actuelle. */
-      const remontee = Math.max(24, Math.min(Math.round(h * 0.045), 42));
-      return Math.round(h * 0.76 - remontee);
-    }
-
-    function poserBase(force) {
-      if (!mobile()) {
-        racine.style.removeProperty("--gmail-base-y");
-        racine.style.removeProperty("--gmail-origin-y");
-        racine.style.removeProperty("--gmail-page-locked-top");
-        racine.style.removeProperty("--gmail-magicbox-float");
-        baseY = null;
-        floatActuel = 0;
-        floatCible = 0;
-        raf = null;
-        return;
-      }
-
-      const prochain = calculerBase();
-
-      if (force || baseY === null || Math.abs(prochain - baseY) > 2) {
-        baseY = prochain;
-        racine.style.setProperty("--gmail-base-y", baseY + "px");
-        racine.style.setProperty("--gmail-origin-y", baseY + "px");
-        racine.style.setProperty("--gmail-page-locked-top", baseY + "px");
-      }
-    }
-
-    function retourSouple() {
-      clearTimeout(retourTimer);
-      retourTimer = setTimeout(function() {
-        floatCible = 0;
-        lancer();
-      }, 120);
-    }
-
-    function ouvertureMagicbox() {
-      poserBase(false);
-
-      /* Même idée que la box : départ un peu plus bas puis retour liquide à zéro. */
-      const h = window.innerHeight || 760;
-      floatActuel = clamp(h * 0.050, 20, 40);
-      floatCible = 0;
-      racine.style.setProperty("--gmail-magicbox-float", floatActuel.toFixed(2) + "px");
-      lancer();
-    }
-
-    function impulsionScroll() {
-      if (!mobile() || !contactActif()) return;
-
-      const y = window.scrollY || 0;
-      const dy = y - dernierScrollY;
-      dernierScrollY = y;
-
-      if (Math.abs(dy) > 0.2) {
-        /* Identique à l'esprit de la box : impulsion douce + retour amorti. */
-        floatCible = clamp(floatCible + dy * 0.065, -18, 18);
-        retourSouple();
-        lancer();
-      }
-    }
-
-    function lancer() {
-      if (!raf) {
-        raf = requestAnimationFrame(animer);
-      }
-    }
-
-    function animer() {
-      if (!mobile()) {
-        raf = null;
-        return;
-      }
-
-      poserBase(false);
-
-      /* Très proche du moteur RULES : souple, inertiel, pas accroché. */
-      const douceurFloat = 0.040;
-      const stop = 0.030;
-      const delta = floatCible - floatActuel;
-
-      floatActuel = Math.abs(delta) < stop ? floatCible : floatActuel + delta * douceurFloat;
-
-      if (Math.abs(floatCible) > 0.02) {
-        floatCible *= 0.90;
-      } else {
-        floatCible = 0;
-      }
-
-      racine.style.setProperty("--gmail-magicbox-float", floatActuel.toFixed(2) + "px");
-
-      if (Math.abs(floatCible - floatActuel) > stop || Math.abs(floatCible) > stop) {
-        raf = requestAnimationFrame(animer);
-      } else {
-        raf = null;
-      }
-    }
-
-    function demander(force) {
-      requestAnimationFrame(function() {
-        poserBase(!!force);
-        if (contactActif() && !contactEtaitActif) {
-          ouvertureMagicbox();
-        }
-        contactEtaitActif = contactActif();
-      });
-    }
-
-    window.addEventListener("DOMContentLoaded", function() { demander(true); }, { passive: true });
-    window.addEventListener("load", function() { demander(true); }, { passive: true });
-    window.addEventListener("pageshow", function() { demander(true); }, { passive: true });
-    window.addEventListener("resize", function() { demander(false); }, { passive: true });
-    window.addEventListener("orientationchange", function() {
-      setTimeout(function() { demander(true); }, 100);
-      setTimeout(function() { demander(true); }, 380);
-    }, { passive: true });
-
-    window.addEventListener("scroll", function() {
-      impulsionScroll();
-    }, { passive: true });
-
-    document.addEventListener("click", function(event) {
-      const texte = event.target && event.target.textContent ? event.target.textContent.trim() : "";
-      if (texte === "SEND A WAV / MP3") {
-        contactEtaitActif = false;
-        setTimeout(ouvertureMagicbox, 30);
-        setTimeout(function() { demander(false); }, 220);
-      }
-    }, { passive: true });
-
-    setInterval(function() {
-      if (contactActif() && !contactEtaitActif) {
-        ouvertureMagicbox();
-      }
-      contactEtaitActif = contactActif();
-    }, 180);
-
-    demander(true);
-  })();
-</script>
-<script id="website-ordi-magicbox-copy-guard-final">
-  (function() {
-    function assurerFlechesMagicbox() {
-      const card = document.querySelector("#apropos .card");
-      if (!card) return;
-
-      if (!card.querySelector(".magicbox-arrow-down")) {
-        const bas = document.createElement("span");
-        bas.className = "magicbox-arrow magicbox-arrow-down";
-        bas.setAttribute("aria-hidden", "true");
-        card.insertBefore(bas, card.firstChild);
-      }
-
-      if (!card.querySelector(".magicbox-arrow-up")) {
-        const haut = document.createElement("span");
-        haut.className = "magicbox-arrow magicbox-arrow-up";
-        haut.setAttribute("aria-hidden", "true");
-        card.appendChild(haut);
-      }
-    }
-
-    window.addEventListener("DOMContentLoaded", assurerFlechesMagicbox, { passive: true });
-    window.addEventListener("load", assurerFlechesMagicbox, { passive: true });
-    window.addEventListener("pageshow", assurerFlechesMagicbox, { passive: true });
-    assurerFlechesMagicbox();
-  })();
-</script>
-<script id="video-mobile-stable-antifreeze-final">
-  (function() {
-    const SRC = "./téma.mp4";
-    let dernierTemps = -1;
-    let blocages = 0;
-    let dernierReload = 0;
-    let dernierWake = 0;
-
-    function mobile() {
-      return window.innerWidth <= 768;
-    }
-
-    function maintenant() {
-      return Date.now ? Date.now() : new Date().getTime();
-    }
-
-    function video() {
-      return document.getElementById("fondVideo");
-    }
-
-    function configurer(v) {
-      if (!v) return;
-
-      v.muted = true;
-      v.defaultMuted = true;
-      v.loop = true;
-      v.autoplay = true;
-      v.playsInline = true;
-      v.preload = "auto";
-
-      v.setAttribute("muted", "");
-      v.setAttribute("loop", "");
-      v.setAttribute("autoplay", "");
-      v.setAttribute("playsinline", "");
-      v.setAttribute("webkit-playsinline", "");
-      v.setAttribute("preload", "auto");
-
-      const source = v.querySelector("source");
-      if (source && source.getAttribute("src") !== SRC) {
-        source.setAttribute("src", SRC);
-        try { v.load(); } catch (e) {}
-      }
-    }
-
-    function play(v) {
-      if (!v || document.hidden) return;
-
-      try {
-        const p = v.play();
-        if (p && typeof p.catch === "function") p.catch(function() {});
-      } catch (e) {}
-    }
-
-    function nudge(v) {
-      if (!v || !Number.isFinite(v.duration) || v.duration <= 0) return;
-
-      try {
-        const t = v.currentTime || 0;
-        if (t > v.duration - 0.35) {
-          v.currentTime = 0.05;
-        } else {
-          v.currentTime = Math.min(v.duration - 0.08, t + 0.035);
-        }
-      } catch (e) {}
-    }
-
-    function reloadDoux(v) {
-      const now = maintenant();
-      if (!v || now - dernierReload < 4200) return;
-      dernierReload = now;
-
-      let t = 0;
-      try { t = v.currentTime || 0; } catch (e) {}
-
-      try { v.load(); } catch (e) {}
-
-      setTimeout(function() {
-        try {
-          if (Number.isFinite(v.duration) && v.duration > 0) {
-            v.currentTime = Math.min(Math.max(t, 0.05), Math.max(0.06, v.duration - 0.12));
-          }
-        } catch (e) {}
-        play(v);
-      }, 90);
-    }
-
-    function verifier() {
-      const v = video();
-      if (!v) return;
-
-      configurer(v);
-
-      if (document.hidden) {
-        dernierTemps = -1;
-        blocages = 0;
-        return;
-      }
-
-      if (v.paused || v.ended || v.readyState < 2) {
-        play(v);
-      }
-
-      const t = Number(v.currentTime || 0);
-      const avance = dernierTemps < 0 || Math.abs(t - dernierTemps) > 0.006;
-      const doitAvancer = !v.paused && !v.ended && v.readyState >= 2;
-
-      if (mobile() && doitAvancer && !avance) {
-        blocages += 1;
-
-        if (blocages >= 3) {
-          nudge(v);
-          play(v);
-        }
-
-        if (blocages >= 8) {
-          reloadDoux(v);
-          blocages = 0;
-        }
-      } else {
-        blocages = 0;
-      }
-
-      dernierTemps = t;
-    }
-
-    function reveiller(raison) {
-      const now = maintenant();
-
-      /* Correction clé : aucun réveil vidéo sur touch/click.
-         On réveille seulement au chargement, retour page/app, focus, visibilité ou orientation. */
-      if (now - dernierWake < 650 && raison !== "visibility" && raison !== "pageshow") return;
-      dernierWake = now;
-
-      const v = video();
-      if (!v) return;
-      configurer(v);
-      play(v);
-    }
-
-    [
-      "DOMContentLoaded",
-      "load",
-      "pageshow",
-      "focus",
-      "visibilitychange",
-      "orientationchange"
-    ].forEach(function(nom) {
-      window.addEventListener(nom, function() {
-        setTimeout(function() { reveiller(nom); }, 40);
-        if (nom === "orientationchange") {
-          setTimeout(function() { reveiller(nom); }, 320);
-        }
-      }, { passive: true });
-    });
-
-    const v = video();
-    if (v && !v.dataset.mobileStableAntifreezeOk) {
-      v.dataset.mobileStableAntifreezeOk = "1";
-      ["stalled", "waiting", "pause", "ended", "error", "canplay", "playing"].forEach(function(nom) {
-        v.addEventListener(nom, function() {
-          setTimeout(function() { reveiller(nom); }, 60);
-        }, { passive: true });
-      });
-    }
-
-    setInterval(verifier, 950);
-    setInterval(function() { reveiller("periodic"); }, 2800);
-    reveiller("init");
-  })();
-</script>
-<script id="website-ordi-stable-half-box-engine-final">
-  (function() {
-    const racine = document.documentElement;
-    let resizeTimer = null;
-
-    function desktop() {
-      return window.innerWidth >= 769;
-    }
-
-    function clamp(v, min, max) {
-      return Math.max(min, Math.min(max, v));
-    }
-
-    function dims() {
-      return {
-        w: window.innerWidth || document.documentElement.clientWidth || 1280,
-        h: window.innerHeight || document.documentElement.clientHeight || 800
-      };
-    }
-
-    function topLecteur() {
-      const d = dims();
-      const lecteur = document.querySelector(".audio-box");
-      if (lecteur) {
-        const rect = lecteur.getBoundingClientRect();
-        if (rect && rect.top > 0 && rect.top < d.h) {
-          return rect.top;
-        }
-      }
-      return d.h - 176;
-    }
-
-    function calculer() {
-      const d = dims();
-      const reduit = d.w < 1050 || d.h < 760;
-      const tresBas = d.h < 650;
-      const grand = d.w >= 1400 && d.h >= 820;
-
-      let largeur = grand ? 780 : 760;
-      let hauteur = grand ? 136 : 132;
-
-      if (reduit) {
-        largeur = clamp(d.w - 42, 520, 720);
-
-        const topApprox = d.h * (tresBas ? 0.505 : 0.525);
-        const basFinal = topLecteur() - 10;
-        hauteur = clamp(basFinal - topApprox, tresBas ? 72 : 78, tresBas ? 126 : 150);
-      }
-
-      /*
-        Normal grand écran : statique.
-        On place la box un peu basse, sans interpolation permanente pour supprimer le tremblement.
-      */
-      const ratio = reduit ? (tresBas ? 0.505 : 0.525) : 0.595;
-      const top = clamp(
-        Math.round(d.h * ratio),
-        reduit ? (tresBas ? 210 : 252) : 420,
-        Math.max(reduit ? 315 : 470, d.h - hauteur - (reduit ? 150 : 170))
-      );
-
-      const gmailRemontee = clamp(Math.round(d.h * 0.045), reduit ? 20 : 30, reduit ? 38 : 58);
-      const gmailY = Math.round(d.h * (reduit ? 0.72 : 0.76) - gmailRemontee);
-
-      return { top, largeur, hauteur, gmailY };
-    }
-
-    function appliquer() {
-      if (!desktop()) {
-        return;
-      }
-
-      const c = calculer();
-
-      racine.style.setProperty("--ordi-rules-top", c.top + "px");
-      racine.style.setProperty("--ordi-rules-fixed-width", c.largeur + "px");
-      racine.style.setProperty("--ordi-rules-fixed-height", c.hauteur + "px");
-      racine.style.setProperty("--ordi-rules-height", c.hauteur + "px");
-      racine.style.setProperty("--ordi-gmail-y", c.gmailY + "px");
-      racine.style.setProperty("--ordi-rules-float", "0px");
-
-      document.documentElement.style.overflow = "hidden";
-      document.body.style.overflow = "hidden";
-      document.documentElement.style.height = "100dvh";
-      document.body.style.height = "100dvh";
-
-      if ((window.scrollY || document.documentElement.scrollTop || 0) !== 0) {
-        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-      }
-    }
-
-    function demander() {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(appliquer, 35);
-    }
-
-    window.addEventListener("DOMContentLoaded", appliquer, { passive: true });
-    window.addEventListener("load", appliquer, { passive: true });
-    window.addEventListener("pageshow", appliquer, { passive: true });
-    window.addEventListener("resize", demander, { passive: true });
-    window.addEventListener("orientationchange", function() {
-      setTimeout(appliquer, 120);
-      setTimeout(appliquer, 420);
-    }, { passive: true });
-    window.addEventListener("scroll", appliquer, { passive: true });
-
-    document.addEventListener("click", function(event) {
-      const texte = event.target && event.target.textContent ? event.target.textContent.trim() : "";
-      if (texte === "RULES" || texte === "SEND A WAV / MP3" || texte === "starthere") {
-        setTimeout(appliquer, 40);
-        setTimeout(appliquer, 220);
-      }
-    }, { passive: true });
-
-    appliquer();
-  })();
-</script>
-<script id="rules-arrows-independent-final">
-  (function() {
-    function normaliserFleches() {
-      const box = document.getElementById("apropos");
-      if (!box) return;
-
-      const card = box.querySelector(".card");
-
-      function prendreOuCreer(classe) {
-        const existantes = Array.from(box.querySelectorAll("." + classe));
-        const premiere = existantes[0] || document.createElement("span");
-
-        premiere.className = "magicbox-arrow " + classe;
-        premiere.setAttribute("aria-hidden", "true");
-
-        existantes.slice(1).forEach(function(el) {
-          if (el && el.parentNode) el.parentNode.removeChild(el);
-        });
-
-        return premiere;
-      }
-
-      const flecheBas = prendreOuCreer("magicbox-arrow-down");
-      const flecheHaut = prendreOuCreer("magicbox-arrow-up");
-
-      if (flecheBas.parentNode !== box) {
-        box.insertBefore(flecheBas, box.firstChild);
-      } else if (box.firstChild !== flecheBas) {
-        box.insertBefore(flecheBas, box.firstChild);
-      }
-
-      if (flecheHaut.parentNode !== box) {
-        box.appendChild(flecheHaut);
-      } else if (box.lastChild !== flecheHaut) {
-        box.appendChild(flecheHaut);
-      }
-
-      if (card) {
-        card.style.minHeight = "auto";
-        card.style.height = "auto";
-        card.style.overflow = "visible";
-      }
-    }
-
-    function verifierScrollFin() {
-      const box = document.getElementById("apropos");
-      if (!box) return;
-
-      /* Forcer le navigateur à recalculer le scrollHeight après modification future du texte */
-      box.style.setProperty("--rules-scroll-height-check", String(box.scrollHeight || 0));
-    }
-
-    window.addEventListener("DOMContentLoaded", function() {
-      normaliserFleches();
-      verifierScrollFin();
-    }, { passive: true });
-
-    window.addEventListener("load", function() {
-      normaliserFleches();
-      verifierScrollFin();
-    }, { passive: true });
-
-    window.addEventListener("pageshow", function() {
-      normaliserFleches();
-      verifierScrollFin();
-    }, { passive: true });
-
-    window.addEventListener("resize", function() {
-      normaliserFleches();
-      verifierScrollFin();
-    }, { passive: true });
-
-    document.addEventListener("click", function(event) {
-      const texte = event.target && event.target.textContent ? event.target.textContent.trim() : "";
-      if (texte === "RULES") {
-        setTimeout(function() {
-          normaliserFleches();
-          verifierScrollFin();
-        }, 40);
-        setTimeout(verifierScrollFin, 240);
-      }
-    }, { passive: true });
-
-    if ("MutationObserver" in window) {
-      const observer = new MutationObserver(function() {
-        normaliserFleches();
-        verifierScrollFin();
-      });
-
-      window.addEventListener("DOMContentLoaded", function() {
-        const box = document.getElementById("apropos");
-        if (box) {
-          observer.observe(box, {
-            childList: true,
-            subtree: true,
-            characterData: true
-          });
-        }
-      }, { passive: true });
-    }
-
-    normaliserFleches();
-    verifierScrollFin();
-  })();
-</script>
-<script id="gpc-intro-no-video-script-final">
-  (function() {
-    const racine = document.documentElement;
+    "use strict";
+
+    const sousTitresAudio = [
+      { debut: 10, fin: 11.25, texte: "choqué" },
+      { debut: 10.75, fin: 12, texte: "turbine" },
+      { debut: 12, fin: 13.5, texte: "imabarbigxrlinabarbiwxrld" },
+      { debut: 15, fin: 16.5, texte: "lifeinplastixitsfantastix" },
+      { debut: 17, fin: 18.5, texte: "?" },
+      { debut: 21, fin: 22.5, texte: "??" },
+      { debut: 24, fin: 25.5, texte: "imabarbigxrlinabarbiwxrld" },
+      { debut: 27, fin: 28.5, texte: "lifeinplastixitsfantastix" },
+      { debut: 29, fin: 30.5, texte: "?" },
+      { debut: 31, fin: 32.5, texte: "?" },
+      { debut: 33, fin: 34.5, texte: "???" },
+      { debut: 36, fin: 37.5, texte: "imabarbigxrlinabarbiwxrld" },
+      { debut: 39, fin: 40.5, texte: "lifeinplastixitsfantastix" },
+      { debut: 46, fin: 47.5, texte: "?!?!?!?!?!?!?!?><" }
+    ];
+
+    let audioContext = null;
+    let sourceNode = null;
+    let gainNode = null;
+    let rafSousTitres = null;
+    let rafFleches = null;
+    let timerLance = false;
+    let introLancee = false;
 
     function el(id) {
       return document.getElementById(id);
     }
 
+    function formatTemps(s) {
+      if (!Number.isFinite(s) || s < 0) return "0:00";
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return m + ":" + String(sec).padStart(2, "0");
+    }
+
     function menu(show) {
       const nav = el("menuPrincipal");
       const audioBox = document.querySelector(".audio-box");
-
       if (nav) nav.style.display = show ? "" : "none";
       if (audioBox) audioBox.style.display = show ? "block" : "none";
     }
 
-    function couperIntroVideo() {
-      const video = el("introVideo");
-      const gif = el("introGif");
-
-      if (video) {
-        try { video.pause(); } catch (e) {}
-        try { video.removeAttribute("autoplay"); } catch (e) {}
-        video.style.display = "none";
-        video.style.opacity = "0";
-        video.style.visibility = "hidden";
-      }
-
-      if (gif) {
-        gif.style.display = "none";
-        gif.style.opacity = "0";
-        gif.style.visibility = "hidden";
-      }
-    }
-
-    function stageText(txt) {
-      const page = el("introPage");
-      const text = el("introText");
-
-      racine.classList.add("gpc-intro-hold", "gpc-intro-stage-text");
-      racine.classList.remove("gpc-intro-stage-video");
-
-      if (page) {
-        page.style.display = "flex";
-        page.style.background = "#000000";
-      }
-
-      if (text) {
-        text.style.display = "inline";
-        text.textContent = txt;
-      }
-
-      couperIntroVideo();
-      menu(false);
-    }
-
-    function entrerSite() {
-      const page = el("introPage");
-      const text = el("introText");
-
-      racine.classList.remove("gpc-intro-hold", "gpc-intro-stage-text", "gpc-intro-stage-video");
-
-      couperIntroVideo();
-
-      if (text) text.style.display = "none";
-      if (page) page.style.display = "none";
-
-      menu(true);
-
-      const lecteur = el("lecteurAudio");
-      if (lecteur) {
-        try { lecteur.load(); } catch (e) {}
-      }
-    }
-
-    window.addEventListener("DOMContentLoaded", function() {
-      couperIntroVideo();
-      stageText("⚠. -no epilepsy please, \nand headphones please/");
-      setTimeout(function() { stageText("<3"); }, 5200);
-      setTimeout(entrerSite, 7200);
-    }, { passive: true });
-
-    window.addEventListener("load", couperIntroVideo, { passive: true });
-    window.addEventListener("pageshow", function(event) {
-      couperIntroVideo();
-      if (event && event.persisted) {
-        entrerSite();
-      }
-    }, { passive: true });
-
-    setInterval(couperIntroVideo, 800);
-  })();
-</script>
-<script id="rules-arrows-end-light-script-final">
-  (function() {
-    let raf = null;
-
-    function box() {
-      return document.getElementById("apropos");
-    }
-
-    function normaliserFleches() {
-      const b = box();
-      if (!b) return null;
-
-      function prendreOuCreer(classe) {
-        const toutes = Array.from(b.querySelectorAll("." + classe));
-        const premiere = toutes[0] || document.createElement("span");
-        premiere.className = "magicbox-arrow " + classe;
-        premiere.setAttribute("aria-hidden", "true");
-        try { premiere.setAttribute("draggable", "false"); } catch (e) {}
-
-        for (let i = 1; i < toutes.length; i += 1) {
-          if (toutes[i] && toutes[i].parentNode) {
-            toutes[i].parentNode.removeChild(toutes[i]);
-          }
-        }
-
-        return premiere;
-      }
-
-      const down = prendreOuCreer("magicbox-arrow-down");
-      const up = prendreOuCreer("magicbox-arrow-up");
-
-      if (down.parentNode !== b || b.firstElementChild !== down) {
-        b.insertBefore(down, b.firstChild);
-      }
-
-      if (up.parentNode !== b || b.lastElementChild !== up) {
-        b.appendChild(up);
-      }
-
-      return b;
-    }
-
-    function verifierFin() {
-      raf = null;
-      const b = normaliserFleches();
-      if (!b) return;
-
-      const visible = b.clientHeight || 0;
-      const total = b.scrollHeight || 0;
-      const marge = Math.max(4, Math.round(visible * 0.045));
-      const maxScroll = Math.max(0, total - visible);
-      const noScroll = maxScroll <= marge;
-      const atEnd = noScroll || (b.scrollTop || 0) >= maxScroll - marge;
-
-      b.classList.toggle("rules-no-scroll", noScroll);
-      b.classList.toggle("rules-at-end", atEnd);
-    }
-
-    function demander() {
-      if (raf) return;
-      raf = requestAnimationFrame(verifierFin);
-    }
-
-    function brancher() {
-      const b = normaliserFleches();
-      if (!b) return;
-
-      if (!b.dataset.rulesArrowEndLightOk) {
-        b.dataset.rulesArrowEndLightOk = "1";
-        b.addEventListener("scroll", demander, { passive: true });
-        b.addEventListener("wheel", demander, { passive: true });
-        b.addEventListener("touchend", demander, { passive: true });
-      }
-
-      demander();
-    }
-
-    ["DOMContentLoaded", "load", "pageshow", "resize"].forEach(function(nom) {
-      window.addEventListener(nom, function() {
-        setTimeout(brancher, 20);
-        setTimeout(demander, 180);
-      }, { passive: true });
-    });
-
-    window.addEventListener("orientationchange", function() {
-      setTimeout(brancher, 120);
-      setTimeout(demander, 420);
-    }, { passive: true });
-
-    document.addEventListener("click", function(event) {
-      const texte = event.target && event.target.textContent ? event.target.textContent.trim() : "";
-      if (texte === "RULES") {
-        setTimeout(brancher, 40);
-        setTimeout(demander, 240);
-      }
-    }, { passive: true });
-
-    brancher();
-  })();
-</script>
-<script id="gpc-ultra-fast-selection-light-final">
-  (function() {
-    function viderSelection() {
-      try {
-        const selection = window.getSelection && window.getSelection();
-        if (selection && selection.removeAllRanges) {
-          selection.removeAllRanges();
-        }
-      } catch (e) {}
-    }
-
-    function couperIntroVideo() {
-      const introVideo = document.getElementById("introVideo");
-      const introGif = document.getElementById("introGif");
-
+    function cacherIntroVideo() {
+      const introVideo = el("introVideo");
+      const introGif = el("introGif");
       if (introVideo) {
         try { introVideo.pause(); } catch (e) {}
         introVideo.style.display = "none";
         introVideo.style.opacity = "0";
         introVideo.style.visibility = "hidden";
       }
-
       if (introGif) {
         introGif.style.display = "none";
         introGif.style.opacity = "0";
@@ -10132,14 +8316,519 @@ body {
       }
     }
 
-    window.addEventListener("DOMContentLoaded", couperIntroVideo, { passive: true });
-    window.addEventListener("load", couperIntroVideo, { passive: true });
-    window.addEventListener("pageshow", couperIntroVideo, { passive: true });
-    document.addEventListener("selectionchange", viderSelection, { passive: true });
-    document.addEventListener("mouseup", viderSelection, { passive: true });
-    document.addEventListener("touchend", viderSelection, { passive: true });
+    function afficherCopyright() {
+      const copyright = el("copyrightIntroPage");
+      const page = el("introPage");
+      const text = el("introText");
 
-    couperIntroVideo();
+      document.documentElement.classList.remove("gpc-site-ready");
+      if (copyright) copyright.style.display = "flex";
+      if (page) page.style.display = "none";
+      if (text) text.style.display = "none";
+      menu(false);
+      cacherIntroVideo();
+    }
+
+    function afficherIntroTexte(txt) {
+      const copyright = el("copyrightIntroPage");
+      const page = el("introPage");
+      const text = el("introText");
+
+      if (copyright) copyright.style.display = "none";
+      if (page) {
+        page.style.display = "flex";
+        page.style.background = "#000000";
+      }
+      if (text) {
+        text.style.display = "inline";
+        text.textContent = txt;
+      }
+
+      document.documentElement.classList.add("gpc-intro-stage-text");
+      document.documentElement.classList.remove("gpc-intro-stage-video");
+      menu(false);
+      cacherIntroVideo();
+    }
+
+    function entrerSite() {
+      const copyright = el("copyrightIntroPage");
+      const page = el("introPage");
+      const text = el("introText");
+
+      if (copyright) copyright.style.display = "none";
+      if (text) text.style.display = "none";
+      if (page) page.style.display = "none";
+
+      document.documentElement.classList.remove("gpc-intro-stage-text", "gpc-intro-stage-video");
+      document.documentElement.classList.add("gpc-site-ready");
+      menu(true);
+      reveillerVideoFond();
+      verifierFlechesRules();
+    }
+
+    function demarrerIntro() {
+      if (introLancee) return;
+      introLancee = true;
+
+      afficherCopyright();
+      setTimeout(function() {
+        afficherIntroTexte("⚠. -no epilepsy please, \nand headphones please/");
+      }, 2600);
+      setTimeout(function() {
+        afficherIntroTexte("<3");
+      }, 5200);
+      setTimeout(entrerSite, 7200);
+    }
+
+    function afficherHeureParis() {
+      const timerTime = el("timerTime");
+      const timerPeriod = el("timerPeriod");
+      const timerFallback = el("parisTimer");
+
+      const morceaux = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Europe/Paris",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+      }).formatToParts(new Date());
+
+      const get = function(type) {
+        const part = morceaux.find(function(p) { return p.type === type; });
+        return part ? part.value : "";
+      };
+
+      const time = get("hour") + ":" + get("minute") + ":" + get("second");
+      const period = get("dayPeriod") || "";
+
+      if (timerTime) timerTime.textContent = time;
+      if (timerPeriod) timerPeriod.textContent = period;
+      if (!timerTime && timerFallback) timerFallback.textContent = time + " " + period;
+    }
+
+    function lancerTimer() {
+      if (timerLance) return;
+      timerLance = true;
+      afficherHeureParis();
+      setInterval(afficherHeureParis, 1000);
+    }
+
+    function normaliserFlechesRules() {
+      const box = el("apropos");
+      if (!box) return null;
+
+      function prendre(classe) {
+        const toutes = Array.from(box.querySelectorAll("." + classe));
+        const premiere = toutes[0] || document.createElement("span");
+        premiere.className = "magicbox-arrow " + classe;
+        premiere.setAttribute("aria-hidden", "true");
+        toutes.slice(1).forEach(function(n) {
+          if (n && n.parentNode) n.parentNode.removeChild(n);
+        });
+        return premiere;
+      }
+
+      const down = prendre("magicbox-arrow-down");
+      const up = prendre("magicbox-arrow-up");
+
+      if (down.parentNode !== box || box.firstElementChild !== down) {
+        box.insertBefore(down, box.firstChild);
+      }
+      if (up.parentNode !== box || box.lastElementChild !== up) {
+        box.appendChild(up);
+      }
+
+      return box;
+    }
+
+    function verifierFlechesRules() {
+      rafFleches = null;
+      const box = normaliserFlechesRules();
+      if (!box) return;
+
+      const visible = box.clientHeight || 0;
+      const total = box.scrollHeight || 0;
+      const marge = Math.max(4, Math.round(visible * 0.045));
+      const maxScroll = Math.max(0, total - visible);
+      const noScroll = maxScroll <= marge;
+      const atEnd = noScroll || (box.scrollTop || 0) >= maxScroll - marge;
+
+      box.classList.toggle("rules-no-scroll", noScroll);
+      box.classList.toggle("rules-at-end", atEnd);
+    }
+
+    function demanderFlechesRules() {
+      if (rafFleches) return;
+      rafFleches = requestAnimationFrame(verifierFlechesRules);
+    }
+
+    window.afficherSection = function(id) {
+      document.querySelectorAll(".page-section").forEach(function(section) {
+        section.classList.remove("active");
+      });
+
+      const section = el(id);
+      if (section) section.classList.add("active");
+
+      setTimeout(demanderFlechesRules, 40);
+      setTimeout(demanderFlechesRules, 220);
+    };
+
+    function initialiserAudioGraph() {
+      const lecteur = el("lecteurAudio");
+      if (!lecteur || sourceNode) return;
+
+      try {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (!Ctx) return;
+
+        audioContext = audioContext || new Ctx();
+        sourceNode = audioContext.createMediaElementSource(lecteur);
+        gainNode = audioContext.createGain();
+        sourceNode.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+      } catch (e) {
+        sourceNode = null;
+        gainNode = null;
+      }
+    }
+
+    function appliquerVolume() {
+      const lecteur = el("lecteurAudio");
+      const slider = el("volumeBoost");
+      const volumeValue = el("volumeValue");
+      const warning = el("volumeWarning");
+      if (!lecteur || !slider) return;
+
+      const valeur = Number(slider.value || 100);
+      if (volumeValue) volumeValue.textContent = Math.round(valeur) + "%";
+
+      if (gainNode) {
+        gainNode.gain.value = Math.max(0, valeur / 100);
+        lecteur.volume = 1;
+      } else {
+        lecteur.volume = Math.max(0, Math.min(1, valeur / 100));
+      }
+
+      if (warning) {
+        if (valeur >= 150) {
+          warning.textContent = "⚠. 150% ???";
+          warning.classList.add("fort");
+          warning.style.display = "block";
+        } else if (valeur > 100) {
+          warning.textContent = "⚠. 100% is the good way.";
+          warning.classList.remove("fort");
+          warning.style.display = "block";
+        } else {
+          warning.classList.remove("fort");
+          warning.style.display = "none";
+        }
+      }
+    }
+
+    function majProgress() {
+      const lecteur = el("lecteurAudio");
+      const progress = el("audioProgress");
+      const current = el("audioCurrentTime");
+      const duration = el("audioDuration");
+      if (!lecteur) return;
+
+      if (current) current.textContent = formatTemps(lecteur.currentTime);
+      if (duration) duration.textContent = formatTemps(lecteur.duration);
+
+      if (progress && Number.isFinite(lecteur.duration) && lecteur.duration > 0 && !progress.dataset.dragging) {
+        progress.value = String(Math.round((lecteur.currentTime / lecteur.duration) * 1000));
+      }
+    }
+
+    function majSousTitres() {
+      const lecteur = el("lecteurAudio");
+      const display = el("audioWordDisplay");
+      if (!lecteur || !display) return;
+
+      let texte = "";
+      if (!lecteur.paused && !lecteur.ended) {
+        const t = lecteur.currentTime;
+        const ligne = sousTitresAudio.find(function(s) {
+          return t >= s.debut && t < s.fin;
+        });
+        if (ligne) texte = ligne.texte;
+      }
+
+      display.textContent = texte;
+      display.classList.toggle("active", !!texte);
+
+      if (!lecteur.paused && !lecteur.ended) {
+        rafSousTitres = requestAnimationFrame(majSousTitres);
+      } else {
+        rafSousTitres = null;
+      }
+    }
+
+    function demarrerSousTitres() {
+      if (!rafSousTitres) {
+        rafSousTitres = requestAnimationFrame(majSousTitres);
+      }
+    }
+
+    function initialiserAudio() {
+      const lecteur = el("lecteurAudio");
+      const slider = el("volumeBoost");
+      const progress = el("audioProgress");
+
+      if (!lecteur || lecteur.dataset.fastCoreOk) return;
+      lecteur.dataset.fastCoreOk = "1";
+
+      if (slider) slider.addEventListener("input", appliquerVolume, { passive: true });
+
+      if (progress) {
+        progress.addEventListener("input", function() {
+          if (!Number.isFinite(lecteur.duration) || lecteur.duration <= 0) return;
+          progress.dataset.dragging = "1";
+          lecteur.currentTime = (Number(progress.value || 0) / 1000) * lecteur.duration;
+          majProgress();
+        }, { passive: true });
+
+        progress.addEventListener("change", function() {
+          delete progress.dataset.dragging;
+          majProgress();
+        }, { passive: true });
+      }
+
+      lecteur.addEventListener("play", function() {
+        initialiserAudioGraph();
+        if (audioContext && audioContext.state === "suspended") {
+          audioContext.resume().catch(function() {});
+        }
+        appliquerVolume();
+        demarrerSousTitres();
+      }, { passive: true });
+
+      lecteur.addEventListener("timeupdate", function() {
+        majProgress();
+        majSousTitres();
+      }, { passive: true });
+
+      lecteur.addEventListener("loadedmetadata", majProgress, { passive: true });
+      lecteur.addEventListener("pause", majSousTitres, { passive: true });
+      lecteur.addEventListener("ended", majSousTitres, { passive: true });
+
+      appliquerVolume();
+      majProgress();
+    }
+
+    window.lancerMusique = function() {
+      window.afficherSection("accueil");
+      initialiserAudio();
+
+      const lecteur = el("lecteurAudio");
+      if (lecteur) {
+        initialiserAudioGraph();
+        if (audioContext && audioContext.state === "suspended") {
+          audioContext.resume().catch(function() {});
+        }
+        lecteur.play().catch(function() {});
+      }
+    };
+
+    function reveillerVideoFond() {
+      const video = el("fondVideo");
+      if (!video) return;
+
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+
+      const lecture = video.play();
+      if (lecture && lecture.catch) lecture.catch(function() {});
+    }
+
+    function viderSelection() {
+      try {
+        const selection = window.getSelection && window.getSelection();
+        if (selection && selection.removeAllRanges) selection.removeAllRanges();
+      } catch (e) {}
+    }
+
+    function brancher() {
+      document.documentElement.classList.remove("gpc-site-ready");
+      cacherIntroVideo();
+      initialiserAudio();
+      normaliserFlechesRules();
+      lancerTimer();
+
+      const rules = el("apropos");
+      if (rules && !rules.dataset.fastArrowOk) {
+        rules.dataset.fastArrowOk = "1";
+        rules.addEventListener("scroll", demanderFlechesRules, { passive: true });
+        rules.addEventListener("wheel", demanderFlechesRules, { passive: true });
+        rules.addEventListener("touchend", demanderFlechesRules, { passive: true });
+      }
+
+      setTimeout(demarrerIntro, 40);
+      setTimeout(reveillerVideoFond, 400);
+    }
+
+    document.addEventListener("selectionchange", viderSelection, { passive: true });
+    window.addEventListener("resize", demanderFlechesRules, { passive: true });
+    window.addEventListener("orientationchange", function() {
+      setTimeout(demanderFlechesRules, 140);
+      setTimeout(demanderFlechesRules, 420);
+    }, { passive: true });
+    window.addEventListener("pageshow", function(event) {
+      if (event && event.persisted) {
+        entrerSite();
+      }
+      setTimeout(reveillerVideoFond, 120);
+      setTimeout(demanderFlechesRules, 140);
+    }, { passive: true });
+    document.addEventListener("visibilitychange", function() {
+      if (!document.hidden) setTimeout(reveillerVideoFond, 120);
+    }, { passive: true });
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", brancher, { once: true, passive: true });
+    } else {
+      brancher();
+    }
+  })();
+</script>
+<script id="gpc-bravo-ios-gmail-script-final">
+  (function() {
+    "use strict";
+
+    let gmailFloatActuel = 0;
+    let gmailFloatCible = 0;
+    let rafGmail = null;
+    let dernierScrollY = window.scrollY || 0;
+    const ancienAfficherSection = window.afficherSection;
+
+    function el(id) {
+      return document.getElementById(id);
+    }
+
+    function majViewportIOS() {
+      const h = Math.max(320, Math.round(window.innerHeight || document.documentElement.clientHeight || screen.height || 720));
+      const w = Math.max(240, Math.round(window.innerWidth || document.documentElement.clientWidth || screen.width || 390));
+      document.documentElement.style.setProperty("--gpc-ih", h + "px");
+      document.documentElement.style.setProperty("--gpc-iw", w + "px");
+    }
+
+    function reveilVideoIOS() {
+      majViewportIOS();
+      const video = el("fondVideo");
+      if (!video) return;
+
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      video.setAttribute("muted", "");
+      video.setAttribute("preload", "metadata");
+
+      const playPromise = video.play();
+      if (playPromise && playPromise.catch) playPromise.catch(function() {});
+    }
+
+    function appliquerGmailFloat() {
+      const contact = el("contact");
+      if (contact) {
+        contact.style.setProperty("--gmail-smooth-float", gmailFloatActuel.toFixed(3) + "px");
+      }
+    }
+
+    function boucleGmailFluide() {
+      rafGmail = null;
+
+      gmailFloatActuel += (gmailFloatCible - gmailFloatActuel) * 0.038;
+      gmailFloatCible *= 0.915;
+
+      if (Math.abs(gmailFloatActuel) < 0.035 && Math.abs(gmailFloatCible) < 0.035) {
+        gmailFloatActuel = 0;
+        gmailFloatCible = 0;
+        appliquerGmailFloat();
+        return;
+      }
+
+      appliquerGmailFloat();
+      rafGmail = requestAnimationFrame(boucleGmailFluide);
+    }
+
+    function lancerGmailFluide(impulsion) {
+      const contact = el("contact");
+      if (!contact) return;
+
+      gmailFloatCible += typeof impulsion === "number" ? impulsion : 26;
+      gmailFloatCible = Math.max(-22, Math.min(34, gmailFloatCible));
+
+      if (!rafGmail) {
+        rafGmail = requestAnimationFrame(boucleGmailFluide);
+      }
+    }
+
+    window.afficherSection = function(id) {
+      if (typeof ancienAfficherSection === "function") {
+        ancienAfficherSection(id);
+      }
+
+      if (id === "contact") {
+        setTimeout(function() { lancerGmailFluide(28); }, 60);
+        setTimeout(function() { lancerGmailFluide(-6); }, 420);
+      }
+    };
+
+    window.addEventListener("resize", function() {
+      majViewportIOS();
+      setTimeout(majViewportIOS, 180);
+    }, { passive: true });
+
+    window.addEventListener("orientationchange", function() {
+      setTimeout(majViewportIOS, 80);
+      setTimeout(majViewportIOS, 380);
+      setTimeout(reveilVideoIOS, 420);
+    }, { passive: true });
+
+    window.addEventListener("pageshow", function() {
+      majViewportIOS();
+      setTimeout(reveilVideoIOS, 140);
+    }, { passive: true });
+
+    window.addEventListener("focus", function() {
+      majViewportIOS();
+      setTimeout(reveilVideoIOS, 140);
+    }, { passive: true });
+
+    document.addEventListener("visibilitychange", function() {
+      if (!document.hidden) {
+        majViewportIOS();
+        setTimeout(reveilVideoIOS, 140);
+      }
+    }, { passive: true });
+
+    window.addEventListener("scroll", function() {
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      const dy = y - dernierScrollY;
+      dernierScrollY = y;
+
+      const contact = el("contact");
+      if (contact && contact.classList.contains("active")) {
+        lancerGmailFluide(Math.max(-14, Math.min(14, dy * 0.045)));
+      }
+    }, { passive: true });
+
+    document.addEventListener("click", function(event) {
+      const texte = event.target && event.target.textContent ? event.target.textContent.trim() : "";
+      if (texte === "SEND A WAV / MP3" || texte === "@gmail" || texte === "@gmail.com") {
+        setTimeout(function() { lancerGmailFluide(28); }, 40);
+        setTimeout(function() { lancerGmailFluide(-6); }, 420);
+      }
+    }, { passive: true });
+
+    majViewportIOS();
+    setTimeout(reveilVideoIOS, 120);
   })();
 </script>
 </body>
