@@ -7667,6 +7667,338 @@ body {
     }
   }
 </style>
+<style id="gpc-devices-arrows-audit-final">
+  /*
+    DEVICE + ARROWS AUDIT FINAL
+    - Corrige définitivement le trait noir mobile : anciens triangles/pseudo-flèches neutralisés.
+    - Flèches RULES indépendantes du texte : modifier le H1 ne les touche pas.
+    - Flèche bas droite visible uniquement à la fin du scroll, desktop + mobile.
+    - Renfort responsive iOS/Android/Mac/PC/Linux sans changer le design.
+  */
+
+  html,
+  body {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
+  #fondVideo.video-bg,
+  .video-bg {
+    max-width: 100vw !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+  }
+
+  #apropos {
+    position: fixed !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+    scroll-behavior: smooth !important;
+    box-sizing: border-box !important;
+    isolation: isolate !important;
+  }
+
+  #apropos .card {
+    overflow: visible !important;
+    min-height: auto !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  #apropos h1 {
+    overflow: visible !important;
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Neutralisation complète de toutes les anciennes fausses flèches/pseudos */
+  #apropos::before,
+  #apropos::after,
+  #apropos .card::before,
+  #apropos .card::after,
+  #apropos .card > .magicbox-arrow,
+  #apropos .card .magicbox-arrow {
+    content: "" !important;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    filter: none !important;
+    transform: none !important;
+    pointer-events: none !important;
+  }
+
+  /*
+    IMPORTANT : reset border-left/top pour effacer les vieux triangles.
+    C'est probablement le trait noir vu devant/derrière la flèche haute mobile.
+  */
+  #apropos > .magicbox-arrow {
+    position: absolute !important;
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: none !important;
+    z-index: 999 !important;
+    box-sizing: border-box !important;
+    width: var(--rules-arrow-size, clamp(8px, 0.78vw, 13px)) !important;
+    height: var(--rules-arrow-size, clamp(8px, 0.78vw, 13px)) !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    text-shadow: none !important;
+    border: 0 solid transparent !important;
+    border-left: 0 solid transparent !important;
+    border-top: 0 solid transparent !important;
+    border-right: var(--rules-arrow-stroke, clamp(1.5px, 0.15vw, 2.2px)) solid #000000 !important;
+    border-bottom: var(--rules-arrow-stroke, clamp(1.5px, 0.15vw, 2.2px)) solid #000000 !important;
+    border-radius: 0 !important;
+    filter:
+      drop-shadow(0 0 3px rgba(255,255,255,1))
+      drop-shadow(0 0 7px rgba(255,255,255,.78))
+      drop-shadow(0 0 12px rgba(255,255,255,.46)) !important;
+    transform-origin: 50% 50% !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    will-change: opacity, transform !important;
+    transition:
+      opacity 460ms cubic-bezier(.22, 1, .36, 1),
+      transform 580ms cubic-bezier(.22, 1, .36, 1),
+      filter 580ms cubic-bezier(.22, 1, .36, 1) !important;
+  }
+
+  #apropos > .magicbox-arrow-down {
+    top: var(--rules-arrow-gap, clamp(10px, 1.1vw, 16px)) !important;
+    right: var(--rules-arrow-gap-x, clamp(16px, 2.1vw, 28px)) !important;
+    bottom: auto !important;
+    left: auto !important;
+    opacity: 1 !important;
+    transform: rotate(45deg) translate3d(0,0,0) scale(1) !important;
+  }
+
+  #apropos > .magicbox-arrow-up {
+    top: auto !important;
+    right: var(--rules-arrow-gap-x, clamp(16px, 2.1vw, 28px)) !important;
+    bottom: var(--rules-arrow-gap, clamp(10px, 1.1vw, 16px)) !important;
+    left: auto !important;
+    opacity: 0 !important;
+    transform: rotate(-135deg) translate3d(0, 7px, 0) scale(.86) !important;
+  }
+
+  #apropos.rules-at-end > .magicbox-arrow-up,
+  #apropos.rules-no-scroll > .magicbox-arrow-up {
+    opacity: 1 !important;
+    transform: rotate(-135deg) translate3d(0,0,0) scale(1) !important;
+    filter:
+      drop-shadow(0 0 4px rgba(255,255,255,1))
+      drop-shadow(0 0 9px rgba(255,255,255,.86))
+      drop-shadow(0 0 15px rgba(255,255,255,.54)) !important;
+  }
+
+  @media screen and (min-width: 769px) {
+    html,
+    body {
+      height: 100dvh !important;
+      min-height: 100dvh !important;
+      overflow: hidden !important;
+    }
+
+    .overlay {
+      height: 100dvh !important;
+      min-height: 100dvh !important;
+      max-height: 100dvh !important;
+      overflow: hidden !important;
+    }
+
+    #apropos {
+      max-width: calc(100vw - 34px) !important;
+      max-height: calc(100dvh - 178px) !important;
+      scroll-padding-top: clamp(30px, 3vw, 44px) !important;
+      scroll-padding-bottom: clamp(36px, 3.5vw, 54px) !important;
+      --rules-arrow-gap: clamp(10px, 1.1vw, 16px);
+      --rules-arrow-gap-x: clamp(16px, 2.1vw, 28px);
+      --rules-arrow-size: clamp(8px, .78vw, 13px);
+      --rules-arrow-stroke: clamp(1.5px, .15vw, 2.2px);
+    }
+
+    .paris-timer,
+    nav,
+    #contact,
+    .audio-box {
+      max-width: 100vw !important;
+      box-sizing: border-box !important;
+    }
+
+    #contact h1,
+    #apropos h1 {
+      max-width: 96vw !important;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1050px),
+         screen and (min-width: 769px) and (max-height: 760px) {
+    #apropos {
+      max-width: calc(100vw - 30px) !important;
+      max-height: calc(100dvh - 160px) !important;
+    }
+
+    .audio-box {
+      width: min(86vw, 310px) !important;
+    }
+
+    .volume-slider-wrap,
+    .audio-progress-wrap,
+    .audio-time-row {
+      width: min(88vw, 350px) !important;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    html,
+    body {
+      width: 100vw !important;
+      min-height: var(--gpc-ih, 100dvh) !important;
+      overflow-x: hidden !important;
+    }
+
+    #copyrightIntroPage,
+    .copyright-intro-page,
+    #introPage,
+    #introPage.intro-page {
+      height: var(--gpc-ih, 100dvh) !important;
+      min-height: var(--gpc-ih, 100dvh) !important;
+      background: #000000 !important;
+    }
+
+    #fondVideo.video-bg,
+    .video-bg {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: var(--gpc-ih, 100dvh) !important;
+      min-height: var(--gpc-ih, 100dvh) !important;
+      object-fit: fill !important;
+      object-position: center center !important;
+      transform: translate3d(0,0,0) !important;
+      -webkit-transform: translate3d(0,0,0) !important;
+      pointer-events: none !important;
+    }
+
+    .overlay {
+      max-width: 100vw !important;
+      overflow-x: hidden !important;
+      padding-bottom: calc(260px + env(safe-area-inset-bottom)) !important;
+    }
+
+    nav {
+      padding-top: calc(12px + env(safe-area-inset-top)) !important;
+    }
+
+    .audio-box {
+      bottom: calc(38px + env(safe-area-inset-bottom)) !important;
+      width: min(84vw, 245px) !important;
+    }
+
+    #apropos {
+      scroll-padding-top: clamp(28px, 8vw, 42px) !important;
+      scroll-padding-bottom: clamp(42px, 12vw, 68px) !important;
+      --rules-arrow-size: clamp(8px, 2.6vw, 11px);
+      --rules-arrow-stroke: clamp(1.5px, .55vw, 2px);
+      --rules-arrow-gap: clamp(9px, 3vw, 15px);
+      --rules-arrow-gap-x: clamp(13px, 5vw, 22px);
+    }
+
+    #apropos > .magicbox-arrow {
+      transition:
+        opacity 520ms cubic-bezier(.16, 1, .3, 1),
+        transform 660ms cubic-bezier(.16, 1, .3, 1),
+        filter 660ms cubic-bezier(.16, 1, .3, 1) !important;
+    }
+
+    #contact h1 {
+      max-width: 96vw !important;
+      overflow-wrap: anywhere !important;
+    }
+  }
+
+  @supports (-webkit-touch-callout: none) {
+    @media screen and (max-width: 768px) {
+      html,
+      body {
+        min-height: var(--gpc-ih, 100svh) !important;
+      }
+
+      #copyrightIntroPage,
+      .copyright-intro-page,
+      #introPage,
+      #introPage.intro-page,
+      #fondVideo.video-bg,
+      .video-bg {
+        height: var(--gpc-ih, 100svh) !important;
+        min-height: var(--gpc-ih, 100svh) !important;
+      }
+    }
+  }
+
+  @media screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+    #apropos {
+      --rules-arrow-size: 8px;
+      --rules-arrow-stroke: 1.5px;
+      --rules-arrow-gap: 8px;
+      --rules-arrow-gap-x: 14px;
+    }
+
+    .audio-box {
+      width: min(78vw, 220px) !important;
+    }
+  }
+</style>
+<style id="gpc-bravo-desktop-timer-70px-final">
+  /*
+    DESKTOP TIMER +70PX UP
+    Ajout final : le timer ordinateur remonte de 70px de plus.
+    Mobile Android/iPhone inchangé.
+  */
+
+  @media screen and (min-width: 769px) {
+    .paris-timer {
+      top: max(2px, calc(clamp(66px, 11.4dvh, 142px) - clamp(38px, 4.25vw, 70px) - 60px - 70px)) !important;
+      font-size: clamp(46px, 5.45vw, 84px) !important;
+      transform: translate3d(-50%, 0, 0) !important;
+      will-change: auto !important;
+    }
+  }
+
+  @media screen and (min-width: 1400px) and (min-height: 820px) {
+    .paris-timer {
+      top: max(2px, calc(clamp(76px, 10.8dvh, 154px) - clamp(40px, 4vw, 72px) - 60px - 70px)) !important;
+      font-size: clamp(48px, 5.1vw, 86px) !important;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1050px),
+         screen and (min-width: 769px) and (max-height: 760px) {
+    .paris-timer {
+      top: max(2px, calc(clamp(48px, 10.8dvh, 92px) - clamp(28px, 3.25vw, 46px) - 60px - 70px)) !important;
+      font-size: clamp(36px, 4.25vw, 61px) !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -8829,6 +9161,138 @@ body {
 
     majViewportIOS();
     setTimeout(reveilVideoIOS, 120);
+  })();
+</script>
+<script id="gpc-devices-arrows-audit-script-final">
+  (function() {
+    "use strict";
+
+    let raf = null;
+    let resizeObserver = null;
+
+    function box() {
+      return document.getElementById("apropos");
+    }
+
+    function majViewportReel() {
+      const h = Math.max(320, Math.round(window.innerHeight || document.documentElement.clientHeight || screen.height || 720));
+      const w = Math.max(240, Math.round(window.innerWidth || document.documentElement.clientWidth || screen.width || 390));
+      document.documentElement.style.setProperty("--gpc-ih", h + "px");
+      document.documentElement.style.setProperty("--gpc-iw", w + "px");
+    }
+
+    function prendreOuCreer(b, classe) {
+      const toutes = Array.from(b.querySelectorAll("." + classe));
+      const direct = toutes.find(function(node) {
+        return node.parentNode === b;
+      });
+      const premiere = direct || toutes[0] || document.createElement("span");
+
+      premiere.className = "magicbox-arrow " + classe;
+      premiere.setAttribute("aria-hidden", "true");
+      try { premiere.setAttribute("draggable", "false"); } catch (e) {}
+
+      toutes.forEach(function(node) {
+        if (node !== premiere && node.parentNode) node.parentNode.removeChild(node);
+      });
+
+      return premiere;
+    }
+
+    function normaliser() {
+      const b = box();
+      if (!b) return null;
+
+      b.querySelectorAll(".card .magicbox-arrow").forEach(function(node) {
+        if (node && node.parentNode) node.parentNode.removeChild(node);
+      });
+
+      const down = prendreOuCreer(b, "magicbox-arrow-down");
+      const up = prendreOuCreer(b, "magicbox-arrow-up");
+
+      if (down.parentNode !== b || b.firstElementChild !== down) {
+        b.insertBefore(down, b.firstChild);
+      }
+
+      if (up.parentNode !== b || b.lastElementChild !== up) {
+        b.appendChild(up);
+      }
+
+      return b;
+    }
+
+    function verifier() {
+      raf = null;
+      majViewportReel();
+
+      const b = normaliser();
+      if (!b) return;
+
+      const visible = b.clientHeight || 0;
+      const total = b.scrollHeight || 0;
+      const marge = Math.max(4, Math.round(visible * 0.045));
+      const maxScroll = Math.max(0, total - visible);
+      const noScroll = maxScroll <= marge;
+      const atEnd = noScroll || (b.scrollTop || 0) >= maxScroll - marge;
+
+      b.classList.toggle("rules-no-scroll", noScroll);
+      b.classList.toggle("rules-at-end", atEnd);
+      b.style.setProperty("--rules-scrollable-height", String(total));
+    }
+
+    function demander() {
+      if (raf) return;
+      raf = requestAnimationFrame(verifier);
+    }
+
+    function brancher() {
+      const b = normaliser();
+      if (!b) return;
+
+      if (!b.dataset.devicesArrowsAuditOk) {
+        b.dataset.devicesArrowsAuditOk = "1";
+        b.addEventListener("scroll", demander, { passive: true });
+        b.addEventListener("wheel", demander, { passive: true });
+        b.addEventListener("touchmove", demander, { passive: true });
+        b.addEventListener("touchend", demander, { passive: true });
+      }
+
+      if ("ResizeObserver" in window && !resizeObserver) {
+        resizeObserver = new ResizeObserver(demander);
+        resizeObserver.observe(b);
+        const card = b.querySelector(".card");
+        const h1 = b.querySelector("h1");
+        if (card) resizeObserver.observe(card);
+        if (h1) resizeObserver.observe(h1);
+      }
+
+      demander();
+      setTimeout(demander, 160);
+      setTimeout(demander, 520);
+    }
+
+    ["DOMContentLoaded", "load", "pageshow", "resize"].forEach(function(evt) {
+      window.addEventListener(evt, function() {
+        majViewportReel();
+        brancher();
+      }, { passive: true });
+    });
+
+    window.addEventListener("orientationchange", function() {
+      setTimeout(function() { majViewportReel(); brancher(); }, 80);
+      setTimeout(function() { majViewportReel(); demander(); }, 420);
+    }, { passive: true });
+
+    document.addEventListener("click", function(event) {
+      const texte = event.target && event.target.textContent ? event.target.textContent.trim() : "";
+      if (texte === "RULES") {
+        setTimeout(brancher, 40);
+        setTimeout(demander, 240);
+      }
+    }, { passive: true });
+
+    majViewportReel();
+    brancher();
   })();
 </script>
 </body>
