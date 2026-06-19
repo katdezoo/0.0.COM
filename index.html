@@ -25,14 +25,103 @@
 <style id="gpc-fusee-ultra-speed-final">@media screen and (min-width:769px){.paris-timer{top:max(2px,calc(clamp(66px,11.4dvh,142px) - clamp(38px,4.25vw,70px) - 60px - 180px)) !important;font-size:clamp(46px,5.45vw,84px) !important;transform:translate3d(-50%,0,0) !important;will-change:auto !important}}@media screen and (min-width:1400px) and (min-height:820px){.paris-timer{top:max(2px,calc(clamp(76px,10.8dvh,154px) - clamp(40px,4vw,72px) - 60px - 180px)) !important;font-size:clamp(48px,5.1vw,86px) !important}}@media screen and (min-width:769px) and (max-width:1050px),screen and (min-width:769px) and (max-height:760px){.paris-timer{top:max(2px,calc(clamp(48px,10.8dvh,92px) - clamp(28px,3.25vw,46px) - 60px - 180px)) !important;font-size:clamp(36px,4.25vw,61px) !important}}.page-section:not(.active){display:none !important;content-visibility:hidden !important;pointer-events:none !important}#fondVideo,.video-bg{pointer-events:none !important;will-change:auto !important;contain:layout paint style !important}#apropos.gpc-starthere-mode h1{text-align:center !important;white-space:normal !important;word-break:normal !important;overflow-wrap:anywhere !important;font-size:var(--gpc-rules-font-size-lock,inherit) !important;line-height:var(--gpc-rules-line-height-lock,inherit) !important;letter-spacing:var(--gpc-rules-letter-spacing-lock,inherit) !important}@media screen and (max-width:768px){html,body{text-rendering:optimizeSpeed !important}#introVideo,#introGif,.intro-gif,.volume-white-glow-layer{display:none !important;opacity:0 !important;visibility:hidden !important;pointer-events:none !important}nav,.paris-timer,.audio-box,#apropos,#contact{backface-visibility:hidden !important;-webkit-backface-visibility:hidden !important}#volumeTextWhiteGlow,#volumeThumbWhiteGlow{display:none !important}}</style>
 <link rel="preload" href="./téma.mp4" as="video" type="video/mp4">
 <style id="gpc-video-mp4-antifreeze-final">#fondVideo.gpc-video-bg,#fondVideo.video-bg{position:fixed!important;left:0!important;top:0!important;width:100vw!important;height:100vh!important;min-width:100vw!important;min-height:100vh!important;max-width:none!important;max-height:none!important;object-fit:fill!important;object-position:center center!important;background:#ff00ff!important;z-index:0!important;pointer-events:none!important;user-select:none!important;-webkit-user-select:none!important;transform:translate3d(0,0,0)!important;backface-visibility:hidden!important;-webkit-backface-visibility:hidden!important;contain:paint!important;will-change:auto!important}html.gpc-site-ready #fondVideo.gpc-video-bg{display:block!important;visibility:visible!important;opacity:1!important}@supports (height:100dvh){#fondVideo.gpc-video-bg,#fondVideo.video-bg{height:100dvh!important;min-height:100dvh!important}}@supports (-webkit-touch-callout:none){#fondVideo.gpc-video-bg,#fondVideo.video-bg{height:var(--gpc-ih,100svh)!important;min-height:var(--gpc-ih,100svh)!important}}@media screen and (max-width:768px){#fondVideo.gpc-video-bg,#fondVideo.video-bg{width:100vw!important;height:var(--gpc-ih,100dvh)!important;min-height:var(--gpc-ih,100dvh)!important;object-fit:fill!important;object-position:center center!important;transform:translate3d(0,0,0)!important}}@media screen and (max-width:900px) and (max-height:500px) and (orientation:landscape){#fondVideo.gpc-video-bg,#fondVideo.video-bg{width:100vw!important;height:100vh!important;object-fit:fill!important;object-position:center center!important}}</style>
-<style id="gpc-desktop-timer-180-force-final">@media screen and (min-width:769px){.paris-timer{top:max(2px,calc(clamp(66px,11.4dvh,142px) - clamp(38px,4.25vw,70px) - 60px - 180px))!important;font-size:clamp(46px,5.45vw,84px)!important;transform:translate3d(-50%,0,0)!important;will-change:auto!important}}@media screen and (min-width:1400px) and (min-height:820px){.paris-timer{top:max(2px,calc(clamp(76px,10.8dvh,154px) - clamp(40px,4vw,72px) - 60px - 180px))!important;font-size:clamp(48px,5.1vw,86px)!important}}@media screen and (min-width:769px) and (max-width:1050px),screen and (min-width:769px) and (max-height:760px){.paris-timer{top:max(2px,calc(clamp(48px,10.8dvh,92px) - clamp(28px,3.25vw,46px) - 60px - 180px))!important;font-size:clamp(36px,4.25vw,61px)!important}}</style>
-<style id="gpc-scroll-lite-topsite-final">
+<style id="gpc-gold-fusee-stable-final">
   /*
-    TOP SITE SCROLL LITE
-    Au repos : visuel normal.
-    Pendant le scroll seulement : glow/ombres énormes allégés pour éviter les freezes.
-    C'est la solution la plus fiable: le texte reste vrai, visible, éditable, sans clone/canvas.
+    GOLD FUSEE STABLE
+    Pas de canvas, pas de clones, pas de moteur scroll liquide continu.
+    Visuel conservé, mais calculs lourds coupés pendant les interactions.
   */
+  #gpcGoldIntro {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 2147483647 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    background: #000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 22px !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateZ(0) !important;
+  }
+
+  #gpcGoldIntro.gpc-gold-hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: opacity 360ms ease, visibility 0s linear 360ms !important;
+  }
+
+  #gpcGoldIntroText {
+    color: #fff !important;
+    white-space: pre-line !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-weight: 800 !important;
+    font-size: clamp(20px, 4.3vw, 34px) !important;
+    line-height: 1.22 !important;
+    text-shadow: 0 0 4px #fff, 0 0 12px rgba(255,255,255,.55) !important;
+    max-width: min(92vw, 920px) !important;
+  }
+
+  html.gpc-site-ready #copyrightIntroPage,
+  html.gpc-site-ready #introPage,
+  html.gpc-site-ready #introGif,
+  #introVideo {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  #fondVideo.gpc-video-bg,
+  #fondVideo.video-bg {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    min-width: 100vw !important;
+    min-height: 100vh !important;
+    object-fit: fill !important;
+    object-position: center center !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    background: #ff00ff !important;
+    transform: translate3d(0,0,0) !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    contain: paint !important;
+    will-change: auto !important;
+  }
+
+  @supports (height: 100dvh) {
+    #fondVideo.gpc-video-bg,
+    #fondVideo.video-bg {
+      height: 100dvh !important;
+      min-height: 100dvh !important;
+    }
+  }
+
+  @supports (-webkit-touch-callout: none) {
+    #gpcGoldIntro,
+    #fondVideo.gpc-video-bg,
+    #fondVideo.video-bg {
+      height: var(--gpc-ih, 100svh) !important;
+      min-height: var(--gpc-ih, 100svh) !important;
+    }
+  }
+
+  .page-section:not(.active) {
+    display: none !important;
+    content-visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
   #apropos.active {
     overflow-y: auto !important;
     overflow-x: hidden !important;
@@ -42,6 +131,11 @@
     scroll-behavior: auto !important;
     contain: layout paint style !important;
     scrollbar-gutter: stable both-edges !important;
+    top: var(--gpc-box-top, auto) !important;
+    height: var(--gpc-box-height, auto) !important;
+    max-height: var(--gpc-box-height, auto) !important;
+    transform: translate3d(-50%, var(--gpc-box-float, 0px), 0) !important;
+    will-change: auto !important;
   }
 
   #apropos .card,
@@ -51,10 +145,10 @@
   }
 
   #apropos.active .card > h1 {
+    contain: paint !important;
     transform: translate3d(0,0,0) !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
-    contain: paint !important;
     will-change: auto !important;
   }
 
@@ -64,6 +158,7 @@
     letter-spacing: var(--gpc-rules-letter-spacing-lock, inherit) !important;
   }
 
+  html.gpc-user-busy #apropos.active .card > h1,
   html.gpc-box-scrolling #apropos.active .card > h1 {
     text-shadow:
       -1.5px -1.5px 0 #000,
@@ -74,22 +169,48 @@
       -1.5px 1.5px 0 #000,
       0 1.5px 0 #000,
       1.5px 1.5px 0 #000,
-      0 0 8px #ff0000 !important;
+      0 0 7px #ff0000 !important;
     -webkit-text-stroke-width: 0.55px !important;
-    transform: translate3d(0,0,0) !important;
   }
 
-  html.gpc-box-scrolling #fondVideo {
-    opacity: .985 !important;
+  html.gpc-user-busy * {
+    animation-play-state: paused !important;
+    transition-duration: 0s !important;
+  }
+
+  @media screen and (min-width: 769px) {
+    .paris-timer {
+      top: max(2px, calc(clamp(66px,11.4dvh,142px) - clamp(38px,4.25vw,70px) - 60px - 180px)) !important;
+      font-size: clamp(46px,5.45vw,84px) !important;
+      transform: translate3d(-50%,0,0) !important;
+      will-change: auto !important;
+    }
+  }
+
+  @media screen and (min-width: 1400px) and (min-height: 820px) {
+    .paris-timer {
+      top: max(2px, calc(clamp(76px,10.8dvh,154px) - clamp(40px,4vw,72px) - 60px - 180px)) !important;
+      font-size: clamp(48px,5.1vw,86px) !important;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1050px),
+         screen and (min-width: 769px) and (max-height: 760px) {
+    .paris-timer {
+      top: max(2px, calc(clamp(48px,10.8dvh,92px) - clamp(28px,3.25vw,46px) - 60px - 180px)) !important;
+      font-size: clamp(36px,4.25vw,61px) !important;
+    }
   }
 
   @media screen and (max-width: 768px) {
     #apropos.active {
-      -webkit-overflow-scrolling: touch !important;
-      overscroll-behavior: contain !important;
-      contain: layout paint style !important;
+      width: calc(100vw - 24px) !important;
+      max-width: calc(100vw - 24px) !important;
+      min-height: 112px !important;
+      padding: 22px 13px !important;
     }
 
+    html.gpc-user-busy #apropos.active .card > h1,
     html.gpc-box-scrolling #apropos.active .card > h1 {
       text-shadow:
         -1px -1px 0 #000,
@@ -100,8 +221,17 @@
         -1px 1px 0 #000,
         0 1px 0 #000,
         1px 1px 0 #000,
-        0 0 6px #ff0000 !important;
-      -webkit-text-stroke-width: 0.45px !important;
+        0 0 5px #ff0000 !important;
+      -webkit-text-stroke-width: .45px !important;
+    }
+  }
+
+  @media screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+    #apropos.active {
+      width: min(92vw, 680px) !important;
+      max-width: min(92vw, 680px) !important;
+      min-height: 82px !important;
+      padding: 18px 10px !important;
     }
   }
 </style>
@@ -960,418 +1090,6 @@ PT: -pronto para uma grande competição?/<br></template>
     majAncreGmailHaute();
   })();
 </script>
-<script id="gpc-intro-black-sequence-restored-script-final">
-  (function() {
-    "use strict";
-
-    let started = false;
-    const timers = [];
-
-    function $(id) {
-      return document.getElementById(id);
-    }
-
-    function setLater(fn, ms) {
-      const t = setTimeout(fn, ms);
-      timers.push(t);
-      return t;
-    }
-
-    function viewport() {
-      const h = Math.max(320, Math.round(window.innerHeight || document.documentElement.clientHeight || screen.height || 720));
-      const w = Math.max(240, Math.round(window.innerWidth || document.documentElement.clientWidth || screen.width || 390));
-      document.documentElement.style.setProperty("--gpc-ih", h + "px");
-      document.documentElement.style.setProperty("--gpc-iw", w + "px");
-    }
-
-    function hideOldIntroLayers() {
-      ["copyrightIntroPage", "introPage", "introGif", "introVideo"].forEach(function(id) {
-        const node = $(id);
-        if (!node) return;
-        if (id === "introVideo") {
-          try { node.pause(); } catch (e) {}
-        }
-        node.style.display = "none";
-        node.style.opacity = "0";
-        node.style.visibility = "hidden";
-        node.style.pointerEvents = "none";
-      });
-    }
-
-    function menu(show) {
-      const nav = $("menuPrincipal");
-      const audioBox = document.querySelector(".audio-box");
-      if (nav) nav.style.display = show ? "" : "none";
-      if (audioBox) audioBox.style.display = show ? "block" : "none";
-    }
-
-    function ensureOverlay() {
-      let overlay = $("gpcIntroSequenceFinal");
-      if (!overlay) {
-        overlay = document.createElement("div");
-        overlay.id = "gpcIntroSequenceFinal";
-        overlay.setAttribute("aria-hidden", "true");
-
-        const text = document.createElement("div");
-        text.id = "gpcIntroSequenceFinalText";
-        overlay.appendChild(text);
-
-        document.body.appendChild(overlay);
-      }
-      return overlay;
-    }
-
-    function textNode() {
-      const overlay = ensureOverlay();
-      let text = $("gpcIntroSequenceFinalText");
-      if (!text) {
-        text = document.createElement("div");
-        text.id = "gpcIntroSequenceFinalText";
-        overlay.appendChild(text);
-      }
-      return text;
-    }
-
-    function showText(txt) {
-      viewport();
-      hideOldIntroLayers();
-      menu(false);
-
-      const overlay = ensureOverlay();
-      const text = textNode();
-
-      overlay.classList.remove("gpc-intro-hidden");
-      overlay.classList.add("gpc-intro-visible");
-      text.textContent = txt;
-    }
-
-    function enterSite() {
-      const overlay = ensureOverlay();
-      overlay.classList.remove("gpc-intro-visible");
-      overlay.classList.add("gpc-intro-hidden");
-
-      hideOldIntroLayers();
-      document.documentElement.classList.add("gpc-site-ready");
-      document.documentElement.classList.remove("gpc-intro-stage-text", "gpc-intro-stage-video");
-      menu(true);
-
-      const video = $("fondVideo");
-      if (video) {
-        video.muted = true;
-        video.loop = true;
-        video.playsInline = true;
-        video.setAttribute("playsinline", "");
-        video.setAttribute("webkit-playsinline", "");
-        video.setAttribute("muted", "");
-        video.setAttribute("preload", "metadata");
-        const playPromise = video.play();
-        if (playPromise && playPromise.catch) playPromise.catch(function() {});
-      }
-    }
-
-    function startIntro() {
-      if (started) return;
-      started = true;
-
-      timers.forEach(clearTimeout);
-      timers.length = 0;
-
-      document.documentElement.classList.remove("gpc-site-ready");
-      viewport();
-      showText("© 2026 catdezoo<3. all rights reserved.");
-
-      setLater(function() {
-        showText("⚠. -no epilepsy please,\nand headphones please/");
-      }, 2600);
-
-      setLater(function() {
-        showText("<3");
-      }, 5200);
-
-      setLater(enterSite, 7200);
-    }
-
-    window.addEventListener("resize", viewport, { passive: true });
-    window.addEventListener("orientationchange", function() {
-      setLater(viewport, 80);
-      setLater(viewport, 360);
-    }, { passive: true });
-
-    window.addEventListener("pageshow", function(event) {
-      viewport();
-      if (event && event.persisted) {
-        enterSite();
-      }
-    }, { passive: true });
-
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", startIntro, { once: true, passive: true });
-    } else {
-      startIntro();
-    }
-  })();
-</script>
-<script id="gpc-rules-hier-size-position-script-final">
-  (function() {
-    "use strict";
-
-    const root = document.documentElement;
-    const oldAfficherSection = window.afficherSection;
-
-    let largeurStable = 0;
-    let hauteurStable = 0;
-    let orientationStable = "";
-
-    let topActuel = null;
-    let topCible = null;
-    let hauteurActuelle = null;
-    let hauteurCible = null;
-
-    let floatActuel = 0;
-    let floatCible = 0;
-    let dernierScrollY = window.scrollY || 0;
-    let dernierBoxScroll = 0;
-    let raf = null;
-    let retourTimer = null;
-
-    function el(id) {
-      return document.getElementById(id);
-    }
-
-    function box() {
-      return el("apropos");
-    }
-
-    function mobile() {
-      return (window.innerWidth || document.documentElement.clientWidth || 390) <= 768;
-    }
-
-    function active() {
-      const b = box();
-      return !!(b && b.classList.contains("active"));
-    }
-
-    function clamp(v, min, max) {
-      return Math.max(min, Math.min(max, v));
-    }
-
-    function dimensions(force) {
-      const w = Math.round(window.innerWidth || document.documentElement.clientWidth || 390);
-      const h = Math.round(window.innerHeight || document.documentElement.clientHeight || screen.height || 760);
-      const orientation = w > h ? "landscape" : "portrait";
-      const largeurChange = Math.abs(w - largeurStable) > 24;
-      const orientationChange = orientation !== orientationStable;
-
-      if (force || !largeurStable || largeurChange || orientationChange) {
-        largeurStable = w;
-        hauteurStable = h;
-        orientationStable = orientation;
-      }
-
-      const ws = largeurStable || w;
-      const hs = hauteurStable || h;
-
-      return {
-        w: ws,
-        h: hs,
-        paysage: ws <= 900 && hs <= 500 && window.matchMedia("(orientation: landscape)").matches
-      };
-    }
-
-    function topLecteurMedia() {
-      const d = dimensions(false);
-      const lecteur = document.querySelector(".audio-box");
-
-      if (lecteur) {
-        const rect = lecteur.getBoundingClientRect();
-        if (rect && rect.top > 0 && rect.top < d.h) {
-          return rect.top;
-        }
-      }
-
-      return d.h - 170;
-    }
-
-    function appliquer() {
-      const b = box();
-      if (!b) return;
-      b.style.setProperty("--rules-hier-top", topActuel.toFixed(2) + "px");
-      b.style.setProperty("--rules-hier-height", hauteurActuelle.toFixed(2) + "px");
-      b.style.setProperty("--rules-hier-float", floatActuel.toFixed(2) + "px");
-    }
-
-    function calculer(force) {
-      const b = box();
-
-      if (!mobile() || !b || !active()) {
-        root.classList.remove("gpc-rules-hier-active");
-        root.classList.remove("rules-page-scroll-mode");
-        root.style.removeProperty("--rules-page-scroll-extra");
-        if (b) {
-          b.style.removeProperty("--rules-hier-top");
-          b.style.removeProperty("--rules-hier-height");
-          b.style.removeProperty("--rules-hier-float");
-        }
-        topActuel = null;
-        topCible = null;
-        hauteurActuelle = null;
-        hauteurCible = null;
-        floatActuel = 0;
-        floatCible = 0;
-        raf = null;
-        return;
-      }
-
-      const d = dimensions(!!force);
-      const extra = d.paysage ? 320 : 520;
-      root.style.setProperty("--rules-page-scroll-extra", extra + "px");
-      root.classList.add("gpc-rules-hier-active");
-      root.classList.add("rules-page-scroll-mode");
-
-      const descenteLegere = d.paysage ? 8 : clamp(Math.round(d.h * 0.018), 10, 18);
-      const topAncre = Math.round(d.h * (d.paysage ? 0.42 : 0.545) + descenteLegere);
-      const margeLecteur = d.paysage ? 5 : 6;
-      const basFinal = Math.round(topLecteurMedia() - margeLecteur);
-      const hauteurGrande = Math.max(d.paysage ? 82 : 112, basFinal - topAncre);
-
-      topCible = topAncre;
-      hauteurCible = hauteurGrande;
-
-      if (topActuel === null || force) {
-        topActuel = topCible;
-        hauteurActuelle = hauteurCible;
-      }
-
-      appliquer();
-      lancer();
-    }
-
-    function retourSouple() {
-      clearTimeout(retourTimer);
-      retourTimer = setTimeout(function() {
-        floatCible = 0;
-        lancer();
-      }, 140);
-    }
-
-    function impulsionPage() {
-      if (!mobile() || !active()) return;
-      const y = window.scrollY || document.documentElement.scrollTop || 0;
-      const dy = y - dernierScrollY;
-      dernierScrollY = y;
-
-      if (Math.abs(dy) > 0.2) {
-        floatCible = clamp(floatCible + dy * 0.065, -18, 18);
-        retourSouple();
-        lancer();
-      }
-    }
-
-    function impulsionBox() {
-      const b = box();
-      if (!b || !mobile() || !active()) return;
-
-      const y = b.scrollTop || 0;
-      const dy = y - dernierBoxScroll;
-      dernierBoxScroll = y;
-
-      if (Math.abs(dy) > 0.25) {
-        floatCible = clamp(floatCible + dy * 0.035, -14, 14);
-        retourSouple();
-        lancer();
-      }
-    }
-
-    function lancer() {
-      if (!raf) raf = requestAnimationFrame(animer);
-    }
-
-    function animer() {
-      const b = box();
-      if (!mobile() || !b || !active() || topCible === null || hauteurCible === null) {
-        raf = null;
-        return;
-      }
-
-      const douceurPosition = 0.024;
-      const douceurFloat = 0.040;
-      const stop = 0.035;
-
-      const dt = topCible - topActuel;
-      const dh = hauteurCible - hauteurActuelle;
-      const df = floatCible - floatActuel;
-
-      topActuel = Math.abs(dt) < stop ? topCible : topActuel + dt * douceurPosition;
-      hauteurActuelle = Math.abs(dh) < stop ? hauteurCible : hauteurActuelle + dh * douceurPosition;
-      floatActuel = Math.abs(df) < stop ? floatCible : floatActuel + df * douceurFloat;
-
-      appliquer();
-
-      if (Math.abs(dt) > stop || Math.abs(dh) > stop || Math.abs(df) > stop) {
-        raf = requestAnimationFrame(animer);
-      } else {
-        raf = null;
-      }
-    }
-
-    function brancherScrollBox() {
-      const b = box();
-      if (!b || b.dataset.rulesHierOk) return;
-      b.dataset.rulesHierOk = "1";
-      b.addEventListener("scroll", impulsionBox, { passive: true });
-      b.addEventListener("touchmove", impulsionBox, { passive: true });
-      b.addEventListener("wheel", impulsionBox, { passive: true });
-    }
-
-    window.afficherSection = function(id) {
-      if (typeof oldAfficherSection === "function") oldAfficherSection(id);
-
-      if (id === "apropos") {
-        topActuel = null;
-        hauteurActuelle = null;
-        floatActuel = 0;
-        floatCible = 0;
-        dernierBoxScroll = 0;
-        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-        setTimeout(function() { calculer(true); brancherScrollBox(); }, 45);
-        setTimeout(function() { floatCible = 10; retourSouple(); lancer(); }, 100);
-        setTimeout(function() { calculer(false); }, 240);
-      } else {
-        setTimeout(function() { calculer(false); }, 60);
-      }
-    };
-
-    window.addEventListener("scroll", function() {
-      calculer(false);
-      impulsionPage();
-    }, { passive: true });
-
-    window.addEventListener("resize", function() {
-      calculer(false);
-    }, { passive: true });
-
-    window.addEventListener("orientationchange", function() {
-      setTimeout(function() { calculer(true); }, 120);
-      setTimeout(function() { calculer(true); }, 420);
-    }, { passive: true });
-
-    window.addEventListener("pageshow", function() {
-      setTimeout(function() { calculer(true); brancherScrollBox(); }, 120);
-    }, { passive: true });
-
-    document.addEventListener("click", function(event) {
-      const texte = event.target && event.target.textContent ? event.target.textContent.trim() : "";
-      if (texte === "RULES") {
-        setTimeout(function() { calculer(true); brancherScrollBox(); }, 45);
-        setTimeout(function() { floatCible = 10; retourSouple(); lancer(); }, 100);
-        setTimeout(function() { calculer(false); }, 240);
-      }
-    }, { passive: true });
-
-    brancherScrollBox();
-    setTimeout(function() { calculer(true); }, 500);
-  })();
-</script>
 <script id="gpc-mobile-turbo-speed-script-final">
   (function() {
     "use strict";
@@ -1402,180 +1120,7 @@ PT: -pronto para uma grande competição?/<br></template>
     }, { passive: true });
   })();
 </script>
-<script id="gpc-fusee-ultra-speed-script-final">
-  (function() {
-    "use strict";
-
-    const TEXTE_STARTHERE = "US: -ready for a big competition?/<br>\nCN: -准备好参加大型比赛了吗?/<br>\nIN: -क्या तुम एक बड़ी प्रतियोगिता के लिए तैयार हो?/<br>\nES: -¿listo para una gran competición?/<br>\nSA: -هل أنت مستعد لمنافسة كبيرة؟/<br>\nFR: -prêt pour une grosse compétition?/<br>\nBD: -একটি বড় প্রতিযোগিতার জন্য প্রস্তুত?/<br>\nBR: -pronto para uma grande competição?/<br>\nRU: -готов к большому соревнованию?/<br>\nPK: -کیا تم ایک بڑے مقابلے کے لیے تیار ہو؟/<br>\nID: -siap untuk kompetisi besar?/<br>\nDE: -bereit für einen großen Wettbewerb?/<br>\nJP: -大きな大会の準備はできた？/<br>\nKR: -큰 대회를 준비됐어?/<br>\nTR: -büyük bir yarışmaya hazır mısın?/<br>\nVN: -sẵn sàng cho một cuộc thi lớn chưa?/<br>\nIT: -pronto per una grande competizione?/<br>\nPL: -gotowy na duże zawody?/<br>\nNL: -klaar voor een grote competitie?/<br>\nTH: -พร้อมสำหรับการแข่งขันใหญ่หรือยัง?/<br>\nSE: -redo för en stor tävling?/<br>\nPT: -pronto para uma grande competição?/<br>";
-    const TEXTE_RULES = "-RULES/<br>\n      N1-USE A 1992/2012 MUSIC/<br>\n      N2-DO A REMIX/<br>\n      N3-LESS THAN 1MIN30/&lt;3<br>\n      N4-NO ai AT ALL/<br>\n      N5-ELECTRONIC ART ONLY/";
-
-    const oldAfficherSection = window.afficherSection;
-
-    let refsReady = false;
-    let sections = [];
-    let apropos = null;
-    let aproposTitle = null;
-    let contact = null;
-    let accueil = null;
-    let mediaOptimized = false;
-
-    function el(id) {
-      return document.getElementById(id);
-    }
-
-    function cacheRefs() {
-      if (refsReady) return;
-      sections = Array.from(document.querySelectorAll(".page-section"));
-      apropos = el("apropos");
-      aproposTitle = apropos ? apropos.querySelector("h1") : null;
-      contact = el("contact");
-      accueil = el("accueil");
-      refsReady = true;
-    }
-
-    function optimizeMediaOnce() {
-      if (mediaOptimized) return;
-      mediaOptimized = true;
-
-      const video = el("fondVideo");
-      if (video) {
-        video.setAttribute("preload", "metadata");
-        video.setAttribute("playsinline", "");
-        video.setAttribute("webkit-playsinline", "");
-        video.setAttribute("muted", "");
-        video.muted = true;
-        video.loop = true;
-        video.playsInline = true;
-      }
-
-      const introVideo = el("introVideo");
-      if (introVideo) {
-        try { introVideo.pause(); } catch (e) {}
-        introVideo.removeAttribute("src");
-        introVideo.style.display = "none";
-      }
-    }
-
-    function refreshScrollBox(b) {
-      if (!b) return;
-      requestAnimationFrame(function() {
-        b.dispatchEvent(new Event("scroll"));
-      });
-      setTimeout(function() {
-        b.dispatchEvent(new Event("scroll"));
-      }, 120);
-    }
-
-    function lockRulesFont() {
-      cacheRefs();
-      if (!apropos || !aproposTitle) return;
-
-      const wasStart = apropos.classList.contains("gpc-starthere-mode");
-      if (wasStart) apropos.classList.remove("gpc-starthere-mode");
-
-      const cs = getComputedStyle(aproposTitle);
-      apropos.style.setProperty("--gpc-rules-font-size-lock", cs.fontSize);
-      apropos.style.setProperty("--gpc-rules-line-height-lock", cs.lineHeight);
-      apropos.style.setProperty("--gpc-rules-letter-spacing-lock", cs.letterSpacing);
-
-      if (wasStart) apropos.classList.add("gpc-starthere-mode");
-    }
-
-    function setAproposText(mode) {
-      cacheRefs();
-      if (!apropos || !aproposTitle) return;
-
-      if (mode === "start") {
-        lockRulesFont();
-        apropos.classList.add("gpc-starthere-mode");
-        if (aproposTitle.innerHTML !== TEXTE_STARTHERE) aproposTitle.innerHTML = TEXTE_STARTHERE;
-      } else {
-        apropos.classList.remove("gpc-starthere-mode");
-        if (aproposTitle.innerHTML !== TEXTE_RULES) aproposTitle.innerHTML = TEXTE_RULES;
-        lockRulesFont();
-      }
-
-      apropos.scrollTop = 0;
-      refreshScrollBox(apropos);
-    }
-
-    function routeTo(id, mode) {
-      cacheRefs();
-      optimizeMediaOnce();
-
-      if (id === "apropos") {
-        setAproposText(mode || "rules");
-      } else {
-        setAproposText("rules");
-      }
-
-      if (typeof oldAfficherSection === "function") {
-        oldAfficherSection(id);
-      } else {
-        sections.forEach(function(section) {
-          section.classList.toggle("active", section.id === id);
-        });
-      }
-
-      if (id === "apropos") {
-        setAproposText(mode || "rules");
-      }
-
-      if (id === "contact" && contact) {
-        contact.style.setProperty("--gmail-rescue-float", "0px");
-        contact.style.setProperty("--gmail-chef-float", "0px");
-      }
-    }
-
-    window.afficherSection = function(id) {
-      if (id === "apropos") {
-        routeTo("apropos", "rules");
-        return;
-      }
-      routeTo(id, "rules");
-    };
-
-    window.lancerMusique = function() {
-      /*
-        Starthere ultra rapide : vraie box RULES, texte starthere,
-        aucun lancement du lecteur média.
-      */
-      routeTo("apropos", "start");
-    };
-
-    document.addEventListener("DOMContentLoaded", function() {
-      cacheRefs();
-      optimizeMediaOnce();
-      lockRulesFont();
-    }, { once: true, passive: true });
-
-    window.addEventListener("pageshow", function() {
-      cacheRefs();
-      optimizeMediaOnce();
-      lockRulesFont();
-      if (apropos && apropos.classList.contains("gpc-starthere-mode") && apropos.classList.contains("active")) {
-        setAproposText("start");
-      }
-    }, { passive: true });
-
-    window.addEventListener("resize", function() {
-      lockRulesFont();
-    }, { passive: true });
-
-    window.addEventListener("orientationchange", function() {
-      setTimeout(lockRulesFont, 120);
-      setTimeout(lockRulesFont, 360);
-    }, { passive: true });
-
-    setTimeout(function() {
-      cacheRefs();
-      optimizeMediaOnce();
-      lockRulesFont();
-    }, 280);
-  })();
-</script>
-<script id="gpc-video-mp4-antifreeze-script-final">(function(){"use strict";var v=null;var wakeTimer=null;function video(){if(!v)v=document.getElementById("fondVideo");return v;}function setup(){var x=video();if(!x)return;x.muted=true;x.loop=true;x.playsInline=true;x.setAttribute("muted","");x.setAttribute("playsinline","");x.setAttribute("webkit-playsinline","");x.preload="auto";x.playbackRate=1;try{x.disablePictureInPicture=true;}catch(e){}}function wake(){var x=video();if(!x)return;setup();if(x.paused||x.readyState<2){var p=x.play();if(p&&p.catch)p.catch(function(){});}}function softWake(){clearTimeout(wakeTimer);wakeTimer=setTimeout(wake,80);}setup();softWake();window.addEventListener("pageshow",softWake,{passive:true});window.addEventListener("focus",softWake,{passive:true});document.addEventListener("visibilitychange",function(){if(!document.hidden)softWake();},{passive:true});window.addEventListener("orientationchange",function(){setTimeout(softWake,180);},{passive:true});})();</script>
-<script id="gpc-scroll-lite-topsite-script-final">
+<script id="gpc-gold-fusee-stable-script-final">
   (function() {
     "use strict";
 
@@ -1583,32 +1128,138 @@ PT: -pronto para uma grande competição?/<br></template>
     let sections = null;
     let box = null;
     let title = null;
+    let video = null;
     let scrollTimer = 0;
+    let busyTimer = 0;
+    let sizeTimer = 0;
     let arrowRAF = 0;
     let fontLocked = false;
+    let introStarted = false;
+
+    function el(id) { return document.getElementById(id); }
 
     function refs() {
       if (sections) return;
       sections = Array.from(document.querySelectorAll(".page-section"));
-      box = document.getElementById("apropos");
+      box = el("apropos");
       title = box ? box.querySelector(".card > h1") : null;
+      video = el("fondVideo");
     }
 
     function tpl(id) {
-      const node = document.getElementById(id);
+      const node = el(id);
       return node ? node.innerHTML : "";
+    }
+
+    function viewport() {
+      const h = Math.max(320, Math.round(window.innerHeight || document.documentElement.clientHeight || screen.height || 720));
+      const w = Math.max(240, Math.round(window.innerWidth || document.documentElement.clientWidth || screen.width || 390));
+      root.style.setProperty("--gpc-ih", h + "px");
+      root.style.setProperty("--gpc-iw", w + "px");
+      return { w: w, h: h, landscape: w <= 900 && h <= 500 && matchMedia("(orientation: landscape)").matches };
+    }
+
+    function hideLegacyIntro() {
+      ["copyrightIntroPage", "introPage", "introGif", "introVideo"].forEach(function(id) {
+        const n = el(id);
+        if (!n) return;
+        if (id === "introVideo") {
+          try { n.pause(); } catch(e) {}
+          n.removeAttribute("src");
+        }
+        n.style.display = "none";
+        n.style.visibility = "hidden";
+        n.style.opacity = "0";
+        n.style.pointerEvents = "none";
+      });
+    }
+
+    function menu(show) {
+      const nav = el("menuPrincipal");
+      const audio = document.querySelector(".audio-box");
+      if (nav) nav.style.display = show ? "" : "none";
+      if (audio) audio.style.display = show ? "block" : "none";
+    }
+
+    function introNode() {
+      let o = el("gpcGoldIntro");
+      if (!o) {
+        o = document.createElement("div");
+        o.id = "gpcGoldIntro";
+        o.setAttribute("aria-hidden", "true");
+        const t = document.createElement("div");
+        t.id = "gpcGoldIntroText";
+        o.appendChild(t);
+        document.body.appendChild(o);
+      }
+      return o;
+    }
+
+    function introText(t) {
+      hideLegacyIntro();
+      menu(false);
+      const o = introNode();
+      const tx = el("gpcGoldIntroText");
+      if (tx) tx.textContent = t;
+      o.classList.remove("gpc-gold-hidden");
+    }
+
+    function startVideo() {
+      refs();
+      if (!video) return;
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.preload = "auto";
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      const p = video.play();
+      if (p && p.catch) p.catch(function(){});
+    }
+
+    function pauseVideoSoft() {
+      refs();
+      if (!video) return;
+      try { video.pause(); } catch(e) {}
+    }
+
+    function resumeVideoSoft() {
+      refs();
+      if (!video) return;
+      const p = video.play();
+      if (p && p.catch) p.catch(function(){});
+    }
+
+    function startIntro() {
+      if (introStarted) return;
+      introStarted = true;
+      root.classList.remove("gpc-site-ready");
+      viewport();
+      introText("© 2026 catdezoo<3. all rights reserved.");
+
+      setTimeout(function(){ introText("⚠. -no epilepsy please,\nand headphones please/"); }, 2200);
+      setTimeout(function(){ introText("<3"); }, 4600);
+      setTimeout(function(){
+        const o = introNode();
+        o.classList.add("gpc-gold-hidden");
+        hideLegacyIntro();
+        root.classList.add("gpc-site-ready");
+        menu(true);
+        showBox("start");
+        startVideo();
+      }, 6400);
     }
 
     function lockRulesFont() {
       refs();
       if (!box || !title) return;
-
+      const old = title.innerHTML;
       const wasStart = box.classList.contains("gpc-starthere-mode");
-      const previousHTML = title.innerHTML;
       const rules = tpl("gpcTextRules");
 
       box.classList.remove("gpc-starthere-mode");
-      if (rules && previousHTML !== rules) title.innerHTML = rules;
+      if (rules && title.innerHTML !== rules) title.innerHTML = rules;
 
       const cs = getComputedStyle(title);
       box.style.setProperty("--gpc-rules-font-size-lock", cs.fontSize);
@@ -1616,8 +1267,41 @@ PT: -pronto para uma grande competição?/<br></template>
       box.style.setProperty("--gpc-rules-letter-spacing-lock", cs.letterSpacing);
       fontLocked = true;
 
-      if (previousHTML !== title.innerHTML) title.innerHTML = previousHTML;
+      if (title.innerHTML !== old) title.innerHTML = old;
       if (wasStart) box.classList.add("gpc-starthere-mode");
+    }
+
+    function audioTop(d) {
+      const audio = document.querySelector(".audio-box");
+      if (audio) {
+        const r = audio.getBoundingClientRect();
+        if (r.top > 0 && r.top < d.h) return r.top;
+      }
+      return d.h - (d.landscape ? 110 : 170);
+    }
+
+    function sizeBoxNow() {
+      refs();
+      if (!box) return;
+      const d = viewport();
+
+      if (d.w <= 768) {
+        const descente = d.landscape ? 8 : Math.max(10, Math.min(18, Math.round(d.h * 0.018)));
+        const top = Math.round(d.h * (d.landscape ? 0.42 : 0.545) + descente);
+        const bottom = Math.round(audioTop(d) - (d.landscape ? 5 : 6));
+        const height = Math.max(d.landscape ? 82 : 112, bottom - top);
+        box.style.setProperty("--gpc-box-top", top + "px");
+        box.style.setProperty("--gpc-box-height", height + "px");
+      } else {
+        box.style.removeProperty("--gpc-box-top");
+        box.style.removeProperty("--gpc-box-height");
+      }
+      updateArrows();
+    }
+
+    function scheduleSize(delay) {
+      clearTimeout(sizeTimer);
+      sizeTimer = setTimeout(sizeBoxNow, delay || 80);
     }
 
     function updateArrowsNow() {
@@ -1626,9 +1310,9 @@ PT: -pronto para uma grande competição?/<br></template>
       const visible = box.clientHeight || 0;
       const total = box.scrollHeight || 0;
       const maxScroll = Math.max(0, total - visible);
-      const marge = Math.max(4, Math.round(visible * 0.045));
-      const noScroll = maxScroll <= marge;
-      const atEnd = noScroll || (box.scrollTop || 0) >= maxScroll - marge;
+      const margin = Math.max(4, Math.round(visible * 0.045));
+      const noScroll = maxScroll <= margin;
+      const atEnd = noScroll || (box.scrollTop || 0) >= maxScroll - margin;
       box.classList.toggle("rules-no-scroll", noScroll);
       box.classList.toggle("rules-at-end", atEnd);
     }
@@ -1637,103 +1321,125 @@ PT: -pronto para uma grande competição?/<br></template>
       if (!arrowRAF) arrowRAF = requestAnimationFrame(updateArrowsNow);
     }
 
-    function beginScrollLite() {
+    function userBusy() {
+      root.classList.add("gpc-user-busy");
+      clearTimeout(busyTimer);
+      busyTimer = setTimeout(function(){
+        root.classList.remove("gpc-user-busy");
+        resumeVideoSoft();
+      }, 220);
+    }
+
+    function boxScrolling() {
       root.classList.add("gpc-box-scrolling");
+      userBusy();
+      pauseVideoSoft();
       clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(function() {
+      scrollTimer = setTimeout(function(){
         root.classList.remove("gpc-box-scrolling");
+        resumeVideoSoft();
         updateArrows();
-      }, 190);
+      }, 180);
       updateArrows();
     }
 
     function setText(mode) {
       refs();
       if (!box || !title) return;
-
       if (!fontLocked) lockRulesFont();
 
       const html = mode === "start" ? tpl("gpcTextStartHere") : tpl("gpcTextRules");
       box.classList.toggle("gpc-starthere-mode", mode === "start");
-
       if (html && title.innerHTML !== html) title.innerHTML = html;
 
       title.style.visibility = "visible";
       title.style.opacity = "1";
       title.style.minHeight = "";
       box.scrollTop = 0;
-      updateArrows();
     }
 
     function showBox(mode) {
       refs();
-      if (!box) return;
+      if (!box || !sections) return;
+      userBusy();
       setText(mode);
-
-      sections.forEach(function(section) {
-        section.classList.toggle("active", section === box);
-      });
-
+      sections.forEach(function(s){ s.classList.toggle("active", s === box); });
       setText(mode);
-      requestAnimationFrame(function() {
-        updateArrows();
-        window.dispatchEvent(new Event("resize"));
-      });
+      scheduleSize(30);
+      requestAnimationFrame(updateArrows);
     }
 
     function showContact() {
       refs();
-      sections.forEach(function(section) {
-        section.classList.toggle("active", section.id === "contact");
-      });
+      if (!sections) return;
+      userBusy();
+      sections.forEach(function(s){ s.classList.toggle("active", s.id === "contact"); });
       root.classList.remove("gpc-box-scrolling");
     }
 
     window.afficherSection = function(id) {
-      if (id === "apropos") {
-        showBox("rules");
-      } else if (id === "contact") {
-        showContact();
-      } else {
-        showBox("start");
-      }
+      if (id === "apropos") showBox("rules");
+      else if (id === "contact") showContact();
+      else showBox("start");
     };
 
     window.lancerMusique = function() {
       showBox("start");
     };
 
-    function hookScroll() {
+    function hook() {
       refs();
-      if (!box || box.dataset.gpcScrollLiteOk) return;
-      box.dataset.gpcScrollLiteOk = "1";
-      box.addEventListener("scroll", beginScrollLite, { passive: true });
-      box.addEventListener("wheel", beginScrollLite, { passive: true });
-      box.addEventListener("touchmove", beginScrollLite, { passive: true });
+      if (box && !box.dataset.gpcGoldScrollOk) {
+        box.dataset.gpcGoldScrollOk = "1";
+        box.addEventListener("scroll", boxScrolling, { passive: true });
+        box.addEventListener("touchmove", boxScrolling, { passive: true });
+        box.addEventListener("wheel", boxScrolling, { passive: true });
+      }
+      document.addEventListener("click", function(e){
+        const txt = e.target && e.target.textContent ? e.target.textContent.trim() : "";
+        if (txt === "starthere" || txt === "RULES" || txt === "SEND A WAV / MP3") userBusy();
+      }, { passive: true, once: false });
     }
 
     function boot() {
       refs();
-      hookScroll();
+      hook();
+      viewport();
       lockRulesFont();
+      sizeBoxNow();
       showBox("start");
-      setTimeout(updateArrows, 160);
+      startVideo();
     }
 
-    document.addEventListener("DOMContentLoaded", boot, { once: true, passive: true });
-    window.addEventListener("pageshow", function() { setTimeout(boot, 90); }, { passive: true });
-    window.addEventListener("resize", function() {
+    window.addEventListener("resize", function(){
       fontLocked = false;
       lockRulesFont();
-      updateArrows();
+      scheduleSize(90);
     }, { passive: true });
-    window.addEventListener("orientationchange", function() {
+
+    window.addEventListener("orientationchange", function(){
       fontLocked = false;
       setTimeout(boot, 140);
       setTimeout(boot, 420);
     }, { passive: true });
 
-    setTimeout(boot, 240);
+    window.addEventListener("pageshow", function(e){
+      if (e && e.persisted) {
+        root.classList.add("gpc-site-ready");
+        menu(true);
+        boot();
+      }
+    }, { passive: true });
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", function(){
+        hook();
+        startIntro();
+      }, { once: true, passive: true });
+    } else {
+      hook();
+      startIntro();
+    }
   })();
 </script>
 </body></html>
