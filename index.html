@@ -69,13 +69,62 @@
     #apropos.active.gpc-mobile-fluid-running{will-change:auto!important}
   }
 </style>
+<style id="gpc-mobile-stable-before-starthere-box-final">
+  /*
+    RETOUR MOBILE STABLE AVANT INTEGRATION BOX DANS STARTHERE
+    starthere redevient l'accueil, la box RULES vit uniquement dans RULES.
+    L'effet fluide mobile est gardé sur apparition RULES/contact, sans moteur au scroll.
+  */
+  #accueil.active {
+    display: block !important;
+    content-visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  #apropos:not(.active) {
+    display: none !important;
+    content-visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  #apropos .card,
+  #apropos .card > h1 {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  #apropos.active {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+    touch-action: pan-y pinch-zoom !important;
+    scroll-behavior: auto !important;
+    scrollbar-gutter: stable both-edges !important;
+    contain: layout paint style !important;
+  }
+
+  @media screen and (max-width:768px) {
+    #apropos.active.gpc-mobile-fluid-running,
+    #contact.active.gpc-mobile-fluid-running {
+      will-change: transform !important;
+    }
+  }
+
+  @media screen and (min-width:769px) {
+    #apropos.active.gpc-mobile-fluid-running,
+    #contact.active.gpc-mobile-fluid-running {
+      will-change: auto !important;
+    }
+  }
+</style>
 </head><body>
 <video id="fondVideo" class="video-bg gpc-video-bg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen" aria-hidden="true">
   <source src="./téma.mp4" type="video/mp4">
 </video>
 <div id="copyrightIntroPage" class="copyright-intro-page" aria-label="© 2026 catdezoo&lt;3. all rights reserved."><p>© 2026 catdezoo&lt;3. all rights reserved.</p></div><div id="introPage" class="intro-page"><span id="introText">⚠. -no epilepsy please, <br>
       and headphones please/</span><div id="introGif" class="intro-gif"></div></div><div class="gif-bg"></div>
-<div id="volumeTextWhiteGlow" class="volume-white-glow-layer"></div><div id="volumeThumbWhiteGlow" class="volume-white-glow-layer"></div><div class="overlay"><nav id="menuPrincipal" style="display: none;"><button onclick="lancerMusique()">starthere</button><button onclick="afficherSection('apropos')">RULES</button><button onclick="afficherSection('contact')">SEND A WAV / MP3</button></nav><div id="parisTimer" class="paris-timer"><span id="timerTime">00:00:01</span><span id="timerPeriod" class="timer-period">AM</span></div><section id="accueil" class="page-section"></section><section id="apropos" class="page-section active"><div class="card"><span class="magicbox-arrow magicbox-arrow-down" aria-hidden="true"></span><h1>
+<div id="volumeTextWhiteGlow" class="volume-white-glow-layer"></div><div id="volumeThumbWhiteGlow" class="volume-white-glow-layer"></div><div class="overlay"><nav id="menuPrincipal" style="display: none;"><button onclick="lancerMusique()">starthere</button><button onclick="afficherSection('apropos')">RULES</button><button onclick="afficherSection('contact')">SEND A WAV / MP3</button></nav><div id="parisTimer" class="paris-timer"><span id="timerTime">00:00:01</span><span id="timerPeriod" class="timer-period">AM</span></div><section id="accueil" class="page-section active"></section><section id="apropos" class="page-section"><div class="card"><span class="magicbox-arrow magicbox-arrow-down" aria-hidden="true"></span><h1>
       -RULES/<br>
       N1-USE A 1992/2012 MUSIC/<br>
       N2-DO A REMIX/<br>
@@ -954,81 +1003,261 @@ PT: -pronto para uma grande competição?/<br></template>
     }, { passive: true });
   })();
 </script>
-<script id="gpc-saphir-mobile-fluid-light-script-final">
-  (function(){
+<script id="gpc-mobile-stable-before-starthere-box-script-final">
+  (function() {
     "use strict";
 
-    const root=document.documentElement;
-    let sections=null,box=null,title=null,video=null;
-    let fontLocked=false,arrowRAF=0,sizeTimer=0,introStarted=false,fluidRAF=0;
+    const root = document.documentElement;
+    let sections = null;
+    let box = null;
+    let title = null;
+    let video = null;
+    let arrowRAF = 0;
+    let fluidRAF = 0;
+    let introStarted = false;
 
-    function el(id){return document.getElementById(id);}
-    function refs(){if(sections)return;sections=Array.from(document.querySelectorAll(".page-section"));box=el("apropos");title=box?box.querySelector(".card>h1"):null;video=el("fondVideo");}
-    function tpl(id){const n=el(id);return n?n.innerHTML:"";}
-    function viewport(){const h=Math.max(320,Math.round(window.innerHeight||document.documentElement.clientHeight||screen.height||720));const w=Math.max(240,Math.round(window.innerWidth||document.documentElement.clientWidth||screen.width||390));root.style.setProperty("--gpc-ih",h+"px");root.style.setProperty("--gpc-iw",w+"px");return{w,h,landscape:w<=900&&h<=500&&matchMedia("(orientation: landscape)").matches};}
-    function isMobile(){return (window.innerWidth||document.documentElement.clientWidth||390)<=768;}
+    function el(id) { return document.getElementById(id); }
 
-    function hideLegacyIntro(){["copyrightIntroPage","introPage","introGif","introVideo"].forEach(function(id){const n=el(id);if(!n)return;if(id==="introVideo"){try{n.pause();}catch(e){}n.removeAttribute("src");}n.style.display="none";n.style.visibility="hidden";n.style.opacity="0";n.style.pointerEvents="none";});}
-    function menu(show){const nav=el("menuPrincipal");const audio=document.querySelector(".audio-box");if(nav)nav.style.display=show?"":"none";if(audio)audio.style.display=show?"block":"none";}
-    function introNode(){let o=el("gpcSaphirIntro");if(!o){o=document.createElement("div");o.id="gpcSaphirIntro";o.setAttribute("aria-hidden","true");const t=document.createElement("div");t.id="gpcSaphirIntroText";o.appendChild(t);document.body.appendChild(o);}return o;}
-    function introText(txt){hideLegacyIntro();menu(false);const o=introNode();const t=el("gpcSaphirIntroText");if(t)t.textContent=txt;o.classList.remove("gpc-hidden");}
-    function setupVideo(){refs();if(!video)return;video.muted=true;video.loop=true;video.playsInline=true;video.preload="auto";video.setAttribute("muted","");video.setAttribute("playsinline","");video.setAttribute("webkit-playsinline","");}
-    function playVideo(){setupVideo();if(!video)return;const p=video.play();if(p&&p.catch)p.catch(function(){});}
-
-    function startIntro(){if(introStarted)return;introStarted=true;root.classList.remove("gpc-site-ready");viewport();introText("© 2026 catdezoo<3. all rights reserved.");setTimeout(function(){introText("⚠. -no epilepsy please,\nand headphones please/");},2200);setTimeout(function(){introText("<3");},4600);setTimeout(function(){const o=introNode();o.classList.add("gpc-hidden");hideLegacyIntro();root.classList.add("gpc-site-ready");menu(true);showBox("start",true);playVideo();},6400);}
-
-    function lockRulesFont(){refs();if(!box||!title)return;const oldHTML=title.innerHTML;const wasStart=box.classList.contains("gpc-starthere-mode");const rules=tpl("gpcTextRules");box.classList.remove("gpc-starthere-mode");if(rules&&title.innerHTML!==rules)title.innerHTML=rules;const cs=getComputedStyle(title);box.style.setProperty("--gpc-rules-font-size-lock",cs.fontSize);box.style.setProperty("--gpc-rules-line-height-lock",cs.lineHeight);box.style.setProperty("--gpc-rules-letter-spacing-lock",cs.letterSpacing);fontLocked=true;if(title.innerHTML!==oldHTML)title.innerHTML=oldHTML;if(wasStart)box.classList.add("gpc-starthere-mode");}
-
-    function audioTop(d){const audio=document.querySelector(".audio-box");if(audio){const r=audio.getBoundingClientRect();if(r.top>0&&r.top<d.h)return r.top;}return d.h-(d.landscape?110:170);}
-    function sizeMobileBox(){refs();if(!box)return;const d=viewport();if(d.w>768){box.style.removeProperty("--gpc-mobile-box-top");box.style.removeProperty("--gpc-mobile-box-height");updateArrows();return;}const desc=d.landscape?8:Math.max(10,Math.min(18,Math.round(d.h*.018)));const top=Math.round(d.h*(d.landscape?.42:.545)+desc);const bottom=Math.round(audioTop(d)-(d.landscape?5:6));const height=Math.max(d.landscape?82:112,bottom-top);box.style.setProperty("--gpc-mobile-box-top",top+"px");box.style.setProperty("--gpc-mobile-box-height",height+"px");updateArrows();}
-    function scheduleSize(ms){clearTimeout(sizeTimer);sizeTimer=setTimeout(sizeMobileBox,ms||80);}
-
-    function updateArrowsNow(){arrowRAF=0;if(!box)return;const visible=box.clientHeight||0;const total=box.scrollHeight||0;const max=Math.max(0,total-visible);const margin=Math.max(4,Math.round(visible*.045));const noScroll=max<=margin;const atEnd=noScroll||(box.scrollTop||0)>=max-margin;box.classList.toggle("rules-no-scroll",noScroll);box.classList.toggle("rules-at-end",atEnd);}
-    function updateArrows(){if(!arrowRAF)arrowRAF=requestAnimationFrame(updateArrowsNow);}
-
-    function fluidOpen(force){
-      refs();
-      if(!box||!isMobile())return;
-      if(!force&&matchMedia("(prefers-reduced-motion: reduce)").matches)return;
-
-      if(fluidRAF)cancelAnimationFrame(fluidRAF);
-      box.classList.add("gpc-mobile-fluid-running");
-
-      const start=performance.now();
-      const duration=620;
-      function frame(now){
-        const t=Math.min(1,(now-start)/duration);
-        const ease=1-Math.pow(1-t,3);
-        const wave=Math.sin(t*Math.PI*2.15)*(1-t)*7;
-        const y=18*(1-ease)+wave;
-        const scale=1+Math.sin(t*Math.PI)*(1-t)*0.006;
-        box.style.setProperty("transform","translate3d(-50%,"+y.toFixed(2)+"px,0) scale("+scale.toFixed(4)+")","important");
-        if(t<1){
-          fluidRAF=requestAnimationFrame(frame);
-        }else{
-          fluidRAF=0;
-          box.style.removeProperty("transform");
-          box.classList.remove("gpc-mobile-fluid-running");
-        }
-      }
-      fluidRAF=requestAnimationFrame(frame);
+    function refs() {
+      if (sections) return;
+      sections = Array.from(document.querySelectorAll(".page-section"));
+      box = el("apropos");
+      title = box ? box.querySelector(".card > h1") : null;
+      video = el("fondVideo");
     }
 
-    function setText(mode){refs();if(!box||!title)return;if(!fontLocked)lockRulesFont();const html=mode==="start"?tpl("gpcTextStartHere"):tpl("gpcTextRules");box.classList.toggle("gpc-starthere-mode",mode==="start");if(html&&title.innerHTML!==html)title.innerHTML=html;title.style.visibility="visible";title.style.opacity="1";title.style.minHeight="";box.scrollTop=0;}
-    function showBox(mode,forceFluid){refs();if(!box||!sections)return;setText(mode);sections.forEach(function(s){s.classList.toggle("active",s===box);});setText(mode);scheduleSize(30);requestAnimationFrame(function(){updateArrows();fluidOpen(!!forceFluid);});}
-    function showContact(){refs();if(!sections)return;sections.forEach(function(s){s.classList.toggle("active",s.id==="contact");});}
-    window.afficherSection=function(id){if(id==="apropos")showBox("rules",true);else if(id==="contact")showContact();else showBox("start",true);};
-    window.lancerMusique=function(){showBox("start",true);};
+    function tpl(id) {
+      const node = el(id);
+      return node ? node.innerHTML : "";
+    }
 
-    function hook(){refs();if(box&&!box.dataset.gpcSaphirScrollOk){box.dataset.gpcSaphirScrollOk="1";box.addEventListener("scroll",updateArrows,{passive:true});box.addEventListener("wheel",updateArrows,{passive:true});box.addEventListener("touchmove",updateArrows,{passive:true});}}
-    function boot(){refs();hook();viewport();lockRulesFont();sizeMobileBox();showBox("start",false);playVideo();}
-    window.addEventListener("resize",function(){fontLocked=false;lockRulesFont();scheduleSize(90);},{passive:true});
-    window.addEventListener("orientationchange",function(){fontLocked=false;setTimeout(boot,140);setTimeout(boot,420);},{passive:true});
-    window.addEventListener("pageshow",function(e){if(e&&e.persisted){root.classList.add("gpc-site-ready");menu(true);boot();}},{passive:true});
-    window.addEventListener("focus",playVideo,{passive:true});
-    document.addEventListener("visibilitychange",function(){if(!document.hidden)playVideo();},{passive:true});
+    function viewport() {
+      const h = Math.max(320, Math.round(window.innerHeight || document.documentElement.clientHeight || screen.height || 720));
+      const w = Math.max(240, Math.round(window.innerWidth || document.documentElement.clientWidth || screen.width || 390));
+      root.style.setProperty("--gpc-ih", h + "px");
+      root.style.setProperty("--gpc-iw", w + "px");
+      return { w: w, h: h, landscape: w <= 900 && h <= 500 && matchMedia("(orientation: landscape)").matches };
+    }
 
-    if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){hook();startIntro();},{once:true,passive:true});}else{hook();startIntro();}
+    function isMobile() {
+      return (window.innerWidth || document.documentElement.clientWidth || 390) <= 768;
+    }
+
+    function hideLegacyIntro() {
+      ["copyrightIntroPage", "introPage", "introGif", "introVideo"].forEach(function(id) {
+        const node = el(id);
+        if (!node) return;
+        if (id === "introVideo") {
+          try { node.pause(); } catch (e) {}
+          node.removeAttribute("src");
+        }
+        node.style.display = "none";
+        node.style.visibility = "hidden";
+        node.style.opacity = "0";
+        node.style.pointerEvents = "none";
+      });
+    }
+
+    function menu(show) {
+      const nav = el("menuPrincipal");
+      const audioBox = document.querySelector(".audio-box");
+      if (nav) nav.style.display = show ? "" : "none";
+      if (audioBox) audioBox.style.display = show ? "block" : "none";
+    }
+
+    function introNode() {
+      let overlay = el("gpcStableIntro");
+      if (!overlay) {
+        overlay = document.createElement("div");
+        overlay.id = "gpcStableIntro";
+        overlay.style.cssText = "position:fixed;inset:0;z-index:2147483647;width:100vw;height:100dvh;background:#000;display:flex;align-items:center;justify-content:center;text-align:center;padding:22px;box-sizing:border-box;color:#fff;font-family:Arial,Helvetica,sans-serif;font-weight:800;font-size:clamp(20px,4.3vw,34px);line-height:1.22;white-space:pre-line;text-shadow:0 0 4px #fff,0 0 12px rgba(255,255,255,.55);";
+        const text = document.createElement("div");
+        text.id = "gpcStableIntroText";
+        overlay.appendChild(text);
+        document.body.appendChild(overlay);
+      }
+      return overlay;
+    }
+
+    function introText(text) {
+      hideLegacyIntro();
+      menu(false);
+      const overlay = introNode();
+      const node = el("gpcStableIntroText");
+      if (node) node.textContent = text;
+      overlay.style.display = "flex";
+      overlay.style.opacity = "1";
+      overlay.style.visibility = "visible";
+    }
+
+    function playVideo() {
+      refs();
+      if (!video) return;
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.preload = "auto";
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      const p = video.play();
+      if (p && p.catch) p.catch(function(){});
+    }
+
+    function startIntro() {
+      if (introStarted) return;
+      introStarted = true;
+      root.classList.remove("gpc-site-ready");
+      viewport();
+      introText("© 2026 catdezoo<3. all rights reserved.");
+      setTimeout(function(){ introText("⚠. -no epilepsy please,\nand headphones please/"); }, 2200);
+      setTimeout(function(){ introText("<3"); }, 4600);
+      setTimeout(function(){
+        const overlay = introNode();
+        overlay.style.opacity = "0";
+        overlay.style.visibility = "hidden";
+        overlay.style.pointerEvents = "none";
+        hideLegacyIntro();
+        root.classList.add("gpc-site-ready");
+        menu(true);
+        showSection("accueil", false);
+        playVideo();
+      }, 6400);
+    }
+
+    function updateArrowsNow() {
+      arrowRAF = 0;
+      if (!box) return;
+      const visible = box.clientHeight || 0;
+      const total = box.scrollHeight || 0;
+      const maxScroll = Math.max(0, total - visible);
+      const margin = Math.max(4, Math.round(visible * 0.045));
+      const noScroll = maxScroll <= margin;
+      const atEnd = noScroll || (box.scrollTop || 0) >= maxScroll - margin;
+      box.classList.toggle("rules-no-scroll", noScroll);
+      box.classList.toggle("rules-at-end", atEnd);
+    }
+
+    function updateArrows() {
+      if (!arrowRAF) arrowRAF = requestAnimationFrame(updateArrowsNow);
+    }
+
+    function fluidElement(node) {
+      if (!node || !isMobile()) return;
+
+      if (fluidRAF) cancelAnimationFrame(fluidRAF);
+      node.classList.add("gpc-mobile-fluid-running");
+
+      const start = performance.now();
+      const duration = 620;
+
+      function frame(now) {
+        const t = Math.min(1, (now - start) / duration);
+        const ease = 1 - Math.pow(1 - t, 3);
+        const wave = Math.sin(t * Math.PI * 2.15) * (1 - t) * 7;
+        const y = 18 * (1 - ease) + wave;
+        const scale = 1 + Math.sin(t * Math.PI) * (1 - t) * 0.006;
+
+        if (node.id === "apropos") {
+          node.style.setProperty("transform", "translate3d(-50%," + y.toFixed(2) + "px,0) scale(" + scale.toFixed(4) + ")", "important");
+        } else {
+          node.style.setProperty("transform", "translate3d(0," + y.toFixed(2) + "px,0) scale(" + scale.toFixed(4) + ")", "important");
+        }
+
+        if (t < 1) {
+          fluidRAF = requestAnimationFrame(frame);
+        } else {
+          fluidRAF = 0;
+          node.style.removeProperty("transform");
+          node.classList.remove("gpc-mobile-fluid-running");
+        }
+      }
+
+      fluidRAF = requestAnimationFrame(frame);
+    }
+
+    function setRulesText() {
+      refs();
+      if (!title) return;
+      const rules = tpl("gpcTextRules");
+      if (rules && title.innerHTML !== rules) title.innerHTML = rules;
+      if (box) box.classList.remove("gpc-starthere-mode");
+      title.style.visibility = "visible";
+      title.style.opacity = "1";
+    }
+
+    function showSection(id, fluid) {
+      refs();
+      sections.forEach(function(section) {
+        section.classList.toggle("active", section.id === id);
+      });
+
+      if (id === "apropos") {
+        setRulesText();
+        if (box) box.scrollTop = 0;
+        updateArrows();
+        if (fluid) fluidElement(box);
+      }
+
+      if (id === "contact" && fluid) {
+        fluidElement(el("contact"));
+      }
+    }
+
+    window.afficherSection = function(id) {
+      showSection(id, true);
+    };
+
+    window.lancerMusique = function() {
+      // Retour au comportement stable: starthere = accueil, pas de box RULES, pas d'audio.
+      showSection("accueil", false);
+    };
+
+    function hook() {
+      refs();
+      if (box && !box.dataset.gpcStableBeforeStarthereOk) {
+        box.dataset.gpcStableBeforeStarthereOk = "1";
+        box.addEventListener("scroll", updateArrows, { passive: true });
+        box.addEventListener("wheel", updateArrows, { passive: true });
+        box.addEventListener("touchmove", updateArrows, { passive: true });
+      }
+    }
+
+    function boot() {
+      refs();
+      hook();
+      viewport();
+      setRulesText();
+      showSection("accueil", false);
+      playVideo();
+    }
+
+    window.addEventListener("resize", viewport, { passive: true });
+    window.addEventListener("orientationchange", function(){
+      setTimeout(viewport, 140);
+      setTimeout(viewport, 420);
+    }, { passive: true });
+    window.addEventListener("pageshow", function(e) {
+      if (e && e.persisted) {
+        root.classList.add("gpc-site-ready");
+        menu(true);
+        boot();
+      }
+    }, { passive: true });
+    window.addEventListener("focus", playVideo, { passive: true });
+    document.addEventListener("visibilitychange", function() {
+      if (!document.hidden) playVideo();
+    }, { passive: true });
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", function(){
+        hook();
+        startIntro();
+      }, { once: true, passive: true });
+    } else {
+      hook();
+      startIntro();
+    }
   })();
 </script>
 </body></html>
