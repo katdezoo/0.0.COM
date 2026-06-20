@@ -4782,7 +4782,6 @@ html,body {
       font-size:clamp(12px,4.5vh,22px) !important
     }
   }
-}
 </style>
 
 
@@ -8271,6 +8270,301 @@ html,body {
 
 
 
+
+
+<style id="gpc-sappelle-red-zone-safe-layout-final">
+:root {
+  --gpc-video-red-top:22dvh;
+  --gpc-video-red-bottom:57dvh;
+  --gpc-video-red-gap:clamp(8px,1.7dvh,20px);
+  --gpc-video-safe-below-red:calc(var(--gpc-video-red-bottom) + var(--gpc-video-red-gap))
+}
+
+@supports not (height:100dvh) {
+  :root {
+    --gpc-video-red-top:22vh;
+    --gpc-video-red-bottom:57vh
+  }
+}
+
+@media screen and (min-width:769px) {
+  nav#menuPrincipal {
+    position:fixed !important;
+    top:calc(env(safe-area-inset-top) + clamp(10px,1.8dvh,20px)) !important;
+    left:0 !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+    display:flex;
+    justify-content:center !important;
+    align-items:center !important;
+    gap:clamp(20px,2.8vw,42px) !important;
+    padding:0 12px !important;
+    z-index:30000 !important;
+    pointer-events:auto !important
+  }
+
+  nav#menuPrincipal button {
+    font-size:clamp(15px,1.18vw,19px) !important;
+    line-height:1.05 !important;
+    min-height:clamp(24px,3.4dvh,34px) !important;
+    margin:0 !important;
+    transform:none !important
+  }
+
+  .paris-timer {
+    top:clamp(74px,13.4dvh,148px) !important;
+    font-size:clamp(42px,6.4vw,76px) !important;
+    line-height:1 !important;
+    z-index:25000 !important
+  }
+
+  #apropos.page-section {
+    top:60vh !important;
+    top:60dvh !important;
+    top:max(60dvh,var(--gpc-video-safe-below-red)) !important;
+    left:50% !important;
+    transform:translate3d(-50%,0,0) !important;
+    width:min(780px,calc(100vw - 48px)) !important;
+    max-width:min(780px,calc(100vw - 48px)) !important;
+    height:clamp(96px,14dvh,142px) !important;
+    min-height:clamp(96px,14dvh,142px) !important;
+    max-height:clamp(96px,14dvh,142px) !important;
+    padding:clamp(14px,1.7dvh,22px) clamp(26px,3vw,42px) !important;
+    box-sizing:border-box !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    scrollbar-width:thin !important
+  }
+
+  #apropos.page-section.active {
+    display:block !important;
+    pointer-events:auto !important
+  }
+
+  #apropos .card {
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+    min-height:0 !important;
+    margin:0 auto !important;
+    padding:0 !important;
+    box-sizing:border-box !important
+  }
+
+  #apropos h1 {
+    font-size:clamp(13px,1.12vw,18px) !important;
+    line-height:1.12 !important;
+    margin:0 !important;
+    letter-spacing:0.01em !important
+  }
+
+  #contact.page-section {
+    top:70vh !important;
+    top:70dvh !important;
+    top:max(70dvh,calc(var(--gpc-video-safe-below-red) + clamp(42px,7dvh,84px))) !important;
+    left:50% !important;
+    transform:translate3d(-50%,0,0) !important;
+    width:100% !important;
+    max-width:100% !important;
+    padding:0 14px !important;
+    box-sizing:border-box !important
+  }
+
+  #contact h1 {
+    font-size:clamp(30px,4.2vw,50px) !important;
+    line-height:1.05 !important;
+    margin:0 !important
+  }
+}
+
+@media screen and (max-width:768px) {
+  :root {
+    --gpc-video-red-top:22dvh;
+    --gpc-video-red-bottom:57dvh;
+    --gpc-video-red-gap:clamp(8px,1.8dvh,14px)
+  }
+
+  nav#menuPrincipal {
+    position:fixed !important;
+    top:0 !important;
+    left:0 !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+    display:flex;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    gap:clamp(4px,1.15dvh,8px) !important;
+    padding:calc(7px + env(safe-area-inset-top)) 10px 5px 10px !important;
+    z-index:30000 !important;
+    pointer-events:auto !important
+  }
+
+  nav#menuPrincipal button {
+    font-size:clamp(13px,4.05vw,18px) !important;
+    line-height:1.02 !important;
+    min-height:clamp(21px,6.3vw,27px) !important;
+    margin:0 !important;
+    padding:0 !important;
+    transform:none !important
+  }
+
+  .paris-timer {
+    top:clamp(96px,14.7dvh,132px) !important;
+    font-size:clamp(31px,9.2vw,42px) !important;
+    line-height:1 !important;
+    letter-spacing:1px !important;
+    z-index:25000 !important
+  }
+
+  #timerTime {
+    width:8ch !important
+  }
+
+  .timer-period {
+    font-size:0.34em !important
+  }
+
+  #apropos,
+  html.gpc-rules-hier-active #apropos.active {
+    top:calc(var(--gpc-video-safe-below-red)) !important;
+    left:50% !important;
+    bottom:auto !important;
+    transform:translate3d(-50%,var(--rules-hier-float,0px),0) !important;
+    width:calc(100vw - clamp(18px,5vw,28px)) !important;
+    max-width:calc(100vw - clamp(18px,5vw,28px)) !important;
+    height:var(--rules-hier-height,clamp(86px,17dvh,142px)) !important;
+    min-height:0 !important;
+    max-height:calc(100dvh - var(--gpc-video-safe-below-red) - clamp(172px,24dvh,220px) - env(safe-area-inset-bottom)) !important;
+    padding:clamp(13px,3.7vw,20px) clamp(12px,4vw,18px) !important;
+    box-sizing:border-box !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    -webkit-overflow-scrolling:touch !important;
+    overscroll-behavior:contain !important;
+    z-index:16000 !important;
+    scrollbar-width:thin !important
+  }
+
+  @supports not (height:100dvh) {
+    #apropos,
+    html.gpc-rules-hier-active #apropos.active {
+      max-height:calc(100vh - var(--gpc-video-safe-below-red) - clamp(172px,24vh,220px) - env(safe-area-inset-bottom)) !important
+    }
+  }
+
+  #apropos.active {
+    display:block !important;
+    pointer-events:auto !important
+  }
+
+  #apropos .card {
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+    min-height:0 !important;
+    margin:0 auto !important;
+    padding:0 !important;
+    box-sizing:border-box !important
+  }
+
+  #apropos h1 {
+    font-size:clamp(12px,3.35vw,16px) !important;
+    line-height:1.10 !important;
+    margin:0 !important;
+    letter-spacing:0 !important;
+    word-break:normal !important;
+    overflow-wrap:anywhere !important
+  }
+
+  #apropos > .magicbox-arrow {
+    --rules-arrow-size:clamp(7px,2.2vw,10px);
+    --rules-arrow-stroke:clamp(1.4px,0.5vw,1.9px);
+    --rules-arrow-gap:clamp(7px,2.2vw,11px);
+    --rules-arrow-gap-x:clamp(11px,4.2vw,18px)
+  }
+
+  #contact,
+  #contact.active {
+    top:calc(var(--gpc-video-safe-below-red) + clamp(44px,9.5dvh,76px)) !important;
+    left:50% !important;
+    transform:translate3d(-50%,0,0) !important;
+    width:100% !important;
+    max-width:100% !important;
+    padding:0 12px !important;
+    box-sizing:border-box !important;
+    z-index:16500 !important
+  }
+
+  #contact.active {
+    display:flex !important;
+    justify-content:center !important;
+    align-items:flex-start !important
+  }
+
+  #contact h1,
+  #contact.active h1 {
+    transform:translate3d(0,0,0) !important;
+    font-size:clamp(22px,8vw,34px) !important;
+    line-height:1.05 !important;
+    margin:0 !important
+  }
+}
+
+@media screen and (max-width:900px) and (max-height:500px) and (orientation:landscape) {
+  :root {
+    --gpc-video-red-top:22vh;
+    --gpc-video-red-bottom:57vh;
+    --gpc-video-red-gap:clamp(6px,1.8vh,10px)
+  }
+
+  nav#menuPrincipal {
+    gap:clamp(3px,1.4vh,6px) !important;
+    padding:calc(4px + env(safe-area-inset-top)) 10px 4px 10px !important
+  }
+
+  nav#menuPrincipal button {
+    font-size:clamp(12px,2.2vw,15px) !important;
+    min-height:18px !important;
+    line-height:1 !important
+  }
+
+  .paris-timer {
+    top:clamp(54px,14.4vh,82px) !important;
+    font-size:clamp(26px,7.4vh,38px) !important
+  }
+
+  #apropos,
+  html.gpc-rules-hier-active #apropos.active {
+    top:calc(var(--gpc-video-safe-below-red)) !important;
+    width:min(620px,calc(100vw - 32px)) !important;
+    max-width:min(620px,calc(100vw - 32px)) !important;
+    height:var(--rules-hier-height,clamp(68px,20vh,104px)) !important;
+    max-height:calc(100vh - var(--gpc-video-safe-below-red) - 96px - env(safe-area-inset-bottom)) !important;
+    padding:clamp(9px,2.4vh,14px) clamp(12px,3vw,18px) !important
+  }
+
+  #apropos h1 {
+    font-size:clamp(10.5px,2vw,13.5px) !important;
+    line-height:1.06 !important
+  }
+
+  #contact,
+  #contact.active {
+    top:calc(var(--gpc-video-safe-below-red) + clamp(22px,6vh,42px)) !important
+  }
+
+  #contact h1,
+  #contact.active h1 {
+    font-size:clamp(20px,4.6vw,30px) !important
+  }
+
+  .audio-box {
+    bottom:calc(12px + env(safe-area-inset-bottom)) !important
+  }
+}
+</style>
+
 <script id="gpc-bravo-fast-core-script-final">
 (function() {
   "use strict";
@@ -9431,11 +9725,12 @@ html,body {
     root.style.setProperty("--rules-page-scroll-extra", extra + "px");
     root.classList.add("gpc-rules-hier-active");
     root.classList.add("rules-page-scroll-mode");
-    const descenteLegere = d.paysage ? 8 : clamp(Math.round(d.h * 0.018), 10, 18);
-    const topAncre = Math.round(d.h * (d.paysage ? 0.42 : 0.545) + descenteLegere);
+    const descenteLegere = d.paysage ? clamp(Math.round(d.h * 0.014), 6, 10) : clamp(Math.round(d.h * 0.018), 10, 18);
+    const pointBasRougeVideo = d.paysage ? 0.585 : 0.585;
+    const topAncre = Math.round(d.h * pointBasRougeVideo + descenteLegere);
     const margeLecteur = d.paysage ? 5 : 6;
     const basFinal = Math.round(topLecteurMedia() - margeLecteur);
-    const hauteurGrande = Math.max(d.paysage ? 82 : 112, basFinal - topAncre);
+    const hauteurGrande = Math.max(d.paysage ? 74 : 92, basFinal - topAncre);
     topCible = topAncre;
     hauteurCible = hauteurGrande;
     if (topActuel === null || force) {
