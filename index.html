@@ -25,17 +25,15 @@
 <style id="gpc-fusee-ultra-speed-final">@media screen and (min-width:769px){.paris-timer{top:max(2px,calc(clamp(66px,11.4dvh,142px) - clamp(38px,4.25vw,70px) - 60px - 180px)) !important;font-size:clamp(46px,5.45vw,84px) !important;transform:translate3d(-50%,0,0) !important;will-change:auto !important}}@media screen and (min-width:1400px) and (min-height:820px){.paris-timer{top:max(2px,calc(clamp(76px,10.8dvh,154px) - clamp(40px,4vw,72px) - 60px - 180px)) !important;font-size:clamp(48px,5.1vw,86px) !important}}@media screen and (min-width:769px) and (max-width:1050px),screen and (min-width:769px) and (max-height:760px){.paris-timer{top:max(2px,calc(clamp(48px,10.8dvh,92px) - clamp(28px,3.25vw,46px) - 60px - 180px)) !important;font-size:clamp(36px,4.25vw,61px) !important}}.page-section:not(.active){display:none !important;content-visibility:hidden !important;pointer-events:none !important}#fondVideo,.video-bg{pointer-events:none !important;will-change:auto !important;contain:layout paint style !important}#apropos.gpc-starthere-mode h1{text-align:center !important;white-space:normal !important;word-break:normal !important;overflow-wrap:anywhere !important;font-size:var(--gpc-rules-font-size-lock,inherit) !important;line-height:var(--gpc-rules-line-height-lock,inherit) !important;letter-spacing:var(--gpc-rules-letter-spacing-lock,inherit) !important}@media screen and (max-width:768px){html,body{text-rendering:optimizeSpeed !important}#introVideo,#introGif,.intro-gif,.volume-white-glow-layer{display:none !important;opacity:0 !important;visibility:hidden !important;pointer-events:none !important}nav,.paris-timer,.audio-box,#apropos,#contact{backface-visibility:hidden !important;-webkit-backface-visibility:hidden !important}#volumeTextWhiteGlow,#volumeThumbWhiteGlow{display:none !important}}</style>
 <link rel="preload" href="./téma.mp4" as="video" type="video/mp4">
 <style id="gpc-video-mp4-antifreeze-final">#fondVideo.gpc-video-bg,#fondVideo.video-bg{position:fixed!important;left:0!important;top:0!important;width:100vw!important;height:100vh!important;min-width:100vw!important;min-height:100vh!important;max-width:none!important;max-height:none!important;object-fit:fill!important;object-position:center center!important;background:#ff00ff!important;z-index:0!important;pointer-events:none!important;user-select:none!important;-webkit-user-select:none!important;transform:translate3d(0,0,0)!important;backface-visibility:hidden!important;-webkit-backface-visibility:hidden!important;contain:paint!important;will-change:auto!important}html.gpc-site-ready #fondVideo.gpc-video-bg{display:block!important;visibility:visible!important;opacity:1!important}@supports (height:100dvh){#fondVideo.gpc-video-bg,#fondVideo.video-bg{height:100dvh!important;min-height:100dvh!important}}@supports (-webkit-touch-callout:none){#fondVideo.gpc-video-bg,#fondVideo.video-bg{height:var(--gpc-ih,100svh)!important;min-height:var(--gpc-ih,100svh)!important}}@media screen and (max-width:768px){#fondVideo.gpc-video-bg,#fondVideo.video-bg{width:100vw!important;height:var(--gpc-ih,100dvh)!important;min-height:var(--gpc-ih,100dvh)!important;object-fit:fill!important;object-position:center center!important;transform:translate3d(0,0,0)!important}}@media screen and (max-width:900px) and (max-height:500px) and (orientation:landscape){#fondVideo.gpc-video-bg,#fondVideo.video-bg{width:100vw!important;height:100vh!important;object-fit:fill!important;object-position:center center!important}}</style>
-<style id="gpc-diamant-stable-final">
+<style id="gpc-saphir-mobile-fluid-light-final">
   /*
-    DIAMANT STABLE
-    Objectif: garder le visuel, stopper les changements aléatoires.
-    Desktop: on ne force PAS top/height de la box, donc les tailles parfaites existantes restent.
-    Mobile: on calcule uniquement top/height en variables, sans moteur scroll continu.
+    SAPHIR MOBILE FLUID LIGHT
+    Effet fluide réintégré, mais uniquement en transform, uniquement mobile,
+    uniquement à l'ouverture/changement d'onglet. Pas de moteur au scroll.
   */
-  #gpcDiamantIntro{position:fixed!important;inset:0!important;z-index:2147483647!important;width:100vw!important;height:100dvh!important;min-height:100dvh!important;background:#000!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;padding:22px!important;box-sizing:border-box!important;pointer-events:auto!important;opacity:1!important;visibility:visible!important;transform:translateZ(0)!important}
-  #gpcDiamantIntro.gpc-hidden{opacity:0!important;visibility:hidden!important;pointer-events:none!important;transition:opacity 360ms ease,visibility 0s linear 360ms!important}
-  #gpcDiamantIntroText{font-family:Arial,Helvetica,sans-serif!important;font-weight:800!important;font-size:clamp(20px,4.3vw,34px)!important;line-height:1.22!important;color:#fff!important;white-space:pre-line!important;max-width:min(92vw,920px)!important;text-shadow:0 0 4px #fff,0 0 12px rgba(255,255,255,.55)!important}
-
+  #gpcSaphirIntro{position:fixed!important;inset:0!important;z-index:2147483647!important;width:100vw!important;height:100dvh!important;min-height:100dvh!important;background:#000!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;padding:22px!important;box-sizing:border-box!important;pointer-events:auto!important;opacity:1!important;visibility:visible!important;transform:translateZ(0)!important}
+  #gpcSaphirIntro.gpc-hidden{opacity:0!important;visibility:hidden!important;pointer-events:none!important;transition:opacity 360ms ease,visibility 0s linear 360ms!important}
+  #gpcSaphirIntroText{font-family:Arial,Helvetica,sans-serif!important;font-weight:800!important;font-size:clamp(20px,4.3vw,34px)!important;line-height:1.22!important;color:#fff!important;white-space:pre-line!important;max-width:min(92vw,920px)!important;text-shadow:0 0 4px #fff,0 0 12px rgba(255,255,255,.55)!important}
   html.gpc-site-ready #copyrightIntroPage,
   html.gpc-site-ready #introPage,
   html.gpc-site-ready #introGif,
@@ -43,12 +41,11 @@
 
   #fondVideo.gpc-video-bg,#fondVideo.video-bg{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;min-width:100vw!important;min-height:100vh!important;object-fit:fill!important;object-position:center center!important;background:#ff00ff!important;z-index:0!important;pointer-events:none!important;transform:translate3d(0,0,0)!important;backface-visibility:hidden!important;-webkit-backface-visibility:hidden!important;contain:paint!important;will-change:auto!important}
   @supports (height:100dvh){#fondVideo.gpc-video-bg,#fondVideo.video-bg{height:100dvh!important;min-height:100dvh!important}}
-  @supports (-webkit-touch-callout:none){#gpcDiamantIntro,#fondVideo.gpc-video-bg,#fondVideo.video-bg{height:var(--gpc-ih,100svh)!important;min-height:var(--gpc-ih,100svh)!important}}
+  @supports (-webkit-touch-callout:none){#gpcSaphirIntro,#fondVideo.gpc-video-bg,#fondVideo.video-bg{height:var(--gpc-ih,100svh)!important;min-height:var(--gpc-ih,100svh)!important}}
 
   .page-section:not(.active){display:none!important;content-visibility:hidden!important;pointer-events:none!important}
 
   #apropos.active{overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior:contain!important;touch-action:pan-y pinch-zoom!important;scroll-behavior:auto!important;scrollbar-gutter:stable both-edges!important;contain:layout paint style!important;will-change:auto!important}
-
   #apropos .card,#apropos .card>h1{visibility:visible!important;opacity:1!important}
   #apropos.active .card>h1{transform:translate3d(0,0,0)!important;backface-visibility:hidden!important;-webkit-backface-visibility:hidden!important;contain:paint!important;will-change:auto!important}
   #apropos.gpc-starthere-mode .card>h1{font-size:var(--gpc-rules-font-size-lock,inherit)!important;line-height:var(--gpc-rules-line-height-lock,inherit)!important;letter-spacing:var(--gpc-rules-letter-spacing-lock,inherit)!important}
@@ -65,9 +62,11 @@
 
   @media screen and (max-width:768px){
     #apropos.active{top:var(--gpc-mobile-box-top,56vh)!important;height:var(--gpc-mobile-box-height,calc(100dvh - 56vh - 190px))!important;max-height:var(--gpc-mobile-box-height,calc(100dvh - 56vh - 190px))!important;width:calc(100vw - 24px)!important;max-width:calc(100vw - 24px)!important;min-height:112px!important;padding:22px 13px!important;transform:translate3d(-50%,0,0)!important}
+    #apropos.active.gpc-mobile-fluid-running{will-change:transform!important}
   }
-  @media screen and (max-width:900px) and (max-height:500px) and (orientation:landscape){
-    #apropos.active{width:min(92vw,680px)!important;max-width:min(92vw,680px)!important;min-height:82px!important;padding:18px 10px!important}
+
+  @media screen and (prefers-reduced-motion: reduce){
+    #apropos.active.gpc-mobile-fluid-running{will-change:auto!important}
   }
 </style>
 </head><body>
@@ -955,27 +954,28 @@ PT: -pronto para uma grande competição?/<br></template>
     }, { passive: true });
   })();
 </script>
-<script id="gpc-diamant-stable-script-final">
+<script id="gpc-saphir-mobile-fluid-light-script-final">
   (function(){
     "use strict";
 
     const root=document.documentElement;
     let sections=null,box=null,title=null,video=null;
-    let fontLocked=false,arrowRAF=0,sizeTimer=0,introStarted=false;
+    let fontLocked=false,arrowRAF=0,sizeTimer=0,introStarted=false,fluidRAF=0;
 
     function el(id){return document.getElementById(id);}
     function refs(){if(sections)return;sections=Array.from(document.querySelectorAll(".page-section"));box=el("apropos");title=box?box.querySelector(".card>h1"):null;video=el("fondVideo");}
     function tpl(id){const n=el(id);return n?n.innerHTML:"";}
     function viewport(){const h=Math.max(320,Math.round(window.innerHeight||document.documentElement.clientHeight||screen.height||720));const w=Math.max(240,Math.round(window.innerWidth||document.documentElement.clientWidth||screen.width||390));root.style.setProperty("--gpc-ih",h+"px");root.style.setProperty("--gpc-iw",w+"px");return{w,h,landscape:w<=900&&h<=500&&matchMedia("(orientation: landscape)").matches};}
+    function isMobile(){return (window.innerWidth||document.documentElement.clientWidth||390)<=768;}
 
     function hideLegacyIntro(){["copyrightIntroPage","introPage","introGif","introVideo"].forEach(function(id){const n=el(id);if(!n)return;if(id==="introVideo"){try{n.pause();}catch(e){}n.removeAttribute("src");}n.style.display="none";n.style.visibility="hidden";n.style.opacity="0";n.style.pointerEvents="none";});}
     function menu(show){const nav=el("menuPrincipal");const audio=document.querySelector(".audio-box");if(nav)nav.style.display=show?"":"none";if(audio)audio.style.display=show?"block":"none";}
-    function introNode(){let o=el("gpcDiamantIntro");if(!o){o=document.createElement("div");o.id="gpcDiamantIntro";o.setAttribute("aria-hidden","true");const t=document.createElement("div");t.id="gpcDiamantIntroText";o.appendChild(t);document.body.appendChild(o);}return o;}
-    function introText(txt){hideLegacyIntro();menu(false);const o=introNode();const t=el("gpcDiamantIntroText");if(t)t.textContent=txt;o.classList.remove("gpc-hidden");}
+    function introNode(){let o=el("gpcSaphirIntro");if(!o){o=document.createElement("div");o.id="gpcSaphirIntro";o.setAttribute("aria-hidden","true");const t=document.createElement("div");t.id="gpcSaphirIntroText";o.appendChild(t);document.body.appendChild(o);}return o;}
+    function introText(txt){hideLegacyIntro();menu(false);const o=introNode();const t=el("gpcSaphirIntroText");if(t)t.textContent=txt;o.classList.remove("gpc-hidden");}
     function setupVideo(){refs();if(!video)return;video.muted=true;video.loop=true;video.playsInline=true;video.preload="auto";video.setAttribute("muted","");video.setAttribute("playsinline","");video.setAttribute("webkit-playsinline","");}
     function playVideo(){setupVideo();if(!video)return;const p=video.play();if(p&&p.catch)p.catch(function(){});}
 
-    function startIntro(){if(introStarted)return;introStarted=true;root.classList.remove("gpc-site-ready");viewport();introText("© 2026 catdezoo<3. all rights reserved.");setTimeout(function(){introText("⚠. -no epilepsy please,\nand headphones please/");},2200);setTimeout(function(){introText("<3");},4600);setTimeout(function(){const o=introNode();o.classList.add("gpc-hidden");hideLegacyIntro();root.classList.add("gpc-site-ready");menu(true);showBox("start");playVideo();},6400);}
+    function startIntro(){if(introStarted)return;introStarted=true;root.classList.remove("gpc-site-ready");viewport();introText("© 2026 catdezoo<3. all rights reserved.");setTimeout(function(){introText("⚠. -no epilepsy please,\nand headphones please/");},2200);setTimeout(function(){introText("<3");},4600);setTimeout(function(){const o=introNode();o.classList.add("gpc-hidden");hideLegacyIntro();root.classList.add("gpc-site-ready");menu(true);showBox("start",true);playVideo();},6400);}
 
     function lockRulesFont(){refs();if(!box||!title)return;const oldHTML=title.innerHTML;const wasStart=box.classList.contains("gpc-starthere-mode");const rules=tpl("gpcTextRules");box.classList.remove("gpc-starthere-mode");if(rules&&title.innerHTML!==rules)title.innerHTML=rules;const cs=getComputedStyle(title);box.style.setProperty("--gpc-rules-font-size-lock",cs.fontSize);box.style.setProperty("--gpc-rules-line-height-lock",cs.lineHeight);box.style.setProperty("--gpc-rules-letter-spacing-lock",cs.letterSpacing);fontLocked=true;if(title.innerHTML!==oldHTML)title.innerHTML=oldHTML;if(wasStart)box.classList.add("gpc-starthere-mode");}
 
@@ -986,14 +986,42 @@ PT: -pronto para uma grande competição?/<br></template>
     function updateArrowsNow(){arrowRAF=0;if(!box)return;const visible=box.clientHeight||0;const total=box.scrollHeight||0;const max=Math.max(0,total-visible);const margin=Math.max(4,Math.round(visible*.045));const noScroll=max<=margin;const atEnd=noScroll||(box.scrollTop||0)>=max-margin;box.classList.toggle("rules-no-scroll",noScroll);box.classList.toggle("rules-at-end",atEnd);}
     function updateArrows(){if(!arrowRAF)arrowRAF=requestAnimationFrame(updateArrowsNow);}
 
-    function setText(mode){refs();if(!box||!title)return;if(!fontLocked)lockRulesFont();const html=mode==="start"?tpl("gpcTextStartHere"):tpl("gpcTextRules");box.classList.toggle("gpc-starthere-mode",mode==="start");if(html&&title.innerHTML!==html)title.innerHTML=html;title.style.visibility="visible";title.style.opacity="1";title.style.minHeight="";box.scrollTop=0;}
-    function showBox(mode){refs();if(!box||!sections)return;setText(mode);sections.forEach(function(s){s.classList.toggle("active",s===box);});setText(mode);scheduleSize(30);requestAnimationFrame(updateArrows);}
-    function showContact(){refs();if(!sections)return;sections.forEach(function(s){s.classList.toggle("active",s.id==="contact");});}
-    window.afficherSection=function(id){if(id==="apropos")showBox("rules");else if(id==="contact")showContact();else showBox("start");};
-    window.lancerMusique=function(){showBox("start");};
+    function fluidOpen(force){
+      refs();
+      if(!box||!isMobile())return;
+      if(!force&&matchMedia("(prefers-reduced-motion: reduce)").matches)return;
 
-    function hook(){refs();if(box&&!box.dataset.gpcDiamantScrollOk){box.dataset.gpcDiamantScrollOk="1";box.addEventListener("scroll",updateArrows,{passive:true});box.addEventListener("wheel",updateArrows,{passive:true});box.addEventListener("touchmove",updateArrows,{passive:true});}}
-    function boot(){refs();hook();viewport();lockRulesFont();sizeMobileBox();showBox("start");playVideo();}
+      if(fluidRAF)cancelAnimationFrame(fluidRAF);
+      box.classList.add("gpc-mobile-fluid-running");
+
+      const start=performance.now();
+      const duration=620;
+      function frame(now){
+        const t=Math.min(1,(now-start)/duration);
+        const ease=1-Math.pow(1-t,3);
+        const wave=Math.sin(t*Math.PI*2.15)*(1-t)*7;
+        const y=18*(1-ease)+wave;
+        const scale=1+Math.sin(t*Math.PI)*(1-t)*0.006;
+        box.style.setProperty("transform","translate3d(-50%,"+y.toFixed(2)+"px,0) scale("+scale.toFixed(4)+")","important");
+        if(t<1){
+          fluidRAF=requestAnimationFrame(frame);
+        }else{
+          fluidRAF=0;
+          box.style.removeProperty("transform");
+          box.classList.remove("gpc-mobile-fluid-running");
+        }
+      }
+      fluidRAF=requestAnimationFrame(frame);
+    }
+
+    function setText(mode){refs();if(!box||!title)return;if(!fontLocked)lockRulesFont();const html=mode==="start"?tpl("gpcTextStartHere"):tpl("gpcTextRules");box.classList.toggle("gpc-starthere-mode",mode==="start");if(html&&title.innerHTML!==html)title.innerHTML=html;title.style.visibility="visible";title.style.opacity="1";title.style.minHeight="";box.scrollTop=0;}
+    function showBox(mode,forceFluid){refs();if(!box||!sections)return;setText(mode);sections.forEach(function(s){s.classList.toggle("active",s===box);});setText(mode);scheduleSize(30);requestAnimationFrame(function(){updateArrows();fluidOpen(!!forceFluid);});}
+    function showContact(){refs();if(!sections)return;sections.forEach(function(s){s.classList.toggle("active",s.id==="contact");});}
+    window.afficherSection=function(id){if(id==="apropos")showBox("rules",true);else if(id==="contact")showContact();else showBox("start",true);};
+    window.lancerMusique=function(){showBox("start",true);};
+
+    function hook(){refs();if(box&&!box.dataset.gpcSaphirScrollOk){box.dataset.gpcSaphirScrollOk="1";box.addEventListener("scroll",updateArrows,{passive:true});box.addEventListener("wheel",updateArrows,{passive:true});box.addEventListener("touchmove",updateArrows,{passive:true});}}
+    function boot(){refs();hook();viewport();lockRulesFont();sizeMobileBox();showBox("start",false);playVideo();}
     window.addEventListener("resize",function(){fontLocked=false;lockRulesFont();scheduleSize(90);},{passive:true});
     window.addEventListener("orientationchange",function(){fontLocked=false;setTimeout(boot,140);setTimeout(boot,420);},{passive:true});
     window.addEventListener("pageshow",function(e){if(e&&e.persisted){root.classList.add("gpc-site-ready");menu(true);boot();}},{passive:true});
