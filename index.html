@@ -114,6 +114,32 @@
     }
   }
 </style>
+<style id="gpc-ajustements-timer-gmail-video-final">
+  /*
+    Ajustements sans toucher à l'effet de box :
+    - timer desktop juste sous le menu à onglets
+    - @gmail mobile remonté
+    - aucune modification de taille/placement de la box
+  */
+  @media screen and (min-width: 769px) {
+    .paris-timer {
+      top: var(--gpc-timer-under-menu-top, calc(clamp(66px, 11.4dvh, 142px) + clamp(10px, 1.4dvh, 18px))) !important;
+      transform: translate3d(-50%, 0, 0) !important;
+      will-change: auto !important;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    #contact.active h1,
+    #contact h1 {
+      transform: translate3d(
+        0,
+        calc(var(--gmail-chef-float, var(--gmail-smooth-float, 0px)) - clamp(56px, 10.5dvh, 96px)),
+        0
+      ) !important;
+    }
+  }
+</style>
 </head><body>
 <video id="fondVideo" class="video-bg gpc-video-bg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen" aria-hidden="true">
   <source src="./téma.mp4" type="video/mp4">
@@ -1011,7 +1037,6 @@ PT: -pronto para uma grande competição?/<br></template>
     let video = null;
     let introStarted = false;
 
-    // Moteur fluide hier.
     let largeurStable = 0;
     let hauteurStable = 0;
     let orientationStable = "";
@@ -1026,6 +1051,11 @@ PT: -pronto para uma grande competição?/<br></template>
     let raf = null;
     let retourTimer = null;
     let arrowRAF = null;
+    let resizeTimer = null;
+
+    let lastTop = "";
+    let lastHeight = "";
+    let lastFloat = "";
 
     function el(id) {
       return document.getElementById(id);
@@ -1068,6 +1098,22 @@ PT: -pronto para uma grande competição?/<br></template>
       root.style.setProperty("--gpc-ih", h + "px");
       root.style.setProperty("--gpc-iw", w + "px");
       return { w: w, h: h };
+    }
+
+    function updateDesktopTimer() {
+      if ((window.innerWidth || 0) <= 768) {
+        root.style.removeProperty("--gpc-timer-under-menu-top");
+        return;
+      }
+
+      const nav = el("menuPrincipal");
+      if (!nav || nav.style.display === "none") return;
+
+      const rect = nav.getBoundingClientRect();
+      if (!rect || !rect.height) return;
+
+      const gap = clamp(Math.round((window.innerHeight || 800) * 0.014), 9, 18);
+      root.style.setProperty("--gpc-timer-under-menu-top", Math.round(rect.bottom + gap) + "px");
     }
 
     function dimensions(force) {
@@ -1113,6 +1159,8 @@ PT: -pronto para uma grande competição?/<br></template>
       const audioBox = document.querySelector(".audio-box");
       if (nav) nav.style.display = show ? "" : "none";
       if (audioBox) audioBox.style.display = show ? "block" : "none";
+      setTimeout(updateDesktopTimer, 30);
+      setTimeout(updateDesktopTimer, 180);
     }
 
     function introNode() {
@@ -1182,20 +1230,33 @@ PT: -pronto para uma grande competição?/<br></template>
 
       if (lecteur) {
         const rect = lecteur.getBoundingClientRect();
-        if (rect && rect.top > 0 && rect.top < d.h) {
-          return rect.top;
-        }
+        if (rect && rect.top > 0 && rect.top < d.h) return rect.top;
       }
 
       return d.h - 170;
     }
 
+    function setVarCached(b, name, value, storeKey) {
+      if (storeKey === "top") {
+        if (value === lastTop) return;
+        lastTop = value;
+      } else if (storeKey === "height") {
+        if (value === lastHeight) return;
+        lastHeight = value;
+      } else if (storeKey === "float") {
+        if (value === lastFloat) return;
+        lastFloat = value;
+      }
+      b.style.setProperty(name, value);
+    }
+
     function appliquer() {
       const b = box();
       if (!b || topActuel === null || hauteurActuelle === null) return;
-      b.style.setProperty("--rules-hier-top", topActuel.toFixed(2) + "px");
-      b.style.setProperty("--rules-hier-height", hauteurActuelle.toFixed(2) + "px");
-      b.style.setProperty("--rules-hier-float", floatActuel.toFixed(2) + "px");
+
+      setVarCached(b, "--rules-hier-top", topActuel.toFixed(2) + "px", "top");
+      setVarCached(b, "--rules-hier-height", hauteurActuelle.toFixed(2) + "px", "height");
+      setVarCached(b, "--rules-hier-float", floatActuel.toFixed(2) + "px", "float");
     }
 
     function nettoyerMoteur() {
@@ -1214,6 +1275,9 @@ PT: -pronto para uma grande competição?/<br></template>
       hauteurCible = null;
       floatActuel = 0;
       floatCible = 0;
+      lastTop = "";
+      lastHeight = "";
+      lastFloat = "";
       raf = null;
     }
 
@@ -1390,13 +1454,23 @@ PT: -pronto para uma grande competição?/<br></template>
     };
 
     window.lancerMusique = function() {
-      // Retour au comportement mobile stable: starthere = accueil, pas de RULES box, pas d'audio.
       showSection("accueil");
     };
+
+    function scheduleResizeCalc() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        viewport();
+        updateDesktopTimer();
+        calculer(false);
+        updateArrows();
+      }, 80);
+    }
 
     function boot() {
       refs();
       viewport();
+      updateDesktopTimer();
       setRulesText();
       brancherScrollBox();
       showSection("accueil");
@@ -1408,15 +1482,11 @@ PT: -pronto para uma grande competição?/<br></template>
       impulsionPage();
     }, { passive: true });
 
-    window.addEventListener("resize", function() {
-      viewport();
-      calculer(false);
-      updateArrows();
-    }, { passive: true });
+    window.addEventListener("resize", scheduleResizeCalc, { passive: true });
 
     window.addEventListener("orientationchange", function() {
-      setTimeout(function() { viewport(); calculer(true); updateArrows(); }, 120);
-      setTimeout(function() { viewport(); calculer(true); updateArrows(); }, 420);
+      setTimeout(function() { viewport(); updateDesktopTimer(); calculer(true); updateArrows(); }, 120);
+      setTimeout(function() { viewport(); updateDesktopTimer(); calculer(true); updateArrows(); }, 420);
     }, { passive: true });
 
     window.addEventListener("pageshow", function(e) {
@@ -1425,7 +1495,7 @@ PT: -pronto para uma grande competição?/<br></template>
         menu(true);
         boot();
       }
-      setTimeout(function() { calculer(true); brancherScrollBox(); updateArrows(); }, 120);
+      setTimeout(function() { updateDesktopTimer(); calculer(true); brancherScrollBox(); updateArrows(); }, 120);
     }, { passive: true });
 
     window.addEventListener("focus", playVideo, { passive: true });
